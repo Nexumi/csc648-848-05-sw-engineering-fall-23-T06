@@ -13,14 +13,15 @@
 3. Fill out the table below. Note that roles are not yet defined for members of the team, they can be added later on. However, the fields of "Student name", "Student Email", and "Github Username" are mandatory to be completed the same day the repository is created. 
 
 
-| Student      | Student Full Name |Student SFSU Email | GitHub Username | Discord Username   |        Role         |
-|    :---:     |   :---:           |       :---:       |     :---:       |        :---:       |        :---:        | 
-|      #1      |                   |                   |                 |                    |        Lead         |
-|      #2      |                   |                   |                 |                    |                     |
-|      #3      |                   |                   |                 |                    |                     |
-|      #4      |                   |                   |                 |                    |                     |
-|      #5      |                   |                   |                 |                    |                     |
-|      #6      |                   |                   |                 |                    |                     |
+| Student      | Student Full Name |Student SFSU Email      | GitHub Username | Discord Username   |        Role         |
+|    :---:     |   :---:           |       :---:            |     :---:       |        :---:       |        :---:        | 
+|      #1      | Rita Belu Velazco |rvelazco@mail.sfsu.edu  |ritabeluvelazco  |grandpapi_breakfast |        Lead         |
+|      #2      | Jimmy Pan         |jpan6@mail.sfsu.edu     |      Nexumi     |      nexumi        |        tba          |
+|      #3      | David Lien        |dlien@mail.sfsu.edu     |    liendavid    |      tritip        |        tba          |
+|      #4      | Komaldeep Kaur    |kkaur5@mail.sfsu.edu    |                 |    komalkaaur      |        tba          |
+|      #5      | Luis Ramirez      |lramirez25@mail.sfsu.edu|   MannyR00      |       Manny        |        tba          |
+|      #6      | Tin Nguyen        |tnguyen147@sfsu.edu     |  Tin-Nguyen-96  |     tinbuktu       |        tba          |
+|      #7      | Mankit Yeung      |myeung2@mail.sfsu.edu   |    mayeung      |      mankit_y_     |        tba          |
 
 
 4. All the team members must sign the team contract found [here](https://forms.gle/dxATAsa9isXKbcBn7). Missing signatures from students will result in these students being dropped from the course since this means that they disagree with the policies and terms needed to work in a team environment. 
