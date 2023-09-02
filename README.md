@@ -18,7 +18,7 @@
 |      #1      | Rita Belu Velazco |rvelazco@mail.sfsu.edu  |ritabeluvelazco  |grandpapi_breakfast |        Lead         |
 |      #2      | Jimmy Pan         |jpan6@mail.sfsu.edu     |      Nexumi     |      nexumi        |        tba          |
 |      #3      | David Lien        |dlien@mail.sfsu.edu     |    liendavid    |      tritip        |        tba          |
-|      #4      | Komaldeep Kaur    |kkaur5@mail.sfsu.edu    |                 |    komalkaaur      |        tba          |
+|      #4      | Komaldeep Kaur    |kkaur5@mail.sfsu.edu    |    komalkaaur   |    komalkaaur      |        tba          |
 |      #5      | Luis Ramirez      |lramirez25@mail.sfsu.edu|   MannyR00      |       Manny        |        tba          |
 |      #6      | Tin Nguyen        |tnguyen147@sfsu.edu     |  Tin-Nguyen-96  |     tinbuktu       |        tba          |
 |      #7      | Mankit Yeung      |myeung2@mail.sfsu.edu   |    mayeung      |      mankit_y_     |        tba          |
