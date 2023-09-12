@@ -1,6 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { Button } from "../../common/components/button";
 import { For, createSignal } from "solid-js";
+import { Flex } from "../../common/layout/flex";
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -8,16 +9,18 @@ export default function AboutPage() {
 
   return (
     <>
-    <For each={teammates()}>{(teammate) =>
-      <Button
-        class="capitalize"
-        onClick={() => {
-          navigate(teammate);
-        }}
-      >
-        {teammate}
-      </Button>
-    }</For>
+    <Flex justifyContent="center" class="gap-x-5">
+      <For each={teammates()}>{(teammate) =>
+        <Button
+          class="capitalize bg-cyan-500 hover:bg-cyan-600"
+          onClick={() => {
+            navigate(teammate);
+          }}
+        >
+          {teammate}
+        </Button>
+      }</For>
+    </Flex>
     </>
   );
 }
