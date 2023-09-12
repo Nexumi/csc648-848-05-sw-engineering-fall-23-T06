@@ -9,7 +9,7 @@ export default function AboutMe(props: any) {
           <Flex justifyContent="center">
             <img
               src={props.img}
-              class="w-full max-w-xs rounded-full"
+              class="w-full max-w-xs h-full max-h-80 rounded-full object-cover"
             />
           </Flex>
           <div class="font-bold">
