@@ -10,7 +10,7 @@ export default function HomePage() {
       <div class="space-y-5">
         <Flex justifyContent="center">
           <Button
-            class="bg-cyan-500 hover:bg-cyan-600"
+            class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
               navigate("about");
             }}

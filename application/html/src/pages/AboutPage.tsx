@@ -1,7 +1,7 @@
 import { useNavigate } from "@solidjs/router";
-import { Button } from "../../common/components/button";
+import { Button } from "../common/components/button";
 import { For, createSignal } from "solid-js";
-import { Flex } from "../../common/layout/flex";
+import { Flex } from "../common/layout/flex";
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function AboutPage() {
     <Flex justifyContent="center" class="gap-x-5">
       <For each={teammates()}>{(teammate) =>
         <Button
-          class="capitalize bg-cyan-500 hover:bg-cyan-600"
+          class="capitalize text-white bg-black hover:bg-gray-600"
           onClick={() => {
             navigate(teammate);
           }}

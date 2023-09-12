@@ -1,9 +1,14 @@
 import AboutMe from "../../components/AboutMe";
+import Jimmy from "../../assets/profiles/Jimmy.png"
 
 export default function AboutJimmy() {
   return (
     <AboutMe
-      name="Jimmy"
+      img={Jimmy}
+      name="Jimmy Pan"
+      description="My name is Jimmy Pan, and I am majoring in computer science 
+        at San Francisco State University. I enjoy spending time with my friends
+        and playing video games."
     />
   );
 }

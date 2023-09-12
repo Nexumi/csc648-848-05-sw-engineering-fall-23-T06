@@ -1,7 +1,7 @@
 import { Routes, Route } from "@solidjs/router";
 import Logo from "./components/Logo";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPages/AboutPage";
+import AboutPage from "./pages/AboutPage";
 import AboutBelu from "./pages/AboutPages/AboutBelu";
 import AboutDavid from "./pages/AboutPages/AboutDavid";
 import AboutJimmy from "./pages/AboutPages/AboutJimmy";
