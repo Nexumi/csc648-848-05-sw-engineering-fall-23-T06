@@ -6,7 +6,8 @@ export default function AboutLuis() {
     <AboutMe
       img={Luis}
       name="Luis"
-      description="Hello, my name is Luis I'm a computer science major and in my free time, I enjoy listening to music or playing games."
+      description="Hello, my name is Luis I'm a computer science major and in
+        my free time, I enjoy listening to music or playing games."
     />
   );
 }
