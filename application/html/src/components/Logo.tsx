@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import temp_logo from "../assets/temp_logo.png";
+import temp_logo from "../assets/logos/temp_logo.png";
 import { Flex } from "../common/layout/flex";
 
 export default function Logo() {
