@@ -5,7 +5,7 @@ export default function AboutLuis() {
   return (
     <AboutMe
       img={Luis}
-      name="Luis"
+      name="Luis Ramirez"
       description="Hello, my name is Luis I'm a computer science major and in
         my free time, I enjoy listening to music or playing games."
     />
