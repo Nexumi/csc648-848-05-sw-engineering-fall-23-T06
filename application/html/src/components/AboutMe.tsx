@@ -11,7 +11,7 @@ export default function AboutMe(props: any) {
             <Flex justifyContent="center">
               <img
                 src={props.img}
-                class="w-full max-w-xs h-full max-h-80 rounded-full object-cover"
+                class="w-full max-w-xs h-full max-h-80 rounded-full object-cover aspect-square"
               />
             </Flex>
           </Show>
