@@ -1,5 +1,5 @@
 import AboutMe from "../../components/AboutMe";
-import Belu from "../../assets/profiles/Komal.jpg";
+import Belu from "../../assets/profiles/Komal.jpeg";
 
 export default function AboutKomal() {
   return (
