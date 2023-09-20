@@ -1,9 +1,10 @@
 import AboutMe from "../../components/AboutMe";
-import Belu from "../../assets/profiles/Komal.jpeg";
+import Komal from "../../assets/profiles/Komal.jpeg";
 
 export default function AboutKomal() {
   return (
     <AboutMe
+      img={Komal}
       name="Komaldeep Kaur"
       description="Hi everyone! My name is Komaldeep Kaur but, I go by Komal.
       I am a computer science major at San Fransisco State. I'm in my last year
