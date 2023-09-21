@@ -7,7 +7,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div class="space-y-5">
+      <div class="text-center">
         <header>
           <h1> Software Engineering class SFSU </h1>
           <h1> Fall 2023 </h1>
