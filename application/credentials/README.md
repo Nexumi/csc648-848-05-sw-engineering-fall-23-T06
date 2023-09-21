@@ -3,7 +3,7 @@
 1. Download [id_rsa](id_rsa)
 2. Set `id_rsa` file permission
 	- [Windows guide](#windows-key-permission)
-	- [Linux/MacOS guide](#)
+	- [Linux/MacOS guide](#linuxmacos-key-permission)
 3. Open up a terminal
 4. Run `ssh -i <Drag and Drop id_rsa here> ubuntu@orderowl.jpkit.us`
 5. You are now connected to the server
