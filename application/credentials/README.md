@@ -48,8 +48,8 @@
 1. Download [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 2. Add a new MySQL Connections
 ![MySQL credentials](tutorial/MySQL.png)<br />
-SSH Password: `None`
-SSH Key File: obtain from [SSH guide](#ssh)
+SSH Password: `None`<br />
+SSH Key File: obtain from [SSH guide](#ssh)<br />
 Password: `myorderowl`
 3. Press `OK` and enter the password
 4. You can now connect to the database
