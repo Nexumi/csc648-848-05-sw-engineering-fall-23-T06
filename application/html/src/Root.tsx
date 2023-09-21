@@ -1,5 +1,5 @@
 import { Routes, Route } from "@solidjs/router";
-import Logo from "./components/Logo";
+import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import AboutBelu from "./pages/AboutPages/AboutBelu";
@@ -14,7 +14,7 @@ export default function Root() {
   return (
     <div class="h-screen">
       <div class="px-10 py-8">
-        <Logo />
+        <Header />
         <Routes>
           <Route path="/" component={HomePage} />
           <Route path="/about">
