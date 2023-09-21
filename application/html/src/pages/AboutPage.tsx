@@ -9,7 +9,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <Flex justifyContent="center" class="gap-x-5">
+      <Flex justifyContent="center" class="flex-wrap gap-5">
         <For each={teammates()}>{(teammate) =>
           <Button
             class="capitalize text-white bg-black hover:bg-gray-600"
