@@ -1,4 +1,4 @@
-### SSH
+# SSH
 *Terminal*
 1. Download [id_rsa](id_rsa)
 2. Set `id_rsa` file permission
@@ -21,7 +21,7 @@
 10. Save configuration
 11. Double click newly added host to connect
 
-### Windows Key Permission
+# Windows Key Permission
 1. Right click `id_rsa`
 2. Click `Properties`
 3. Go to `Security` tab
@@ -31,13 +31,13 @@
 7. Go through each user and delete them, EXCEPT for your account.
 8. Press `OK` to save and you are ready to continue to SSH into the server
 
-### Linux/MacOS Key Permission
+# Linux/MacOS Key Permission
 1. Open up a terminal
 2. Run `sudo chmod 600 <Drag and Drop id_rsa here>`
 3. Enter your account password if prompted
 4. You are ready to continue to SSH into the server
 
-### MySQL
+# MySQL
 *Terminal*
 1. SSH using the [guide](#ssh)
 2. Run `mysql -u root -p`
