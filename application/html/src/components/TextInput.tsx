@@ -8,6 +8,7 @@ export default function TextInput(props: any) {
         <p>{props.header}</p>
       </div>
       <Input
+        name={props.name}
         type={props.type}
         class={props.class}
       />
