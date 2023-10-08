@@ -10,6 +10,7 @@ import AboutLuis from "./pages/AboutPages/AboutLuis";
 import AboutMankit from "./pages/AboutPages/AboutMankit";
 import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
+import ForgetPage from "./pages/ForgetPage";
 import PageNotFound from "./pages/PageNotFound";
 
 export default function Root() {
@@ -30,6 +31,7 @@ export default function Root() {
               <Route path="/tin" component={AboutTin} />
             </Route>
           <Route path="/login" component={LoginPage} />
+          <Route path="/forget" component={ForgetPage} />
           <Route path="/*" component={PageNotFound} />
         </Routes>
       </div>
