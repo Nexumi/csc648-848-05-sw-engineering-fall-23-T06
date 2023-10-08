@@ -6,10 +6,11 @@ import { Show } from "solid-js";
 export default function Logo() {
   const navigate = useNavigate();
   const isLogin = useMatch(() => "/login");
+  const isForget = useMatch(() => "/forget");
 
   return (
     <>
-      <Show when={!isLogin()}>
+      <Show when={!isLogin() && !isForget()}>
         <header class="text-center pb-6">
           <Flex justifyContent="center" class="pb-2">
             <img
