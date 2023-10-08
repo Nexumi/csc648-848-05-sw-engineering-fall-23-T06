@@ -3,6 +3,8 @@ import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
 
 export default function LoginPage() {
+  const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
+
   return (
     <>
       <Flex class="h-full">
@@ -15,19 +17,25 @@ export default function LoginPage() {
             </A>
           </Flex>
           <Flex class="h-full w-full">
-            <div class="w-full space-y-10">
+            <div class="w-full">
               <div class="text-xl font-bold">
                 <p>Welcome Back!</p>
               </div>
-              <div class="w-full space-y-5 p-4">
-                <TextInput
-                  type="email"
-                  header="Email"
-                />
-                <TextInput
-                  type="password"
-                  header="Password"
-                />
+              <div class="w-full space-y-5 p-16">
+                <div class="border-b-2 border-black p-0">
+                  <TextInput
+                    type="email"
+                    header="Email"
+                    class={NO_RING}
+                  />
+                </div>
+                <div class="border-b-2 border-black p-0">
+                  <TextInput
+                    type="password"
+                    header="Password"
+                    class={NO_RING}
+                  />
+                </div>
               </div>
               <Flex>
                 <div class="underline">

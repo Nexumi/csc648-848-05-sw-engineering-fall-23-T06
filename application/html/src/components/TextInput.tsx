@@ -9,6 +9,7 @@ export default function TextInput(props: any) {
       </div>
       <Input
         type={props.type}
+        class={props.class}
       />
     </div>
     </>
