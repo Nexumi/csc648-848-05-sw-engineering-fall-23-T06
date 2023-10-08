@@ -9,7 +9,7 @@ export default function Logo() {
 
   return (
     <>
-      <Show when={!isLogin}>
+      <Show when={!isLogin()}>
         <header class="text-center pb-6">
           <Flex justifyContent="center" class="pb-2">
             <img

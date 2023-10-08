@@ -16,8 +16,8 @@ import PageNotFound from "./pages/PageNotFound";
 export default function Root() {
   return (
     <div class="h-screen">
-      <Header />
       <div class="h-full px-10 py-8">
+        <Header />
         <Routes>
             <Route path="/" component={HomePage} />
             <Route path="/about">
