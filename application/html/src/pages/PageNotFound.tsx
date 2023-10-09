@@ -1,18 +1,22 @@
-import { A } from "@solidjs/router";
+import { useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 
 export default function PageNotFound() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Flex justifyContent="center" class="h-full text-center">
         <div>
           <p>404 Page Not Found</p>
           <div class="underline">
-            <A
-              href="/"
+            <p
+              onClick={() => {
+                navigate("/");
+              }}
             >
               Return to Home Page
-            </A>
+            </p>
           </div>
         </div>
       </Flex>

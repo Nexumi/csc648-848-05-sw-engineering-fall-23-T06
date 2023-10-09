@@ -1,10 +1,12 @@
-import { A } from "@solidjs/router";
+import { useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
 import { createForm } from "@felte/solid";
 import { Button } from "../common/components/button";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
 
   const { form } = createForm({
@@ -19,11 +21,14 @@ export default function LoginPage() {
       <Flex class="h-full">
         <div class="h-full w-1/2 p-16">
           <Flex justifyContent="center" class="text-8xl font-thin">
-            <A
-              href="/"
+            <p
+              onClick={() => {
+                  navigate("/");
+                }
+              }
             >
               OrderOwl
-            </A>
+            </p>
           </Flex>
           <Flex class="h-full w-full">
             <div class="w-full">
@@ -51,11 +56,14 @@ export default function LoginPage() {
                 </div>
                 <Flex>
                   <div class="underline">
-                    <A
-                      href="/forget"
+                    <p
+                      onClick={() => {
+                          navigate("/forget");
+                        }
+                      }
                     >
                       Forget Password
-                    </A>
+                    </p>
                   </div>
                   <Button
                     type="submit"
