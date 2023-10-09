@@ -12,6 +12,7 @@ import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
 import ForgetPage from "./pages/ForgetPage";
 import PageNotFound from "./pages/PageNotFound";
+import SearchPage from "./pages/SearchPage";
 
 export default function Root() {
   return (
@@ -20,6 +21,7 @@ export default function Root() {
         <Header />
         <Routes>
             <Route path="/" component={HomePage} />
+            <Route path="/search" component={SearchPage} />
             <Route path="/about">
               <Route path="/" component={AboutPage} />
               <Route path="/belu" component={AboutBelu} />

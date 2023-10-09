@@ -27,6 +27,15 @@ export default function HomePage() {
             Home
           </Button>
 
+            <Button
+                class="text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                    navigate("search");
+                }}
+            >
+                Search Page
+            </Button>
+
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
