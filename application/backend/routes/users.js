@@ -12,7 +12,7 @@ router.post('/registration', (req, res, next) => {
   let password = req.body.password;
   let confirmPassword = req.body.confirmPassword;
 
-  /*UserModel.usernameExists(username)
+  UserModel.usernameExists(username)
     .then((userNameDoesExist) => { // checking to see if the user exists
       if (userNameDoesExist) {
         throw new UserError(
@@ -52,7 +52,7 @@ router.post('/registration', (req, res, next) => {
       } else {
         next(err);
       }
-    });*/
+    });
 });
 
 router.post('/login', (req, res, next) => {
