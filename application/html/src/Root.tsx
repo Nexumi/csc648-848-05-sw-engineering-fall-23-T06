@@ -20,7 +20,7 @@ import PageNotFound from "./pages/PageNotFound";
 export default function Root() {
   return (
     <div class="grid min-h-screen px-10 py-8">
-      <Header />
+      {/* <Header /> */}
       <Routes>
           <Route path="/" component={HomePage} />
           <Route path="/search" component={SearchPage} />
