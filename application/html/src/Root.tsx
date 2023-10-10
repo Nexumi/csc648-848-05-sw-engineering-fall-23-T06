@@ -12,7 +12,11 @@ import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
 import ForgetPage from "./pages/ForgetPage";
 import PageNotFound from "./pages/PageNotFound";
+<<<<<<< HEAD
 import TrackingPage from "./pages/TrackingPage";
+=======
+import SearchPage from "./pages/SearchPage";
+>>>>>>> ef757cf8d79038921926d3d93fe631c7f46e5c9d
 
 export default function Root() {
   return (
@@ -21,6 +25,7 @@ export default function Root() {
         <Header />
         <Routes>
             <Route path="/" component={HomePage} />
+            <Route path="/search" component={SearchPage} />
             <Route path="/about">
               <Route path="/" component={AboutPage} />
               <Route path="/belu" component={AboutBelu} />
