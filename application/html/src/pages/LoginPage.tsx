@@ -12,7 +12,8 @@ export default function LoginPage() {
   const { form } = createForm({
     onSubmit(values) {
       console.log(values);
-      alert("(WIP) Not yet implemented");
+      alert("(WIP) Not yet implemented.\n\nSending you to dashboard.");
+      navigate("/dashboard");
     }
   });
 

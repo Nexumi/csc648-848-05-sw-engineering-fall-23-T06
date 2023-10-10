@@ -5,16 +5,18 @@
 import { createSignal } from 'solid-js';
 
 export default function SearchBar({ onSearch }) {
-    const [query, setQuery] = createSignal('');
+  const [query, setQuery] = createSignal('');
 
-    const handleSearch = () => {
-        onSearch(query());
-    };
+  const handleSearch = () => {
+    onSearch(query());
+  };
 
-    return (
-        <div>
-            <input type="text" value={query()} onInput={(e) => setQuery(e.target.value)} />
-            <button onClick={handleSearch}>Search</button>
-        </div>
-    );
+  return (
+    <>
+      <div>
+        <input type="text" value={query()} onInput={(e) => setQuery(e.target.value)} />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+    </>
+  );
 }

@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <Flex flexDirection="col" class="h-full">
       <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
-                <img
+        <img
           src={logo}
           class="w-40 cursor-pointer" 
           onClick={() => {
