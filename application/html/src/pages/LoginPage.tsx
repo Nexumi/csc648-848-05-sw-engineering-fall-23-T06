@@ -58,15 +58,14 @@ export default function LoginPage() {
                   </div>
                 </div>
                 <Flex>
-                  <div class="underline">
-                    <p
-                      onClick={() => {
-                          navigate(uriForget());
-                        }
+                  <div
+                    class="underline cursor-pointer"
+                    onClick={() => {
+                        navigate(uriForget());
                       }
-                    >
-                      Forget Password
-                    </p>
+                    }
+                  >
+                    <p>Forget Password</p>
                   </div>
                   <Button
                     type="submit"
