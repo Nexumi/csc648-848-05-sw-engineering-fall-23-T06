@@ -12,6 +12,7 @@ import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
 import ForgetPage from "./pages/ForgetPage";
 import PageNotFound from "./pages/PageNotFound";
+import TrackingPage from "./pages/TrackingPage";
 
 export default function Root() {
   return (
@@ -33,6 +34,7 @@ export default function Root() {
           <Route path="/login" component={LoginPage} />
           <Route path="/forget" component={ForgetPage} />
           <Route path="/*" component={PageNotFound} />
+          <Route path="/tracking" component={TrackingPage} />
         </Routes>
       </div>
     </div>

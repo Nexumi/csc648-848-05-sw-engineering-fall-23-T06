@@ -1,7 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
-import temp_logo from "../assets/logos/temp_logo.png";
+import logo from "../assets/logos/logo.png";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export default function HomePage() {
     <div class="h-full flex flex-col">
       <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
                 <img
-          src={temp_logo}
+          src={logo}
           class="w-40 cursor-pointer" 
           onClick={() => {
             navigate("/");
@@ -39,7 +39,7 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate("/forget");
+              navigate("/tracking");
             }}
           >
             Support
