@@ -16,9 +16,6 @@ export default function SideBar() {
   const isUpload = useMatch(uriUpload);
   const isTracking = useMatch(uriTracking);
 
-  const BOX = "w-24 h-24 border-black border-b-2";
-  const FULL = "w-full h-full p-0";
-
   const [destinations, setDestinations] = createSignal([
     {label: "Dashboard", uri: uriDashboard, isPage: isDashboard},
     {label: "Upload", uri: uriUpload, isPage: isUpload},
@@ -30,17 +27,21 @@ export default function SideBar() {
       <Show when={!isLogin() && !isForget() && !isHome() && !isAbout()}>
         <div class="flex inset-y-0">
           <div class="flex flex-grow flex-col overflow-y-auto border-r-2 border-black">
-            <Flex justifyContent="center" class={BOX}>
-              <Button
-                class={FULL}
-                onClick={() => {
-                  navigate("/");
-                }}
+            <Flex
+              justifyContent="center"
+              class="w-24 h-24 border-black border-b-2"
+              onClick={() => {
+                navigate(uriHome());
+              }}
+            >
+              <Flex
+                justifyContent="center"
+                class="w-full h-full p-0"
               >
                 <img
                   src={logo}
                 />
-              </Button>
+              </Flex>
             </Flex>
             <For each={destinations()}>{(destination) =>
               <NavButton
@@ -63,21 +64,26 @@ function NavButton(props: {
 }) {
   const navigate = useNavigate();
 
-  const BOX = "w-24 h-24 border-black border-b-2";
-  const BOX_ACTIVE = "w-24 h-24 border-black border-b-2 bg-[#C68B59]";
-  const FULL = "w-full h-full p-0";
+  const BOX = "w-24 h-24 cursor-pointer";
+  const BOX_ACTIVE = "w-24 h-24 cursor-pointer bg-gradient-radial from-[#C68B59]";
+  const FULL = "w-4/5 h-full rounded-none border-black border-b-2";
   
   return (
     <>
-      <Flex justifyContent="center" class={props.isPage() ? BOX_ACTIVE : BOX}>
-        <Button
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        class={props.isPage() ? BOX_ACTIVE : BOX}
+        onClick={() => {
+          navigate(props.uri());
+        }}
+      >
+        <Flex
+          justifyContent="center"
           class={FULL}
-          onClick={() => {
-            navigate(props.uri());
-          }}
         >
-          {props.label}
-        </Button>
+          <p>{props.label}</p>
+        </Flex>
       </Flex>
     </>
   );
