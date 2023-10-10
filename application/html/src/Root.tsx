@@ -16,6 +16,7 @@ import SearchPage from "./pages/SearchPage";
 import TrackingPage from "./pages/TrackingPage";
 import PageNotFound from "./pages/PageNotFound";
 import DashboardPage from "./pages/DashboardPage";
+import UploadPage from "./pages/UploadPage";
 
 export default function Root() {
   return (
@@ -41,6 +42,7 @@ export default function Root() {
             <Route path="/login" component={LoginPage} />
             <Route path="/forget" component={ForgetPage} />
             <Route path="/dashboard" component={DashboardPage} />
+            <Route path="/upload" component={UploadPage} />
             <Route path="/tracking" component={TrackingPage} />
           </Routes>
         </div>
