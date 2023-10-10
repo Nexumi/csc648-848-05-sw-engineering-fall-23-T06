@@ -10,12 +10,13 @@ export default function DashboardPage() {
       <Flex justifyContent="center" class="h-full text-center">
         <div>
           <p>(WIP) Page not yet constructed</p>
-          <div class="underline">
-            <p
-              onClick={() => {
-                navigate(uriHome());
-              }}
-            >
+          <div
+            class="underline cursor-pointer"
+            onClick={() => {
+              navigate(uriHome());
+            }}
+          >
+            <p>
               Return to Home Page
             </p>
           </div>
