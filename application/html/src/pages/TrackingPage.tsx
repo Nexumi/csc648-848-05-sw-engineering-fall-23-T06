@@ -5,19 +5,20 @@ import logo from "../assets/logos/logo.png";
 import SearchIcon from "../assets/logos/SearchIcon.png";
 import GearIcon from "../assets/logos/GearIcon.png";
 import BellIcon from "../assets/logos/BellIcon.png";
+import toast from "solid-toast";
 
 
 export default function TrackingPage() {
   const navigate = useNavigate();
 
   const handleSearchClick = () => {
-    window.alert("Not yet implemented");
+    toast.error("Not yet implemented");
   };
   const handleSystemClick = () => {
-    window.alert("Not yet implemented");
+    toast.error("Not yet implemented");
   };
   const handleNotificationClick = () => {
-    window.alert("Not yet implemented");
+    toast.error("Not yet implemented");
   };
   return (
     <div class="h-full p-0 relative">

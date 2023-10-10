@@ -4,6 +4,7 @@ import TextInput from "../components/TextInput";
 import { createForm } from "@felte/solid";
 import { Button } from "../common/components/button";
 import { uriDashboard, uriForget, uriHome } from "../utils/uri";
+import toast from "solid-toast";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function LoginPage() {
   const { form } = createForm({
     onSubmit(values) {
       console.log(values);
-      alert("(WIP) Not yet implemented.\n\nSending you to dashboard.");
+      toast.error("(WIP) Not yet implemented.\nSending you to dashboard.");
       navigate(uriDashboard());
     }
   });
