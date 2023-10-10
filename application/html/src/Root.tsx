@@ -11,32 +11,34 @@ import AboutMankit from "./pages/AboutPages/AboutMankit";
 import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
 import ForgetPage from "./pages/ForgetPage";
-import PageNotFound from "./pages/PageNotFound";
 import SearchPage from "./pages/SearchPage";
+import TrackingPage from "./pages/TrackingPage";
+import PageNotFound from "./pages/PageNotFound";
+
+
 
 export default function Root() {
   return (
-    <div class="h-screen">
-      <div class="h-full px-10 py-8">
-        <Header />
-        <Routes>
-            <Route path="/" component={HomePage} />
-            <Route path="/search" component={SearchPage} />
-            <Route path="/about">
-              <Route path="/" component={AboutPage} />
-              <Route path="/belu" component={AboutBelu} />
-              <Route path="/david" component={AboutDavid} />
-              <Route path="/jimmy" component={AboutJimmy} />
-              <Route path="/komal" component={AboutKomal} />
-              <Route path="/luis" component={AboutLuis} />
-              <Route path="/mankit" component={AboutMankit} />
-              <Route path="/tin" component={AboutTin} />
-            </Route>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/forget" component={ForgetPage} />
-          <Route path="/*" component={PageNotFound} />
-        </Routes>
-      </div>
+    <div class="grid min-h-screen px-10 py-8">
+      <Header />
+      <Routes>
+          <Route path="/" component={HomePage} />
+          <Route path="/search" component={SearchPage} />
+          <Route path="/about">
+            <Route path="/" component={AboutPage} />
+            <Route path="/belu" component={AboutBelu} />
+            <Route path="/david" component={AboutDavid} />
+            <Route path="/jimmy" component={AboutJimmy} />
+            <Route path="/komal" component={AboutKomal} />
+            <Route path="/luis" component={AboutLuis} />
+            <Route path="/mankit" component={AboutMankit} />
+            <Route path="/tin" component={AboutTin} />
+          </Route>
+        <Route path="/login" component={LoginPage} />
+        <Route path="/forget" component={ForgetPage} />
+        <Route path="/*" component={PageNotFound} />
+        <Route path="/tracking" component={TrackingPage} />
+      </Routes>
     </div>
   );
 }

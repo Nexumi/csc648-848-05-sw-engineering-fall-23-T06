@@ -1,16 +1,16 @@
 import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
-import temp_logo from "../assets/logos/temp_logo.png";
+import logo from "../assets/logos/logo.png";
 
 export default function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div class="h-full flex flex-col">
+    <Flex flexDirection="col" class="h-full">
       <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
-                <img
-          src={temp_logo}
+        <img
+          src={logo}
           class="w-40 cursor-pointer" 
           onClick={() => {
             navigate("/");
@@ -48,7 +48,7 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate("/forget");
+              navigate("/tracking");
             }}
           >
             Support
@@ -63,14 +63,28 @@ export default function HomePage() {
           Login
         </Button>
       </Flex>
-            <hr class="mb-6 border-black border-t-2 w-full"/>
+      
+      <hr class=" border-black border-t-2 w-full"/>
 
-      <div class="text-center mt-2">
+      <div class="text-center my-8">
          <div class="text-9xl font-thin">
            OrderOwl
         </div>
       </div>
-      <div class="mx-auto w-3/4 border-black border-t-2 my-10"></div>
+
+      <Flex justifyContent="center" class="text-6xl border-y-2 border-black divide-x w-3/4">
+        <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
+          <p>Feature 1</p>
+        </Flex>
+        <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
+          <p>Feature 2</p>
+        </Flex>
+        <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
+          <p>Feature 3</p>
+        </Flex>
+      </Flex>
+
+      {/* <div class="mx-auto w-3/4 border-black border-t-2 my-10"></div>
 
       <div class="relative flex items-center flex-grow mx-12">
         <div class="absolute text-6xl left-0" style={{ left: "calc(50% - 10em)", top: "35%" }}>
@@ -91,7 +105,7 @@ export default function HomePage() {
       </div>
 
 
-      <div class="mx-auto border-black border-t-2 my-4 w-3/4 mt-auto mb-8"></div>
-    </div>
+      <div class="mx-auto border-black border-t-2 my-4 w-3/4 mt-auto mb-8"></div> */}
+    </Flex>
   );
 }

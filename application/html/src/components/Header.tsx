@@ -8,10 +8,11 @@ export default function Logo() {
   const isLogin = useMatch(() => "/login");
   const isForget = useMatch(() => "/forget");
   const isHome = useMatch(() => "/");
+  const isTracking = useMatch(() => "/tracking");
 
   return (
     <>
-      <Show when={!isLogin() && !isForget() && !isHome()}>
+      <Show when={!isLogin() && !isForget() && !isHome() && !isTracking}>
         <header class="text-center pb-6">
           <Flex justifyContent="center" class="pb-2">
             <img
