@@ -11,12 +11,11 @@ import AboutMankit from "./pages/AboutPages/AboutMankit";
 import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
 import ForgetPage from "./pages/ForgetPage";
-import PageNotFound from "./pages/PageNotFound";
-<<<<<<< HEAD
-import TrackingPage from "./pages/TrackingPage";
-=======
 import SearchPage from "./pages/SearchPage";
->>>>>>> ef757cf8d79038921926d3d93fe631c7f46e5c9d
+import TrackingPage from "./pages/TrackingPage";
+import PageNotFound from "./pages/PageNotFound";
+
+
 
 export default function Root() {
   return (
