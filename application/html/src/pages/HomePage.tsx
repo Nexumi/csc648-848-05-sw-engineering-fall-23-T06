@@ -2,6 +2,7 @@ import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import logo from "../assets/logos/logo.png";
+import { uriAbout, uriHome, uriLogin, uriSearch, uriTracking } from "../utils/uri";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function HomePage() {
           src={logo}
           class="w-40 cursor-pointer" 
           onClick={() => {
-            navigate("/");
+            navigate(uriHome());
           }}
         />
 
@@ -21,7 +22,7 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate("/");
+              navigate(uriHome());
             }}
           >
             Home
@@ -30,7 +31,7 @@ export default function HomePage() {
             <Button
                 class="text-white bg-black hover:bg-gray-600"
                 onclick={() => {
-                    navigate("search");
+                    navigate(uriSearch());
                 }}
             >
                 Search Page
@@ -39,7 +40,7 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate("about");
+              navigate(uriAbout());
             }}
           >
             About Me Pages
@@ -48,7 +49,7 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate("/tracking");
+              navigate(uriTracking());
             }}
           >
             Support
@@ -57,7 +58,7 @@ export default function HomePage() {
         <Button
           class="text-white bg-black hover:bg-gray-600"
           onclick={() => {
-            navigate("/login");
+            navigate(uriLogin());
           }}
         >
           Login

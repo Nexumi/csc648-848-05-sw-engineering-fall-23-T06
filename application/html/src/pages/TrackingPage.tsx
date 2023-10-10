@@ -81,7 +81,7 @@ export default function TrackingPage() {
 
       <div class="w-0.5 h-full bg-black absolute inset-y-0 left-52"></div>*/}
 
-      <Flex flexDirection="col" alignItems="start" class="relative">
+      {/* <Flex flexDirection="col" alignItems="start" class="relative">
         <img
           src={logo}
           class="w-40 cursor-pointer mb-12" 
@@ -136,7 +136,7 @@ export default function TrackingPage() {
           ??
         </Button>
 
-      </Flex>
+      </Flex> */}
     </div>
   );
 }

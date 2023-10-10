@@ -47,3 +47,29 @@ export default function SideBar() {
     </>
   );
 }
+
+function NavButton(props: {
+  label: string,
+  uri: Function,
+  isPage: Function
+}) {
+  const navigate = useNavigate();
+
+  const BOX = "w-24 h-24 border-black border-b-2";
+  const FULL = "w-full h-full p-0";
+  
+  return (
+    <>
+      <Flex justifyContent="center" class={BOX} classList={{ "bg-[#C68B59]" : !!props.isPage() }}>
+        <Button
+          class={FULL}
+          onClick={() => {
+            navigate(props.uri());
+          }}
+        >
+          {props.label}
+        </Button>
+      </Flex>
+    </>
+  );
+}

@@ -1,5 +1,6 @@
 import { useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
+import { uriHome } from "../utils/uri";
 
 export default function ForgetPage() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function ForgetPage() {
           <div class="underline">
             <p
               onClick={() => {
-                navigate("/");
+                navigate(uriHome());
               }}
             >
               Return to Home Page

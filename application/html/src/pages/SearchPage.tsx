@@ -1,6 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import Search from "../components/Search";
+import { uriHome } from "../utils/uri";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function SearchPage() {
           <div class="underline">
             <p
               onClick={() => {
-                navigate("/");
+                navigate(uriHome());
               }}
             >
               Return to Home Page

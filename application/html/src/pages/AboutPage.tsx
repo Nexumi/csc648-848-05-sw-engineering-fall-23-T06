@@ -2,6 +2,7 @@ import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { For, createSignal } from "solid-js";
 import { Flex } from "../common/layout/flex";
+import { uriAbout } from "../utils/uri";
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function AboutPage() {
           <Button
             class="capitalize text-white bg-black hover:bg-gray-600"
             onClick={() => {
-              navigate(teammate);
+              navigate(uriAbout(teammate));
             }}
           >
             {teammate}

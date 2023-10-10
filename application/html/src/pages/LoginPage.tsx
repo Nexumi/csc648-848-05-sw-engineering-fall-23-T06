@@ -3,6 +3,7 @@ import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
 import { createForm } from "@felte/solid";
 import { Button } from "../common/components/button";
+import { uriDashboard, uriForget, uriHome } from "../utils/uri";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function LoginPage() {
     onSubmit(values) {
       console.log(values);
       alert("(WIP) Not yet implemented.\n\nSending you to dashboard.");
-      navigate("/dashboard");
+      navigate(uriDashboard());
     }
   });
 
@@ -24,7 +25,7 @@ export default function LoginPage() {
           <Flex justifyContent="center" class="text-8xl font-thin">
             <p
               onClick={() => {
-                  navigate("/");
+                  navigate(uriHome());
                 }
               }
             >
@@ -59,7 +60,7 @@ export default function LoginPage() {
                   <div class="underline">
                     <p
                       onClick={() => {
-                          navigate("/forget");
+                          navigate(uriForget());
                         }
                       }
                     >

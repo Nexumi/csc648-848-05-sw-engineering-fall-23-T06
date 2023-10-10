@@ -2,6 +2,7 @@ import { useMatch, useNavigate } from "@solidjs/router";
 import temp_logo from "../assets/logos/temp_logo.png";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
+import { uriHome } from "../utils/uri";
 
 export default function Logo() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Logo() {
               src={temp_logo}
               class="w-40"
               onClick={() => {
-                navigate("/");
+                navigate(uriHome());
               }}
             />
           </Flex>
