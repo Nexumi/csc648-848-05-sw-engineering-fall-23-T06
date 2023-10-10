@@ -25,6 +25,10 @@ export function uriDashboard() {
   return `/dashboard`;
 }
 
+export function uriUpload() {
+  return `/upload`;
+}
+
 export function uriTracking() {
   return `/tracking`;
 }
