@@ -1,13 +1,14 @@
 import { useMatch, useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
-import { uriAbout, uriForget, uriHome, uriLogin } from "../utils/uri";
+import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration } from "../utils/uri";
 import toast from "solid-toast";
 
 export default function Logo() {
   const navigate = useNavigate();
   const isHome = useMatch(uriHome);
   const isLogin = useMatch(uriLogin);
+  const isRegistration = useMatch(uriRegistration);
   const isForget = useMatch(uriForget);
   const isAbout = useMatch(uriAbout);
 
@@ -20,7 +21,7 @@ export default function Logo() {
 
   return (
     <>
-      <Show when={!isLogin() && !isForget() && !isHome() && !isAbout()}>
+      <Show when={!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout()}>
         <header>
           <Flex justifyContent="end" class="gap-x-2">
             <div

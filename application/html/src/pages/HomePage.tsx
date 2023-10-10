@@ -2,7 +2,7 @@ import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import logo from "../assets/logos/logo.png";
-import { uriAbout, uriHome, uriLogin, uriSearch, uriTracking } from "../utils/uri";
+import { uriAbout, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -37,14 +37,24 @@ export default function HomePage() {
             Support
           </Button>
         </Flex>
-        <Button
-          class="text-white bg-black hover:bg-gray-600"
-          onclick={() => {
-            navigate(uriLogin());
-          }}
-        >
-          Login
-        </Button>
+        <div class="flex space-x-4">
+          <Button
+            class="text-white bg-black hover:bg-gray-600"
+            onclick={() => {
+              navigate(uriLogin());
+            }}
+          >
+            Login
+          </Button>
+          <Button
+            class="text-white bg-black hover:bg-gray-600"
+            onclick={() => {
+              navigate(uriRegistration());
+            }}
+          >
+            Registration
+          </Button>
+        </div>
       </Flex>
       
       <hr class=" border-black border-t-2 w-full"/>

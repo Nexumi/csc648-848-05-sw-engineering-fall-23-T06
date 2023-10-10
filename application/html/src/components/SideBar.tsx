@@ -3,12 +3,13 @@ import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
 import { For, Show, createSignal } from "solid-js";
 import { Button } from "../common/components/button";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriTracking, uriUpload } from "../utils/uri";
+import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriTracking, uriUpload } from "../utils/uri";
 
 export default function SideBar() {
   const navigate = useNavigate();
   const isHome = useMatch(uriHome);
   const isLogin = useMatch(uriLogin);
+  const isRegistration = useMatch(uriRegistration);
   const isForget = useMatch(uriForget);
   const isAbout = useMatch(uriAbout);
 
@@ -24,7 +25,7 @@ export default function SideBar() {
 
   return (
     <>
-      <Show when={!isLogin() && !isForget() && !isHome() && !isAbout()}>
+      <Show when={!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout()}>
         <div class="flex inset-y-0">
           <div class="flex flex-grow flex-col overflow-y-auto border-r-2 border-black">
             <Flex
