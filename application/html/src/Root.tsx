@@ -28,7 +28,7 @@ export default function Root() {
           <Routes>
             <Route path="/*" component={PageNotFound} />
             <Route path="/" component={HomePage} />
-            <Route path="/search" component={SearchPage} />
+            {/* <Route path="/search" component={SearchPage} /> */}
             <Route path="/about">
               <Route path="/" component={AboutPage} />
               <Route path="/belu" component={AboutBelu} />
