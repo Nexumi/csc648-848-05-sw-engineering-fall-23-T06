@@ -22,24 +22,6 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate(uriHome());
-            }}
-          >
-            Home
-          </Button>
-
-            <Button
-                class="text-white bg-black hover:bg-gray-600"
-                onclick={() => {
-                    navigate(uriSearch());
-                }}
-            >
-                Search Page
-            </Button>
-
-          <Button
-            class="text-white bg-black hover:bg-gray-600"
-            onclick={() => {
               navigate(uriAbout());
             }}
           >

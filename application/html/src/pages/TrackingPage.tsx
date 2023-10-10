@@ -24,15 +24,15 @@ export default function TrackingPage() {
     <div class="h-full p-0 relative">
 
 
-      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-10 flex items-center">
+      <Flex justifyContent="center">
         <span class="text-xl mr-2">Search:</span>
         <input class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="Search..."/>
         <button class="ml-2 px-2 py-2 focus:outline-none rounded-full" onClick={handleSearchClick}>
           <img src={SearchIcon} alt="Search" class="w-6 h-6" />
         </button>
-      </div>
+      </Flex>
 
-      <div class="absolute top-4 right-14 z-10">
+      {/* <div class="absolute top-4 right-14 z-10">
         <button onClick={handleNotificationClick}>
         <svg
           fill="none"
@@ -71,7 +71,7 @@ export default function TrackingPage() {
           />
         </svg>
         </button>
-      </div>
+      </div> */}
 
       {/*<div class="h-0.5 w-64 bg-black absolute left-0 top-30"></div>
       <div class="h-0.5 w-64 bg-black absolute left-0 top-64"></div>

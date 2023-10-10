@@ -23,28 +23,30 @@ export default function Root() {
     <>
       <div class="flex overflow-y-hidden h-screen">
         <SideBar />
-        <div class="grow grid overflow-y-auto min-h-screen px-10 py-8">
-          {/* <Header /> */}
-          <Routes>
-            <Route path="/*" component={PageNotFound} />
-            <Route path="/" component={HomePage} />
-            {/* <Route path="/search" component={SearchPage} /> */}
-            <Route path="/about">
-              <Route path="/" component={AboutPage} />
-              <Route path="/belu" component={AboutBelu} />
-              <Route path="/david" component={AboutDavid} />
-              <Route path="/jimmy" component={AboutJimmy} />
-              <Route path="/komal" component={AboutKomal} />
-              <Route path="/luis" component={AboutLuis} />
-              <Route path="/mankit" component={AboutMankit} />
-              <Route path="/tin" component={AboutTin} />
-            </Route>
-            <Route path="/login" component={LoginPage} />
-            <Route path="/forget" component={ForgetPage} />
-            <Route path="/dashboard" component={DashboardPage} />
-            <Route path="/upload" component={UploadPage} />
-            <Route path="/tracking" component={TrackingPage} />
-          </Routes>
+        <div class="grow grid overflow-y-auto min-h-screen">
+          <div class="h-full px-10 py-8">
+            <Header />
+            <Routes>
+              <Route path="/*" component={PageNotFound} />
+              <Route path="/" component={HomePage} />
+              {/* <Route path="/search" component={SearchPage} /> */}
+              <Route path="/about">
+                <Route path="/" component={AboutPage} />
+                <Route path="/belu" component={AboutBelu} />
+                <Route path="/david" component={AboutDavid} />
+                <Route path="/jimmy" component={AboutJimmy} />
+                <Route path="/komal" component={AboutKomal} />
+                <Route path="/luis" component={AboutLuis} />
+                <Route path="/mankit" component={AboutMankit} />
+                <Route path="/tin" component={AboutTin} />
+              </Route>
+              <Route path="/login" component={LoginPage} />
+              <Route path="/forget" component={ForgetPage} />
+              <Route path="/dashboard" component={DashboardPage} />
+              <Route path="/upload" component={UploadPage} />
+              <Route path="/tracking" component={TrackingPage} />
+            </Routes>
+          </div>
         </div>
       </div>
     </>
