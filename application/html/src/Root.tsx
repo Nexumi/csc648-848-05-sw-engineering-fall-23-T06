@@ -17,14 +17,15 @@ import TrackingPage from "./pages/TrackingPage";
 import PageNotFound from "./pages/PageNotFound";
 import DashboardPage from "./pages/DashboardPage";
 import UploadPage from "./pages/UploadPage";
+import Footer from "./components/Footer";
 
 export default function Root() {
   return (
     <>
       <div class="flex overflow-y-hidden h-screen">
         <SideBar />
-        <div class="grow grid overflow-y-auto min-h-screen">
-          <div class="h-full px-10 py-8">
+        <div class="grow flex flex-col overflow-y-auto min-h-screen">
+          <div class="grow px-10 py-8">
             <Header />
             <Routes>
               <Route path="/*" component={PageNotFound} />
@@ -47,6 +48,7 @@ export default function Root() {
               <Route path="/tracking" component={TrackingPage} />
             </Routes>
           </div>
+          <Footer />
         </div>
       </div>
     </>
