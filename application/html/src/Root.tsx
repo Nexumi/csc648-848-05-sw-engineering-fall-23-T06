@@ -18,6 +18,7 @@ import PageNotFound from "./pages/PageNotFound";
 import DashboardPage from "./pages/DashboardPage";
 import UploadPage from "./pages/UploadPage";
 import Footer from "./components/Footer";
+import RegistrationPage from "./pages/RegistrationPage";
 
 export default function Root() {
   return (
@@ -42,6 +43,7 @@ export default function Root() {
                 <Route path="/tin" component={AboutTin} />
               </Route>
               <Route path="/login" component={LoginPage} />
+              <Route path="/registration" component={RegistrationPage} />
               <Route path="/forget" component={ForgetPage} />
               <Route path="/dashboard" component={DashboardPage} />
               <Route path="/upload" component={UploadPage} />

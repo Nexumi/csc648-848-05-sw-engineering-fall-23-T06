@@ -13,6 +13,10 @@ export function uriLogin() {
   return `/login`;
 }
 
+export function uriRegistration() {
+  return `/registration`;
+}
+
 export function uriForget() {
   return `/forget`;
 }

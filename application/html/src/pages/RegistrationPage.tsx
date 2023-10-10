@@ -3,10 +3,10 @@ import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
 import { createForm } from "@felte/solid";
 import { Button } from "../common/components/button";
-import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
+import { uriHome, uriLogin } from "../utils/uri";
 import toast from "solid-toast";
 
-export default function LoginPage() {
+export default function RegistrationPage() {
   const navigate = useNavigate();
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
@@ -14,8 +14,8 @@ export default function LoginPage() {
   const { form } = createForm({
     onSubmit(values) {
       console.log(values);
-      toast.error("(WIP) Not yet implemented.\nSending you to dashboard.");
-      navigate(uriDashboard());
+      toast.error("(WIP) Not yet implemented.\nSending you to login page.");
+      navigate(uriLogin());
     }
   });
 
@@ -36,10 +36,26 @@ export default function LoginPage() {
           <Flex class="h-full w-full">
             <div class="w-full">
               <div class="text-xl font-bold">
-                <p>Welcome Back!</p>
+                <p>Welcome!</p>
               </div>
               <form use:form>
                 <div class="w-full space-y-5 p-16">
+                  <div class="border-b-2 border-black p-0">
+                    <TextInput
+                      name="firstName"
+                      type="text"
+                      header="First Name"
+                      class={NO_RING}
+                    />
+                  </div>
+                  <div class="border-b-2 border-black p-0">
+                    <TextInput
+                      name="lastName"
+                      type="text"
+                      header="Last Name"
+                      class={NO_RING}
+                    />
+                  </div>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="email"
@@ -56,29 +72,28 @@ export default function LoginPage() {
                       class={NO_RING}
                     />
                   </div>
+                  <div class="border-b-2 border-black p-0">
+                    <TextInput
+                      name="confirmPassword"
+                      type="password"
+                      header="Confirm Password"
+                      class={NO_RING}
+                    />
+                  </div>
                 </div>
                 <Flex>
                   <div>
                     <p>
-                      Need an account? 
+                      Already have an account? 
                       <span
                         class="underline cursor-pointer"
                         onClick={() => {
-                            navigate(uriRegistration());
+                            navigate(uriLogin());
                           }
                         }
                       >
-                        Register
+                        Login
                       </span>
-                    </p>
-                    <p
-                      class="underline cursor-pointer"
-                      onClick={() => {
-                          navigate(uriForget());
-                        }
-                      }
-                    >
-                      Forget Password
                     </p>
                   </div>
                   <Button
