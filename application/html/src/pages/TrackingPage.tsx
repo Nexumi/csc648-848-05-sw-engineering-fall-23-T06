@@ -7,6 +7,7 @@ import GearIcon from "../assets/logos/GearIcon.png";
 import BellIcon from "../assets/logos/BellIcon.png";
 import toast from "solid-toast";
 import { createForm } from "@felte/solid";
+import TrackingList from "../components/TrackingList";
 
 
 export default function TrackingPage() {
@@ -30,6 +31,8 @@ export default function TrackingPage() {
           </button>
         </form>
       </Flex>
+
+      <TrackingList />
 
       {/* <div class="absolute top-4 right-14 z-10">
         <button onClick={handleNotificationClick}>

@@ -2,7 +2,11 @@ import { Show } from "solid-js";
 import { Card } from "../common/components/card";
 import { Flex } from "../common/layout/flex";
 
-export default function AboutMe(props: any) {
+export default function AboutMe(props: {
+  img: string,
+  name: string,
+  description: string
+}) {
   return (
     <>
       <Flex justifyContent="center">
