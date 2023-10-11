@@ -11,7 +11,7 @@ const App: Component = () => {
   return (
     <Router>
       <Root />
-      <Toaster />
+      <Toaster position="bottom-right" />
     </Router>
   );
 };
