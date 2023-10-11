@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class owlVerifier implements UserDetailsService {
 
-    private final static String USER_NOT_FOUND_MSG = "email has not been used to create an account";
+    private final static String USER_NOT_FOUND_MSG = "email, %s ,  has not been used to create an account";
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return null;
