@@ -2,7 +2,7 @@ import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import logo from "../assets/logos/logo.png";
-import { uriAbout, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
+import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function HomePage() {
           <Button
             class="text-white bg-black hover:bg-gray-600"
             onclick={() => {
-              navigate(uriTracking());
+              navigate(uriForget());
             }}
           >
             Support
@@ -62,6 +62,9 @@ export default function HomePage() {
       <div class="text-center my-8">
          <div class="text-9xl font-thin">
            OrderOwl
+        </div>
+        <div class="text-4xl mt-4">
+        Track everything everywhere
         </div>
       </div>
 
