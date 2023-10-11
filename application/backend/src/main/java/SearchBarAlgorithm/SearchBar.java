@@ -1,62 +1,33 @@
 package SearchBarAlgorithm;
 
-import java.util.ArrayList;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import order.OrderRepository;  // Import the OrderRepository for database access.
+import order.Order;  // Import the Order entity.
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 import java.util.List;
 
-
+@Service
 public class SearchBar {
+    private final OrderRepository orderRepository;
 
-    public static void main(String[] args) {
-        // Sample list of orders with tracking numbers
-        List<Order> orders = new ArrayList<>();
-        orders.add(new Order("Order001", "123456"));
-        orders.add(new Order("Order002", "789012"));
-        orders.add(new Order("Order003", "345678"));
-        orders.add(new Order("Order004", "901234"));
-
-        // Tracking number to search for
-        String trackingNumber = "345";
-
-        // Call the search function
-        List<Order> searchResults = searchOrdersByTrackingNumber(orders, trackingNumber);
-
-        // Display the search results
-        System.out.println("Search results for tracking number '" + trackingNumber + "':");
-        for (Order result : searchResults) {
-            System.out.println("Order ID: " + result.getOrderId() + ", Tracking Number: " + result.getTrackingNumber());
-        }
+    // Constructor: It's automatically injected with an OrderRepository bean when created.
+    @Autowired
+    public SearchBar(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 
-    // Class to represent an order
-    static class Order {
-        private String orderId;
-        private String trackingNumber;
-
-        public Order(String orderId, String trackingNumber) {
-            this.orderId = orderId;
-            this.trackingNumber = trackingNumber;
-        }
-
-        public String getOrderId() {
-            return orderId;
-        }
-
-        public String getTrackingNumber() {
-            return trackingNumber;
-        }
-    }
-
-    // Function to search orders by tracking number
-    public static List<Order> searchOrdersByTrackingNumber(List<Order> orders, String trackingNumber) {
-        List<Order> results = new ArrayList<>();
-
-        // Iterate through the list of orders and check if the tracking number contains the keyword
-        for (Order order : orders) {
-            if (order.getTrackingNumber().contains(trackingNumber)) {
-                results.add(order);
-            }
-        }
-
-        return results;
+    // This method is marked as read-only to ensure it doesn't modify the database.
+    // It searches for orders based on specific criteria and returns a list of orders.
+    @Transactional(readOnly = true)
+    public List<Order> searchOrders(boolean hidden, Date startDate, Date endDate, String retailerName) {
+        // Calls the findOrdersByCriteria method defined in the OrderRepository interface.
+        // Passes the specified criteria as method arguments.
+        // The method is expected to execute a custom JPQL query to find orders matching these criteria.
+        return orderRepository.findOrdersByCriteria(hidden, startDate, endDate, retailerName);
     }
 }
