@@ -44,13 +44,15 @@ export default function SideBar() {
                 />
               </Flex>
             </Flex>
-            <For each={destinations()}>{(destination) =>
-              <NavButton
-                label={destination.label}
-                uri={destination.uri}
-                isPage={destination.isPage}
-              />
-            }</For>
+            <For each={destinations()}>
+              {(destination) =>
+                <NavButton
+                  label={destination.label}
+                  uri={destination.uri}
+                  isPage={destination.isPage}
+                />
+              }
+            </For>
           </div>
         </div>
       </Show>

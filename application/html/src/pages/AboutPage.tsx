@@ -11,16 +11,18 @@ export default function AboutPage() {
   return (
     <>
       <Flex justifyContent="center" class="flex-wrap gap-5">
-        <For each={teammates()}>{(teammate) =>
-          <Button
-            class="capitalize text-white bg-black hover:bg-gray-600"
-            onClick={() => {
-              navigate(uriAbout(teammate));
-            }}
-          >
-            {teammate}
-          </Button>
-        }</For>
+        <For each={teammates()}>
+          {(teammate) =>
+            <Button
+              class="capitalize text-white bg-black hover:bg-gray-600"
+              onClick={() => {
+                navigate(uriAbout(teammate));
+              }}
+            >
+              {teammate}
+            </Button>
+          }
+        </For>
       </Flex>
     </>
   );
