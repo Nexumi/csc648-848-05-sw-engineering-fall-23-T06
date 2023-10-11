@@ -15,9 +15,9 @@ export default function TrackingPage() {
   const navigate = useNavigate();
 
   const [packages, setPackages] = createSignal([
-    {website: "Amazon", carrier: "Amazon", eta: "Oct. 12 2023", status: "Shipped", location: "LA Sorting Center"},
-    {website: "Target", carrier: "UPS", eta: "Oct. 13 2023", status: "Packing", location: "Warehouse"},
-    {website: "Framework", carrier: "FedEx", eta: "Oct. 10 2023", status: "Shipped", location: "SF Sorting Center"}
+    {id: 1, website: "Amazon", carrier: "Amazon", eta: "Oct. 12 2023", status: "Shipped", location: "LA Sorting Center"},
+    {id: 2, website: "Target", carrier: "UPS", eta: "Oct. 13 2023", status: "Packing", location: "Warehouse"},
+    {id: 3, website: "Framework", carrier: "FedEx", eta: "Oct. 10 2023", status: "Shipped", location: "SF Sorting Center"}
   ]);
   
   const { form } = createForm({
