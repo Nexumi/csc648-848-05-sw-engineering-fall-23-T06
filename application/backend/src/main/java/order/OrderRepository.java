@@ -19,7 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             @Param("hidden") boolean hidden,        // Flag indicating whether orders are hidden.
             @Param("startDate") Date startDate,     // Start date for date range filtering.
             @Param("endDate") Date endDate,         // End date for date range filtering.
-            @Param("retailerName") String retailerName,  // Retailer name for filtering.
-            @Param("trackingNumber") String trackingNumber  // Partial tracking number for item filtering.
+            @Param("retailerName") String retailerName  // Retailer name for filtering.
+            // Partial tracking number for item filtering.
     );
 }
