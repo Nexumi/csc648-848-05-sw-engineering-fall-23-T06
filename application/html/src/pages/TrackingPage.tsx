@@ -6,30 +6,29 @@ import SearchIcon from "../assets/logos/SearchIcon.png";
 import GearIcon from "../assets/logos/GearIcon.png";
 import BellIcon from "../assets/logos/BellIcon.png";
 import toast from "solid-toast";
+import { createForm } from "@felte/solid";
 
 
 export default function TrackingPage() {
   const navigate = useNavigate();
-
-  const handleSearchClick = () => {
-    toast.error("Not yet implemented");
-  };
-  const handleSystemClick = () => {
-    toast.error("Not yet implemented");
-  };
-  const handleNotificationClick = () => {
-    toast.error("Not yet implemented");
-  };
+  
+  const { form } = createForm({
+    onSubmit(values) {
+      console.log(values);
+      toast.error("Not yet implemented");
+    }
+  });
+  
   return (
     <div class="h-full p-0 relative">
-
-
       <Flex justifyContent="center">
-        <span class="text-xl mr-2">Search:</span>
-        <input class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="Search..."/>
-        <button class="ml-2 px-2 py-2 focus:outline-none rounded-full" onClick={handleSearchClick}>
-          <img src={SearchIcon} alt="Search" class="w-6 h-6" />
-        </button>
+        <form use:form>
+          <span class="text-xl mr-2">Search:</span>
+          <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
+          <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full">
+            <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+          </button>
+        </form>
       </Flex>
 
       {/* <div class="absolute top-4 right-14 z-10">
