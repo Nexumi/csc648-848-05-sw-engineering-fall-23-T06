@@ -21,14 +21,14 @@ public class owlUsers implements UserDetails {
 
     @jakarta.persistence.Id
     @SequenceGenerator(
-        name = "student_sequence",
-        sequenceName = "student_sequence",
+        name = "user_sequence",
+        sequenceName = "user_sequence",
         allocationSize = 1
 )
 @Id
 @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "student_sequence"
+        generator = "user_sequence"
 )
 private Long id;
         private String firstName;
@@ -87,12 +87,12 @@ private Long id;
             return !locked;
         }
 
-        @Override
-        public boolean isCredentialsNonExpired() {
-            return true;
-        }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
 
-        @Override
+    @Override
         public boolean isEnabled() {
             return enabled;
         }
