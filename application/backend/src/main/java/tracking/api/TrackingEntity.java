@@ -1,12 +1,10 @@
 package tracking.api;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 // TrackingEntity.java
 @Entity
+@Table
 public class TrackingEntity {
 
     @Id
@@ -14,6 +12,20 @@ public class TrackingEntity {
     private Long id;
     private String trackingNumber;
     private String status;
+
+    public TrackingEntity() {
+    }
+
+    public TrackingEntity(Long id, String trackingNumber, String status) {
+        this.id = id;
+        this.trackingNumber = trackingNumber;
+        this.status = status;
+    }
+
+    public TrackingEntity(String trackingNumber, String status) {
+        this.trackingNumber = trackingNumber;
+        this.status = status;
+    }
 
     public String getStatus() {return status;}
     public String getTrackingNumber() {return trackingNumber;}
@@ -27,5 +39,11 @@ public class TrackingEntity {
     public TrackingEntity setStatus(String status) {this.status = status;return this;}
 
     // Getters and setters
+
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 

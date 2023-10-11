@@ -10,7 +10,7 @@ import java.util.Optional;
 
 // TrackingController.java
 @RestController
-@RequestMapping("/api/tracking")
+@RequestMapping(path = "/api/tracking")
 public class TrackingController {
     private final TrackingRepository trackingRepository;
 
