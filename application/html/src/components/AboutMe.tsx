@@ -3,9 +3,9 @@ import { Card } from "../common/components/card";
 import { Flex } from "../common/layout/flex";
 
 export default function AboutMe(props: {
-  img: string,
-  name: string,
-  description: string
+  img?: string,
+  name?: string,
+  description?: string
 }) {
   return (
     <>
