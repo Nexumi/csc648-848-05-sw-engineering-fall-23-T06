@@ -20,6 +20,7 @@ import UploadPage from "./pages/UploadPage";
 import Footer from "./components/Footer";
 import RegistrationPage from "./pages/RegistrationPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
+import ApiTestPage from "./pages/ApiTestPage";
 
 export default function Root() {
   return (
@@ -52,6 +53,7 @@ export default function Root() {
                 <Route path="/" component={TrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
+              <Route path="/api_test" component={ApiTestPage} />
             </Routes>
           </div>
           <Footer />
