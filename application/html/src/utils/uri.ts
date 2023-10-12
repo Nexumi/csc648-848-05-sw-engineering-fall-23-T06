@@ -4,6 +4,10 @@ export function apiTest() {
   return `/api/test`;
 }
 
+export function apiTracking() {
+  return `/api/tracking`;
+}
+
 /* URI Paths */
 export function uriHome() {
   return `/`;

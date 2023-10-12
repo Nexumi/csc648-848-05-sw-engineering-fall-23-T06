@@ -12,7 +12,7 @@ export default function TrackingList(props: {
         <TableHeader>
           <TableRow>
             <TableHead>
-              Website
+              Retailer
             </TableHead>
             <TableHead>
               Carrier
@@ -33,7 +33,7 @@ export default function TrackingList(props: {
             {(pack) => 
               <TrackingRow
                 packageId={pack.id}
-                website={pack.website}
+                retailer={pack.retailer}
                 carrier={pack.carrier}
                 eta={pack.eta}
                 status={pack.status}
@@ -49,7 +49,7 @@ export default function TrackingList(props: {
 
 function TrackingRow(props: {
   packageId?: string | number,
-  website: string,
+  retailer: string,
   carrier: string,
   eta: string,
   status: string,
@@ -70,7 +70,7 @@ function TrackingRow(props: {
         }}
       >
         <TableCell>
-          {props.website}
+          {props.retailer}
         </TableCell>
         <TableCell>
           {props.carrier}

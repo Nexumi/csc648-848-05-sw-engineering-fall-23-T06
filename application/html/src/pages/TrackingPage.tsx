@@ -8,17 +8,14 @@ import BellIcon from "../assets/logos/BellIcon.png";
 import toast from "solid-toast";
 import { createForm } from "@felte/solid";
 import TrackingList from "../components/TrackingList";
-import { createSignal } from "solid-js";
+import { createResource, createSignal } from "solid-js";
+import { getAllTracking } from "../utils/requests";
 
 
 export default function TrackingPage() {
   const navigate = useNavigate();
 
-  const [packages, setPackages] = createSignal([
-    {id: 1, website: "Amazon", carrier: "Amazon", eta: "Oct. 12 2023", status: "Shipped", location: "LA Sorting Center"},
-    {id: 2, website: "Target", carrier: "UPS", eta: "Oct. 13 2023", status: "Packing", location: "Warehouse"},
-    {id: 3, website: "Framework", carrier: "FedEx", eta: "Oct. 10 2023", status: "Shipped", location: "SF Sorting Center"}
-  ]);
+  const [packages] = createResource(getAllTracking);
   
   const { form } = createForm({
     onSubmit(values) {

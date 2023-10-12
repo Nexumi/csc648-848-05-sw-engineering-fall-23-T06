@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiTest } from './uri';
+import { apiTest, apiTracking } from './uri';
 
 export const getAllTest = async () => {
   try {
@@ -15,4 +15,13 @@ export const postTest = async (params: {
 }) => {
   const response = await axios.post(apiTest(), params);
   return response;
+}
+
+export const getAllTracking = async () => {
+  try {
+    const response = await axios.get(apiTracking());
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
