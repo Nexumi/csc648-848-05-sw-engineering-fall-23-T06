@@ -30,7 +30,10 @@ export default function TrackingPage() {
   });
   
   return (
-    <div class="h-full p-0 relative">
+    <div class="space-y-4">
+      <div class="text-center text-6xl">
+        <p>Track Info</p>
+      </div>
       <Flex justifyContent="center">
         <form use:form>
           <span class="text-xl mr-2">Search:</span>
