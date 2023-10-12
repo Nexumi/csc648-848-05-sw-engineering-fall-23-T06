@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-// TrackingEntity.java
 @Entity
 public class TrackingEntity {
 
@@ -17,11 +16,13 @@ public class TrackingEntity {
     private String trackingNumber;
     private String status;
     private String location;
+    private String address;
+
 
     public TrackingEntity() {
     }
 
-    public TrackingEntity(Long id, String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location) {
+    public TrackingEntity(Long id, String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location,String address) {
         this.id = id;
         this.retailer = retailer;
         Carrier = carrier;
@@ -29,15 +30,17 @@ public class TrackingEntity {
         this.trackingNumber = trackingNumber;
         this.status = status;
         this.location = location;
+        this.address = address;  // Initialize the new variable.
     }
 
-    public TrackingEntity(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location) {
+    public TrackingEntity(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address) {
         this.retailer = retailer;
         Carrier = carrier;
         this.eta = eta;
         this.trackingNumber = trackingNumber;
         this.status = status;
         this.location = location;
+        this.address = address;  // Initialize the new variable.
     }
 
     public Long getId() {
@@ -102,5 +105,13 @@ public class TrackingEntity {
         this.location = location;
         return this;
     }
-}
 
+    public String getAddress() {
+        return address;
+    }
+
+    public TrackingEntity setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+}
