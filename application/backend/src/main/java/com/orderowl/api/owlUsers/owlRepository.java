@@ -11,11 +11,11 @@ import java.util.Optional;
 //This will find our users by looking up the email that has been registered.
 public interface owlRepository extends JpaRepository<owlUsers, Long> {
 
-    Optional<owlUsers> findByEmail(String email);
+    Optional<owlUsers> findByEmail(String emailID);
 
     @Transactional(readOnly = true)
     @Modifying
     @Query("UPDATE owlUsers a " +
             "SET a.enabled = TRUE WHERE a.emailID = ?1")
-    int enableOwlUser(String email);
+    int enableOwlUser(String emailID);
 }
