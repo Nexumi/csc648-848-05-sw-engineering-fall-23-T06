@@ -12,7 +12,7 @@ export default function HomePage() {
 
   const { form } = createForm({
     onSubmit(values) {
-      navigate(`${uriTracking()}?searchText=${values.search}`);
+      navigate(values.search ? `${uriTracking()}?searchText=${values.search}` : uriTracking());
     }
   });
 
