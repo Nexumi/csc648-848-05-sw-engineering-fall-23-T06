@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 // TrackingEntity.java
 @Entity
-@Table
 public class TrackingEntity {
 
     @Id
