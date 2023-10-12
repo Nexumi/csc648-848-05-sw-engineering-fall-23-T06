@@ -1,7 +1,5 @@
 package com.orderowl.api.tracking;
 
-import com.orderowl.api.tracking.TrackingEntity;
-import com.orderowl.api.tracking.TrackingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -80,7 +78,7 @@ public class TrackingConfig {
         };
     }
 
-    private List<TrackingEntity> generateRandomTrackingEntities() {
+    protected List<TrackingEntity> generateRandomTrackingEntities() {
         List<TrackingEntity> trackingEntities = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) { // Generate 5 random entities
@@ -99,7 +97,7 @@ public class TrackingConfig {
         return trackingEntities;
     }
 
-    private String generateRandomRetailer() {
+    protected String generateRandomRetailer() {
         String[] retailers = {"Walmart",
                 "Target",
                 "Best Buy",
@@ -109,7 +107,7 @@ public class TrackingConfig {
         int index = random.nextInt(retailers.length);
         return retailers[index];
     }
-    private String generateRandomCarrier() {
+    protected String generateRandomCarrier() {
         String[] carriers = {"FedEx",
                 "USPS",
                 "DHL",
@@ -118,7 +116,7 @@ public class TrackingConfig {
         int index = random.nextInt(carriers.length);
         return carriers[index];
     }
-    private LocalDate generateRandomEta() {
+    protected LocalDate generateRandomEta() {
         LocalDate start = LocalDate.of(2023, 1, 1);
         LocalDate end = LocalDate.of(2023, 12, 31);
         long daysBetween = start.until(end).getDays();
@@ -126,7 +124,7 @@ public class TrackingConfig {
         long randomDay = ThreadLocalRandom.current().nextLong(daysBetween + 1);
         return start.plusDays(randomDay);
     }
-    private String generateRandomTrackingNumber() {
+    protected String generateRandomTrackingNumber() {
         // Generate a random alphanumeric tracking number
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder trackingNumber = new StringBuilder();
@@ -137,7 +135,7 @@ public class TrackingConfig {
         }
         return trackingNumber.toString();
     }
-    private String generateRandomStatus() {
+    protected String generateRandomStatus() {
         String[] statuses = {"Delivered",
                 "Out for Delivery",
                 "In Transit",
@@ -146,7 +144,7 @@ public class TrackingConfig {
         int index = random.nextInt(statuses.length);
         return statuses[index];
     }
-    private String generateRandomLocation() {
+    protected String generateRandomLocation() {
         String[] locations = {"Local Store A",
                 "Local Store B",
                 "Local Store C",
@@ -156,7 +154,7 @@ public class TrackingConfig {
         int index = random.nextInt(locations.length);
         return locations[index];
     }
-    private String generateRandomAddress() {
+    protected String generateRandomAddress() {
         String[] addresses = {
                 "123 Sapphire Street",
                 "456 Maple Avenue",

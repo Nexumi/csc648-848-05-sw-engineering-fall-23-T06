@@ -22,6 +22,7 @@ import java.util.List;
 public class TrackingController {
 
     private final TrackingService trackingService;  // Service that handles tracking operations
+    private TrackingConfig trackingConfig;
 
     @Autowired
     public TrackingController(TrackingService trackingService) {
@@ -43,9 +44,21 @@ public class TrackingController {
         }
     }
 
-    @PostMapping  // Handles HTTP POST requests to the base URL path
+    @PostMapping
     public void registerNewTracking(@RequestBody TrackingEntity tracking) {
-        trackingService.addNewTracking(tracking);  // Registers a new tracking entity using the provided data
+        // Create a new TrackingEntity
+        TrackingEntity tracking1 = new TrackingEntity();
+
+        // Set random values using TrackingConfig
+        tracking1.setTrackingNumber(tracking.getTrackingNumber());
+        tracking1.setRetailer(trackingConfig.generateRandomRetailer());
+        tracking1.setCarrier(trackingConfig.generateRandomCarrier());
+        tracking1.setEta(trackingConfig.generateRandomEta());
+        tracking1.setStatus(trackingConfig.generateRandomStatus());
+        tracking1.setLocation(trackingConfig.generateRandomLocation());
+        tracking1.setAddress(trackingConfig.generateRandomAddress());
+
+        trackingService.addNewTracking(tracking1);
     }
 
     @GetMapping("/search") // Define the search endpoint

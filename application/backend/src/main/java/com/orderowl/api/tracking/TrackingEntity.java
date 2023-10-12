@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class TrackingEntity {
+public class TrackingEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -114,4 +114,5 @@ public class TrackingEntity {
         this.address = address;
         return this;
     }
+
 }
