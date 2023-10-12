@@ -12,8 +12,7 @@ export default function HomePage() {
 
   const { form } = createForm({
     onSubmit(values) {
-      console.log(values);
-      toast.error("Not yet implemented");
+      navigate(`${uriTracking()}?searchText=${values.search}`);
     }
   });
 
