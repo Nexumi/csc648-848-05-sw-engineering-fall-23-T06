@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table
 public class Order {
 
     @Id
@@ -17,7 +16,7 @@ public class Order {
     private Boolean hidden;
     private String retailer;
 
-    @OneToMany
+    @OneToMany(mappedBy = "item")
     List<Item> itemList;
 
     public Order() {

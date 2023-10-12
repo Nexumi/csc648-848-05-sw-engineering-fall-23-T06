@@ -1,11 +1,11 @@
 package item;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import order.Order;
 import jakarta.persistence.*;
 
 @Entity
-@Table
 public class Item {
 
     @Id
@@ -15,6 +15,7 @@ public class Item {
     private String status;
     private String name;
 
+    @JsonBackReference
     @ManyToOne
     private Order order;
 

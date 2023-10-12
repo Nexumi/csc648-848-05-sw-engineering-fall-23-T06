@@ -3,6 +3,7 @@ package item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ItemController {
 
 
     @GetMapping
-    public List<Item> getItems() {
-        return itemService.getItems();
+    public List<Item> getItems(@RequestParam("orderNum") String orderNum) {
+        return null;
     };
 }

@@ -16,7 +16,7 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> getItems(){
+    public List<Item> getItems(String orderNum){
         return itemRepository.findAll();
     }
 }
