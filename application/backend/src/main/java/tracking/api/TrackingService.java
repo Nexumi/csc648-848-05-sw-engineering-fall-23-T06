@@ -27,6 +27,10 @@ public class TrackingService {
         return trackingRepository.findAll();
 
     }
+
+    public void addNewTracking(TrackingEntity tracking) {
+        System.out.println(tracking);
+    }
 }
 
 

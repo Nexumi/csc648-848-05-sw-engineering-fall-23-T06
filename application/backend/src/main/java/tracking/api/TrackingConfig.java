@@ -60,6 +60,7 @@ public class TrackingConfig {
                     "Distribution Center A",      // Location
                     "123 Main St"                // Address
             );
+
             repository.saveAll(
                     List.of(trackingEntity1,trackingEntity2,trackingEntity3,trackingEntity4,trackingEntity5)
             );
