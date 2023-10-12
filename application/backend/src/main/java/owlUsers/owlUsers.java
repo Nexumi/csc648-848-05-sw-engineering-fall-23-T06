@@ -1,3 +1,8 @@
+/**
+ * This class will represent a user entity for the owlUsers application.
+ * Will also be implementing the UserDetails interface for Spring Security integration.
+ * In charge of containing user information such as name, email, password, and role.
+ */
 package owlUsers;
 
 import jakarta.persistence.*;
@@ -16,6 +21,7 @@ import java.util.Collections;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
+// This class will represent the user entity in the database
 @Entity
 public class owlUsers implements UserDetails {
 
@@ -31,12 +37,12 @@ public class owlUsers implements UserDetails {
         generator = "user_sequence"
 )
 private Long id;
-        private String firstName;
-        private String lastName;
-        private String email;
-        private String password;
+        private String firstNameID;
+        private String lastNameID;
+        private String emailID;
+        private String passwordID;
         @Enumerated(EnumType.STRING)
-        private owlUserRole owlUserRole;
+        private owlUserRole owlUserRole; // Roles for users (admin/user)
         private Boolean locked = false;
         private Boolean enabled = false;
 
@@ -45,10 +51,10 @@ private Long id;
                         String email,
                         String password,
                         owlUserRole appUserRole) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.password = password;
+            this.firstNameID = firstName;
+            this.lastNameID = lastName;
+            this.emailID = email;
+            this.passwordID = password;
             this.owlUserRole = appUserRole;
         }
 
@@ -61,20 +67,20 @@ private Long id;
 
         @Override
         public String getPassword() {
-            return password;
+            return passwordID;
         }
 
         @Override
         public String getUsername() {
-            return email;
+            return emailID;
         }
 
         public String getFirstName() {
-            return firstName;
+            return firstNameID;
         }
 
         public String getLastName() {
-            return lastName;
+            return lastNameID;
         }
 
         @Override
@@ -96,7 +102,7 @@ private Long id;
         public boolean isEnabled() {
             return enabled;
         }
-
+    // This is the getter and setter for the user ID
     public void setId(Long id) {
         this.id = id;
     }
