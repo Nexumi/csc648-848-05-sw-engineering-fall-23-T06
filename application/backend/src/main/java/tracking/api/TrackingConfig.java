@@ -31,9 +31,37 @@ public class TrackingConfig {
                     "Local Store B",             // Location
                     "789 Oak St"                 // Address
             );
+            TrackingEntity trackingEntity3 = new TrackingEntity(
+                    "Best Buy",                   // Retailer
+                    "DHL",                        // Carrier
+                    LocalDate.of(2023, 12, 20),  // ETA (Year, Month, Day)
+                    "MNO987654321",               // Tracking Number
+                    "In Transit",                // Status
+                    "Local Store C",             // Location
+                    "101 Pine St"                // Address
+            );
 
+            TrackingEntity trackingEntity4 = new TrackingEntity(
+                    "Apple Store",                // Retailer
+                    "UPS",                        // Carrier
+                    LocalDate.of(2023, 12, 31),  // ETA (Year, Month, Day)
+                    "PQR123456789",               // Tracking Number
+                    "Shipping",                  // Status
+                    "Local Store D",             // Location
+                    "222 Cedar St"               // Address
+            );
+
+            TrackingEntity trackingEntity5 = new TrackingEntity(
+                    "Amazon",                     // Retailer
+                    "UPS",                        // Carrier
+                    LocalDate.of(2023, 12, 31),   // ETA (Year, Month, Day)
+                    "ABC123456789",               // Tracking Number
+                    "In Transit",                // Status
+                    "Distribution Center A",      // Location
+                    "123 Main St"                // Address
+            );
             repository.saveAll(
-                    List.of(trackingEntity1,trackingEntity2)
+                    List.of(trackingEntity1,trackingEntity2,trackingEntity3,trackingEntity4,trackingEntity5)
             );
         };
     }
