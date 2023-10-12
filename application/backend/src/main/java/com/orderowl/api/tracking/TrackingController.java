@@ -44,20 +44,20 @@ public class TrackingController {
         }
     }
     @PostMapping
-    public void registerNewTracking(@RequestBody TrackingEntity tracking) {
-        // Create a new TrackingEntity
-        TrackingEntity tracking1 = new TrackingEntity();
+    public ResponseEntity<TrackingEntity> registerNewTracking(@RequestBody TrackingEntity tracking) {
+        // Create a new TrackingConfig
+        TrackingConfig tc = new TrackingConfig();
 
         // Set random values using TrackingConfig
-        tracking1.setTrackingNumber(tracking.getTrackingNumber());
-        tracking1.setRetailer(trackingConfig.generateRandomRetailer());
-        tracking1.setCarrier(trackingConfig.generateRandomCarrier());
-        tracking1.setEta(trackingConfig.generateRandomEta());
-        tracking1.setStatus(trackingConfig.generateRandomStatus());
-        tracking1.setLocation(trackingConfig.generateRandomLocation());
-        tracking1.setAddress(trackingConfig.generateRandomAddress());
+        tracking.setRetailer(tc.generateRandomRetailer());
+        tracking.setCarrier(tc.generateRandomCarrier());
+        tracking.setEta(tc.generateRandomEta());
+        tracking.setStatus(tc.generateRandomStatus());
+        tracking.setLocation(tc.generateRandomLocation());
+        tracking.setAddress(tc.generateRandomAddress());
 
-        trackingService.addNewTracking(tracking1);
+        trackingService.addNewTracking(tracking);
+        return new ResponseEntity<>(tracking, HttpStatus.OK);
     }
 
     @GetMapping("/search") // Define the search endpoint
