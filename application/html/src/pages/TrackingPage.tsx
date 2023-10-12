@@ -34,7 +34,7 @@ export default function TrackingPage() {
       <Flex justifyContent="center">
         <form use:form>
           <span class="text-xl mr-2">Search:</span>
-          <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
+          <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..." value={searchParams.searchText || ""}/>
           <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full">
             <img src={SearchIcon} alt="Search" class="w-6 h-6" />
           </button>
