@@ -11,7 +11,7 @@ public class TrackingEntity  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String retailer;
-    private String Carrier;
+    private String carrier;
     private LocalDate eta;
     private String trackingNumber;
     private String status;
@@ -25,7 +25,7 @@ public class TrackingEntity  {
     public TrackingEntity(Long id, String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location,String address) {
         this.id = id;
         this.retailer = retailer;
-        Carrier = carrier;
+        this.carrier = carrier;
         this.eta = eta;
         this.trackingNumber = trackingNumber;
         this.status = status;
@@ -35,12 +35,12 @@ public class TrackingEntity  {
 
     public TrackingEntity(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address) {
         this.retailer = retailer;
-        Carrier = carrier;
+        this.carrier = carrier;
         this.eta = eta;
         this.trackingNumber = trackingNumber;
         this.status = status;
         this.location = location;
-        this.address = address;  // Initialize the new variable.
+        this.address = address;
     }
 
     public Long getId() {
@@ -62,11 +62,11 @@ public class TrackingEntity  {
     }
 
     public String getCarrier() {
-        return Carrier;
+        return carrier;
     }
 
     public TrackingEntity setCarrier(String carrier) {
-        Carrier = carrier;
+        this.carrier = carrier;
         return this;
     }
 

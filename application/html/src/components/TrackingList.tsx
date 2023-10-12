@@ -27,6 +27,9 @@ export default function TrackingList(props: {
             <TableHead>
               Location
             </TableHead>
+            <TableHead>
+              Address
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -39,6 +42,7 @@ export default function TrackingList(props: {
                 eta={pack.eta}
                 status={pack.status}
                 location={pack.location}
+                address={pack.address}
               />
             }
           </For>
@@ -54,7 +58,8 @@ function TrackingRow(props: {
   carrier: string,
   eta: string,
   status: string,
-  location: string
+  location: string,
+  address: string
 }) {
   const navigate = useNavigate();
 
@@ -84,6 +89,9 @@ function TrackingRow(props: {
         </TableCell>
         <TableCell>
           {props.location}
+        </TableCell>
+        <TableCell>
+          {props.address}
         </TableCell>
       </TableRow>
     </>

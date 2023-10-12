@@ -35,15 +35,14 @@ public class TrackingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TrackingEntity> getTestEntityById(@PathVariable Long id) {
-        TrackingEntity testEntity = trackingService.getTestEntityById(id);
-        if (testEntity != null) {
-            return new ResponseEntity<>(testEntity, HttpStatus.OK);
+    public ResponseEntity<TrackingEntity> getTrackingEntityById(@PathVariable Long id) {
+        TrackingEntity trackingEntity = trackingService.getTrackingEntityById(id);
+        if (trackingEntity != null) {
+            return new ResponseEntity<>(trackingEntity, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @PostMapping
     public void registerNewTracking(@RequestBody TrackingEntity tracking) {
         // Create a new TrackingEntity
