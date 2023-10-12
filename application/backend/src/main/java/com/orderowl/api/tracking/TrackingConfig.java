@@ -1,5 +1,7 @@
 package com.orderowl.api.tracking;
 
+import com.orderowl.api.tracking.TrackingEntity;
+import com.orderowl.api.tracking.TrackingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
