@@ -17,11 +17,9 @@ export default function ApiTestPage() {
       if (values.word) {
         postTest(values)
           .then((data) => {
-            if (data.status === 201) {
-              toast.success("Successfully posted your word!");
-              reset();
-              refetch();
-            }
+            toast.success("Successfully posted your word!");
+            reset();
+            refetch();
           })
           .catch((error) => {
             console.log(error);

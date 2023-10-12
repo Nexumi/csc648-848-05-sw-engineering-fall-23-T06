@@ -59,3 +59,10 @@ export const getTrackingBySearch = async (params: {
     console.log(err);
   }
 }
+
+export const postTracking = async (params: {
+  trackingNumber: string,
+}) => {
+  const response = await axios.post(apiTracking(), params);
+  return response;
+}
