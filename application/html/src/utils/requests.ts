@@ -30,8 +30,24 @@ export const getTrackingById = async (params: {
   id: string
 }) => {
   try {
-    const response = await axios.get(apiTracking(params.id));
-    return response.data
+    const response = await axios.get(`${apiTracking()}/${params.id}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const getTrackingBySearch = async (params: {
+  searchText: string
+}) => {
+  try {
+    if (params.searchText) {
+      const response = await axios.get(`${apiTracking()}/search?${new URLSearchParams(params).toString()}`);
+      return response.data;
+    } else {
+      const response = await axios.get(apiTracking());
+      return response.data;
+    }
   } catch (err) {
     console.log(err);
   }

@@ -1,4 +1,4 @@
-import { useNavigate } from "@solidjs/router";
+import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import logo from "../assets/logos/logo.png";
@@ -8,19 +8,24 @@ import BellIcon from "../assets/logos/BellIcon.png";
 import toast from "solid-toast";
 import { createForm } from "@felte/solid";
 import TrackingList from "../components/TrackingList";
-import { createResource, createSignal } from "solid-js";
-import { getAllTracking } from "../utils/requests";
+import { createResource } from "solid-js";
+import { getTrackingBySearch } from "../utils/requests";
 
 
 export default function TrackingPage() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [packages] = createResource(getAllTracking);
+  const [packages] = createResource(
+    () => ({
+      searchText: searchParams.searchText
+    }),
+    getTrackingBySearch
+  );
   
   const { form } = createForm({
     onSubmit(values) {
-      console.log(values);
-      toast.error("Not yet implemented");
+      setSearchParams({searchText: values.search});
     }
   });
   
