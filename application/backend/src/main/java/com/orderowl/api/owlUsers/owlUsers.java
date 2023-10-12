@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -27,71 +28,71 @@ public class owlUsers implements UserDetails {
 
     @jakarta.persistence.Id
     @SequenceGenerator(
-        name = "user_sequence",
-        sequenceName = "user_sequence",
-        allocationSize = 1
-)
-@Id
-@GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "user_sequence"
-)
-private Long id;
-        private String firstNameID;
-        private String lastNameID;
-        private String emailID;
-        private String passwordID;
-        @Enumerated(EnumType.STRING)
-        private owlUserRole owlUserRole; // Roles for users (admin/user)
-        private Boolean locked = false;
-        private Boolean enabled = false;
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+    private Long id;
+    private String firstNameID;
+    private String lastNameID;
+    private String emailID;
+    private String passwordID;
+    @Enumerated(EnumType.STRING)
+    private owlUserRole owlUserRole; // Roles for users (admin/user)
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-        public owlUsers(String firstName,
-                        String lastName,
-                        String email,
-                        String password,
-                        owlUserRole appUserRole) {
-            this.firstNameID = firstName;
-            this.lastNameID = lastName;
-            this.emailID = email;
-            this.passwordID = password;
-            this.owlUserRole = appUserRole;
-        }
+    public owlUsers(String firstName,
+                    String lastName,
+                    String email,
+                    String password,
+                    owlUserRole appUserRole) {
+        this.firstNameID = firstName;
+        this.lastNameID = lastName;
+        this.emailID = email;
+        this.passwordID = password;
+        this.owlUserRole = appUserRole;
+    }
 
-        @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            SimpleGrantedAuthority authority =
-                    new SimpleGrantedAuthority(owlUserRole.name());
-            return Collections.singletonList(authority);
-        }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(owlUserRole.name());
+        return Collections.singletonList(authority);
+    }
 
-        @Override
-        public String getPassword() {
-            return passwordID;
-        }
+    @Override
+    public String getPassword() {
+        return passwordID;
+    }
 
-        @Override
-        public String getUsername() {
-            return emailID;
-        }
+    @Override
+    public String getUsername() {
+        return emailID;
+    }
 
-        public String getFirstName() {
-            return firstNameID;
-        }
+    public String getFirstName() {
+        return firstNameID;
+    }
 
-        public String getLastName() {
-            return lastNameID;
-        }
+    public String getLastName() {
+        return lastNameID;
+    }
 
-        @Override
-        public boolean isAccountNonExpired() {
-            return true;
-        }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-        @Override
-        public boolean isAccountNonLocked() {
-            return !locked;
-        }
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
 
     @Override
     public boolean isCredentialsNonExpired() {
@@ -99,9 +100,10 @@ private Long id;
     }
 
     @Override
-        public boolean isEnabled() {
-            return enabled;
-        }
+    public boolean isEnabled() {
+        return enabled;
+    }
+
     // This is the getter and setter for the user ID
     public void setId(Long id) {
         this.id = id;
