@@ -15,8 +15,10 @@ public class TrackingService {
             LocalDate.of(2023, 12, 31),   // ETA (Year, Month, Day)
             "ABC123456789",               // Tracking Number
             "In Transit",                // Status
-            "Distribution Center A"      // Location
+            "Distribution Center A",      // Location
+            "mason st."
     );
+
     public List<TrackingEntity> getTracking(){
         return List.of(
                 trackingEntity
