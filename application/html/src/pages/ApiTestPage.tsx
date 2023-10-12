@@ -1,23 +1,48 @@
 import { For, createEffect, createResource } from "solid-js";
-import { getAllTest } from "../utils/requests";
+import { getAllTest, postTest } from "../utils/requests";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
+import { Input } from "../common/components/input";
+import { createForm } from "@felte/solid";
+import toast from "solid-toast";
 
 export default function ApiTestPage() {
-  const [data] = createResource(getAllTest);
+  const [data, { refetch }] = createResource(getAllTest);
 
   createEffect(() => {
     console.log(data());
   });
 
+  const { form, reset } = createForm({
+    onSubmit(values) {
+      if (values.word) {
+        postTest(values)
+          .then((data) => {
+            if (data.status === 201) {
+              toast.success("Successfully posted word!");
+              reset();
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("Something went wrong while trying to post your word.");
+          })
+      }
+    }
+  });
+
   return (
     <>
+      <form use:form>
+        <Input name="word" type="text" class="mt-4 text-center" placeholder="Add new word" />
+      </form>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>
+            <TableHead class="text-center">
               ID
             </TableHead>
-            <TableHead>
+            <TableHead class="text-center">
               Word
             </TableHead>
           </TableRow>
@@ -43,7 +68,7 @@ function TestRow(props: {
 }) {
   return (
     <>
-      <TableRow>
+      <TableRow class="text-center">
         <TableCell>
           {props.id}
         </TableCell>

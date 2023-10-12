@@ -9,3 +9,10 @@ export const getAllTest = async () => {
     console.log(err);
   }
 }
+
+export const postTest = async (params: {
+  word: string
+}) => {
+  const response = await axios.post(apiTest(), params);
+  return response;
+}
