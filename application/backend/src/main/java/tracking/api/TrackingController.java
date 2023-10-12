@@ -11,6 +11,8 @@
 package tracking.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,16 @@ public class TrackingController {
     @GetMapping  // Handles HTTP GET requests to the base URL path
     public List<TrackingEntity> getTracking() {
         return trackingService.getTracking();  // Retrieves and returns a list of tracking entities
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TrackingEntity> getTestEntityById(@PathVariable Long id) {
+        TrackingEntity testEntity = trackingService.getTestEntityById(id);
+        if (testEntity != null) {
+            return new ResponseEntity<>(testEntity, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping  // Handles HTTP POST requests to the base URL path
