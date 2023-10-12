@@ -35,4 +35,10 @@ public class TrackingController {
     public void registerNewTracking(@RequestBody TrackingEntity tracking) {
         trackingService.addNewTracking(tracking);  // Registers a new tracking entity using the provided data
     }
+
+    @GetMapping("/search") // Define the search endpoint
+    public List<TrackingEntity> searchTracking(@RequestParam("searchText") String searchText) {
+        return trackingService.searchTracking(searchText); // Call the service to perform the search
+    }
+
 }

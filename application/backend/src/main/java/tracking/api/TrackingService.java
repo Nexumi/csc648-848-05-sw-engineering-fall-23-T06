@@ -31,6 +31,11 @@ public class TrackingService {
     public void addNewTracking(TrackingEntity tracking) {
         System.out.println(tracking);
     }
+
+    public List<TrackingEntity> searchTracking(String searchText) {
+        return trackingRepository.searchTracking(searchText);
+    }
+
 }
 
 

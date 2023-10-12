@@ -21,4 +21,10 @@ public interface TrackingRepository extends JpaRepository<TrackingEntity, Long> 
                                                 @Param("trackingNumber") String trackingNumber, // Partial tracking number for filtering.
                                                 @Param("retailer") String retailer,          // Retailer name for filtering.
                                                 @Param("location") String location);
+
+    @Query("SELECT t FROM TrackingEntity t WHERE t.trackingNumber LIKE %:searchText% OR t.retailer LIKE %:searchText% OR t.address LIKE %:searchText%")
+    List<TrackingEntity> searchTracking(@Param("searchText") String searchText);
+
+
+
 }
