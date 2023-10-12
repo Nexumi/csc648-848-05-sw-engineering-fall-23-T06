@@ -12,29 +12,27 @@ public class TrackingService {
 
     @Autowired
     public TrackingService(TrackingRepository trackingRepository) {
+
         this.trackingRepository = trackingRepository;
     }
 
-    public List<TrackingEntity> getAllTracking() {
-        List<TrackingEntity> tracking = trackingRepository.findAll();
-        System.out.println("Retrieved " + tracking.size() + " entities from the database.");
-        return tracking;
+    public List<TrackingEntity> getTracking() {
 
-    }
-
-    public List<TrackingEntity> getTracking(){
         return trackingRepository.findAll();
-
     }
+
     public TrackingEntity getTestEntityById(Long id) {
+
         return trackingRepository.findById(id).orElse(null);
     }
 
     public void addNewTracking(TrackingEntity tracking) {
-        System.out.println(tracking);
+
+        trackingRepository.save(tracking);
     }
 
     public List<TrackingEntity> searchTracking(String searchText) {
+
         return trackingRepository.searchTracking(searchText);
     }
 
