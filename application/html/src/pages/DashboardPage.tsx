@@ -2,10 +2,14 @@ import { useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { uriHome } from "../utils/uri";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { For, createSignal } from "solid-js";
+import { For, createResource, createSignal } from "solid-js";
+import TrackingList from "../components/TrackingList";
+import { getAllTracking } from "../utils/requests";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+
+  const [packages] = createResource(getAllTracking);
 
   const HEADER = "text-center border-2 border-black";
   const CELL = "text-left border-2 border-black";
@@ -16,7 +20,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Flex justifyContent="center" class="h-full">
+      <div class="mt-4 space-y-4">
         <Table class="table-fixed">
           <TableHeader>
             <TableRow>
@@ -61,7 +65,16 @@ export default function DashboardPage() {
             </For>
           </TableBody>
         </Table>
-      </Flex>
+        <div>
+          <div class="text-3xl">
+            <p>Arriving Soon:</p>
+          </div>
+          <TrackingList
+            display={packages()?.sort((a: any, b: any) => (a.eta > b.eta) ? 1 : -1)}
+            limit={2}
+          />
+        </div>
+      </div>
     </>
   );
 }

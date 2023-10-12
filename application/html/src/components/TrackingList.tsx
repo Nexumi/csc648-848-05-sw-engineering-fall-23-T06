@@ -5,6 +5,7 @@ import { uriTracking } from "../utils/uri";
 
 export default function TrackingList(props: {
   display: any
+  limit?: number
 }) {
   return (
     <>
@@ -29,7 +30,7 @@ export default function TrackingList(props: {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <For each={props.display}>
+          <For each={props.limit ? props.display?.slice(0, props.limit) : props.display}>
             {(pack) => 
               <TrackingRow
                 packageId={pack.id}
