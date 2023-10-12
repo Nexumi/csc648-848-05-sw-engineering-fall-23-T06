@@ -6,9 +6,14 @@ import SearchIcon from "../assets/logos/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import toast from "solid-toast";
 import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
+import TrackingList from "../components/TrackingList";
+import { createResource } from "solid-js";
+import { getAllTracking } from "../utils/requests";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  
+  const [packages] = createResource(getAllTracking);
 
   const { form } = createForm({
     onSubmit(values) {
@@ -100,6 +105,16 @@ export default function HomePage() {
           <p>Feature 3</p>
         </Flex>
       </Flex>
+
+      <div class="w-3/4 mt-4">
+        <div class="text-3xl">
+          <p>Recent:</p>
+        </div>
+        <TrackingList
+          display={packages()?.sort((a: any, b: any) => (a.id < b.id) ? 1 : -1)}
+          limit={5}
+        />
+      </div>
 
       {/* <div class="mx-auto w-3/4 border-black border-t-2 my-10"></div>
 
