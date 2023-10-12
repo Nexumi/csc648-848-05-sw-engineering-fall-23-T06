@@ -19,6 +19,8 @@ import DashboardPage from "./pages/DashboardPage";
 import UploadPage from "./pages/UploadPage";
 import Footer from "./components/Footer";
 import RegistrationPage from "./pages/RegistrationPage";
+import TrackingInfoPage from "./pages/TrackingInfoPage";
+import ApiTestPage from "./pages/ApiTestPage";
 
 export default function Root() {
   return (
@@ -47,7 +49,11 @@ export default function Root() {
               <Route path="/forget" component={ForgetPage} />
               <Route path="/dashboard" component={DashboardPage} />
               <Route path="/upload" component={UploadPage} />
-              <Route path="/tracking" component={TrackingPage} />
+              <Route path="/tracking">
+                <Route path="/" component={TrackingPage} />
+                <Route path="/:id" component={TrackingInfoPage} />
+              </Route>
+              <Route path="/api_test" component={ApiTestPage} />
             </Routes>
           </div>
           <Footer />

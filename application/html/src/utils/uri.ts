@@ -1,5 +1,9 @@
 /* API Paths */
 
+export function apiTest() {
+  return `/api/test`;
+}
+
 /* URI Paths */
 export function uriHome() {
   return `/`;
@@ -33,6 +37,10 @@ export function uriUpload() {
   return `/upload`;
 }
 
-export function uriTracking() {
-  return `/tracking`;
+export function uriTracking(id?: string | number) {
+  return id !== undefined ? `/tracking/${id}` : `/tracking`;
+}
+
+export function uriApiTest() {
+  return `/api_test`;
 }

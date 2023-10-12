@@ -3,7 +3,7 @@ import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
 import { For, Show, createSignal } from "solid-js";
 import { Button } from "../common/components/button";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriTracking, uriUpload } from "../utils/uri";
+import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriTracking, uriUpload } from "../utils/uri";
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -16,11 +16,13 @@ export default function SideBar() {
   const isDashboard = useMatch(uriDashboard);
   const isUpload = useMatch(uriUpload);
   const isTracking = useMatch(uriTracking);
+  const isApiTest = useMatch(uriApiTest);
 
   const [destinations, setDestinations] = createSignal([
     {label: "Dashboard", uri: uriDashboard, isPage: isDashboard},
     {label: "Upload", uri: uriUpload, isPage: isUpload},
     {label: "Track Info", uri: uriTracking, isPage: isTracking},
+    {label: "API Test", uri: uriApiTest, isPage: isApiTest},
   ]);
 
   return (
