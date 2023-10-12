@@ -15,7 +15,7 @@ export default function SideBar() {
 
   const isDashboard = useMatch(uriDashboard);
   const isUpload = useMatch(uriUpload);
-  const isTracking = useMatch(uriTracking);
+  const isTracking = useMatch(() => uriTracking() + "/*");
   const isApiTest = useMatch(uriApiTest);
 
   const [destinations, setDestinations] = createSignal([
