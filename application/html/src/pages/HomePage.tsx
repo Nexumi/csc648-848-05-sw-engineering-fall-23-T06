@@ -2,41 +2,63 @@ import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import logo from "../assets/logos/logo.png";
+import SearchIcon from "../assets/logos/SearchIcon.png";
+import { createForm } from "@felte/solid";
+import toast from "solid-toast";
 import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
 
 export default function HomePage() {
   const navigate = useNavigate();
 
+  const { form } = createForm({
+    onSubmit(values) {
+      console.log(values);
+      toast.error("Not yet implemented");
+    }
+  });
+
   return (
-    <Flex flexDirection="col" class="h-full">
-      <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
-        <img
-          src={logo}
-          class="w-40 cursor-pointer" 
-          onClick={() => {
-            navigate(uriHome());
+<Flex flexDirection="col" class="h-full">
+  <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
+    <img
+      src={logo}
+      class="w-40 cursor-pointer" 
+      onClick={() => {
+        navigate(uriHome());
+      }}
+    />
+
+    <div>
+      <Flex justifyContent="center" class="space-x-4 mb-4">
+        <Button
+          class="text-white bg-black hover:bg-gray-600"
+          onclick={() => {
+            navigate(uriAbout());
           }}
-        />
+        >
+          About Me Pages
+        </Button>
 
-        <Flex justifyContent="center" alignItems="center" class="space-x-4">
-          <Button
-            class="text-white bg-black hover:bg-gray-600"
-            onclick={() => {
-              navigate(uriAbout());
-            }}
-          >
-            About Me Pages
-          </Button>
+        <Button
+          class="text-white bg-black hover:bg-gray-600"
+          onclick={() => {
+            navigate(uriForget());
+          }}
+        >
+          Support
+        </Button>
+      </Flex>
 
-          <Button
-            class="text-white bg-black hover:bg-gray-600"
-            onclick={() => {
-              navigate(uriForget());
-            }}
-          >
-            Support
-          </Button>
-        </Flex>
+      <Flex justifyContent="center" class="mt-2">
+        <form use:form>
+          <span class="text-xl mr-2">Search:</span>
+          <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
+          <button type="submit" class="ml-2 focus:outline-none">
+            <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+          </button>
+        </form>
+      </Flex>
+    </div>
         <div class="flex space-x-4">
           <Button
             class="text-white bg-black hover:bg-gray-600"
