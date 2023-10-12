@@ -9,7 +9,7 @@ import toast from "solid-toast";
 export default function UploadPage() {
   const navigate = useNavigate();
 
-  const { form, reset } = createForm({
+  const { form, data, setData, reset } = createForm({
     onSubmit(values) {
       const params = {
         trackingNumber: values.trackingNumber,
@@ -18,6 +18,7 @@ export default function UploadPage() {
       postTracking(params)
         .then((data) => {
           toast.success("Successfully processed your request!");
+          
           reset();
         })
         .catch((error) => {
@@ -42,7 +43,7 @@ export default function UploadPage() {
                 class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
                 type="text"
                 />
-              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full">
+              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
                 <svg
                   fill="none"
                   viewBox="0 0 24 24"
@@ -60,9 +61,10 @@ export default function UploadPage() {
               <div>
                 <p class="text-xl mr-2">Retailer:</p>
                 <input
-                  name="retailor"
+                  name="retailer"
                   class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
                   type="text"
+                  placeholder={data().retailer || ""}
                   readonly
                 />
               </div>
@@ -72,6 +74,51 @@ export default function UploadPage() {
                   name="carrier"
                   class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
                   type="text"
+                  placeholder={data().carrier || ""}
+                  readonly
+                  />
+              </div>
+              <div>
+                <p class="text-xl mr-2">ETA</p>
+                <input
+                  name="eta"
+                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                  type="text"
+                  placeholder={data().eta || ""}
+                  readonly
+                  />
+              </div>
+            </Flex>
+          </Flex>
+          <Flex class="grow">
+            <Flex justifyContent="center" class="gap-x-16">
+              <div>
+                <p class="text-xl mr-2">Status:</p>
+                <input
+                  name="status"
+                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                  type="text"
+                  placeholder={data().status || ""}
+                  readonly
+                />
+              </div>
+              <div>
+                <p class="text-xl mr-2">Location</p>
+                <input
+                  name="location"
+                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                  type="text"
+                  placeholder={data().location || ""}
+                  readonly
+                  />
+              </div>
+              <div>
+                <p class="text-xl mr-2">Address</p>
+                <input
+                  name="address"
+                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                  type="text"
+                  placeholder={data().address || ""}
                   readonly
                   />
               </div>
