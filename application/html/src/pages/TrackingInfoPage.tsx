@@ -39,7 +39,7 @@ export default function TrackingInfoPage() {
                 <div class="space-y-4">
                   <p>Retailer: {tracking()?.retailer}</p>
                   <p>Carrier: {tracking()?.carrier}</p>
-                 <p>Location: {tracking()?.location}</p>
+                  <p>Location: {tracking()?.location}</p>
                 </div>
                 <div class="space-y-4">
                   <p>ETA: {tracking()?.eta}</p>
