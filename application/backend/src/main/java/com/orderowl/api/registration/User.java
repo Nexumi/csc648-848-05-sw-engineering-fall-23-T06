@@ -14,29 +14,32 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    private String username;
-
-    private String password;
     private String email;
+
+    private String first_name;
+    private String last_name;
+    private String password;
     private String phone_number;
     private String address;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String email, String phone_number, String address) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public User(String email, String first_name, String last_name, String password, String phone_number, String address) {
         this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.password = password;
         this.phone_number = phone_number;
         this.address = address;
     }
 
-    public User(String username, String password, String email, String phone_number, String address) {
-        this.username = username;
-        this.password = password;
+    public User(Long id, String email, String first_name, String last_name, String password, String phone_number, String address) {
+        this.id = id;
         this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.password = password;
         this.phone_number = phone_number;
         this.address = address;
     }
