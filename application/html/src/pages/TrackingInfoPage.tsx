@@ -1,10 +1,20 @@
 import { useParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Grid } from "../common/layout/grid";
+import { createResource } from "solid-js";
+import { getTrackingById } from "../utils/requests";
 
 export default function TrackingInfoPage() {
   const params = useParams();
-  console.log(params.id);
+  
+  const trackingId = params.id;
+
+  const [tracking] = createResource(
+    () => ({
+      id: trackingId
+    }),
+    getTrackingById
+  );
 
   return (
     <>
@@ -27,12 +37,12 @@ export default function TrackingInfoPage() {
               </div>
               <Grid cols={2} class="text-2xl">
                 <div class="space-y-4">
-                  <p>Website: </p>
-                  <p>Carrier: </p>
+                  <p>Retailer: {tracking()?.retailer}</p>
+                  <p>Carrier: {tracking()?.carrier}</p>
                 </div>
                 <div class="space-y-4">
-                  <p>ETA: </p>
-                  <p>Status: </p>
+                  <p>ETA: {tracking()?.eta}</p>
+                  <p>Status: {tracking()?.status}</p>
                 </div>
               </Grid>
             </div>

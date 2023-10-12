@@ -4,8 +4,8 @@ export function apiTest() {
   return `/api/test`;
 }
 
-export function apiTracking() {
-  return `/api/tracking`;
+export function apiTracking(id?: string) {
+  return id? `/api/tracking/${id}` : `/api/tracking`;
 }
 
 /* URI Paths */

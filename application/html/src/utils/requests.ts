@@ -25,3 +25,14 @@ export const getAllTracking = async () => {
     console.log(err);
   }
 }
+
+export const getTrackingById = async (params: {
+  id: string
+}) => {
+  try {
+    const response = await axios.get(apiTracking(params.id));
+    return response.data
+  } catch (err) {
+    console.log(err);
+  }
+}
