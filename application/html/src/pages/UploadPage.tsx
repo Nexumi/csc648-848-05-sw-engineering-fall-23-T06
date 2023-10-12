@@ -16,10 +16,15 @@ export default function UploadPage() {
       }
 
       postTracking(params)
-        .then((data) => {
+        .then((res) => {
           toast.success("Successfully processed your request!");
-          
           reset();
+          setData("retailer", res.data?.retailer);
+          setData("carrier", res.data?.carrier);
+          setData("eta", res.data?.eta);
+          setData("status", res.data?.status);
+          setData("location", res.data?.location);
+          setData("address", res.data?.address);
         })
         .catch((error) => {
           console.log(error);
