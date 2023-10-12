@@ -22,47 +22,46 @@ export default function HomePage() {
   });
 
   return (
-<Flex flexDirection="col" class="h-full">
-  <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
-    <img
-      src={logo}
-      class="w-40 cursor-pointer" 
-      onClick={() => {
-        navigate(uriHome());
-      }}
-    />
-
-    <div>
-      <Flex justifyContent="center" class="space-x-4 mb-4">
-        <Button
-          class="text-white bg-black hover:bg-gray-600"
-          onclick={() => {
-            navigate(uriAbout());
+    <Flex flexDirection="col" class="h-full">
+      <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
+        <img
+          src={logo}
+          class="w-40 cursor-pointer" 
+          onClick={() => {
+            navigate(uriHome());
           }}
-        >
-          About Me Pages
-        </Button>
+        />
 
-        <Button
-          class="text-white bg-black hover:bg-gray-600"
-          onclick={() => {
-            navigate(uriForget());
-          }}
-        >
-          Support
-        </Button>
-      </Flex>
+        <div>
+          <Flex justifyContent="center" class="space-x-4 mb-4">
+            <Button
+              class="text-white bg-black hover:bg-gray-600"
+              onclick={() => {
+                navigate(uriAbout());
+              }}
+            >
+              About Me Pages
+            </Button>
 
-      <Flex justifyContent="center" class="mt-2">
-        <form use:form>
-          <span class="text-xl mr-2">Search:</span>
-          <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
-          <button type="submit" class="ml-2 focus:outline-none">
-            <img src={SearchIcon} alt="Search" class="w-6 h-6" />
-          </button>
-        </form>
-      </Flex>
-    </div>
+            <Button
+              class="text-white bg-black hover:bg-gray-600"
+              onclick={() => {
+                navigate(uriForget());
+              }}
+            >
+              Support
+            </Button>
+            <div>
+              <form use:form>
+                <span class="text-xl mr-2">Search:</span>
+                <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
+                <button type="submit" class="ml-2 focus:outline-none">
+                  <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+                </button>
+              </form>
+            </div>
+          </Flex>
+        </div>
         <div class="flex space-x-4">
           <Button
             class="text-white bg-black hover:bg-gray-600"
