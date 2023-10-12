@@ -17,6 +17,13 @@ export const postTest = async (params: {
   return response;
 }
 
+export const deleteTestById = async (params: {
+  id: number | string
+}) => {
+  const response = await axios.delete(`${apiTest()}/${params.id}`)
+  return response;
+}
+
 export const getAllTracking = async () => {
   try {
     const response = await axios.get(apiTracking());
