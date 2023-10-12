@@ -1,31 +1,38 @@
+/**
+ * This is the control center for handling tracking-related tasks using web requests.
+ * It manages actions related to tracking data using a web-based interface.
+ *
+ * - You can access its functions through the "/api/tracking" web address.
+ * - It can fetch and display a list of tracking records when you send a GET request.
+ * - You can create new tracking records by sending data using a POST request.
+ *
+ * The @RestController tag marks this class as a part of the web system.
+ */
 package tracking.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
-// TrackingController.java
 @RestController
-@RequestMapping(path = "/api/tracking")
+@RequestMapping(path = "/api/tracking") // Defines the base URL path for this controller
 public class TrackingController {
-    private final TrackingService trackingService;
+
+    private final TrackingService trackingService;  // Service that handles tracking operations
 
     @Autowired
     public TrackingController(TrackingService trackingService) {
-        this.trackingService = trackingService;
+        this.trackingService = trackingService;  // Dependency injection of TrackingService
     }
 
-    @GetMapping
-    public List<TrackingEntity> getTracking(){
-        return trackingService.getTracking();
+    @GetMapping  // Handles HTTP GET requests to the base URL path
+    public List<TrackingEntity> getTracking() {
+        return trackingService.getTracking();  // Retrieves and returns a list of tracking entities
     }
 
-    @PostMapping
+    @PostMapping  // Handles HTTP POST requests to the base URL path
     public void registerNewTracking(@RequestBody TrackingEntity tracking) {
-        trackingService.addNewTracking(tracking);
+        trackingService.addNewTracking(tracking);  // Registers a new tracking entity using the provided data
     }
 }
