@@ -1,4 +1,4 @@
-package registration;
+package com.orderowl.api.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;

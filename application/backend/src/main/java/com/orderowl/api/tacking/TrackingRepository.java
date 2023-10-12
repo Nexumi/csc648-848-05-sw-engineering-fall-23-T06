@@ -1,4 +1,4 @@
-package tracking.api;
+package com.orderowl.api.tacking;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

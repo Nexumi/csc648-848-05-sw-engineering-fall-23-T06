@@ -1,4 +1,4 @@
-package com.orderowl.api;
+package com.orderowl.api.test;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

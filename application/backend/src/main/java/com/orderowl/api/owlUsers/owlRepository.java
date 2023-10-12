@@ -1,4 +1,4 @@
-package owlUsers;
+package com.orderowl.api.owlUsers;
 /**
  * This is the repository interface for managing owlUsers entities.
  */

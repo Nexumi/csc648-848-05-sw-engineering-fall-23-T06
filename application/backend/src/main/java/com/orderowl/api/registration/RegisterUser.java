@@ -1,4 +1,4 @@
-package registration;
+package com.orderowl.api.registration;
 
 public class RegisterUser {
 

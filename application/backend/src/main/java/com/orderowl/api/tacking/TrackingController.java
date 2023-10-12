@@ -8,7 +8,7 @@
  *
  * The @RestController tag marks this class as a part of the web system.
  */
-package tracking.api;
+package com.orderowl.api.tacking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

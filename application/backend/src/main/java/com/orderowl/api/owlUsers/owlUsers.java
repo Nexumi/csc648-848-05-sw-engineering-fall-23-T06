@@ -3,7 +3,7 @@
  * Will also be implementing the UserDetails interface for Spring Security integration.
  * In charge of containing user information such as name, email, password, and role.
  */
-package owlUsers;
+package com.orderowl.api.owlUsers;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

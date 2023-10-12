@@ -1,4 +1,4 @@
-package registration;
+package com.orderowl.api.registration;
 
 import lombok.ToString;
 import lombok.Getter;
