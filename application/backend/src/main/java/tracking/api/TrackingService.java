@@ -27,6 +27,9 @@ public class TrackingService {
         return trackingRepository.findAll();
 
     }
+    public TrackingEntity getTestEntityById(Long id) {
+        return trackingRepository.findById(id).orElse(null);
+    }
 
     public void addNewTracking(TrackingEntity tracking) {
         System.out.println(tracking);
