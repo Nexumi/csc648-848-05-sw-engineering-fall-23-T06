@@ -1,4 +1,4 @@
-package com.orderowl.api.tacking;
+package com.orderowl.api.tracking;
 
 import jakarta.persistence.*;
 
