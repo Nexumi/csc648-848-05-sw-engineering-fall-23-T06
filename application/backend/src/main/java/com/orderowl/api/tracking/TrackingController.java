@@ -44,8 +44,9 @@ public class TrackingController {
     }
 
     @PostMapping  // Handles HTTP POST requests to the base URL path
-    public void registerNewTracking(@RequestBody TrackingEntity tracking) {
+    public ResponseEntity<TrackingEntity> registerNewTracking(@RequestBody TrackingEntity tracking) {
         trackingService.addNewTracking(tracking);  // Registers a new tracking entity using the provided data
+        return new ResponseEntity<>(tracking, HttpStatus.OK);
     }
 
     @GetMapping("/search") // Define the search endpoint
