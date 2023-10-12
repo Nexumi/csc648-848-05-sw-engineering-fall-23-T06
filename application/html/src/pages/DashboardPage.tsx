@@ -20,7 +20,10 @@ export default function DashboardPage() {
 
   return (
     <>
-      <div class="mt-4 space-y-4">
+      <div class="space-y-4">
+        <div class="text-center text-6xl">
+          <p>Dashboard</p>
+        </div>
         <Table class="table-fixed">
           <TableHeader>
             <TableRow>
