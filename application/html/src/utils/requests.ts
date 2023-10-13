@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { apiRegistration, apiTest, apiTracking } from './uri';
 
-axios.defaults.baseURL = import.meta.env.MODE === "production" ? "http://api.orderowl.jpkit.us" : "/";
-
 export const getAllTest = async () => {
   try {
     const response = await axios.get(apiTest());
