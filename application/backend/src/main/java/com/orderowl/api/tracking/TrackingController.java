@@ -22,7 +22,7 @@ import java.util.List;
 public class TrackingController {
 
     private final TrackingService trackingService;  // Service that handles tracking operations
-    private TrackingConfig trackingConfig;
+    private TrackingEntity trackingEntity1;
 
     @Autowired
     public TrackingController(TrackingService trackingService) {
@@ -50,12 +50,12 @@ public class TrackingController {
 
         // Set random values using TrackingConfig
         tracking1.setTrackingNumber(tracking.getTrackingNumber());
-        tracking1.setRetailer(trackingConfig.generateRandomRetailer());
-        tracking1.setCarrier(trackingConfig.generateRandomCarrier());
-        tracking1.setEta(trackingConfig.generateRandomEta());
-        tracking1.setStatus(trackingConfig.generateRandomStatus());
-        tracking1.setLocation(trackingConfig.generateRandomLocation());
-        tracking1.setAddress(trackingConfig.generateRandomAddress());
+        tracking1.setRetailer(trackingEntity1.generateRandomRetailer());
+        tracking1.setCarrier(trackingEntity1.generateRandomCarrier());
+        tracking1.setEta(trackingEntity1.generateRandomEta());
+        tracking1.setStatus(trackingEntity1.generateRandomStatus());
+        tracking1.setLocation(trackingEntity1.generateRandomLocation());
+        tracking1.setAddress(trackingEntity1.generateRandomAddress());
 
         trackingService.addNewTracking(tracking1);
     }
