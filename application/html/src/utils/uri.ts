@@ -8,6 +8,10 @@ export function apiTracking() {
   return `/api/tracking`;
 }
 
+export function apiRegistration() {
+  return `/api/registration`;
+}
+
 /* URI Paths */
 export function uriHome() {
   return `/`;

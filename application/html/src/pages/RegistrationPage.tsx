@@ -5,6 +5,7 @@ import { createForm } from "@felte/solid";
 import { Button } from "../common/components/button";
 import { uriHome, uriLogin } from "../utils/uri";
 import toast from "solid-toast";
+import { postRegistration } from "../utils/requests";
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -13,8 +14,20 @@ export default function RegistrationPage() {
 
   const { form } = createForm({
     onSubmit(values) {
-      console.log(values);
-      toast.error("(WIP) Not yet implemented.\nSending you to login page.");
+      const params = {
+        first_name: values.firstName,
+        last_name: values.lastName,
+        email: values.email,
+        password: values.password
+      }
+      postRegistration(params)
+        .then((res) => {
+
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      toast.success("Registration successful!");
       navigate(uriLogin());
     }
   });

@@ -5,6 +5,7 @@ import { createForm } from "@felte/solid";
 import { Button } from "../common/components/button";
 import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
 import toast from "solid-toast";
+import { getLogin } from "../utils/requests";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -13,9 +14,15 @@ export default function LoginPage() {
 
   const { form } = createForm({
     onSubmit(values) {
-      console.log(values);
-      toast.error("(WIP) Not yet implemented.\nSending you to dashboard.");
-      navigate(uriDashboard());
+      getLogin(values)
+        .then((res) => {
+          const user = res.data[0];
+          toast.success(`Welcome back, ${user.first_name} ${user.last_name}!`);
+          navigate(uriDashboard());
+        })
+        .catch((err) => {
+          toast.error("Invalid credentials.");
+        })
     }
   });
 

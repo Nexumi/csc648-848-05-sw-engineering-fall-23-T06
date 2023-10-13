@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiTest, apiTracking } from './uri';
+import { apiRegistration, apiTest, apiTracking } from './uri';
 
 export const getAllTest = async () => {
   try {
@@ -64,5 +64,23 @@ export const postTracking = async (params: {
   trackingNumber: string,
 }) => {
   const response = await axios.post(apiTracking(), params);
+  return response;
+}
+
+export const postRegistration = async (params: {
+  first_name: string,
+  last_name: string,
+  password: string,
+  email: string,
+}) => {
+  const response = await axios.post(apiRegistration(), params);
+  return response;
+}
+
+export const getLogin = async (params: {
+  email: string,
+  password: string
+}) => {
+  const response = await axios.get(`${apiRegistration()}/search?${new URLSearchParams(params).toString()}`);
   return response;
 }
