@@ -6,6 +6,7 @@ import { Button } from "../common/components/button";
 import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
 import toast from "solid-toast";
 import { getLogin } from "../utils/requests";
+import Cookies from "js-cookie";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export default function LoginPage() {
         .then((res) => {
           const user = res.data[0];
           toast.success(`Welcome back, ${user.first_name} ${user.last_name}!`);
+          Cookies.set("user", `${user.first_name} ${user.last_name}`);
           navigate(uriDashboard());
         })
         .catch((err) => {
