@@ -7,13 +7,16 @@ import { createForm } from "@felte/solid";
 import toast from "solid-toast";
 import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
 import TrackingList from "../components/TrackingList";
-import { createResource } from "solid-js";
+import { Show, createResource, createSignal } from "solid-js";
 import { getAllTracking } from "../utils/requests";
+import Cookies from "js-cookie";
 
 export default function HomePage() {
   const navigate = useNavigate();
   
   const [packages] = createResource(getAllTracking);
+
+  const [isIn, setIsIn] = createSignal(Cookies.get("user") != undefined);
 
   const { form } = createForm({
     onSubmit(values) {
@@ -63,22 +66,41 @@ export default function HomePage() {
           </Flex>
         </div>
         <div class="flex space-x-4">
-          <Button
-            class="text-white bg-black hover:bg-gray-600"
-            onclick={() => {
-              navigate(uriLogin());
-            }}
-          >
-            Login
-          </Button>
-          <Button
-            class="text-white bg-black hover:bg-gray-600"
-            onclick={() => {
-              navigate(uriRegistration());
-            }}
-          >
-            Registration
-          </Button>
+          <Show when={!isIn()}>
+            <Button
+              class="text-white bg-black hover:bg-gray-600"
+              onclick={() => {
+                navigate(uriLogin());
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              class="text-white bg-black hover:bg-gray-600"
+              onclick={() => {
+                navigate(uriRegistration());
+              }}
+            >
+              Registration
+            </Button>
+          </Show>
+          <Show when={isIn()}>
+            <Flex class="gap-x-4">
+              <div>
+                <p>Welcome, {Cookies.get("user")}!</p>
+              </div>
+              <Button
+                class="text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  toast.success(`See you next time ${Cookies.get("user")}!`);
+                  Cookies.remove("user");
+                  setIsIn(false);
+                }}
+              >
+                Logout
+              </Button>
+            </Flex>
+          </Show>
         </div>
       </Flex>
       
