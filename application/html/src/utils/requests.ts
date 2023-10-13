@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { apiRegistration, apiTest, apiTracking } from './uri';
 
+axios.defaults.baseURL = "http://api.orderowl.jpkit.us";
+
 export const getAllTest = async () => {
   try {
     const response = await axios.get(apiTest());
