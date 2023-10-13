@@ -4,6 +4,8 @@ package com.orderowl.api.registration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -18,4 +20,10 @@ public class UserService {
 
         userRepository.save(registrationRequest);
     }
+
+    public List<User> searchUser(String email, String password){
+
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
 }
