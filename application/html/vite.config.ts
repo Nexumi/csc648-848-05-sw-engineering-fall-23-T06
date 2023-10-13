@@ -15,7 +15,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "^/api/": {
-        target: "http://api.orderowl.jpkit.us",
+        target: "https://api.orderowl.jpkit.us",
         ws: true,
         changeOrigin: true
       }
