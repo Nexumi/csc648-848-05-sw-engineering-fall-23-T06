@@ -1,8 +1,15 @@
 package com.orderowl.api.tracking;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 public class TrackingEntity  {
@@ -114,5 +121,91 @@ public class TrackingEntity  {
         this.address = address;
         return this;
     }
+    protected List<TrackingEntity> generateRandomTrackingEntities() {
+        List<TrackingEntity> trackingEntities = new ArrayList<>();
 
+        for (int i = 0; i < 5; i++) { // Generate 5 random entities
+            String retailer = generateRandomRetailer();
+            String carrier = generateRandomCarrier();
+            LocalDate eta = generateRandomEta();
+            String trackingNumber = generateRandomTrackingNumber();
+            String status = generateRandomStatus();
+            String location = generateRandomLocation();
+            String address = generateRandomAddress();
+
+            TrackingEntity trackingEntity = new TrackingEntity(retailer, carrier, eta, trackingNumber, status, location, address);
+            trackingEntities.add(trackingEntity);
+        }
+
+        return trackingEntities;
+    }
+
+    protected String generateRandomRetailer() {
+        String[] retailers = {"Walmart",
+                "Target",
+                "Best Buy",
+                "Apple Store",
+                "Amazon"};
+        Random random = new Random();
+        int index = random.nextInt(retailers.length);
+        return retailers[index];
+    }
+    protected String generateRandomCarrier() {
+        String[] carriers = {"FedEx",
+                "USPS",
+                "DHL",
+                "UPS"};
+        Random random = new Random();
+        int index = random.nextInt(carriers.length);
+        return carriers[index];
+    }
+    protected LocalDate generateRandomEta() {
+        LocalDate start = LocalDate.of(2023, 1, 1);
+        LocalDate end = LocalDate.of(2023, 12, 31);
+        long daysBetween = start.until(end).getDays();
+
+        long randomDay = ThreadLocalRandom.current().nextLong(daysBetween + 1);
+        return start.plusDays(randomDay);
+    }
+    protected String generateRandomTrackingNumber() {
+        // Generate a random alphanumeric tracking number
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder trackingNumber = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 12; i++) {
+            char randomChar = characters.charAt(random.nextInt(characters.length()));
+            trackingNumber.append(randomChar);
+        }
+        return trackingNumber.toString();
+    }
+    protected String generateRandomStatus() {
+        String[] statuses = {"Delivered",
+                "Out for Delivery",
+                "In Transit",
+                "Shipping"};
+        Random random = new Random();
+        int index = random.nextInt(statuses.length);
+        return statuses[index];
+    }
+    protected String generateRandomLocation() {
+        String[] locations = {"Local Store A",
+                "Local Store B",
+                "Local Store C",
+                "Local Store D",
+                "Distribution Center A"};
+        Random random = new Random();
+        int index = random.nextInt(locations.length);
+        return locations[index];
+    }
+    protected String generateRandomAddress() {
+        String[] addresses = {
+                "123 Sapphire Street",
+                "456 Maple Avenue",
+                "789 Crimson Lane",
+                "101 Emerald Drive",
+                "567 Golden Gate Road"};
+        Random random = new Random();
+        int index = random.nextInt(addresses.length);
+        return addresses[index];
+    }
 }
