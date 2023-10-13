@@ -22,7 +22,6 @@ import java.util.List;
 public class TrackingController {
 
     private final TrackingService trackingService;  // Service that handles tracking operations
-    private TrackingEntity te;
 
     @Autowired
     public TrackingController(TrackingService trackingService) {
@@ -45,16 +44,13 @@ public class TrackingController {
     }
     @PostMapping
     public ResponseEntity<TrackingEntity> registerNewTracking(@RequestBody TrackingEntity tracking) {
-        // Create a new TrackingConfig
-        TrackingConfig tc = new TrackingConfig();
-
         // Set random values using TrackingConfig
-        tracking.setRetailer(te.generateRandomRetailer());
-        tracking.setCarrier(te.generateRandomCarrier());
-        tracking.setEta(te.generateRandomEta());
-        tracking.setStatus(te.generateRandomStatus());
-        tracking.setLocation(te.generateRandomLocation());
-        tracking.setAddress(te.generateRandomAddress());
+        tracking.setRetailer(tracking.generateRandomRetailer());
+        tracking.setCarrier(tracking.generateRandomCarrier());
+        tracking.setEta(tracking.generateRandomEta());
+        tracking.setStatus(tracking.generateRandomStatus());
+        tracking.setLocation(tracking.generateRandomLocation());
+        tracking.setAddress(tracking.generateRandomAddress());
 
         trackingService.addNewTracking(tracking);
         return new ResponseEntity<>(tracking, HttpStatus.OK);

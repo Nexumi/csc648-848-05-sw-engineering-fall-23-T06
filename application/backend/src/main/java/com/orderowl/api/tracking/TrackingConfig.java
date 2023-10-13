@@ -71,7 +71,7 @@ public class TrackingConfig {
             allTrackingEntities.add(trackingEntity4);
             allTrackingEntities.add(trackingEntity5);
 
-            allTrackingEntities.addAll(trackingEntity.generateRandomTrackingEntities());
+            allTrackingEntities.addAll(new TrackingEntity().generateRandomTrackingEntities());
             repository.saveAll(allTrackingEntities);
         };
     }
