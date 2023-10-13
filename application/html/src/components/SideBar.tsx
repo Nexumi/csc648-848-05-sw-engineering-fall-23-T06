@@ -1,9 +1,11 @@
 import { useMatch, useNavigate } from "@solidjs/router";
 import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
-import { For, Show, createSignal } from "solid-js";
+import { For, Show, createEffect, createSignal } from "solid-js";
 import { Button } from "../common/components/button";
 import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriTracking, uriUpload } from "../utils/uri";
+import Cookies from "js-cookie";
+import toast from "solid-toast";
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -22,8 +24,15 @@ export default function SideBar() {
     {label: "Dashboard", uri: uriDashboard, isPage: isDashboard},
     {label: "Upload", uri: uriUpload, isPage: isUpload},
     {label: "Track Info", uri: uriTracking, isPage: isTracking},
-    {label: "API Test", uri: uriApiTest, isPage: isApiTest},
+    // {label: "API Test", uri: uriApiTest, isPage: isApiTest},
   ]);
+
+  createEffect(() => {
+    if (!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout() && Cookies.get("user") == undefined) {
+      toast.error("You must be signed in to do that.");
+      navigate(uriLogin());
+    }
+  });
 
   return (
     <>
