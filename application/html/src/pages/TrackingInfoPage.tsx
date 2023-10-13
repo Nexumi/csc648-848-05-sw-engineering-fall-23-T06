@@ -39,10 +39,12 @@ export default function TrackingInfoPage() {
                 <div class="space-y-4">
                   <p>Retailer: {tracking()?.retailer}</p>
                   <p>Carrier: {tracking()?.carrier}</p>
+                  <p>Location: {tracking()?.location}</p>
                 </div>
                 <div class="space-y-4">
                   <p>ETA: {tracking()?.eta}</p>
                   <p>Status: {tracking()?.status}</p>
+                  <p>Address: {tracking()?.address}</p>
                 </div>
               </Grid>
             </div>

@@ -16,7 +16,7 @@ export default function ApiTestPage() {
     onSubmit(values) {
       if (values.word) {
         postTest(values)
-          .then((data) => {
+          .then((res) => {
             toast.success("Successfully posted your word!");
             reset();
             refetch();

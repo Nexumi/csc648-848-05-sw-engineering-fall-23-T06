@@ -5,6 +5,7 @@ import SearchIcon from "../assets/logos/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import { postTracking } from "../utils/requests";
 import toast from "solid-toast";
+import { uriTracking } from "../utils/uri";
 
 export default function UploadPage() {
   const navigate = useNavigate();
@@ -21,10 +22,7 @@ export default function UploadPage() {
           reset();
           setData("retailer", res.data?.retailer);
           setData("carrier", res.data?.carrier);
-          setData("eta", res.data?.eta);
-          setData("status", res.data?.status);
-          setData("location", res.data?.location);
-          setData("address", res.data?.address);
+          setData("id", res.data?.id);
         })
         .catch((error) => {
           console.log(error);
@@ -61,8 +59,8 @@ export default function UploadPage() {
               </button>
             </div>
           </Flex>
-          <Flex class="grow">
-            <Flex justifyContent="center" class="gap-x-16">
+          <Flex flexDirection="col" justifyContent="center" class="grow">
+            <Flex justifyContent="center" alignItems="end" class="gap-x-16">
               <div>
                 <p class="text-xl mr-2">Retailer:</p>
                 <input
@@ -83,50 +81,15 @@ export default function UploadPage() {
                   readonly
                   />
               </div>
-              <div>
-                <p class="text-xl mr-2">ETA</p>
-                <input
-                  name="eta"
-                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
-                  type="text"
-                  placeholder={data().eta || ""}
-                  readonly
-                  />
-              </div>
-            </Flex>
-          </Flex>
-          <Flex class="grow">
-            <Flex justifyContent="center" class="gap-x-16">
-              <div>
-                <p class="text-xl mr-2">Status:</p>
-                <input
-                  name="status"
-                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
-                  type="text"
-                  placeholder={data().status || ""}
-                  readonly
-                />
-              </div>
-              <div>
-                <p class="text-xl mr-2">Location</p>
-                <input
-                  name="location"
-                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
-                  type="text"
-                  placeholder={data().location || ""}
-                  readonly
-                  />
-              </div>
-              <div>
-                <p class="text-xl mr-2">Address</p>
-                <input
-                  name="address"
-                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
-                  type="text"
-                  placeholder={data().address || ""}
-                  readonly
-                  />
-              </div>
+              <Button
+                class="capitalize text-white bg-black hover:bg-gray-600"
+                disabled={!data().id}
+                onClick={() => {
+                  navigate(uriTracking(data().id));
+                }}
+              >
+                More Info
+              </Button>
             </Flex>
           </Flex>
           <Flex class="grow">
