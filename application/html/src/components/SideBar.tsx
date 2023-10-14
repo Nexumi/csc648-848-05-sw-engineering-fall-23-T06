@@ -13,7 +13,7 @@ export default function SideBar() {
   const isLogin = useMatch(uriLogin);
   const isRegistration = useMatch(uriRegistration);
   const isForget = useMatch(uriForget);
-  const isAbout = useMatch(uriAbout);
+  const isAbout = useMatch(() => uriAbout() + "/*");
 
   const isDashboard = useMatch(uriDashboard);
   const isUpload = useMatch(uriUpload);
