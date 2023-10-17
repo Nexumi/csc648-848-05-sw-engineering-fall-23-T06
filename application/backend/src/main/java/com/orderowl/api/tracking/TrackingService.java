@@ -1,6 +1,7 @@
 package com.orderowl.api.tracking;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,13 @@ public class TrackingService {
         this.trackingRepository = trackingRepository;
     }
 
+    @Cacheable("tracking")
     public List<TrackingEntity> getTracking() {
 
         return trackingRepository.findAll();
     }
 
+    @Cacheable("tracking")
     public TrackingEntity getTrackingEntityById(Long id) {
 
         return trackingRepository.findById(id).orElse(null);

@@ -3,6 +3,7 @@ package com.orderowl.api.registration;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "users")
@@ -13,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @NaturalId(mutable = true)
     private String email;
 
     private String first_name;
