@@ -137,28 +137,7 @@ export default function HomePage() {
         />
       </div>
 
-      {/* <div class="mx-auto w-3/4 border-black border-t-2 my-10"></div>
-
-      <div class="relative flex items-center flex-grow mx-12">
-        <div class="absolute text-6xl left-0" style={{ left: "calc(50% - 10em)", top: "35%" }}>
-          Feature 1
-        </div>
-
-        <div class="border-l border-black absolute" style={{ left: "calc(50% - 16em)", height: "400px", top: "35px" }}></div>
-
-        <div class="absolute text-6xl" style={{ left: "50%", transform: "translateX(-50%)", top: "35%" }}>
-          Feature 2
-        </div>
-
-        <div class="border-l border-black absolute" style={{ right: "calc(50% - 16em)", height: "400px", top: "35px" }}></div>
-
-        <div class="absolute text-6xl right-0" style={{ right: "calc(50% - 10em)", top: "35%" }}>
-          Feature 3
-        </div>
-      </div>
-
-
-      <div class="mx-auto border-black border-t-2 my-4 w-3/4 mt-auto mb-8"></div> */}
+     
     </Flex>
   );
 }
