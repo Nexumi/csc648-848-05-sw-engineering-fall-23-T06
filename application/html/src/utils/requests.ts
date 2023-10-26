@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { apiRegistration, apiTest, apiTracking } from './uri';
 
-axios.defaults.baseURL = "https://api.orderowl.jpkit.us";
+axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
 
 export const getAllTest = async () => {
   try {
