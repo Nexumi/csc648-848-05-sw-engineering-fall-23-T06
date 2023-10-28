@@ -1,7 +1,6 @@
 package com.orderowl.api.registration;
 
 
-import com.orderowl.api.tracking.TrackingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
