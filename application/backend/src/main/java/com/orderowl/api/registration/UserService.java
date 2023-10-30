@@ -26,4 +26,11 @@ public class UserService {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
+    public boolean authUser(User userAuth){
+        List<User> users = searchUser(userAuth.getEmail(), userAuth.getPassword());
+        if (!users.isEmpty())
+            return true;
+        else
+            return false;
+    }
 }
