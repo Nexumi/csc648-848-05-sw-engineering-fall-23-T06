@@ -23,10 +23,13 @@ public class LoginController {
     //if authUser returns true the http response status would be ok, giving a login successful message
     //if it fails then the http status would be 401 and user will not be able to login
     @PostMapping
-    public ResponseEntity<String> registerUser(@RequestBody User loginRequest) {
-        if (userService.authUser(loginRequest))
+    public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
+
+        if (userService.authUser(loginRequest)) {
             return ResponseEntity.ok("Login successful");
-        else
+        }
+        else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 }
