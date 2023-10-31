@@ -1,4 +1,4 @@
-package com.orderowl.api.orders;
+package com.orderowl.api.tracking;
 
 
 import jakarta.persistence.*;
@@ -9,11 +9,11 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Table(name = "orders")
-public class Order {
+public class Tracking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long order_id;
+    private Long tracking_id;
 
     private LocalDate date;
     private String tracking_number;
@@ -22,11 +22,11 @@ public class Order {
     private String retailer;
     private Long user_id;
 
-    public Order() {
+    public Tracking() {
     }
 
-    public Order(Long order_id, LocalDate date, String tracking_number, String status, boolean hidden, String retailer, Long user_id) {
-        this.order_id = order_id;
+    public Tracking(Long order_id, LocalDate date, String tracking_number, String status, boolean hidden, String retailer, Long user_id) {
+        this.tracking_id = order_id;
         this.date = date;
         this.tracking_number = tracking_number;
         this.status = status;
@@ -35,7 +35,7 @@ public class Order {
         this.user_id = user_id;
     }
 
-    public Order(LocalDate date, String tracking_number, String status, boolean hidden, String retailer, Long user_id) {
+    public Tracking(LocalDate date, String tracking_number, String status, boolean hidden, String retailer, Long user_id) {
         this.date = date;
         this.tracking_number = tracking_number;
         this.status = status;

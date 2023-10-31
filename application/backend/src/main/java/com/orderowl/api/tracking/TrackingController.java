@@ -1,8 +1,7 @@
-package com.orderowl.api.orders;
+package com.orderowl.api.tracking;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,27 +13,27 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/tracking")
-public class OrderController {
+public class TrackingController {
 
-    private final OrderService orderService;
+    private final TrackingService trackingService;
 
     @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public TrackingController(TrackingService trackingService) {
+        this.trackingService = trackingService;
     }
 
     @GetMapping
-    public List<Order> getOrders(){
-        return orderService.getOrders();
+    public List<Tracking> getTrackingInfo(){
+        return trackingService.getTrackingInfo();
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Order order = orderService.getOrderById(id);
-        if (order == null){
+    public ResponseEntity<Tracking> getTrackingById(@PathVariable Long id) {
+        Tracking tracking = trackingService.getTrackingById(id);
+        if (tracking == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(order, HttpStatus.OK);
+            return new ResponseEntity<>(tracking, HttpStatus.OK);
         }
     }
 }
