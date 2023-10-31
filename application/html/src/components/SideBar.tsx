@@ -27,12 +27,12 @@ export default function SideBar() {
     // {label: "API Test", uri: uriApiTest, isPage: isApiTest},
   ]);
 
-  createEffect(() => {
+ /* createEffect(() => {
     if (!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout() && Cookies.get("user") == undefined) {
       toast.error("You must be signed in to do that.");
       navigate(uriLogin());
     }
-  });
+  });*/
 
   return (
     <>

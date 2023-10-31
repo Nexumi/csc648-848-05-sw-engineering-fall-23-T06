@@ -5,7 +5,7 @@ import logo from "../assets/logos/logo.png";
 import SearchIcon from "../assets/logos/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import toast from "solid-toast";
-import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking } from "../utils/uri";
+import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking, uriUpload } from "../utils/uri";
 import TrackingList from "../components/TrackingList";
 import { Show, createResource, createSignal } from "solid-js";
 import { getAllTracking } from "../utils/requests";
@@ -67,6 +67,14 @@ export default function HomePage() {
         </div>
         <div class="flex space-x-4">
           <Show when={!isIn()}>
+          <Button
+              class="text-white bg-black hover:bg-gray-600"
+              onclick={() => {
+                navigate(uriDashboard());
+              }}
+            >
+              Skip Registration
+            </Button>
             <Button
               class="text-white bg-black hover:bg-gray-600"
               onclick={() => {

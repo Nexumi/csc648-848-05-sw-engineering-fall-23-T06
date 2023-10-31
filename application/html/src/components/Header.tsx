@@ -1,10 +1,16 @@
+import { createSignal } from "solid-js";
 import { useMatch, useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
 import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration } from "../utils/uri";
 import toast from "solid-toast";
+import Cookies from "js-cookie";
+import { Button } from "../common/components/button";
+
 
 export default function Logo() {
+  const [dropdownVisible, setDropdownVisible] = createSignal(false);
+  const [isIn, setIsIn] = createSignal(Cookies.get("user") != undefined);
   const navigate = useNavigate();
   const isHome = useMatch(uriHome);
   const isLogin = useMatch(uriLogin);
@@ -13,7 +19,7 @@ export default function Logo() {
   const isAbout = useMatch(uriAbout);
 
   const handleSystemClick = () => {
-    toast.error("Not yet implemented");
+    setDropdownVisible(!dropdownVisible());
   };
   const handleNotificationClick = () => {
     toast.error("Not yet implemented");
@@ -64,6 +70,22 @@ export default function Logo() {
                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
+              <Show when={dropdownVisible()}>
+                <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
+                  <div class="py-1">
+                    <Button
+                      class="block w-full text-left px-4 py-2 text-white bg-black hover:bg-gray-600"
+                      onclick={() => {
+                        toast.success(`See you next time ${Cookies.get("user")}!`);
+                        Cookies.remove("user");
+                        setIsIn(false);
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                </div>
+              </Show>
             </div>
           </Flex>
         </header>

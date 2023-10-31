@@ -119,7 +119,7 @@ export default function LoginPage() {
                         <span class="absolute top-1/2 transform -translate-y-1/2 ml-7 text-2x1">
                           Submit
                         </span>
-                    }
+                      }
                     </div>
                   </Button>
                 </Flex>
