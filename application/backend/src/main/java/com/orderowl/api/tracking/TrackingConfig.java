@@ -27,7 +27,8 @@ public class TrackingConfig {
                     "Las Vegas, NV",
                     "1801 S Decatur Blvd, Las Vegas, NV 89102",
                     false,
-                    1L);
+                    1L
+            );
             Tracking tracking2 = new Tracking(
                     "Target",
                     "USPS",
@@ -37,7 +38,8 @@ public class TrackingConfig {
                     "San Francisco, CA",
                     "1800 Taraval St, San Francisco, CA 94116",
                     false,
-                    1L);
+                    1L
+            );
             Tracking tracking3 = new Tracking(
                     "Amazon",
                     "UPS",
