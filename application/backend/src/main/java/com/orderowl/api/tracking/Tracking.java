@@ -52,4 +52,6 @@ public class Tracking {
         this.hidden = hidden;
         this.user_id = user_id;
     }
+
+    // Using Lombok's @Data, we will automatically get access to getters and setters
 }

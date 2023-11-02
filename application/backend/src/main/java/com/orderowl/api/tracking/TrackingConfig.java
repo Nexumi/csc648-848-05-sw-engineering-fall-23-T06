@@ -1,3 +1,7 @@
+/**
+ * This allows the application to directly add tracking information to the database.
+ * It uses spring boot's commandline runner to add data on startup.
+ */
 package com.orderowl.api.tracking;
 
 import org.springframework.boot.CommandLineRunner;
@@ -9,11 +13,11 @@ import java.util.List;
 
 @Configuration
 public class TrackingConfig {
-    private Tracking tracking;
-
     @Bean
-    CommandLineRunner commandLineRunner(TrackingRepository repository){
+    CommandLineRunner commandLineRunner(TrackingRepository repository) {
         return args -> {
+            // some fake tracking information added
+            // The locations are carrier stores located in those cities
             Tracking tracking1 = new Tracking(
                     "Amazon",
                     "USPS",
@@ -23,7 +27,7 @@ public class TrackingConfig {
                     "Las Vegas, NV",
                     "1801 S Decatur Blvd, Las Vegas, NV 89102",
                     false,
-                    1L );
+                    1L);
             Tracking tracking2 = new Tracking(
                     "Target",
                     "USPS",
@@ -33,7 +37,7 @@ public class TrackingConfig {
                     "San Francisco, CA",
                     "1800 Taraval St, San Francisco, CA 94116",
                     false,
-                    1L );
+                    1L);
             Tracking tracking3 = new Tracking(
                     "Amazon",
                     "UPS",
@@ -68,6 +72,7 @@ public class TrackingConfig {
                     2L
             );
 
+            // directly access the repository to save the fake tracking information
             repository.saveAll(List.of(tracking1, tracking2, tracking3, tracking4, tracking5));
 
         };
