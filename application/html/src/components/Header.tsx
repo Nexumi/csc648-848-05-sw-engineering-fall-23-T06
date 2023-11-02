@@ -47,13 +47,24 @@ export default function Logo() {
                 />
               </svg>
               </DropdownMenuTrigger>
-              <DropdownMenuContent class="min-h-[200px] bg-white">
-                
-                {/* Blank */}
+              <DropdownMenuContent class="min-h-[200px] bg-white text-center" >
+
+                Notification Center
+                <hr style="border-color: black;" />
+
+                <DropdownMenuItem
+
+                  onSelect={() => {
+                    toast.error("Not yet implemented");
+                  }}
+                  class="cursor-pointer hover:bg-gray-200"
+                >
+                  Order X has an update! xx/xx/xx
+                </DropdownMenuItem>
+
               </DropdownMenuContent>
               
             </DropdownMenu>
-            
             <DropdownMenu>
               <DropdownMenuTrigger>
               <svg
