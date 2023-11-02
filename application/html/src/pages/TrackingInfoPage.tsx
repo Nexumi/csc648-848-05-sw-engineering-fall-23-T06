@@ -1,8 +1,9 @@
-import { useParams } from "@solidjs/router";
+import { A, useParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Grid } from "../common/layout/grid";
 import { createResource } from "solid-js";
 import { getTrackingById } from "../utils/requests";
+import { getURL } from "../utils/util";
 
 export default function TrackingInfoPage() {
   const params = useParams();
@@ -37,7 +38,15 @@ export default function TrackingInfoPage() {
               </div>
               <Grid cols={2} class="text-2xl">
                 <div class="space-y-4">
-                  <p>Retailer: {tracking()?.retailer}</p>
+                  <p>Retailer: 
+                    <A
+                      href={getURL(tracking()?.retailer || "")}
+                      target="_blank"
+                      class="text-blue-700 underline"
+                    >
+                      {tracking()?.retailer}
+                    </A>
+                  </p>
                   <p>Carrier: {tracking()?.carrier}</p>
                   <p>Location: {tracking()?.location}</p>
                 </div>

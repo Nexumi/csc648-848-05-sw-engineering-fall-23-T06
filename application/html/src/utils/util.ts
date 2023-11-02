@@ -33,6 +33,6 @@ export function getURL(retailer: string) {
     case "walmart":
       return "https://www.walmart.com/";
     default:
-      return null;
+      return "#";
   }
 }
