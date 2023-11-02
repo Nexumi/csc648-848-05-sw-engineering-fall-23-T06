@@ -27,7 +27,7 @@ public class TrackingService {
      *
      * @return A List of the tracking information
      */
-    @Cacheable("tracking")
+
     public List<Tracking> getTrackingInfo() {
 
         return trackingRepository.findAll();
@@ -39,7 +39,7 @@ public class TrackingService {
      * @param id This will be the id that is associated with certain tracking orders.
      * @return The Tracking order that is relating to the ID, or null will be returned if nothing is found.
      */
-    @Cacheable("tracking")
+
     public Tracking getTrackingById(Long id) {
 
         return trackingRepository.findById(id).orElse(null);
