@@ -69,6 +69,15 @@ export const postTracking = async (params: {
   return response;
 }
 
+export const getTrackingCount = async () => {
+  try {
+    const response = await axios.get(`${apiTracking()}/count`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export const postRegistration = async (params: {
   first_name: any,
   last_name: any,

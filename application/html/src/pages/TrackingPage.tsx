@@ -10,15 +10,12 @@ import toast from "solid-toast";
 import { createForm } from "@felte/solid";
 import TrackingList from "../components/TrackingList";
 import { createResource } from "solid-js";
-import { getTrackingBySearch } from "../utils/requests";
+import { getTrackingBySearch, getTrackingCount } from "../utils/requests";
 
 export default function TrackingPage() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Placeholder value for undelivered orders counter
-  const [undeliveredCount] = createSignal<number>(5); 
-
+  const [undeliveredCount] = createResource(getTrackingCount); 
   const [packages] = createResource(
     () => ({
       searchText: searchParams.searchText
