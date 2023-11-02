@@ -118,8 +118,8 @@ export default function HomePage() {
          <div class="text-9xl font-thin">
            OrderOwl
         </div>
-        <div class="text-4xl mt-4">
-        Track everything everywhere
+        <div class="text-5xl mt-4">
+        Track Everything Everywhere
         </div>
       </div>
 
