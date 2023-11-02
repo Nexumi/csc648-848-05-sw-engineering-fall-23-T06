@@ -15,7 +15,7 @@ export default function ForgetPage() {
           
           {/* Assuming you want to add a support email or a link to a support page */}
           <p>
-            Send us an email at <a href="orderowl@jpkit.us" class="underline">orderowl@jpkit.us </a>
+            Send us an email at <a href="mailto:orderowl@jpkit.us" class="underline">orderowl@jpkit.us </a>
             or call us at <strong>1-800-123-4567</strong>.
           </p>
 
