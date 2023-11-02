@@ -24,12 +24,23 @@ public class TrackingController {
         this.trackingService = trackingService;
     }
 
+    /**
+     * This will recover all the tracking information
+     *
+     * @return A List of all the tracking orders
+     */
     @GetMapping
     public List<Tracking> getTrackingInfo() {
 
         return trackingService.getTrackingInfo();
     }
 
+    /**
+     * This will recover the tracking information by the ID
+     *
+     * @param id This will hold the ID of the tracking info.
+     * @return The Tracking, This will return the tracking order that is relating to the ID, or it will return null if there is nothing.
+     */
     @GetMapping(path = "/{id}")
     public ResponseEntity<Tracking> getTrackingById(@PathVariable Long id) {
 
@@ -41,6 +52,12 @@ public class TrackingController {
         }
     }
 
+    /**
+     * Will allow for new tracking information/orders to be put in
+     *
+     * @param tracking Will put the tracking order onto the list.
+     * @return A ResponseEntity will be adding into the tracking order.
+     */
     @PostMapping
     public ResponseEntity<Tracking> registerNewTracking(@RequestBody Tracking tracking) {
         // this is used strictly for the use cases
@@ -65,7 +82,7 @@ public class TrackingController {
     }
 
     /**
-     * Allows the users to search for tracking information using text based searches.
+     * Allows to search for tracking information using text based searches.
      *
      * @param searchText This will be text that is used to search for the tracking information.
      * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
