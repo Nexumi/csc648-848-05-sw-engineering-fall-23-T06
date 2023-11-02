@@ -76,29 +76,42 @@ public class TrackingController {
         return trackingService.searchTracking(searchText);
     }
 
+    /**
+     * This method helps us find the number of orders that have not been delivered yet
+     *
+     * @return Returns the number of orders that are not delivered yet
+     */
+    @GetMapping(path = "/count")
+    public ResponseEntity<Integer> getTrackingCount() {
+
+        int trackingCount = trackingService.getTrackingCount();
+        return new ResponseEntity<>(trackingCount,HttpStatus.OK);
+    }
+
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteTrackingById(@PathVariable("id") Long id) {
+
         trackingService.deleteById(id);
         return ResponseEntity.status(200).build();
     }
 
-    /**
-     * This will allow the user to delete tracking information by the tracking number.
-     *
-     * @param trackingNumber This is the tracking number that is relating to the tracking information that needs to be deleted.
-     * @return A ResponseEntity will be shown to the user whether it was successful or there was an error.
-     */
-    @DeleteMapping(path = "/delete")
-    public ResponseEntity<String> deleteTracking(@RequestParam("trackingNumber") String trackingNumber) {
-
-        try {
-            trackingService.deleteTrackingByNumber(trackingNumber);
-            return ResponseEntity.status(200).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-
-    }
+//    /**
+//     * This will allow the user to delete tracking information by the tracking number.
+//     *
+//     * @param trackingNumber This is the tracking number that is relating to the tracking information that needs to be deleted.
+//     * @return A ResponseEntity will be shown to the user whether it was successful or there was an error.
+//     */
+//    @DeleteMapping(path = "/delete")
+//    public ResponseEntity<String> deleteTracking(@RequestParam("trackingNumber") String trackingNumber) {
+//
+//        trackingService.deleteTrackingByNumber(trackingNumber);
+//
+//        return new ResponseEntity<>(trackingNumber+" was deleted", HttpStatus.OK);
+//
+//        return new ResponseEntity<>(trackingNumber+" was NOT deleted", HttpStatus.NOT_FOUND);
+//
+//
+//    }
 
 
 }

@@ -45,6 +45,7 @@ public class TrackingService {
         return trackingRepository.findById(id).orElse(null);
     }
 
+
     /**
      * Will allow the user to add new tracking information.
      *
@@ -62,7 +63,18 @@ public class TrackingService {
      * @return A List for the tracking information that has been put in before.
      */
     public List<Tracking> searchTracking(String searchText) {
+
         return trackingRepository.searchTracking(searchText);
+    }
+
+    /**
+     *  This interacts with the database to find the number of orders left to be delivered
+     *
+     * @return Returns the count of pending orders
+     */
+    public Integer getTrackingCount() {
+
+        return trackingRepository.getTrackingCount();
     }
 
     /**
@@ -74,13 +86,13 @@ public class TrackingService {
         trackingRepository.deleteById(id);
     }
 
-    /**
-     * This will make it possible to delete an order by the tracking number.
-     *
-     * @param trackingNumber This will be the tracking number that is related to the order that needs to be deleted.
-     */
-    public void deleteTrackingByNumber(String trackingNumber) {
-
-        trackingRepository.deleteByTrackingNumber(trackingNumber);
-    }
+//    /**
+//     * This will make it possible to delete an order by the tracking number.
+//     *
+//     * @param trackingNumber This will be the tracking number that is related to the order that needs to be deleted.
+//     */
+//    public void deleteTrackingByNumber(String trackingNumber) {
+//
+//        trackingRepository.deleteByTrackingNumber(trackingNumber);
+//    }
 }
