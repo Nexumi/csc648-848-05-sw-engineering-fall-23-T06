@@ -78,6 +78,13 @@ export const getTrackingCount = async () => {
   }
 }
 
+export const deleteTrackingById = async (params: {
+  id: string
+}) => {
+  const response = await axios.delete(`${apiTracking()}/delete/${params.id}`);
+  return response;
+}
+
 export const postRegistration = async (params: {
   first_name: any,
   last_name: any,
