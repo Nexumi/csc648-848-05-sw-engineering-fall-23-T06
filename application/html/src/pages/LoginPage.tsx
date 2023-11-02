@@ -54,7 +54,7 @@ export default function LoginPage() {
                     <TextInput
                       name="email"
                       type="text"
-                      header="Email"
+                      header="Email/Username"
                       class={NO_RING}
                     />
                   </div>
