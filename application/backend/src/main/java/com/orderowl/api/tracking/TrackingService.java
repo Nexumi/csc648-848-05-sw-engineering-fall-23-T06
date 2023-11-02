@@ -46,7 +46,7 @@ public class TrackingService {
     }
 
     /**
-     * Will allow the user to add new tracking information.
+     * Will allow to add new tracking information.
      *
      * @param tracking The tracking information to be added to the list.
      */
@@ -56,7 +56,7 @@ public class TrackingService {
     }
 
     /**
-     * This will make it possible for the user to search for the order by providing text.
+     * This will make it possible to search for the order by providing text.
      *
      * @param searchText This will be the text that is used to search for the tracking information.
      * @return A List for the tracking information that has been put in before.
@@ -66,7 +66,7 @@ public class TrackingService {
     }
 
     /**
-     * This will allow the user to be able to delete the order by the ID.
+     * This will allow to delete the order by the ID.
      *
      * @param id This will be the ID of the order that needs to be deleted.
      */
