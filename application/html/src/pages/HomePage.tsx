@@ -65,38 +65,46 @@ export default function HomePage() {
             </form>
           </div>
           <Flex justifyContent="end" class="gap-x-4">
-            <Button
-              class="shrink-0 text-white bg-black hover:bg-gray-600"
-              onclick={() => {
-                navigate(uriDashboard());
-              }}
-            >
-              Get Started
-            </Button>
-            <Button
-              class="text-white bg-black hover:bg-gray-600"
-              onclick={() => {
-                navigate(uriLogin());
-              }}
-            >
-              Login
-            </Button>
+            <Show when={!isIn()}>
+              <Button
+                class="shrink-0 text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  navigate(uriDashboard());
+                }}
+              >
+                Get Started
+              </Button>
+              <Button
+                class="text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  navigate(uriLogin());
+                }}
+              >
+                Login
+              </Button>
+            </Show>
             <Show when={isIn()}>
-              <Flex class="gap-x-4">
-                <div>
-                  <p>Welcome, {Cookies.get("user")}!</p>
-                </div>
-                <Button
-                  class="text-white bg-black hover:bg-gray-600"
-                  onclick={() => {
-                    toast.success(`See you next time ${Cookies.get("user")}!`);
-                    Cookies.remove("user");
-                    setIsIn(false);
-                  }}
-                >
-                  Logout
-                </Button>
-              </Flex>
+              <div>
+                <p>Welcome, {Cookies.get("user")}!</p>
+              </div>
+              <Button
+                class="shrink-0 text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  navigate(uriDashboard());
+                }}
+              >
+                Dashboard
+              </Button>
+              <Button
+                class="text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  toast.success(`See you next time ${Cookies.get("user")}!`);
+                  Cookies.remove("user");
+                  setIsIn(false);
+                }}
+              >
+                Logout
+              </Button>
             </Show>
           </Flex>
         </Flex>
