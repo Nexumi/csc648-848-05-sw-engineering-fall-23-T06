@@ -16,6 +16,7 @@ export default function DashboardPage() {
   const CELL_TODAY = "text-left border-2 border-black text-red-500 font-bold";
 
   const [today] = createSignal(String(new Date().getDate()));
+  const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
 
   return (
@@ -23,6 +24,9 @@ export default function DashboardPage() {
       <div class="space-y-4">
         <div class="text-center text-6xl">
           <p>Dashboard</p>
+        </div>
+        <div class="text-center text-3xl font-bold">
+          <p>{month()}</p>
         </div>
         <Table class="table-fixed">
           <TableHeader>
