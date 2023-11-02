@@ -102,3 +102,10 @@ export const getLogin = async (params: {
   const response = await axios.get(`${apiRegistration()}/search?${new URLSearchParams(params).toString()}`);
   return response;
 }
+
+export const deleteUserById = async (params: {
+  id: string
+}) => {
+  const response = await axios.delete(`${apiRegistration()}/delete/${params.id}`);
+  return response;
+}
