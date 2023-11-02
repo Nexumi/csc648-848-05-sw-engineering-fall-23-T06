@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
-import { uriHome, uriRegistration } from "../utils/uri";
+import { uriDashboard, uriHome, uriRegistration } from "../utils/uri";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
 import { For, Show, createResource, createSignal } from "solid-js";
 import TrackingList from "../components/TrackingList";
@@ -41,6 +41,7 @@ export default function DashboardPage() {
               <Button
                 class="text-white bg-black hover:bg-gray-600 grow"
                 onClick={() => {
+                  navigate(uriDashboard());
                   setFirstTime(false);
                 }}
               >
