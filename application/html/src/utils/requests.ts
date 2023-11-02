@@ -70,10 +70,10 @@ export const postTracking = async (params: {
 }
 
 export const postRegistration = async (params: {
-  first_name: string,
-  last_name: string,
-  password: string,
-  email: string,
+  first_name: any,
+  last_name: any,
+  password: any,
+  email: any,
 }) => {
   const response = await axios.post(apiRegistration(), params);
   return response;

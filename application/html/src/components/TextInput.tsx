@@ -1,12 +1,15 @@
-import { Show } from "solid-js";
+import { Show, splitProps } from "solid-js";
 import { Input } from "../common/components/input";
 
 export default function TextInput(props: {
   header?: string,
   name: string,
   type: string,
-  class?: string
+  class?: string,
+  onFocusOut?: any
 }) {
+  const [, rest] = splitProps(props, ["header", "name", "type"])
+
   return (
     <>
     <div class="w-full space-y-2">
@@ -18,7 +21,7 @@ export default function TextInput(props: {
       <Input
         name={props.name}
         type={props.type}
-        class={props.class}
+        {...rest}
       />
     </div>
     </>

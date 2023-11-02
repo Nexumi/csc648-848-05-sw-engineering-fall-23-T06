@@ -6,7 +6,10 @@ import { Button } from "../common/components/button";
 import { uriHome, uriLogin } from "../utils/uri";
 import toast from "solid-toast";
 import { postRegistration } from "../utils/requests";
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
+import { z } from "zod";
+import { validator } from "@felte/validator-zod";
+import { ValidationMessage, reporter } from "@felte/reporter-solid";
 
 
 export default function RegistrationPage() {
@@ -14,7 +17,16 @@ export default function RegistrationPage() {
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
 
-  const { form } = createForm({
+  const RegistrationSchema = z.object({
+    firstName: z.string().min(1, { message: "Please enter your first name" }),
+    lastName: z.string().min(1, { message: "Please enter your last name" }),
+    email: z.string().email({ message: "Please enter an email address" }),
+    password: z.string().min(1, { message: "Please enter a password" }),
+  })
+
+  const [confirmSame, setConfirmSame] = createSignal(true);
+
+  const { form, data } = createForm({
     onSubmit(values) {
       const params = {
         first_name: values.firstName,
@@ -22,16 +34,20 @@ export default function RegistrationPage() {
         email: values.email,
         password: values.password
       }
-      postRegistration(params)
-        .then((res) => {
-
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-      toast.success("Registration successful!");
-      navigate(uriLogin());
-    }
+      if (values.password === values.confirmPassword) {
+        postRegistration(params)
+          .then((res) => {
+            toast.success("Registration successful!");
+            navigate(uriLogin());
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
+    },
+    schema: RegistrationSchema,
+    validateOn: "onBlur",
+    extend: [validator({ schema: RegistrationSchema }), reporter]
   });
 
   return (
@@ -63,6 +79,13 @@ export default function RegistrationPage() {
                       class={NO_RING}
                     />
                   </div>
+                  <ValidationMessage for="firstName">
+                    {(messages) =>
+                      messages?.map((message) => (
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
+                  </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="lastName"
@@ -71,6 +94,13 @@ export default function RegistrationPage() {
                       class={NO_RING}
                     />
                   </div>
+                  <ValidationMessage for="lastName">
+                    {(messages) =>
+                      messages?.map((message) => (
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
+                  </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="email"
@@ -79,6 +109,13 @@ export default function RegistrationPage() {
                       class={NO_RING}
                     />
                   </div>
+                  <ValidationMessage for="email">
+                    {(messages) =>
+                      messages?.map((message) => (
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
+                  </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="password"
@@ -87,14 +124,27 @@ export default function RegistrationPage() {
                       class={NO_RING}
                     />
                   </div>
+                  <ValidationMessage for="password">
+                    {(messages) =>
+                      messages?.map((message) => (
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
+                  </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="confirmPassword"
                       type="password"
                       header="Confirm Password"
                       class={NO_RING}
+                      onFocusOut={() => {
+                        setConfirmSame(data().password === data().confirmPassword);
+                      }}
                     />
                   </div>
+                  <Show when={!confirmSame()}>
+                    <div class="!mt-0 text-red-500">Passwords must match</div>
+                  </Show>
                 </div>
                 <Flex>
                   <div>
@@ -114,6 +164,9 @@ export default function RegistrationPage() {
                   <Button
                     type="submit"
                     class="relative overflow-visible"
+                    onClick={() => {
+                      setConfirmSame(data().password === data().confirmPassword);
+                    }}
                   >
                     <div
                       class="border-2 border-black rounded-full p-1"
