@@ -1,7 +1,10 @@
 import Cookies from "js-cookie";
 
 export function me() {
-  return JSON.parse(Cookies.get("user") || "");
+  if (Cookies.get("user")) {
+    return JSON.parse(Cookies.get("user") || "");
+  }
+  return {};
 }
 
 export function setMe(object: any) {
