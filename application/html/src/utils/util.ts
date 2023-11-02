@@ -8,10 +8,10 @@ export function sortBy(objects: any, key: string, direction: string | number) {
   objects = [...objects];
   
   const sorted = objects.sort((a: any, b: any) => {
-    if (a[key] > b[key]) {
+    if (a[key].toLowerCase() > b[key].toLowerCase()) {
       return 1;
     }
-    if (a[key] < b[key]) {
+    if (a[key].toLowerCase() < b[key].toLowerCase()) {
       return -1;
     }
     return 0;
