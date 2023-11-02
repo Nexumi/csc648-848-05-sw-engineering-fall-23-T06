@@ -122,6 +122,9 @@ export default function RegistrationPage() {
                       type="password"
                       header="Password"
                       class={NO_RING}
+                      onFocusOut={() => {
+                        setConfirmSame(data().password === data().confirmPassword);
+                      }}
                     />
                   </div>
                   <ValidationMessage for="password">
