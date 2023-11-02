@@ -82,7 +82,7 @@ public class TrackingController {
     }
 
     /**
-     * Allows the to search for tracking information using text based searches.
+     * Allows to search for tracking information using text based searches.
      *
      * @param searchText This will be text that is used to search for the tracking information.
      * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
