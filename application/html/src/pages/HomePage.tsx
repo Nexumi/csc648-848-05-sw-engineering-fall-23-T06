@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <Flex flexDirection="col" class="h-full">
-      <Flex justifyContent="between" alignItems="center" class="mb-6 px-4 py-2">
+      <Flex alignItems="center" class="mb-6 px-4 py-2">
         <img
           src={logo}
           class="w-40 cursor-pointer" 
@@ -35,10 +35,10 @@ export default function HomePage() {
           }}
         />
 
-        <div>
-          <Flex justifyContent="center" class="space-x-4 mb-4">
+        <Flex justifyContent="between" class="mb-4">
+          <Flex justifyContent="start" class="gap-x-4">
             <Button
-              class="text-white bg-black hover:bg-gray-600"
+              class="shrink-0 text-white bg-black hover:bg-gray-600"
               onclick={() => {
                 navigate(uriAbout());
               }}
@@ -54,49 +54,47 @@ export default function HomePage() {
             >
               Support
             </Button>
-            <div>
-              <form use:form>
-                <span class="text-xl mr-2">Search:</span>
-                <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
-                <button type="submit" class="ml-2 focus:outline-none">
-                  <img src={SearchIcon} alt="Search" class="w-6 h-6" />
-                </button>
-              </form>
-            </div>
           </Flex>
-        </div>
-        <div class="flex space-x-4">
-          <Show when={!isIn()}>
-          <Button
-              class="text-white bg-black hover:bg-gray-600"
-              onclick={() => {
-                navigate(uriDashboard());
-              }}
-            >
-              Skip Registration
-            </Button>
-            <Button
-              class="text-white bg-black hover:bg-gray-600"
-              onclick={() => {
-                navigate(uriLogin());
-              }}
-            >
-              Login
-            </Button>
-            <Button
-              class="text-white bg-black hover:bg-gray-600"
-              onclick={() => {
-                navigate(uriRegistration());
-              }}
-            >
-              Registration
-            </Button>
-          </Show>
-          <Show when={isIn()}>
-            <Flex class="gap-x-4">
+          <div class="shrink-0">
+            <form use:form>
+              <span class="text-xl mr-2">Search:</span>
+              <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..."/>
+              <button type="submit" class="ml-2 focus:outline-none">
+                <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+              </button>
+            </form>
+          </div>
+          <Flex justifyContent="end" class="gap-x-4">
+            <Show when={!isIn()}>
+              <Button
+                class="shrink-0 text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  navigate(uriDashboard());
+                }}
+              >
+                Get Started
+              </Button>
+              <Button
+                class="text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  navigate(uriLogin());
+                }}
+              >
+                Login
+              </Button>
+            </Show>
+            <Show when={isIn()}>
               <div>
                 <p>Welcome, {Cookies.get("user")}!</p>
               </div>
+              <Button
+                class="shrink-0 text-white bg-black hover:bg-gray-600"
+                onclick={() => {
+                  navigate(uriDashboard());
+                }}
+              >
+                Dashboard
+              </Button>
               <Button
                 class="text-white bg-black hover:bg-gray-600"
                 onclick={() => {
@@ -107,9 +105,9 @@ export default function HomePage() {
               >
                 Logout
               </Button>
-            </Flex>
-          </Show>
-        </div>
+            </Show>
+          </Flex>
+        </Flex>
       </Flex>
       
       <hr class=" border-black border-t-2 w-full"/>

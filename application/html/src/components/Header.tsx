@@ -2,7 +2,7 @@ import { createSignal } from "solid-js";
 import { useMatch, useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
-import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration } from "../utils/uri";
+import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration } from "../utils/uri";
 import toast from "solid-toast";
 import Cookies from "js-cookie";
 import { Button } from "../common/components/button";
@@ -90,6 +90,7 @@ export default function Logo() {
                   onSelect={() => {
                     toast.success(`See you next time ${Cookies.get("user")}!`);
                     Cookies.remove("user");
+                    navigate(uriHome());
                   }}
                   class="cursor-pointer hover:bg-gray-200"
                 >

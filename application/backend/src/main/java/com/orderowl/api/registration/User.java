@@ -1,22 +1,23 @@
+/**
+ * This is the Entity class for Users. This class will create a table inside the database with attributes.
+ * It serves as a blueprint for the database
+ */
 package com.orderowl.api.registration;
-
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.NaturalId;
 
+// This will create an entity called users in the database
 @Entity
 @Table(name = "users")
 @Data
 public class User {
-
+    // primary key, and it will auto generate as we add to our database
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NaturalId(mutable = true)
+    // attributes for our user entity
     private String email;
-
     private String first_name;
     private String last_name;
     private String password;

@@ -1,3 +1,8 @@
+/**
+ * This class allows us to initialize our tracking entity along with the information for
+ * our for the order's shipment.
+ */
+
 package com.orderowl.api.tracking;
 
 
@@ -11,10 +16,11 @@ import java.time.LocalDate;
 @Table(name = "tracking")
 public class Tracking {
 
+    // This will essentially be the Primary key for our tracking entity,
+    // and it will auto generate as we add to our database.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String retailer;
     private String carrier;
     private LocalDate eta;
@@ -52,4 +58,6 @@ public class Tracking {
         this.hidden = hidden;
         this.user_id = user_id;
     }
+
+    // Using Lombok's @Data, we will automatically get access to getters and setters
 }

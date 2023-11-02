@@ -48,6 +48,7 @@ export default function TrackingPage() {
         <div class="w-3/4">
           <TrackingList
             display={packages()}
+            sort
           />
         </div>
       </Flex>
