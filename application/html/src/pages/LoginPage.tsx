@@ -34,15 +34,15 @@ export default function LoginPage() {
     <>
       <Flex class="h-full">
         <div class="h-full w-1/2 p-16">
-          <Flex justifyContent="center" class="text-8xl font-thin">
-            <p
-              onClick={() => {
-                  navigate(uriHome());
-                }
-              }
-            >
-              OrderOwl
-            </p>
+          <Flex
+            justifyContent="center"
+            class="text-8xl font-thin cursor-pointer"
+            onClick={() => {
+              navigate(uriHome());
+            }
+          }
+          >
+            <p>OrderOwl</p>
           </Flex>
           <Flex class="h-full w-full">
             <div class="w-full">
