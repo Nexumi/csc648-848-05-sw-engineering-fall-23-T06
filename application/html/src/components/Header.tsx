@@ -10,8 +10,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 
 export default function Logo() {
-  const [dropdownVisible, setDropdownVisible] = createSignal(false);
-  const [isIn, setIsIn] = createSignal(Cookies.get("user") != undefined);
   const navigate = useNavigate();
   const isHome = useMatch(uriHome);
   const isLogin = useMatch(uriLogin);
@@ -19,6 +17,8 @@ export default function Logo() {
   const isForget = useMatch(uriForget);
   const isAbout = useMatch(() => uriAbout() + "/*");
 
+  const [dropdownVisible, setDropdownVisible] = createSignal(false);
+  
   const handleSystemClick = () => {
     setDropdownVisible(!dropdownVisible());
   };
@@ -78,6 +78,11 @@ export default function Logo() {
               </svg>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
+                <Show when={Cookies.get("user") !== undefined}>
+                  <DropdownMenuItem>
+                    <p>Hi, <span class="font-semibold">{Cookies.get("user")}</span></p>
+                  </DropdownMenuItem>
+                </Show>
                 <DropdownMenuItem
                   onSelect={() => {
                     toast.error("Not yet implemented");
@@ -86,16 +91,28 @@ export default function Logo() {
                 >
                   Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onSelect={() => {
-                    toast.success(`See you next time ${Cookies.get("user")}!`);
-                    Cookies.remove("user");
-                    navigate(uriHome());
-                  }}
-                  class="cursor-pointer hover:bg-gray-200"
-                >
-                  Logout
-                </DropdownMenuItem>
+                <Show when={Cookies.get("user") !== undefined}>
+                  <DropdownMenuItem
+                    onSelect={() => {
+                      toast.success(`See you next time ${Cookies.get("user")}!`);
+                      Cookies.remove("user");
+                      navigate(uriHome());
+                    }}
+                    class="cursor-pointer hover:bg-gray-200"
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </Show>
+                <Show when={Cookies.get("user") === undefined}>
+                  <DropdownMenuItem
+                    onSelect={() => {
+                      navigate(uriLogin());
+                    }}
+                    class="cursor-pointer hover:bg-gray-200"
+                  >
+                    Login
+                  </DropdownMenuItem>
+                </Show>
               </DropdownMenuContent>
             </DropdownMenu>
             {/* <div
