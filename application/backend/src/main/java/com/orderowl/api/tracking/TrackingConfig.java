@@ -21,7 +21,7 @@ public class TrackingConfig {
             Tracking tracking1 = new Tracking(
                     "Amazon",
                     "USPS",
-                    LocalDate.of(2023, 9, 20), // Replace with the desired date
+                    LocalDate.of(2023, 9, 20),
                     "ABC123456789",
                     "In Transit",
                     "Las Vegas, NV",
@@ -31,7 +31,7 @@ public class TrackingConfig {
             Tracking tracking2 = new Tracking(
                     "Target",
                     "USPS",
-                    LocalDate.of(2023, 10, 31), // Replace with the desired date
+                    LocalDate.of(2023, 10, 31),
                     "XYZ101010",
                     "Out for Delivery",
                     "San Francisco, CA",

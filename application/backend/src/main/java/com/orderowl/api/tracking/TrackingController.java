@@ -43,23 +43,23 @@ public class TrackingController {
 
     @PostMapping
     public ResponseEntity<Tracking> registerNewTracking(@RequestBody Tracking tracking) {
+        // this is used strictly for the use cases
+        if (tracking.getTrackingNumber().equals("123456789012")) {
 
-        if(tracking.getTrackingNumber() == "ABC123"){
             Tracking tracking1 = new Tracking(
-                    "Fun Factory",
-                    "DHL",
-                    LocalDate.of(2023, 9, 20), // Replace with the desired date
-                    "ABC123",
-                    "In Transit",
-                    "Honolulu, HI",
-                    "1801 S Decatur Blvd, Las Vegas, NV 89102",
+                    "eBay",
+                    "FedEx",
+                    LocalDate.of(2023, 10, 28),
+                    "123456789012",
+                    "Packaging",
+                    "LA Sorting Facility",
+                    "3333 S Grand Ave, Los Angeles, CA 90007",
                     false,
                     1L
             );
             trackingService.addNewTracking(tracking1);
-            return new ResponseEntity<>(tracking1,HttpStatus.OK);
+            return new ResponseEntity<>(tracking1, HttpStatus.OK);
         }
-
         trackingService.addNewTracking(tracking);
         return new ResponseEntity<>(tracking, HttpStatus.OK);
     }
