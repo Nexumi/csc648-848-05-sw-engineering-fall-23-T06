@@ -1,3 +1,7 @@
+/**
+ * This class will take care of our requests regarding tracking information on the HTTPS side.
+ */
+
 package com.orderowl.api.tracking;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,7 @@ public class TrackingController {
     }
 
     @GetMapping
-    public List<Tracking> getTrackingInfo(){
+    public List<Tracking> getTrackingInfo() {
 
         return trackingService.getTrackingInfo();
     }
@@ -30,7 +34,7 @@ public class TrackingController {
     public ResponseEntity<Tracking> getTrackingById(@PathVariable Long id) {
 
         Tracking tracking = trackingService.getTrackingById(id);
-        if (tracking == null){
+        if (tracking == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(tracking, HttpStatus.OK);
@@ -57,9 +61,15 @@ public class TrackingController {
         }
 
         trackingService.addNewTracking(tracking);
-        return new ResponseEntity<>(tracking,HttpStatus.OK);
+        return new ResponseEntity<>(tracking, HttpStatus.OK);
     }
 
+    /**
+     * Allows the users to search for tracking information using text based searches.
+     *
+     * @param searchText This will be text that is used to search for the tracking information.
+     * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
+     */
     @GetMapping(path = "/search")
     public List<Tracking> searchTracking(@RequestParam("searchText") String searchText) {
 
@@ -67,13 +77,19 @@ public class TrackingController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<String> deleteTrackingById (@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteTrackingById(@PathVariable("id") Long id) {
         trackingService.deleteById(id);
         return ResponseEntity.status(200).build();
     }
 
+    /**
+     * This will allow the user to delete tracking information by the tracking number.
+     *
+     * @param trackingNumber This is the tracking number that is relating to the tracking information that needs to be deleted.
+     * @return A ResponseEntity will be shown to the user whether it was successful or there was an error.
+     */
     @DeleteMapping(path = "/delete")
-    public ResponseEntity<String> deleteTracking ( @RequestParam("trackingNumber") String trackingNumber) {
+    public ResponseEntity<String> deleteTracking(@RequestParam("trackingNumber") String trackingNumber) {
 
         try {
             trackingService.deleteTrackingByNumber(trackingNumber);
