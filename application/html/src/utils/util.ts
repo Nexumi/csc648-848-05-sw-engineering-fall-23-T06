@@ -8,11 +8,20 @@ export function sortBy(objects: any, key: string, direction: string | number) {
   objects = [...objects];
   
   const sorted = objects.sort((a: any, b: any) => {
-    if (a[key].toLowerCase() > b[key].toLowerCase()) {
-      return 1;
-    }
-    if (a[key].toLowerCase() < b[key].toLowerCase()) {
-      return -1;
+    if (typeof a[key] == "number" && typeof b[key] == "number") {
+      if (a[key] > b[key]) {
+        return 1;
+      }
+      if (a[key] < b[key]) {
+        return -1;
+      }
+    } else {
+      if (String(a[key]).toLowerCase() > String(b[key]).toLowerCase()) {
+        return 1;
+      }
+      if (String(a[key]).toLowerCase() < String(b[key]).toLowerCase()) {
+        return -1;
+      }
     }
     return 0;
   });
