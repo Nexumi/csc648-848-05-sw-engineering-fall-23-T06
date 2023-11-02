@@ -42,6 +42,7 @@ export default function RegistrationPage() {
           })
           .catch((err) => {
             console.log(err);
+            toast.error("Registration failed, please try again.")
           })
       }
     },
