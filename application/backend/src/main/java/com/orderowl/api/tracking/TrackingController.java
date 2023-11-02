@@ -61,22 +61,52 @@ public class TrackingController {
     @PostMapping
     public ResponseEntity<Tracking> registerNewTracking(@RequestBody Tracking tracking) {
         // this is used strictly for the use cases
+        // when the user enters the tracking number it will show the appropriate values for that tracking info
         if (tracking.getTrackingNumber().equals("123456789012")) {
 
             Tracking tracking1 = new Tracking(
                     "eBay",
-                    "FedEx",
-                    LocalDate.of(2023, 10, 28),
+                    "USPS",
+                    LocalDate.of(2023, 10, 27),
                     "123456789012",
-                    "Packaging",
+                    "Shipped",
+                    "NY, NY",
+                    "6 Doyers St, New York, NY 10013",
+                    false,
+                    1L
+            );
+            trackingService.addNewTracking(tracking1);
+            return new ResponseEntity<>(tracking1, HttpStatus.OK);
+        } else if (tracking.getTrackingNumber().equals("A1B2C3D4")){
+            Tracking tracking1 = new Tracking(
+                    "Amazon",
+                    "Amazon",
+                    LocalDate.of(2023, 10, 12),
+                    "A1B2C3D4",
+                    "Shipped",
                     "LA Sorting Facility",
-                    "3333 S Grand Ave, Los Angeles, CA 90007",
+                    "6400 Valley View St, Buena Park, CA 90620",
+                    false,
+                    1L
+            );
+            trackingService.addNewTracking(tracking1);
+            return new ResponseEntity<>(tracking1, HttpStatus.OK);
+        } else if (tracking.getTrackingNumber().equals("A2B4C6")) {
+            Tracking tracking1 = new Tracking(
+                    "Amazon",
+                    "Amazon",
+                    LocalDate.of(2023, 10, 14),
+                    "A2B4C6",
+                    "Shipped",
+                    "SF Sorting Facility",
+                    "5000-5200 Giant Hwy, Richmond, CA 94806",
                     false,
                     1L
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
         }
+
         trackingService.addNewTracking(tracking);
         return new ResponseEntity<>(tracking, HttpStatus.OK);
     }

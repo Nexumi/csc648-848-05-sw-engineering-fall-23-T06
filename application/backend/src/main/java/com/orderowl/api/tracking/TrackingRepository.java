@@ -26,6 +26,7 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
 //    @Query("delete from Tracking t where t.trackingNumber=:trackingNumber")
 //    void deleteByTrackingNumber(String trackingNumber);
 
+    // allows us to delete tracking by ID
     void deleteById(Long id);
 
 }
