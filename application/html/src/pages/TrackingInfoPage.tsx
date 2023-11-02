@@ -32,8 +32,8 @@ export default function TrackingInfoPage() {
         <Flex flexDirection="col" class="p-8 space-y-16">
           <div class="w-full border-2 border-black p-8">
             <div class="space-y-2">
-              <div class="underline text-3xl">
-                <p>Basic Info:</p>
+              <div class="text-3xl">
+                <p><span class="underline">Basic Info:</span> <span class="text-2xl">#{tracking()?.trackingNumber}</span></p>
               </div>
               <Grid cols={2} class="text-2xl">
                 <div class="space-y-4">
