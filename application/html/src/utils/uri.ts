@@ -37,8 +37,8 @@ export function uriSearch() {
   return `/search`;
 }
 
-export function uriDashboard() {
-  return `/dashboard`;
+export function uriDashboard(guest?: boolean) {
+  return guest ? `/dashboard/?guest=true` : `/dashboard`;
 }
 
 export function uriUpload() {

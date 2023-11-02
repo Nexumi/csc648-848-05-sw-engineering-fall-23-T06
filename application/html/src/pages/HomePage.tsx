@@ -115,7 +115,7 @@ function Header() {
                 <Button
                   class="shrink-0 text-white bg-black hover:bg-gray-600"
                   onclick={() => {
-                    navigate(uriDashboard());
+                    navigate(uriDashboard(true));
                   }}
                 >
                   Get Started
