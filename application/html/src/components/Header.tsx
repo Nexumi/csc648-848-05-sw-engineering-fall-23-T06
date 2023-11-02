@@ -7,6 +7,7 @@ import toast from "solid-toast";
 import Cookies from "js-cookie";
 import { Button } from "../common/components/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../common/components/dropdown-menu";
+import { me, setMe } from "../utils/me";
 
 
 export default function Logo() {
@@ -80,7 +81,7 @@ export default function Logo() {
               <DropdownMenuContent class="bg-white">
                 <Show when={Cookies.get("user") !== undefined}>
                   <DropdownMenuItem>
-                    <p>Hi, <span class="font-semibold">{Cookies.get("user")}</span></p>
+                    <p>Hi, <span class="font-semibold">{me().first_name} {me().last_name}</span></p>
                   </DropdownMenuItem>
                 </Show>
                 <DropdownMenuItem
@@ -94,7 +95,7 @@ export default function Logo() {
                 <Show when={Cookies.get("user") !== undefined}>
                   <DropdownMenuItem
                     onSelect={() => {
-                      toast.success(`See you next time ${Cookies.get("user")}!`);
+                      toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
                       Cookies.remove("user");
                       navigate(uriHome());
                     }}

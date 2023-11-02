@@ -11,6 +11,7 @@ import { Show, createResource, createSignal } from "solid-js";
 import { getAllTracking } from "../utils/requests";
 import Cookies from "js-cookie";
 import { sortBy } from "../utils/util";
+import { me, setMe } from "../utils/me";
 
 export default function HomePage() {
   const [packages] = createResource(getAllTracking);
@@ -129,7 +130,7 @@ function Header() {
               </Show>
               <Show when={isIn()}>
                 <div>
-                  <p>Welcome, {Cookies.get("user")}!</p>
+                  <p>Welcome, {me().first_name} {me().last_name}!</p>
                 </div>
                 <Button
                   class="shrink-0 text-white bg-black hover:bg-gray-600"
@@ -142,8 +143,9 @@ function Header() {
                 <Button
                   class="text-white bg-black hover:bg-gray-600"
                   onclick={() => {
-                    toast.success(`See you next time ${Cookies.get("user")}!`);
+                    toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
                     Cookies.remove("user");
+                    setMe(null);
                     setIsIn(false);
                   }}
                 >
