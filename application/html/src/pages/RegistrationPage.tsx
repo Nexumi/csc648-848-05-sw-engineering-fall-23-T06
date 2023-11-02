@@ -123,8 +123,10 @@ export default function RegistrationPage() {
                       type="password"
                       header="Password"
                       class={NO_RING}
-                      onFocusOut={() => {
-                        setConfirmSame(data().password === data().confirmPassword);
+                      onChange={() => {
+                        if (data().confirmPassword) {
+                          setConfirmSame(data().password === data().confirmPassword);
+                        }
                       }}
                     />
                   </div>
@@ -141,7 +143,7 @@ export default function RegistrationPage() {
                       type="password"
                       header="Confirm Password"
                       class={NO_RING}
-                      onFocusOut={() => {
+                      onChange={() => {
                         setConfirmSame(data().password === data().confirmPassword);
                       }}
                     />

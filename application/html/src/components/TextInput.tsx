@@ -6,7 +6,7 @@ export default function TextInput(props: {
   name: string,
   type: string,
   class?: string,
-  onFocusOut?: any
+  onChange?: any
 }) {
   const [, rest] = splitProps(props, ["header", "name", "type"])
 
