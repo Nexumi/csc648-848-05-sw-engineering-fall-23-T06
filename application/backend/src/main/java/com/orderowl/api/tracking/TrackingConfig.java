@@ -34,7 +34,41 @@ public class TrackingConfig {
                     "1800 Taraval St, San Francisco, CA 94116",
                     false,
                     1L );
-            repository.saveAll(List.of(tracking1, tracking2));
+            Tracking tracking3 = new Tracking(
+                    "Amazon",
+                    "UPS",
+                    LocalDate.of(2023, 11, 2),
+                    "DEF789012",
+                    "Delivered",
+                    "Los Angeles, CA",
+                    "2202 S Figueroa St, Los Angeles, CA 90007",
+                    false,
+                    3L
+            );
+            Tracking tracking4 = new Tracking(
+                    "Best Buy",
+                    "DHL",
+                    LocalDate.of(2023, 11, 3),
+                    "GHI345678",
+                    "Pending",
+                    "Chicago, IL",
+                    "886 2nd Ave, New York, NY 10017",
+                    false,
+                    4L
+            );
+            Tracking tracking5 = new Tracking(
+                    "Walmart",
+                    "FedEx",
+                    LocalDate.of(2023, 11, 1),
+                    "ABC123456",
+                    "In Transit",
+                    "New York, NY",
+                    "560 W 42nd St, New York, NY 10036",
+                    false,
+                    2L
+            );
+
+            repository.saveAll(List.of(tracking1, tracking2, tracking3, tracking4, tracking5));
 
         };
     }

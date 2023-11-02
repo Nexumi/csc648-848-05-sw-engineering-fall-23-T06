@@ -45,6 +45,7 @@ public class TrackingController {
 
     @GetMapping(path = "/search")
     public List<Tracking> searchTracking(@RequestParam("searchText") String searchText) {
+
         return trackingService.searchTracking(searchText);
     }
 
@@ -57,7 +58,6 @@ public class TrackingController {
     @DeleteMapping(path = "/delete")
     public ResponseEntity<String> deleteTracking ( @RequestParam("trackingNumber") String trackingNumber) {
 
-        System.out.println(trackingNumber);
         try {
             trackingService.deleteTrackingByNumber(trackingNumber);
             return ResponseEntity.status(200).build();
