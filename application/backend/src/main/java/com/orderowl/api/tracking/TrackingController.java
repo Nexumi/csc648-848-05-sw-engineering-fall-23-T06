@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,22 @@ public class TrackingController {
 
     @PostMapping
     public ResponseEntity<Tracking> registerNewTracking(@RequestBody Tracking tracking) {
+
+        if(tracking.getTrackingNumber() == "ABC123"){
+            Tracking tracking1 = new Tracking(
+                    "Fun Factory",
+                    "DHL",
+                    LocalDate.of(2023, 9, 20), // Replace with the desired date
+                    "ABC123",
+                    "In Transit",
+                    "Honolulu, HI",
+                    "1801 S Decatur Blvd, Las Vegas, NV 89102",
+                    false,
+                    1L
+            );
+            trackingService.addNewTracking(tracking1);
+            return new ResponseEntity<>(tracking1,HttpStatus.OK);
+        }
 
         trackingService.addNewTracking(tracking);
         return new ResponseEntity<>(tracking,HttpStatus.OK);
