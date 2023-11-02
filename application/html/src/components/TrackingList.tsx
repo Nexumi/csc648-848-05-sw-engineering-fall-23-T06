@@ -6,8 +6,9 @@ import { sortBy } from "../utils/util";
 import { Flex } from "../common/layout/flex";
 
 export default function TrackingList(props: {
-  display: any
-  limit?: number
+  display: any,
+  limit?: number,
+  sort?: Boolean
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -36,6 +37,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "retailer"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
             <TableHead>
@@ -45,6 +47,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "carrier"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
             <TableHead>
@@ -54,6 +57,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "eta"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
             <TableHead>
@@ -63,6 +67,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "status"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
             <TableHead>
@@ -72,6 +77,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "location"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
             <TableHead>
@@ -81,6 +87,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "address"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
             <TableHead>
@@ -90,6 +97,7 @@ export default function TrackingList(props: {
                 current={searchParams.key === "trackingNumber"}
                 direction={searchParams.direction}
                 update={updateSort}
+                sort={!!props.sort}
               />
             </TableHead>
           </TableRow>
@@ -120,54 +128,62 @@ function HeaderTitle(props: {
   key: string,
   current: boolean,
   direction?: string | number,
-  update: Function
+  update: Function,
+  sort: Boolean
 }) {
   return (
     <>
-      <Flex
-        justifyContent="start"
-        class="cursor-pointer select-none gap-x-1"
-        onClick={() => {
-          props.update(props.key);
-        }}
-      >
-        {props.title}
-        <Switch>
-          <Match when={!props.current}>
-            <div class="w-2 h-2" />
-          </Match>
-          <Match when={Number(props.direction) === 0}>
-            <svg
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-2 h-2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4.5 15.75l7.5-7.5 7.5 7.5"
-              />
-            </svg>
-          </Match>
-          <Match when={Number(props.direction) === 1}>
-            <svg
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-2 h-2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </Match>
-        </Switch>
-      </Flex>
+      <Switch>
+        <Match when={props.sort}>
+          <Flex
+            justifyContent="start"
+            class="cursor-pointer select-none gap-x-1"
+            onClick={() => {
+              props.update(props.key);
+            }}
+          >
+            {props.title}
+            <Switch>
+              <Match when={!props.current}>
+                <div class="w-2 h-2" />
+              </Match>
+              <Match when={Number(props.direction) === 0}>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-2 h-2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                  />
+                </svg>
+              </Match>
+              <Match when={Number(props.direction) === 1}>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-2 h-2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </Match>
+            </Switch>
+          </Flex>
+        </Match>
+        <Match when={!props.sort}>
+          {props.title}
+        </Match>
+      </Switch>
     </>
   );
 }
