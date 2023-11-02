@@ -1,3 +1,7 @@
+/**
+ * Allows us to directly interact with the database
+ */
+
 package com.orderowl.api.tracking;
 
 
