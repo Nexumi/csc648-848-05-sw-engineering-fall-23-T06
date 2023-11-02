@@ -13,7 +13,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
-  const [isHovered, setIsHovered] = createSignal(false);
 
   const { form } = createForm({
     onSubmit(values) {

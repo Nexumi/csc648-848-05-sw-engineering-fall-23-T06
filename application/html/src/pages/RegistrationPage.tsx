@@ -11,8 +11,6 @@ import { createSignal } from "solid-js";
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
-  const [isHovered, setIsHovered] = createSignal(false);
-
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
 
