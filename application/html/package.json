@@ -20,6 +20,7 @@
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@felte/reporter-solid": "^1.2.9",
     "@felte/solid": "^1.2.11",
     "@felte/validator-zod": "^1.0.17",
     "@kobalte/core": "^0.11.0",
