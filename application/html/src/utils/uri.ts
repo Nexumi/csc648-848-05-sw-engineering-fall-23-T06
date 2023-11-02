@@ -49,6 +49,10 @@ export function uriTracking(id?: string | number) {
   return id !== undefined ? `/tracking/${id}` : `/tracking`;
 }
 
+export function uriSupport() {
+  return `/support`;
+}
+
 export function uriApiTest() {
   return `/api_test`;
 }

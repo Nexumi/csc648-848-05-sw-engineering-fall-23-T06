@@ -5,7 +5,7 @@ import logo from "../assets/logos/logo.png";
 import SearchIcon from "../assets/logos/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import toast from "solid-toast";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriTracking, uriUpload } from "../utils/uri";
+import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriSupport, uriTracking, uriUpload } from "../utils/uri";
 import TrackingList from "../components/TrackingList";
 import { Show, createResource, createSignal } from "solid-js";
 import { getAllTracking } from "../utils/requests";
@@ -13,8 +13,6 @@ import Cookies from "js-cookie";
 import { sortBy } from "../utils/util";
 
 export default function HomePage() {
-  const navigate = useNavigate();
-  
   const [packages] = createResource(getAllTracking);
 
   return (
@@ -95,7 +93,7 @@ function Header() {
               <Button
                 class="text-white bg-black hover:bg-gray-600"
                 onclick={() => {
-                  navigate(uriForget());
+                  navigate(uriSupport());
                 }}
               >
                 Support

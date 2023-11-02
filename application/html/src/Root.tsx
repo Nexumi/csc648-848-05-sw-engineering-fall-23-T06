@@ -12,7 +12,6 @@ import AboutMankit from "./pages/AboutPages/AboutMankit";
 import AboutTin from "./pages/AboutPages/AboutTin";
 import LoginPage from "./pages/LoginPage";
 import ForgetPage from "./pages/ForgetPage";
-import SearchPage from "./pages/SearchPage";
 import TrackingPage from "./pages/TrackingPage";
 import PageNotFound from "./pages/PageNotFound";
 import DashboardPage from "./pages/DashboardPage";
@@ -21,6 +20,7 @@ import Footer from "./components/Footer";
 import RegistrationPage from "./pages/RegistrationPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
 import ApiTestPage from "./pages/ApiTestPage";
+import SupportPage from "./pages/SupportPage";
 
 export default function Root() {
   return (
@@ -33,7 +33,6 @@ export default function Root() {
             <Routes>
               <Route path="/*" component={PageNotFound} />
               <Route path="/" component={HomePage} />
-              {/* <Route path="/search" component={SearchPage} /> */}
               <Route path="/about" component={AboutPage}>
                 <Route path="/" element={<div />} />
                 <Route path="/belu" component={AboutBelu} />
@@ -53,7 +52,8 @@ export default function Root() {
                 <Route path="/" component={TrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
-              <Route path="/api_test" component={ApiTestPage} />
+              <Route path="/support" component={SupportPage} />
+              {/* <Route path="/api_test" component={ApiTestPage} /> */}
             </Routes>
           </div>
           <Footer />
