@@ -53,6 +53,10 @@ export function uriSupport() {
   return `/support`;
 }
 
+export function uriSettings() {
+  return `/settings`
+}
+
 export function uriApiTest() {
   return `/api_test`;
 }

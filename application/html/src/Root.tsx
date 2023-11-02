@@ -21,6 +21,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
 import ApiTestPage from "./pages/ApiTestPage";
 import SupportPage from "./pages/SupportPage";
+import SettingsPage from "./pages/SettingsPage";
 
 export default function Root() {
   return (
@@ -34,7 +35,7 @@ export default function Root() {
               <Route path="/*" component={PageNotFound} />
               <Route path="/" component={HomePage} />
               <Route path="/about" component={AboutPage}>
-                <Route path="/" element={<div />} />
+                <Route path="/" />
                 <Route path="/belu" component={AboutBelu} />
                 <Route path="/david" component={AboutDavid} />
                 <Route path="/jimmy" component={AboutJimmy} />
@@ -53,6 +54,7 @@ export default function Root() {
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
               <Route path="/support" component={SupportPage} />
+              <Route path="/settings" component={SettingsPage} />
               {/* <Route path="/api_test" component={ApiTestPage} /> */}
             </Routes>
           </div>

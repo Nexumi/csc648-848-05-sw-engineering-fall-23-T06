@@ -2,7 +2,7 @@ import { createSignal } from "solid-js";
 import { useMatch, useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration } from "../utils/uri";
+import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSettings } from "../utils/uri";
 import toast from "solid-toast";
 import Cookies from "js-cookie";
 import { Button } from "../common/components/button";
@@ -85,7 +85,7 @@ export default function Logo() {
                 </Show>
                 <DropdownMenuItem
                   onSelect={() => {
-                    toast.error("Not yet implemented");
+                    navigate(uriSettings());
                   }}
                   class="cursor-pointer hover:bg-gray-200"
                 >
