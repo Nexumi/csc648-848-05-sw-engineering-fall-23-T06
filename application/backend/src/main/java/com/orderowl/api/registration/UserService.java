@@ -55,4 +55,13 @@ public class UserService {
         else
             return false;
     }
+
+    /**
+     * This will allow use to delete a user by their ID that is connected to that certain use.
+     *
+     * @param id Will be the ID that is related to the account that needs to be deleted.
+     */
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
 }
