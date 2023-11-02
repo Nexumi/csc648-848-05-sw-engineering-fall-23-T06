@@ -34,7 +34,15 @@ public class TrackingService {
 
         trackingRepository.save(tracking);
     }
-    public void deleteTrackingByNum (String trackingNumber) {
+
+    public List<Tracking> searchTracking(String searchText){
+        return trackingRepository.searchTracking(searchText);
+    }
+
+    public void deleteById(Long id){
+        trackingRepository.deleteById(id);
+    }
+    public void deleteTrackingByNumber (String trackingNumber) {
 
         trackingRepository.deleteByTrackingNumber(trackingNumber);
     }
