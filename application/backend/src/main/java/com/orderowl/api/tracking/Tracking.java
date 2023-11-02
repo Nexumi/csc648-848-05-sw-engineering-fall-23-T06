@@ -8,39 +8,48 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "orders")
+@Table(name = "tracking")
 public class Tracking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tracking_id;
+    private Long id;
 
-    private LocalDate date;
-    private String tracking_number;
-    private String status;
-    private boolean hidden;
     private String retailer;
+    private String carrier;
+    private LocalDate eta;
+    private String trackingNumber;
+    private String status;
+    private String location;
+    private String address;
+    private boolean hidden;
     private Long user_id;
 
     public Tracking() {
     }
 
-    public Tracking(Long order_id, LocalDate date, String tracking_number, String status, boolean hidden, String retailer, Long user_id) {
-        this.tracking_id = order_id;
-        this.date = date;
-        this.tracking_number = tracking_number;
-        this.status = status;
-        this.hidden = hidden;
+    public Tracking(Long id, String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id) {
+        this.id = id;
         this.retailer = retailer;
+        this.carrier = carrier;
+        this.eta = eta;
+        this.trackingNumber = trackingNumber;
+        this.status = status;
+        this.location = location;
+        this.address = address;
+        this.hidden = hidden;
         this.user_id = user_id;
     }
 
-    public Tracking(LocalDate date, String tracking_number, String status, boolean hidden, String retailer, Long user_id) {
-        this.date = date;
-        this.tracking_number = tracking_number;
-        this.status = status;
-        this.hidden = hidden;
+    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id) {
         this.retailer = retailer;
+        this.carrier = carrier;
+        this.eta = eta;
+        this.trackingNumber = trackingNumber;
+        this.status = status;
+        this.location = location;
+        this.address = address;
+        this.hidden = hidden;
         this.user_id = user_id;
     }
 }

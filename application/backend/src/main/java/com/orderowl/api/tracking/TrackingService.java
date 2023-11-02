@@ -14,16 +14,28 @@ public class TrackingService {
 
     @Autowired
     public TrackingService(TrackingRepository trackingRepository) {
+
         this.trackingRepository = trackingRepository;
     }
 
     @Cacheable("tracking")
     public List<Tracking> getTrackingInfo() {
+
         return trackingRepository.findAll();
     }
 
     @Cacheable("tracking")
     public Tracking getTrackingById(Long id) {
+
         return trackingRepository.findById(id).orElse(null);
+    }
+
+    public void addNewTracking(Tracking tracking){
+
+        trackingRepository.save(tracking);
+    }
+    public void deleteTrackingByNum (String trackingNumber) {
+
+        trackingRepository.deleteByTrackingNumber(trackingNumber);
     }
 }
