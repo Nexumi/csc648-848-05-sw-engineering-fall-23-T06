@@ -1,3 +1,4 @@
+import { createSignal } from "solid-js";
 import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
@@ -9,13 +10,12 @@ import toast from "solid-toast";
 import { createForm } from "@felte/solid";
 import TrackingList from "../components/TrackingList";
 import { createResource } from "solid-js";
-import { getTrackingBySearch } from "../utils/requests";
-
+import { getTrackingBySearch, getTrackingCount } from "../utils/requests";
 
 export default function TrackingPage() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [undeliveredCount] = createResource(getTrackingCount); 
   const [packages] = createResource(
     () => ({
       searchText: searchParams.searchText
@@ -28,9 +28,10 @@ export default function TrackingPage() {
       setSearchParams({searchText: values.search});
     }
   });
-  
+ 
   return (
     <div class="space-y-4">
+      <span class="text-xl ml-4">Number of Undelivered Orders Left: {undeliveredCount()}</span>
       <div class="text-center text-6xl">
         <p>Track Info</p>
       </div>
@@ -52,8 +53,6 @@ export default function TrackingPage() {
           />
         </div>
       </Flex>
-
-
     </div>
   );
 }

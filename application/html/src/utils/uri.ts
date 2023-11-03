@@ -37,8 +37,8 @@ export function uriSearch() {
   return `/search`;
 }
 
-export function uriDashboard() {
-  return `/dashboard`;
+export function uriDashboard(guest?: boolean) {
+  return guest ? `/dashboard/?guest=true` : `/dashboard`;
 }
 
 export function uriUpload() {
@@ -47,6 +47,14 @@ export function uriUpload() {
 
 export function uriTracking(id?: string | number) {
   return id !== undefined ? `/tracking/${id}` : `/tracking`;
+}
+
+export function uriSupport() {
+  return `/support`;
+}
+
+export function uriSettings() {
+  return `/settings`
 }
 
 export function uriApiTest() {

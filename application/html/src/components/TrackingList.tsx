@@ -1,8 +1,8 @@
 import { For, Match, Switch } from "solid-js";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { useNavigate, useSearchParams } from "@solidjs/router";
+import { A, useNavigate, useSearchParams } from "@solidjs/router";
 import { uriTracking } from "../utils/uri";
-import { sortBy } from "../utils/util";
+import { getURL, sortBy } from "../utils/util";
 import { Flex } from "../common/layout/flex";
 
 export default function TrackingList(props: {
@@ -213,7 +213,16 @@ function TrackingRow(props: {
         }}
       >
         <TableCell>
-          {props.retailer}
+          <A
+            href={getURL(props.retailer || "")}
+            target="_blank"
+            class="text-blue-700 underline"
+            onClick={() => {
+              window.event?.stopPropagation();
+            }}
+          >
+            {props.retailer}
+          </A>
         </TableCell>
         <TableCell>
           {props.carrier}

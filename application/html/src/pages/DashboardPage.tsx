@@ -1,13 +1,17 @@
-import { useNavigate } from "@solidjs/router";
+import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
-import { uriHome } from "../utils/uri";
+import { uriDashboard, uriHome, uriRegistration } from "../utils/uri";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { For, createResource, createSignal } from "solid-js";
+import { For, Show, createResource, createSignal } from "solid-js";
 import TrackingList from "../components/TrackingList";
 import { getAllTracking } from "../utils/requests";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
+import Cookies from "js-cookie";
+import { Button } from "../common/components/button";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [packages] = createResource(getAllTracking);
 
@@ -16,13 +20,51 @@ export default function DashboardPage() {
   const CELL_TODAY = "text-left border-2 border-black text-red-500 font-bold";
 
   const [today] = createSignal(String(new Date().getDate()));
+  const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
+
+  const [firstTime, setFirstTime] = createSignal(Boolean(searchParams.guest));
 
   return (
     <>
+      <Dialog open={!Cookies.get("user") && firstTime()}>
+        <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
+          <DialogHeader class="space-y-4">
+            <DialogTitle class="text-center text-3xl">
+              Welcome!
+            </DialogTitle>
+            <DialogDescription class="text-center">
+              Feel free to try out our service, but consider creating an account
+              to track your packages across devices. It's free to do so!
+            </DialogDescription>
+            <Flex class="gap-x-4">
+              <Button
+                class="text-white bg-black hover:bg-gray-600 grow"
+                onClick={() => {
+                  navigate(uriDashboard());
+                  setFirstTime(false);
+                }}
+              >
+                Continue as Guest
+              </Button>
+              <Button
+                class="text-white bg-black hover:bg-gray-600 grow"
+                onClick={() => {
+                  navigate(uriRegistration());
+                }}
+              >
+                Register a new account
+              </Button>
+            </Flex>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
       <div class="space-y-4">
         <div class="text-center text-6xl">
           <p>Dashboard</p>
+        </div>
+        <div class="text-center text-3xl font-bold">
+          <p>{month()}</p>
         </div>
         <Table class="table-fixed">
           <TableHeader>

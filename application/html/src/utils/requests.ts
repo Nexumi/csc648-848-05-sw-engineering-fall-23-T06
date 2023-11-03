@@ -69,11 +69,27 @@ export const postTracking = async (params: {
   return response;
 }
 
+export const getTrackingCount = async () => {
+  try {
+    const response = await axios.get(`${apiTracking()}/count`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const deleteTrackingById = async (params: {
+  id: string
+}) => {
+  const response = await axios.delete(`${apiTracking()}/delete/${params.id}`);
+  return response;
+}
+
 export const postRegistration = async (params: {
-  first_name: string,
-  last_name: string,
-  password: string,
-  email: string,
+  first_name: any,
+  last_name: any,
+  password: any,
+  email: any,
 }) => {
   const response = await axios.post(apiRegistration(), params);
   return response;
@@ -84,5 +100,12 @@ export const getLogin = async (params: {
   password: string
 }) => {
   const response = await axios.get(`${apiRegistration()}/search?${new URLSearchParams(params).toString()}`);
+  return response;
+}
+
+export const deleteUserById = async (params: {
+  id: string
+}) => {
+  const response = await axios.delete(`${apiRegistration()}/delete/${params.id}`);
   return response;
 }

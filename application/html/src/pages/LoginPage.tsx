@@ -6,22 +6,19 @@ import { Button } from "../common/components/button";
 import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
 import toast from "solid-toast";
 import { getLogin } from "../utils/requests";
-import Cookies from "js-cookie";
-import { createSignal } from "solid-js";
+import { me, setMe } from "../utils/me";
 
 export default function LoginPage() {
   const navigate = useNavigate();
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
-  const [isHovered, setIsHovered] = createSignal(false);
 
   const { form } = createForm({
     onSubmit(values) {
       getLogin(values)
         .then((res) => {
-          const user = res.data[0];
-          toast.success(`Welcome back, ${user.first_name} ${user.last_name}!`);
-          Cookies.set("user", `${user.first_name} ${user.last_name}`);
+          setMe(res.data[0]);
+          toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
           navigate(uriDashboard());
         })
         .catch((err) => {
@@ -34,15 +31,15 @@ export default function LoginPage() {
     <>
       <Flex class="h-full">
         <div class="h-full w-1/2 p-16">
-          <Flex justifyContent="center" class="text-8xl font-thin">
-            <p
-              onClick={() => {
-                  navigate(uriHome());
-                }
-              }
-            >
-              OrderOwl
-            </p>
+          <Flex
+            justifyContent="center"
+            class="text-8xl font-thin cursor-pointer"
+            onClick={() => {
+              navigate(uriHome());
+            }
+          }
+          >
+            <p>OrderOwl</p>
           </Flex>
           <Flex class="h-full w-full">
             <div class="w-full">
@@ -55,7 +52,7 @@ export default function LoginPage() {
                     <TextInput
                       name="email"
                       type="text"
-                      header="Email"
+                      header="Email/Username"
                       class={NO_RING}
                     />
                   </div>
@@ -95,8 +92,6 @@ export default function LoginPage() {
                   
                   <Button
                     type="submit"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
                     class="relative overflow-visible"
                   >
                     <div
@@ -115,12 +110,10 @@ export default function LoginPage() {
                           d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
                         />
                       </svg>
-                      {isHovered() && 
-                        <span class="absolute top-1/2 transform -translate-y-1/2 ml-7 text-2x1">
-                          Submit
-                        </span>
-                      }
                     </div>
+                    <span class="ml-1 text-2x1">
+                      Submit
+                    </span>
                   </Button>
                 </Flex>
               </form>

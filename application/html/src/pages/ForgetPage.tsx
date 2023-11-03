@@ -7,18 +7,25 @@ export default function ForgetPage() {
 
   return (
     <>
-      <Flex justifyContent="center" class="h-full text-center">
+      <Flex justifyContent="center" alignItems="center" class="h-full text-center">
         <div>
-          <p>(WIP) Page not yet constructed</p>
+          <h2>Forgot Your Password?</h2>
+          <p>Don't worry! We can help you reset it.</p>
+          <p>Please contact support to get your password reset.</p>
+          
+          {/* Assuming you want to add a support email or a link to a support page */}
+          <p>
+            Send us an email at <a href="mailto:orderowl@jpkit.us" class="underline">orderowl@jpkit.us </a>
+            or call us at <strong>1-800-123-4567</strong>.
+          </p>
+
           <div
-            class="underline cursor-pointer"
+            class="underline cursor-pointer mt-4"
             onClick={() => {
               navigate(uriHome());
             }}
           >
-            <p>
-              Return to Home Page
-            </p>
+            Return to Home Page
           </div>
         </div>
       </Flex>
