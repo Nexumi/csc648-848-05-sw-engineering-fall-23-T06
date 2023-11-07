@@ -2,7 +2,7 @@ import { createSignal } from "solid-js";
 import { useMatch, useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSettings } from "../utils/uri";
+import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSettings, uriSupport } from "../utils/uri";
 import toast from "solid-toast";
 import Cookies from "js-cookie";
 import { Button } from "../common/components/button";
@@ -95,6 +95,14 @@ export default function Logo() {
                   class="cursor-pointer hover:bg-gray-200"
                 >
                   Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onSelect={() => {
+                    navigate(uriSupport());
+                  }}
+                  class="cursor-pointer hover:bg-gray-200"
+                >
+                  Support
                 </DropdownMenuItem>
                 <Show when={Cookies.get("user") !== undefined}>
                   <DropdownMenuItem

@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Button } from "../common/components/button";
-import { Match, Switch, createEffect, createSignal } from "solid-js";
+import { Match, Show, Switch, createEffect, createSignal } from "solid-js";
 import { Flex } from "../common/layout/flex";
 import { Input } from "../common/components/input";
 import { me } from "../utils/me";
@@ -103,16 +103,18 @@ function User() {
           <p>Email</p>
           <Input type="text" readonly class={NO_FOCUS} placeholder={me().email} />
         </div>
-        <Flex justifyContent="center">
-          <Button
-            class="text-white bg-red-600 hover:bg-red-400"
-            onClick={() => {
-              setDeleting(true);
-            }}
-          >
-            Delete Account
-          </Button>
-        </Flex>
+        <Show when={Cookies.get("user")}>
+          <Flex justifyContent="center">
+            <Button
+              class="text-white bg-red-600 hover:bg-red-400"
+              onClick={() => {
+                setDeleting(true);
+              }}
+            >
+              Delete Account
+            </Button>
+          </Flex>
+        </Show>
       </div>
       <Dialog open={deleting()}>
         <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
