@@ -9,6 +9,7 @@ package com.orderowl.api.registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
@@ -34,6 +35,10 @@ public class UserController {
      */
     @PostMapping
     public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
+        String password = registrationRequest.getPassword();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String result = encoder.encode(password);
+        registrationRequest.setPassword(result);
         userService.registerUser(registrationRequest);
         return ResponseEntity.ok("Registration successful");
     }
