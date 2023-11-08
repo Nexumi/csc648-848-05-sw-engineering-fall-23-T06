@@ -35,6 +35,9 @@ public class UserController {
      */
     @PostMapping
     public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
+        // encrypt the password using BCrypt from Spring Security library
+        // we first grab the plaintext password and then use BCryptPasswordEncoder
+        //  to encode the password into hashform and then
         String password = registrationRequest.getPassword();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String result = encoder.encode(password);

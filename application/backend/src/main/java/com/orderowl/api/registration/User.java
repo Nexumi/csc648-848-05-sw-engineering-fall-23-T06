@@ -9,7 +9,7 @@ import lombok.Data;
 
 // This will create an entity called users in the database
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 @Data
 public class User {
     // primary key, and it will auto generate as we add to our database

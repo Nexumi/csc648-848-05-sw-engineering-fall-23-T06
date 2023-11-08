@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "tracking")
+@Table(name = "Tracking")
 public class Tracking {
 
     // This will essentially be the Primary key for our tracking entity,
