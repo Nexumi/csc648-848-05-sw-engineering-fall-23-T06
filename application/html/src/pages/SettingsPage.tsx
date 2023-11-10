@@ -4,8 +4,6 @@ import { Flex } from "../common/layout/flex";
 import { uriSettings } from "../utils/uri";
 
 export default function SettingsPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   return (
     <>
       <Flex justifyContent="center" alignItems="start" class="gap-x-8">
