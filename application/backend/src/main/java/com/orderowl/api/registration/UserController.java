@@ -35,16 +35,14 @@ public class UserController {
      */
     @PostMapping
     public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
-        // encrypt the password using BCrypt from Spring Security library
-        // we first grab the plaintext password and then use BCryptPasswordEncoder
-        //  to encode the password into hashform and then
-        String password = registrationRequest.getPassword();
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String result = encoder.encode(password);
-        registrationRequest.setPassword(result);
         userService.registerUser(registrationRequest);
         return ResponseEntity.ok("Registration successful");
     }
+//    @PostMapping
+//    public ResponseEntity<String> changeUsername (@PathVariable("userID") @RequestBody User usernameRequest) {
+//        userService.changeUsername
+//        usernameRequest.setusername();
+//    }
 
     /**
      * This handles HTTP GET requests to search for a user. We add "/search" to the base url to show that this is a search
