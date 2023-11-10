@@ -1,14 +1,7 @@
 import { Outlet, useMatch, useNavigate, useSearchParams } from "@solidjs/router";
 import { Button } from "../common/components/button";
-import { Match, Show, Switch, createEffect, createSignal } from "solid-js";
 import { Flex } from "../common/layout/flex";
-import { Input } from "../common/components/input";
-import { me } from "../utils/me";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
-import toast from "solid-toast";
-import { deleteTrackingById, deleteUserById } from "../utils/requests";
-import { uriHome, uriSettings, uriTracking } from "../utils/uri";
-import Cookies from "js-cookie";
+import { uriSettings } from "../utils/uri";
 
 export default function SettingsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
