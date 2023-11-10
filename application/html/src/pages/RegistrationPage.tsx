@@ -16,6 +16,8 @@ export default function RegistrationPage() {
   const navigate = useNavigate();
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
+  const IS_TYPE = "w-1/2 border-2 border-black bg-gray-300";
+  const IS_NOT_TYPE = "w-1/2 border-2 border-black";
 
   const RegistrationSchema = z.object({
     firstName: z.string().min(1, { message: "Please enter your first name" }),
@@ -26,13 +28,14 @@ export default function RegistrationPage() {
 
   const [confirmSame, setConfirmSame] = createSignal(true);
 
-  const { form, data } = createForm({
+  const { form, data, setData } = createForm({
     onSubmit(values) {
       const params = {
         first_name: values.firstName,
         last_name: values.lastName,
         email: values.email,
-        password: values.password
+        password: values.password,
+        // type: values.accountType
       }
       if (values.password === values.confirmPassword) {
         postRegistration(params)
@@ -151,6 +154,31 @@ export default function RegistrationPage() {
                   <Show when={!confirmSame()}>
                     <div class="!mt-0 text-red-500">Passwords must match</div>
                   </Show>
+                  <div class="text-center space-y-2">
+                    <div class="underline">
+                      <p>Account Type</p>
+                    </div>
+                    <Flex class="gap-x-2">
+                      <Button
+                        type="button"
+                        class={data().accountType === "personal" || data().accountType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                        onClick={() => {
+                          setData("accountType", "personal");
+                        }}
+                      >
+                        Personal
+                      </Button>
+                      <Button
+                        type="button"
+                        class={data().accountType === "business" ? IS_TYPE : IS_NOT_TYPE}
+                        onClick={() => {
+                          setData("accountType", "business");
+                        }}
+                      >
+                        Business
+                      </Button>
+                    </Flex>
+                  </div>
                 </div>
                 <Flex>
                   <div>
