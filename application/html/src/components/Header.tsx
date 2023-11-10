@@ -128,27 +128,6 @@ export default function Logo() {
                 </Show>
               </DropdownMenuContent>
             </DropdownMenu>
-            {/* <div
-              class="cursor-pointer"
-              onClick={handleSystemClick}
-            >
-              <Show when={dropdownVisible()}>
-                <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
-                  <div class="py-1">
-                    <Button
-                      class="block w-full text-left px-4 py-2 text-white bg-black hover:bg-gray-600"
-                      onclick={() => {
-                        toast.success(`See you next time ${Cookies.get("user")}!`);
-                        Cookies.remove("user");
-                        setIsIn(false);
-                      }}
-                    >
-                      Logout
-                    </Button>
-                  </div>
-                </div>
-              </Show>
-            </div> */}
           </Flex>
         </header>
       </Show>

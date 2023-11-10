@@ -12,6 +12,11 @@ import { getAllTracking } from "../utils/requests";
 import Cookies from "js-cookie";
 import { sortBy } from "../utils/util";
 import { me, setMe } from "../utils/me";
+import Owl from "../assets/logos/Owl.jpg";
+import Road from "../assets/logos/Road.jpg";
+import Road2 from "../assets/logos/Road2.jpg";
+
+
 
 export default function HomePage() {
   const [packages] = createResource(getAllTracking);
@@ -27,19 +32,19 @@ export default function HomePage() {
            OrderOwl
         </div>
         <div class="text-5xl mt-4">
-        Track Everything Everywhere
+        Track Your Order Anywhere Anytime
         </div>
       </div>
 
       <Flex justifyContent="center" class="text-6xl border-y-2 border-black divide-x w-3/4">
-        <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
-          <p>Feature 1</p>
+        <Flex justifyContent="start" class="max-w-sm h-96 border-black my-8">
+          <img src={Road} alt="Feature 1" class="w-96 h-64" />
         </Flex>
         <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
-          <p>Feature 2</p>
+        <img src={Owl} alt="Feature 2" class="w-3/4 h-auto" />
         </Flex>
         <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
-          <p>Feature 3</p>
+        <img src={Road2} alt="Feature 3" class="w-[300%] h-64" />
         </Flex>
       </Flex>
 
