@@ -7,9 +7,13 @@ import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri"
 import toast from "solid-toast";
 import { getLogin } from "../utils/requests";
 import { me, setMe } from "../utils/me";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
+import { For, createSignal } from "solid-js";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = createSignal(false);
 
   const NO_RING = "border-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0";
 
@@ -128,6 +132,51 @@ export default function LoginPage() {
           </Flex>
         </div>
       </Flex>
+      <Dialog open={isOpen()}>
+        <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
+          <DialogHeader class="space-y-4">
+            <DialogTitle class="text-center text-3xl">
+              Select Account
+            </DialogTitle>
+            <For each={[...Array(2)]}>
+              {() => (
+                <Flex
+                  class="p-2 rounded border-2 border-black cursor-pointer hover:bg-gray-200 transition-colors"
+                  onClick={() => {
+                    toast.error("Not Yet Implemented!")
+                  }}
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-8 h-8"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  <div class="text-center">
+                    <div class="underline">
+                      <p>Account Name</p>
+                    </div>
+                    <p>User User</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="underline">
+                      <p>Account Type</p>
+                    </div>
+                    <p>Personal</p>
+                  </div>
+                </Flex>
+              )}
+            </For>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

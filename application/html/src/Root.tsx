@@ -1,4 +1,4 @@
-import { Routes, Route } from "@solidjs/router";
+import { Routes, Route, Navigate } from "@solidjs/router";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import HomePage from "./pages/HomePage";
@@ -22,6 +22,8 @@ import TrackingInfoPage from "./pages/TrackingInfoPage";
 import ApiTestPage from "./pages/ApiTestPage";
 import SupportPage from "./pages/SupportPage";
 import SettingsPage from "./pages/SettingsPage";
+import ProfilePage from "./pages/SettingsPages/ProfilePage";
+import EtcPage from "./pages/SettingsPages/EtcPage";
 
 export default function Root() {
   return (
@@ -54,7 +56,11 @@ export default function Root() {
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
               <Route path="/support" component={SupportPage} />
-              <Route path="/settings" component={SettingsPage} />
+              <Route path="/settings" component={SettingsPage}>
+                <Route path="/" element={<Navigate href={"profile"} />} />
+                <Route path="/profile" component={ProfilePage} />
+                <Route path="/etc" component={EtcPage} />
+              </Route>
               {/* <Route path="/api_test" component={ApiTestPage} /> */}
             </Routes>
           </div>

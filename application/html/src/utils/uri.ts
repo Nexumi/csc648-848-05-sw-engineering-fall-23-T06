@@ -53,8 +53,8 @@ export function uriSupport() {
   return `/support`;
 }
 
-export function uriSettings() {
-  return `/settings`
+export function uriSettings(id?: string) {
+  return id ? `/settings/${id}` : `/settings`;
 }
 
 export function uriApiTest() {
