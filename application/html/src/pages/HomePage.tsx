@@ -75,10 +75,10 @@ function Header() {
 
   return (
     <>
-      <Flex alignItems="center" class="mb-6 px-4 py-2">
+      <Flex alignItems="center" class="mb-6 px-4 py-2 header-bg">
           <img
             src={logo}
-            class="w-40 cursor-pointer" 
+            class="w-32 cursor-pointer" 
             onClick={() => {
               navigate(uriHome());
             }}
