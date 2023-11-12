@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
-import { uriDashboard, uriHome, uriRegistration } from "../utils/uri";
+import { uriDashboard, uriHome, uriRegistration, uriTracking} from "../utils/uri";
+import SearchIcon from "../assets/logos/SearchIcon.png";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
 import { For, Show, createResource, createSignal } from "solid-js";
 import TrackingList from "../components/TrackingList";
@@ -8,12 +9,20 @@ import { getAllTracking } from "../utils/requests";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
 import Cookies from "js-cookie";
 import { Button } from "../common/components/button";
+import { createForm } from "@felte/solid";
+
 
 export default function DashboardPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [packages] = createResource(getAllTracking);
+
+  const { form } = createForm({
+    onSubmit(values) {
+      navigate(values.search ? `${uriTracking()}?searchText=${values.search}` : uriTracking());
+    },
+  });
 
   const HEADER = "text-center border-2 border-black";
   const CELL = "text-left border-2 border-black";
@@ -63,6 +72,20 @@ export default function DashboardPage() {
         <div class="text-center text-6xl">
           <p>Dashboard</p>
         </div>
+        <Flex justifyContent="center">
+          <form use:form>
+            <span class="text-xl mr-2">Search:</span>
+            <input 
+              name="search" 
+              class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" 
+              type="text" 
+              placeholder="tracking #, carrier, status..."
+            />
+            <button type="submit" class="ml-2 focus:outline-none">
+              <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+            </button>
+          </form>
+        </Flex>
         <div class="text-center text-3xl font-bold">
           <p>{month()}</p>
         </div>

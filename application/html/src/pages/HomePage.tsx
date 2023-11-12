@@ -12,7 +12,7 @@ import { getAllTracking } from "../utils/requests";
 import Cookies from "js-cookie";
 import { sortBy } from "../utils/util";
 import { me, setMe } from "../utils/me";
-import Owl from "../assets/logos/Owl.jpg";
+import PCK from "../assets/logos/PCK.jpg";
 import Road from "../assets/logos/Road.jpg";
 import Road2 from "../assets/logos/Road2.jpg";
 
@@ -24,30 +24,32 @@ export default function HomePage() {
   return (
     <Flex flexDirection="col" class="h-full">
       <Header />
-      
-      <hr class=" border-black border-t-2 w-full"/>
 
       <div class="text-center my-8">
          <div class="text-9xl font-thin">
            OrderOwl
         </div>
-        <div class="text-5xl mt-4">
-        Track Your Order Anywhere Anytime
+        <div class="text-6xl mt-4">
+          Track Your Order Anywhere Anytime
         </div>
       </div>
 
-      <Flex justifyContent="center" class="text-6xl border-y-2 border-black divide-x w-3/4">
-        <Flex justifyContent="start" class="max-w-sm h-96 border-black my-8">
-          <img src={Road} alt="Feature 1" class="w-96 h-64" />
+      <hr class="border-black border-t-2 w-3/4"/> 
+
+      <Flex justifyContent="center" alignItems="stretch" class="text-6xl w-3/4 my-8">
+
+        <Flex class="h-full w-full" alignItems="stretch">
+          <img src={Road} alt="Feature 1" class="h-full w-auto" />
         </Flex>
-        <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
-        <img src={Owl} alt="Feature 2" class="w-3/4 h-auto" />
+        <Flex class="h-full w-full" alignItems="stretch">
+          <img src={PCK} alt="Feature 2" class="h-full w-auto" />
         </Flex>
-        <Flex justifyContent="center" class="max-w-sm h-96 border-black my-8">
-        <img src={Road2} alt="Feature 3" class="w-[300%] h-64" />
+        <Flex class="h-full w-full" alignItems="stretch">
+          <img src={Road2} alt="Feature 3" class="h-full w-auto" />
         </Flex>
       </Flex>
 
+      <hr class="border-black border-t-2 w-3/4"/> 
       <div class="w-3/4 mt-4">
         <div class="text-3xl">
           <p>Recent:</p>
@@ -57,12 +59,9 @@ export default function HomePage() {
           limit={5}
         />
       </div>
-
-     
     </Flex>
   );
 }
-
 function Header() {
   const navigate = useNavigate();
 
