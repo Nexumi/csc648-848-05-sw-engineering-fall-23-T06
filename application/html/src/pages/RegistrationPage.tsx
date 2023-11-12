@@ -10,6 +10,7 @@ import { Show, createSignal } from "solid-js";
 import { z } from "zod";
 import { validator } from "@felte/validator-zod";
 import { ValidationMessage, reporter } from "@felte/reporter-solid";
+import delivery from "../../assets/appImages/delivery.jpeg";
 
 
 export default function RegistrationPage() {
@@ -71,7 +72,8 @@ export default function RegistrationPage() {
           <Flex class="h-full w-full">
             <div class="w-full">
               <div class="text-xl font-bold">
-                <p>Welcome!</p>
+                <p>Welcome new User! </p>
+                <p>Thank you for joining OrderOwl! (ovo) </p>
               </div>
               <form use:form>
                 <div class="w-full space-y-5 p-16">
@@ -81,6 +83,7 @@ export default function RegistrationPage() {
                       type="text"
                       header="First Name"
                       class={NO_RING}
+                      placeholder="Leslie"
                     />
                   </div>
                   <ValidationMessage for="firstName">
@@ -96,6 +99,7 @@ export default function RegistrationPage() {
                       type="text"
                       header="Last Name"
                       class={NO_RING}
+                      placeholder="Lopez"
                     />
                   </div>
                   <ValidationMessage for="lastName">
@@ -111,6 +115,7 @@ export default function RegistrationPage() {
                       type="text"
                       header="Email"
                       class={NO_RING}
+                      placeholder="youremail@mail.com"
                     />
                   </div>
                   <ValidationMessage for="email">
@@ -126,6 +131,7 @@ export default function RegistrationPage() {
                       type="password"
                       header="Password"
                       class={NO_RING}
+                      placeholder="password"
                       onChange={() => {
                         if (data().confirmPassword) {
                           setConfirmSame(data().password === data().confirmPassword);
@@ -146,6 +152,7 @@ export default function RegistrationPage() {
                       type="password"
                       header="Confirm Password"
                       class={NO_RING}
+                      placeholder="password"
                       onChange={() => {
                         setConfirmSame(data().password === data().confirmPassword);
                       }}
@@ -154,9 +161,24 @@ export default function RegistrationPage() {
                   <Show when={!confirmSame()}>
                     <div class="!mt-0 text-red-500">Passwords must match</div>
                   </Show>
+                  <div >
+                  Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you:
+                  <br />
+                  <div class="underline">
+                    <a href="https://tosandprivacyrules.com/"> The TOS and Privacy Rules </a>
+                  </div>
+                  I have read the TOS and Privacy Rules and I accept
+                  <label for="acception">
+                    <input
+                    id="acception"
+                    type="checkbox"
+                    />
+                  </label>
+                  </div>
                   <div class="text-center space-y-2">
                     <div class="underline">
                       <p>Account Type</p>
+                      <p>Please choose for what purpose you will be using OrderOwl for.</p>
                     </div>
                     <Flex class="gap-x-2">
                       <Button
@@ -230,7 +252,8 @@ export default function RegistrationPage() {
         </div>
         <div class="h-full w-1/2 p-16">
           <Flex justifyContent="center" class="h-full w-full border-4 border-black">
-            <div class="text-9xl -rotate-45">
+            <div class="text-9xl -rotate-45" >
+
               <p>IMAGE</p>
             </div>
           </Flex>
