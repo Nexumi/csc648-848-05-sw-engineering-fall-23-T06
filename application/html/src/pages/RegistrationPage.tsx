@@ -127,6 +127,23 @@ export default function RegistrationPage() {
                   </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
+                    name="confirmEmail"
+                    type="text"
+                    header="Confirm Email"
+                    class={NO_RING}
+                    placeholder="youremail@mail.com"
+                   />
+                  </div>
+                  <ValidationMessage for="confirmEmail">
+                    {(messages) =>
+                      messages?.map((message) => (
+                  <div class="!mt-0 text-red-500">{message}</div>
+                   ))
+                   }
+                  </ValidationMessage>
+
+                  <div class="border-b-2 border-black p-0">
+                    <TextInput
                       name="password"
                       type="password"
                       header="Password"

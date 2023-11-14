@@ -114,48 +114,58 @@ function Header() {
               </form>
             </div>
             <Flex justifyContent="end" class="gap-x-4">
-              <Show when={!isIn()}>
-                <Button
-                  class="shrink-0 text-white bg-black hover:bg-gray-600"
-                  onclick={() => {
-                    navigate(uriDashboard(true));
-                  }}
-                >
-                  Get Started
-                </Button>
-                <Button
-                  class="text-white bg-black hover:bg-gray-600"
-                  onclick={() => {
-                    navigate(uriLogin());
-                  }}
-                >
-                  Login
-                </Button>
-              </Show>
-              <Show when={isIn()}>
-                <div>
-                  <p>Welcome, {me().first_name} {me().last_name}!</p>
-                </div>
-                <Button
-                  class="shrink-0 text-white bg-black hover:bg-gray-600"
-                  onclick={() => {
-                    navigate(uriDashboard());
-                  }}
-                >
-                  Dashboard
-                </Button>
-                <Button
-                  class="text-white bg-black hover:bg-gray-600"
-                  onclick={() => {
-                    toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
-                    Cookies.remove("user");
-                    setIsIn(false);
-                  }}
-                >
-                  Logout
-                </Button>
-              </Show>
-            </Flex>
+  <Show when={!isIn()}>
+    <Button
+      class="text-white bg-black hover:bg-gray-600"
+      onclick={() => {
+        navigate(uriDashboard()); // Modify as needed
+      }}
+    >
+      Continue as Guest
+    </Button>
+    <Button
+      class="shrink-0 text-white bg-black hover:bg-gray-600"
+      onclick={() => {
+        navigate(uriDashboard(true));
+      }}
+    >
+      Register
+    </Button>
+    <Button
+      class="text-white bg-black hover:bg-gray-600"
+      onclick={() => {
+        navigate(uriLogin());
+      }}
+    >
+      Login
+    </Button>
+  </Show>
+  <Show when={isIn()}>
+    <div>
+      <p>Welcome, {me().first_name} {me().last_name}!</p>
+    </div>
+    <Button
+      class="shrink-0 text-white bg-black hover:bg-gray-600"
+      onclick={() => {
+        navigate(uriDashboard());
+      }}
+    >
+      Dashboard
+    </Button>
+    <Button
+      class="text-white bg-black hover:bg-gray-600"
+      onclick={() => {
+        toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
+        Cookies.remove("user");
+        setIsIn(false);
+      }}
+    >
+      Logout
+    </Button>
+    </Show>
+</Flex>
+
+
           </Flex>
         </Flex>
       </>
