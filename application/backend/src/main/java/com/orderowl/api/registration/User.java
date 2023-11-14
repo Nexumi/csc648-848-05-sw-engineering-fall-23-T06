@@ -23,11 +23,8 @@ public class User {
     private String password;
     private String phone_number;
     private String address;
-<<<<<<< HEAD
     private String username;
-=======
     private String role;
->>>>>>> a9b93888f54f39ecc34f623f4b35fd5727289dd2
 
     public User() {
     }
@@ -39,12 +36,8 @@ public class User {
         this.password = password;
         this.phone_number = phone_number;
         this.address = address;
-<<<<<<< HEAD
         this.username = null;
-
-=======
         this.role = role;
->>>>>>> a9b93888f54f39ecc34f623f4b35fd5727289dd2
     }
 
     public User(Long id, String email, String first_name, String last_name, String password, String phone_number, String address, String role) {
@@ -55,11 +48,8 @@ public class User {
         this.password = password;
         this.phone_number = phone_number;
         this.address = address;
-<<<<<<< HEAD
         this.username = null;
-=======
         this.role = role;
->>>>>>> a9b93888f54f39ecc34f623f4b35fd5727289dd2
     }
 
     // Using Lombok's @Data, we will automatically get access to getters and setters
