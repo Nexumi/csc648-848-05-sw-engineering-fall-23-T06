@@ -1,12 +1,6 @@
-import { createSignal } from "solid-js";
-import { useNavigate, useSearchParams } from "@solidjs/router";
-import { Button } from "../common/components/button";
+import { useSearchParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
-import logo from "../assets/logos/logo.png";
-import SearchIcon from "../assets/logos/SearchIcon.png";
-import GearIcon from "../assets/logos/GearIcon.png";
-import BellIcon from "../assets/logos/BellIcon.png";
-import toast from "solid-toast";
+import SearchIcon from "../assets/icons/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import TrackingList from "../components/TrackingList";
 import { createResource } from "solid-js";

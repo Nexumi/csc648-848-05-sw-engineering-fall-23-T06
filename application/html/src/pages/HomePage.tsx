@@ -2,19 +2,19 @@ import { useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import logo from "../assets/logos/logo.png";
-import SearchIcon from "../assets/logos/SearchIcon.png";
+import SearchIcon from "../assets/icons/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import toast from "solid-toast";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSearch, uriSupport, uriTracking, uriUpload } from "../utils/uri";
+import { uriAbout, uriDashboard, uriHome, uriLogin, uriSupport, uriTracking } from "../utils/uri";
 import TrackingList from "../components/TrackingList";
 import { Show, createResource, createSignal } from "solid-js";
 import { getAllTracking } from "../utils/requests";
 import Cookies from "js-cookie";
 import { sortBy } from "../utils/util";
-import { me, setMe } from "../utils/me";
-import PCK from "../assets/logos/PCK.jpg";
-import Road from "../assets/logos/Road.jpg";
-import Road2 from "../assets/logos/Road2.jpg";
+import { me } from "../utils/me";
+import PCK from "../assets/appImages/PCK.jpg";
+import Road from "../assets/appImages/Road.jpg";
+import Road2 from "../assets/appImages/Road2.jpg";
 
 
 

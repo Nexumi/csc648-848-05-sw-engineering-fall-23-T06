@@ -1,9 +1,9 @@
 import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
-import { uriDashboard, uriHome, uriRegistration, uriTracking} from "../utils/uri";
-import SearchIcon from "../assets/logos/SearchIcon.png";
+import { uriDashboard, uriRegistration, uriTracking} from "../utils/uri";
+import SearchIcon from "../assets/icons/SearchIcon.png";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { For, Show, createResource, createSignal } from "solid-js";
+import { For, createResource, createSignal } from "solid-js";
 import TrackingList from "../components/TrackingList";
 import { getAllTracking } from "../utils/requests";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";

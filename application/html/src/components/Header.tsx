@@ -2,12 +2,11 @@ import { createSignal } from "solid-js";
 import { useMatch, useNavigate } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Show } from "solid-js";
-import { uriAbout, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriSettings, uriSupport } from "../utils/uri";
+import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSettings, uriSupport } from "../utils/uri";
 import toast from "solid-toast";
 import Cookies from "js-cookie";
-import { Button } from "../common/components/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../common/components/dropdown-menu";
-import { me, setMe } from "../utils/me";
+import { me } from "../utils/me";
 
 
 export default function Logo() {
