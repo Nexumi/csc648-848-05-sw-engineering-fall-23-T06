@@ -10,7 +10,7 @@ import { Show, createSignal } from "solid-js";
 import { z } from "zod";
 import { validator } from "@felte/validator-zod";
 import { ValidationMessage, reporter } from "@felte/reporter-solid";
-import delivery from "../../assets/appImages/delivery.jpeg";
+import registrationImage from "../assets/appImages/registrationImage.jpeg";
 
 
 export default function RegistrationPage() {
@@ -73,7 +73,7 @@ export default function RegistrationPage() {
             <div class="w-full">
               <div class="text-xl font-bold">
                 <p>Welcome new User! </p>
-                <p>Thank you for joining OrderOwl! (ovo) </p>
+                <p>Thank you for joining OrderOwl! :) </p>
               </div>
               <form use:form>
                 <div class="w-full space-y-5 p-16">
@@ -193,10 +193,10 @@ export default function RegistrationPage() {
                   </label>
                   </div>
                   <div class="text-center space-y-2">
-                    <div class="underline">
+                  <div class="text-l font-bold">
                       <p>Account Type</p>
+                  </div>
                       <p>Please choose for what purpose you will be using OrderOwl for.</p>
-                    </div>
                     <Flex class="gap-x-2">
                       <Button
                         type="button"
@@ -267,14 +267,9 @@ export default function RegistrationPage() {
             </div>
           </Flex>
         </div>
-        <div class="h-full w-1/2 p-16">
-          <Flex justifyContent="center" class="h-full w-full border-4 border-black">
-            <div class="text-9xl -rotate-45" >
-
-              <p>IMAGE</p>
-            </div>
-          </Flex>
-        </div>
+        <Flex>
+            <img src={registrationImage} />
+        </Flex>
       </Flex>
     </>
   );
