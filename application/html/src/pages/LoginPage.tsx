@@ -9,6 +9,7 @@ import { getLogin } from "../utils/requests";
 import { me, setMe } from "../utils/me";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { For, createSignal } from "solid-js";
+import loginImage from "../assets/appImages/loginImage.jpeg";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -123,14 +124,16 @@ export default function LoginPage() {
               </form>
             </div>
           </Flex>
+
+
+
         </div>
-        <div class="h-full w-1/2 p-16">
-          <Flex justifyContent="center" class="h-full w-full border-4 border-black">
-            <div class="text-9xl -rotate-45">
-              <p>IMAGE</p>
-            </div>
-          </Flex>
-        </div>
+        <Flex>
+            <img src={loginImage} />
+        </Flex>
+
+
+
       </Flex>
       <Dialog open={isOpen()}>
         <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
