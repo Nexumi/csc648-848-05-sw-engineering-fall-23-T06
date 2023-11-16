@@ -1,5 +1,5 @@
-export function sortBy(objects: any, key: string, direction: string | number) {
-  direction = Number(direction);
+export function sortBy(objects: any, key: string, direction?: string | number) {
+  direction = Number(direction) || 0;
   
   if (!objects || !key) {
     return objects;

@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import { Button } from "../common/components/button";
 import { createForm } from "@felte/solid";
 import Calendar from "../components/Calendar";
+import { sortBy } from "../utils/util";
 
 
 export default function DashboardPage() {
@@ -85,7 +86,7 @@ export default function DashboardPage() {
             <p>Arriving Soon:</p>
           </div>
           <TrackingList
-            display={packages()?.sort((a: any, b: any) => (a.eta > b.eta) ? 1 : -1)}
+            display={sortBy(packages(), "eta")}
             limit={2}
           />
         </div>
