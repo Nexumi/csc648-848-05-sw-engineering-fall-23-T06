@@ -3,8 +3,6 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from ".
 
 export default function Calendar() {
   const HEADER = "text-center border-2 border-black";
-  const CELL = "text-left border-2 border-black";
-  const CELL_TODAY = "text-left border-2 border-black text-red-500 font-bold";
 
   const [today] = createSignal(String(new Date().getDate()));
   const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
@@ -47,15 +45,11 @@ export default function Calendar() {
               <TableRow>
                 <For each={week}>
                   {(day) => 
-                    <TableCell class={today() === day ? CELL_TODAY : CELL}>
-                      <p>{day}</p>
+                    <TableCell class="text-left border-2 border-black">
+                      <div class={today() === day ? "text-red-500 font-bold" : ""}>
+                        <p>{day}</p>
+                      </div>
                       <div class="h-10 overflow-y-scroll">
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
                       </div>
                     </TableCell>
                   }
