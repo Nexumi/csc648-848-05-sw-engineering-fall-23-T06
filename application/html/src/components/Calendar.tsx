@@ -1,5 +1,6 @@
-import { createSignal, For } from "solid-js";
+import { createResource, createSignal, For } from "solid-js";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../common/components/table";
+import { getTrackingBySearch } from "../utils/requests";
 
 export default function Calendar() {
   const HEADER = "text-center border-2 border-black";
@@ -7,6 +8,15 @@ export default function Calendar() {
   const [today] = createSignal(String(new Date().getDate()));
   const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
+
+  const [day, setDay] = createSignal("");
+
+  const [packages] = createResource(
+    () => ({
+      searchText: day()
+    }),
+    getTrackingBySearch
+  );
 
   return (
     <>      
@@ -49,7 +59,7 @@ export default function Calendar() {
                       <div class={today() === day ? "text-red-500 font-bold" : ""}>
                         <p>{day}</p>
                       </div>
-                      <div class="h-10 overflow-y-scroll">
+                      <div class="h-11 space-y-1 overflow-y-scroll">
                       </div>
                     </TableCell>
                   }
@@ -59,6 +69,18 @@ export default function Calendar() {
           </For>
         </TableBody>
       </Table>
+    </>
+  );
+}
+
+function CalendarEvent(props: {
+  text: string
+}) {
+  return (
+    <>
+      <div class="bg-[#D7B19D] rounded-full px-1.5 mr-1">
+        <p>{props.text}</p>
+      </div>
     </>
   );
 }
