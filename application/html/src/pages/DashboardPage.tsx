@@ -2,8 +2,7 @@ import { useNavigate, useSearchParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { uriDashboard, uriRegistration, uriTracking} from "../utils/uri";
 import SearchIcon from "../assets/icons/SearchIcon.png";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { For, createResource, createSignal } from "solid-js";
+import { createResource, createSignal } from "solid-js";
 import TrackingList from "../components/TrackingList";
 import { getAllTracking } from "../utils/requests";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
@@ -12,7 +11,6 @@ import { Button } from "../common/components/button";
 import { createForm } from "@felte/solid";
 import Calendar from "../components/Calendar";
 import { sortBy } from "../utils/util";
-
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -80,7 +78,9 @@ export default function DashboardPage() {
             </button>
           </form>
         </Flex>
-        <Calendar />
+        <Calendar
+          packages={packages()}
+        />
         <div>
           <div class="text-3xl">
             <p>Arriving Soon:</p>

@@ -2,14 +2,14 @@ import { createResource, createSignal, For } from "solid-js";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../common/components/table";
 import { getAllTracking, getTrackingBySearch } from "../utils/requests";
 
-export default function Calendar() {
+export default function Calendar(props: {
+  packages?: any
+}) {
   const HEADER = "text-center border-2 border-black";
 
   const [today] = createSignal(String(new Date().getDate()));
   const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
-
-  const [packages] = createResource(getAllTracking);
 
   return (
     <>      
@@ -53,7 +53,7 @@ export default function Calendar() {
                         <p>{day}</p>
                       </div>
                       <div class="h-11 space-y-1 overflow-y-scroll">
-                        <For each={packages()?.filter((item: any) => {
+                        <For each={props.packages?.filter((item: any) => {
                           return item.eta === getFullDate(day);
                         })}>
                           {(i) =>
