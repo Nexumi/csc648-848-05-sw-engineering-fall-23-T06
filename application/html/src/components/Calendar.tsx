@@ -1,6 +1,8 @@
 import { createResource, createSignal, For } from "solid-js";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../common/components/table";
 import { getAllTracking, getTrackingBySearch } from "../utils/requests";
+import { useNavigate } from "@solidjs/router";
+import { uriTracking } from "../utils/uri";
 
 export default function Calendar(props: {
   packages?: any
@@ -56,9 +58,10 @@ export default function Calendar(props: {
                         <For each={props.packages?.filter((item: any) => {
                           return item.eta === getFullDate(day);
                         })}>
-                          {(i) =>
+                          {(pack) =>
                             <CalendarEvent
-                              text="test"
+                              id={pack.id}
+                              text={pack.title}
                             />
                           }
                         </For>
@@ -76,12 +79,20 @@ export default function Calendar(props: {
 }
 
 function CalendarEvent(props: {
+  id: number | string,
   text: string
 }) {
+  const navigate = useNavigate();
+
   return (
     <>
-      <div class="bg-[#D7B19D] rounded-full px-1.5 mr-1">
-        <p>{props.text}</p>
+      <div
+        class="bg-[#c68B59] hover:bg-[#D7B19D] text-white rounded-full cursor-pointer px-1.5 mr-1"
+        onClick={() => {
+          navigate(uriTracking(props.id));
+        }}
+      >
+        <p>{props.text || ""}</p>
       </div>
     </>
   );
