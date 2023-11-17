@@ -22,4 +22,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
     void deleteById(Long Id);
+
+    Optional<User> findByEmail(String email);
 }

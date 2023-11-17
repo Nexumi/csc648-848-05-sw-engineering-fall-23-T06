@@ -33,7 +33,7 @@ public class UserController {
      * @param registrationRequest This is the data that we will receive from the front end
      * @return It will return a success message if registered correctly
      */
-    @PostMapping
+    @PostMapping(path = "/register")
     public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
         userService.registerUser(registrationRequest);
         return ResponseEntity.ok("Registration successful");
