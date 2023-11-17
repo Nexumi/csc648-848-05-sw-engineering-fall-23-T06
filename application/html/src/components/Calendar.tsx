@@ -1,6 +1,6 @@
 import { createResource, createSignal, For } from "solid-js";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../common/components/table";
-import { getTrackingBySearch } from "../utils/requests";
+import { getAllTracking, getTrackingBySearch } from "../utils/requests";
 
 export default function Calendar() {
   const HEADER = "text-center border-2 border-black";
@@ -9,14 +9,7 @@ export default function Calendar() {
   const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
 
-  const [day, setDay] = createSignal("");
-
-  const [packages] = createResource(
-    () => ({
-      searchText: day()
-    }),
-    getTrackingBySearch
-  );
+  const [packages] = createResource(getAllTracking);
 
   return (
     <>      
@@ -60,6 +53,15 @@ export default function Calendar() {
                         <p>{day}</p>
                       </div>
                       <div class="h-11 space-y-1 overflow-y-scroll">
+                        <For each={packages()?.filter((item: any) => {
+                          return item.eta === getFullDate(day);
+                        })}>
+                          {(i) =>
+                            <CalendarEvent
+                              text="test"
+                            />
+                          }
+                        </For>
                       </div>
                     </TableCell>
                   }
@@ -85,9 +87,19 @@ function CalendarEvent(props: {
   );
 }
 
+function getFullDate(day: string) {
+  const date = new Date();
+  const year = date.getFullYear();
+  let month = String(date.getMonth()).padStart(2, "0");
+  
+  return year + "-" + month + "-" + day.padStart(2, "0");
+}
+
 function getCalendar() {
-  const month = new Date().toLocaleDateString("default", { month: "long" });
-  const year = new Date().getFullYear();
+  const date = new Date();
+
+  const month = date.toLocaleDateString("default", { month: "long" });
+  const year = date.getFullYear();
 
   const week = ["", "", "", "", "", "", ""];
   const calendar = [];
