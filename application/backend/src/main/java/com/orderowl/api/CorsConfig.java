@@ -33,4 +33,19 @@ public class CorsConfig {
 //        source.registerCorsConfiguration("/**", config);
 //        return new CorsFilter(source);
 //    }
+//    @Bean
+//    public WebMvcConfigurer corsConfig() {
+//        //https://spring.io/blog/2015/06/08/cors-support-in-spring-framework
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/api/**")
+//                        .allowedOrigins("http://localhost:3000")
+//                        .allowedMethods("GET", "PUT", "POST", "DELETE")
+//                        .allowedHeaders("*")
+//                        .allowCredentials(true);
+//            }
+//        };
+//    }
+
 }

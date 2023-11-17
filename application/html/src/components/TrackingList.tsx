@@ -137,7 +137,7 @@ function HeaderTitle(props: {
         <Match when={props.sort}>
           <Flex
             justifyContent="start"
-            class="cursor-pointer select-none gap-x-1"
+            class="cursor-pointer select-none hover:text-gray-600 gap-x-1"
             onClick={() => {
               props.update(props.key);
             }}
@@ -145,7 +145,9 @@ function HeaderTitle(props: {
             {props.title}
             <Switch>
               <Match when={!props.current}>
-                <div class="w-2 h-2" />
+                <div class="w-2">
+                  <p>-</p>
+                </div>
               </Match>
               <Match when={Number(props.direction) === 0}>
                 <svg
