@@ -86,10 +86,10 @@ export const deleteTrackingById = async (params: {
 }
 
 export const postRegistration = async (params: {
-  first_name: any,
-  last_name: any,
-  password: any,
+  firstname: any,
+  lastname: any,
   email: any,
+  password: any,
 }) => {
   const response = await axios.post(apiRegistration(), params);
   return response;
@@ -99,7 +99,7 @@ export const getLogin = async (params: {
   email: string,
   password: string
 }) => {
-  const response = await axios.get(`${apiRegistration()}/search?${new URLSearchParams(params).toString()}`);
+  const response = await axios.post(`/api/v1/auth/authenticate`, params);
   return response;
 }
 
