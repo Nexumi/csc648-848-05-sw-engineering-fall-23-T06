@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -33,19 +34,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    /**
-     * Before saving the user in our database, the system shall receive the password
-     * then encrypting the password. Once encrypted will save the encrypted password.
-     *
-     * @param registrationRequest This is the registration data that will be saved
-     */
-    public void registerUser(User registrationRequest) {
-
-        String password = registrationRequest.getPassword();
-        String encryptPass = passwordEncoder.encode(password);
-        registrationRequest.setPassword(encryptPass);
-        userRepository.save(registrationRequest);
-    }
 
     /**
      * This will search the database using the email and password
@@ -86,4 +74,14 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
+
+
+//    public String changeUsername(String usernameRequest, Long id) {
+//        Optional<User> changeUser = userRepository.findById(id);
+//        return userRepository.findById(id)
+//                .map(username ->
+//                        username.setUsername(usernameRequest))
+//                .orElseThrow();
+//
+//    }
 }

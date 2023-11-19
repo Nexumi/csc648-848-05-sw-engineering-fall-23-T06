@@ -27,21 +27,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    /**
-     * This handles HTTP POST requests to register a new user
-     *
-     * @param registrationRequest This is the data that we will receive from the front end
-     * @return It will return a success message if registered correctly
-     */
-    @PostMapping(path = "/register")
-    public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
-        userService.registerUser(registrationRequest);
-        return ResponseEntity.ok("Registration successful");
-    }
-//    @PostMapping
-//    public ResponseEntity<String> changeUsername (@PathVariable("userID") @RequestBody User usernameRequest) {
-//        userService.changeUsername
-//        usernameRequest.setusername();
+
+    // https://youtu.be/6AJh4cJNOn0
+    // maybe use this for modifying users in the DB
+//    @PutMapping(path = "/update/username")
+//    public ResponseEntity<String> changeUsername ( @PathVariable Long id,  @RequestBody String usernameRequest) {
+//        userService.changeUsername(usernameRequest, id);
+//        return new ResponseEntity<>.ok()
 //    }
 
     /**
