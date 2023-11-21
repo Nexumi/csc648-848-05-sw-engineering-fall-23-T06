@@ -1,5 +1,6 @@
 /**
  * Credit: Amigoscode Youtube Channel (https://youtu.be/VVn9OG9nfH0)
+ * Object to hold the token during the HTTP call
  */
 package com.orderowl.api.auth;
 

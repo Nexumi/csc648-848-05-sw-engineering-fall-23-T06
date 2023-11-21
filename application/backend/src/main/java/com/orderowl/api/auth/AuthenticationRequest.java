@@ -1,5 +1,6 @@
 /**
  * Credit: Amigoscode Youtube Channel (https://youtu.be/VVn9OG9nfH0)
+ * Object to hold the login HTTP request
  */
 package com.orderowl.api.auth;
 
