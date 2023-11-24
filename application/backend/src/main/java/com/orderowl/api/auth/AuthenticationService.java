@@ -23,7 +23,6 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        System.out.println("---------------------->" + request.toString());
         var existingUser = repository.findByEmail(request.getEmail());
 
         if (existingUser.isPresent()) {
@@ -45,19 +44,18 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        System.out.println("---------------------->" + request.toString());
-        System.out.println("=============1");
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-        System.out.println("=============2");
+
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
-        System.out.println("=============3");
+
         var jwtToken = jwtService.generateToken(user);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
