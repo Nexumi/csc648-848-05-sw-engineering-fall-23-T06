@@ -14,6 +14,7 @@ export default function UploadPage() {
     onSubmit(values) {
       const params = {
         trackingNumber: values.trackingNumber,
+        orderTitle: values.orderTitle,
       }
 
       postTracking(params)
@@ -38,7 +39,7 @@ export default function UploadPage() {
           <div class="text-center text-6xl mb-8">
             <p>Upload</p>
           </div>
-          <Flex justifyContent="center">
+          <Flex justifyContent="center" alignItems="end" class="gap-x-16">
             <div>
               <p class="text-xl mr-2">Tracking Number:</p>
               <input
@@ -46,6 +47,15 @@ export default function UploadPage() {
                 class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
                 type="text"
                 />
+            </div> 
+            <div class="mr-12">
+              <p class="text-xl mr-2">Order Title:</p>
+              <input
+                name="orderTitle"
+                class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                type="text"
+                />
+            </div>
               <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
                 <svg
                   fill="none"
@@ -57,7 +67,6 @@ export default function UploadPage() {
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </button>
-            </div>
           </Flex>
           <Flex flexDirection="col" justifyContent="center" class="grow">
             <Flex justifyContent="center" alignItems="end" class="gap-x-16">

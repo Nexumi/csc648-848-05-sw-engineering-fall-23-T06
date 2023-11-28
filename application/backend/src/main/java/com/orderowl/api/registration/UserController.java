@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 // the base path will be the address the front end uses to interact with the database
@@ -27,22 +28,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    /**
-     * This handles HTTP POST requests to register a new user
-     *
-     * @param registrationRequest This is the data that we will receive from the front end
-     * @return It will return a success message if registered correctly
-     */
-    @PostMapping
-    public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
-        userService.registerUser(registrationRequest);
-        return ResponseEntity.ok("Registration successful");
-    }
-//    @PostMapping
-//    public ResponseEntity<String> changeUsername (@PathVariable("userID") @RequestBody User usernameRequest) {
-//        userService.changeUsername
-//        usernameRequest.setusername();
-//    }
+
+
+
 
     /**
      * This handles HTTP GET requests to search for a user. We add "/search" to the base url to show that this is a search
@@ -73,4 +61,28 @@ public class UserController {
         userService.deleteUserById(id);
         return ResponseEntity.status(200).build();
     }
+
+    // TODO: update profile information
+//    @PostMapping(path = "/address")
+//    public ResponseEntity<String> changeAddress(@RequestBody User currentUser, @RequestBody String address) {
+//        return ResponseEntity.ok(userService.changeAddress(currentUser, address));
+//    }
+    // TODO: update username
+//    @PostMapping(path = "/update/username")
+//    public ResponseEntity<String> changeUsername (@PathVariable("email") String userEmail, @RequestBody String usernameRequest) {
+//        Optional<User> updatedUser = userService.changeUsername(userEmail, usernameRequest);
+//
+//        if (updatedUser.isPresent()) {
+//            return ResponseEntity.ok("Username updated successfully");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+//        }
+//    }
+// Credit: https://www.youtube.com/watch?v=kV5RYc7JZOs
+    // might have to change to pass email instead and in userService find user using findByEmail
+//    @PutMapping(path = "/update")
+//    public User updateUser(@RequestBody User user) {
+//        return userService.update(user);
+//    }
+
 }

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -32,6 +33,7 @@ public class UserService {
 
         this.userRepository = userRepository;
     }
+
 
     /**
      * Before saving the user in our database, the system shall receive the password
@@ -58,6 +60,7 @@ public class UserService {
         userRepository.save(registrationRequest);
 
     }
+
 
     /**
      * This will search the database using the email
@@ -97,4 +100,50 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
+
+
+
+
+//    /**
+//     * This will allow us to authenticate if the PIN was put in correctly
+//     *
+//     * @param email this is the email that is linked to the pin
+//     * @param pin This is the pin that was given by the user
+//     * @return Will let the user know if it is correct or not
+//     */
+
+//    public boolean validatePin(String email, String pin){
+//        Optional<User> users = userRepository.findByEmail(email);
+//        if(!users.isEmpty() && users.get().getPin() !=  null){
+//            return pin.equals(users.get().getPin());
+//        }
+//        return false;
+//    }
+//
+//    public String changeAddress(User currentUser, String address) {
+//        searchUser(currentUser.getEmail())
+
+//    public Optional<User> changeUsername(String userEmail, String usernameRequest) {
+//        Optional<User> changeUser = userRepository.findByEmail(userEmail);
+//
+//        if(changeUser.isPresent()) {
+//            User user = changeUser.get();
+//            user.setUsername(usernameRequest);
+//            userRepository.save(user);
+//            return Optional.of(user);
+//        }
+//        return Optional.empty();
+//    }
+
+//    public User update(User user) {
+//        return userRepository.save(user);
+//    }
+
+//    public String changeUsername(String usernameRequest, Long id) {
+//        Optional<User> changeUser = userRepository.findById(id);
+//        return userRepository.findById(id)
+//                .map(username ->
+//                        username.setUsername(usernameRequest))
+//                .orElseThrow();
+//    }
 }

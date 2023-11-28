@@ -32,8 +32,8 @@ export default function RegistrationPage() {
   const { form, data, setData } = createForm({
     onSubmit(values) {
       const params = {
-        first_name: values.firstName,
-        last_name: values.lastName,
+        firstname: values.firstName,
+        lastname: values.lastName,
         email: values.email,
         password: values.password,
         // type: values.accountType
@@ -46,6 +46,7 @@ export default function RegistrationPage() {
           })
           .catch((err) => {
             console.log(err);
+            console.log(params);
             toast.error("Registration failed, please try again.")
           })
       }

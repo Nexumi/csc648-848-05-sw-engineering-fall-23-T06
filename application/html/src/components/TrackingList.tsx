@@ -30,6 +30,16 @@ export default function TrackingList(props: {
       <Table>
         <TableHeader>
           <TableRow>
+          <TableHead>
+              <HeaderTitle
+                title="Order Title"
+                key="orderTitle"
+                current={searchParams.key === "orderTitle"}
+                direction={searchParams.direction}
+                update={updateSort}
+                sort={!!props.sort}
+              />
+            </TableHead>
             <TableHead>
               <HeaderTitle
                 title="Retailer"

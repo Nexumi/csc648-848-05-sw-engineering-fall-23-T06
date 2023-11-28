@@ -9,7 +9,7 @@ export function apiTracking() {
 }
 
 export function apiRegistration() {
-  return `/api/registration`;
+  return `/api/v1/auth/register`;
 }
 
 /* URI Paths */

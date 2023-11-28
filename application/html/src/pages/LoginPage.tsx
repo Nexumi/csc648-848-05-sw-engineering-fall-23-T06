@@ -20,7 +20,12 @@ export default function LoginPage() {
 
   const { form } = createForm({
     onSubmit(values) {
-      getLogin(values)
+      const params = {
+        email: values.email,
+        password: values.password,
+        // type: values.accountType
+      }
+      getLogin(params)
         .then((res) => {
           setMe(res.data[0]);
           toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
@@ -58,6 +63,7 @@ export default function LoginPage() {
                       name="email"
                       type="text"
                       header="Email/Username"
+                      placeholder="youremail@mail.com"
                       class={NO_RING}
                     />
                   </div>
@@ -66,6 +72,7 @@ export default function LoginPage() {
                       name="password"
                       type="password"
                       header="Password"
+                      placeholder="Password"
                       class={NO_RING}
                     />
                   </div>

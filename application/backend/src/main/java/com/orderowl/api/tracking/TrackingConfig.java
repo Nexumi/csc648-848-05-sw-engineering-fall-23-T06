@@ -7,6 +7,7 @@ package com.orderowl.api.tracking;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -78,5 +79,11 @@ public class TrackingConfig {
             repository.saveAll(List.of(tracking1, tracking2, tracking3, tracking4, tracking5));
 
         };
+    }
+
+    private String baseUrl = "https://api.goshippo.com/tracks/";
+    @Bean
+    public WebClient webClient() {
+        return WebClient.builder().baseUrl(baseUrl).build();
     }
 }
