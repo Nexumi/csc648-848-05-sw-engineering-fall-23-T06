@@ -47,16 +47,13 @@ public class UserService {
      *
      * @param registrationRequest This is the registration data that will be saved
      */
-    public void registerUser(User registrationRequest, boolean isPersonal, boolean isBusiness ) {
+    public void registerUser(User registrationRequest ) {
 
         String password = registrationRequest.getPassword();
         String encryptPass = passwordEncoder.encode(password);
         registrationRequest.setPassword(encryptPass);
 
-//        if isPersonal == True
-//           registrationRequest.setRole("PERSONAL");
-//        if isBusiness == True
-//             registrationRequest.setRole("BUSINESS");
+
         userRepository.save(registrationRequest);
 
     }

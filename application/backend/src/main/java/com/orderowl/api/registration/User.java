@@ -43,6 +43,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public User(Long id, String email, String firstname, String lastname, String password, String address,  Role role) {
+        this.id = id;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.address = address;
+        this.role = role;
+    }
 
     // Using Lombok's @NoArgsConstructor and @AllArgsConstructor,
     // we will automatically get access to no args and all args constructors
