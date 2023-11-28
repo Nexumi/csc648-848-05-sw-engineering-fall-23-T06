@@ -79,6 +79,7 @@ public class UserController {
 //        }
 //    }
 // Credit: https://www.youtube.com/watch?v=kV5RYc7JZOs
+    // might have to change to pass email instead and in userService find user using findByEmail
 //    @PutMapping(path = "/update")
 //    public User updateUser(@RequestBody User user) {
 //        return userService.update(user);
