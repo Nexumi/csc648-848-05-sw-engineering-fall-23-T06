@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 // the base path will be the address the front end uses to interact with the database
@@ -29,11 +30,7 @@ public class UserController {
 
 
 
-//    @PostMapping
-//    public ResponseEntity<String> changeUsername (@PathVariable("userID") @RequestBody User usernameRequest) {
-//        userService.changeUsername
-//        usernameRequest.setusername();
-//    }
+
 
     /**
      * This handles HTTP GET requests to search for a user. We add "/search" to the base url to show that this is a search
@@ -69,6 +66,22 @@ public class UserController {
 //    @PostMapping(path = "/address")
 //    public ResponseEntity<String> changeAddress(@RequestBody User currentUser, @RequestBody String address) {
 //        return ResponseEntity.ok(userService.changeAddress(currentUser, address));
+//    }
+    // TODO: update username
+//    @PostMapping(path = "/update/username")
+//    public ResponseEntity<String> changeUsername (@PathVariable("email") String userEmail, @RequestBody String usernameRequest) {
+//        Optional<User> updatedUser = userService.changeUsername(userEmail, usernameRequest);
+//
+//        if (updatedUser.isPresent()) {
+//            return ResponseEntity.ok("Username updated successfully");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+//        }
+//    }
+// Credit: https://www.youtube.com/watch?v=kV5RYc7JZOs
+//    @PutMapping(path = "/update")
+//    public User updateUser(@RequestBody User user) {
+//        return userService.update(user);
 //    }
 
 }
