@@ -34,20 +34,6 @@ public class UserService {
     }
 
     /**
-     * Before saving the user in our database, the system shall receive the password
-     * then encrypting the password. Once encrypted will save the encrypted password.
-     *
-     * @param registrationRequest This is the registration data that will be saved
-     */
-    public void registerUser(User registrationRequest) {
-
-        String password = registrationRequest.getPassword();
-        String encryptPass = passwordEncoder.encode(password);
-        registrationRequest.setPassword(encryptPass);
-        userRepository.save(registrationRequest);
-    }
-
-    /**
      * This will search the database using the email and password
      *
      * @param email    This is the email parameter used for searching
@@ -86,4 +72,9 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
+//
+//    public String changeAddress(User currentUser, String address) {
+//        searchUser(currentUser.getEmail())
+//
+//    }
 }
