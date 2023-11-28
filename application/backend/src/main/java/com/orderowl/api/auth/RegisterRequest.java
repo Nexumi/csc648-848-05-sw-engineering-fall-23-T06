@@ -1,5 +1,6 @@
 /**
  * Credit: Amigoscode Youtube Channel (https://youtu.be/VVn9OG9nfH0)
+ * We use this object to handle the HTTP request for register
  */
 package com.orderowl.api.auth;
 
@@ -18,4 +19,5 @@ public class RegisterRequest {
     private String lastname;
     private String email;
     private String password;
+//    private String pin;
 }
