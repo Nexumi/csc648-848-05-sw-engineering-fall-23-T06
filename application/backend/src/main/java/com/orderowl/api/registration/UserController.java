@@ -27,17 +27,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    /**
-     * This handles HTTP POST requests to register a new user
-     *
-     * @param registrationRequest This is the data that we will receive from the front end
-     * @return It will return a success message if registered correctly
-     */
-    @PostMapping(path = "/register")
-    public ResponseEntity<String> registerUser(@RequestBody User registrationRequest) {
-        userService.registerUser(registrationRequest);
-        return ResponseEntity.ok("Registration successful");
-    }
+
 //    @PostMapping
 //    public ResponseEntity<String> changeUsername (@PathVariable("userID") @RequestBody User usernameRequest) {
 //        userService.changeUsername
@@ -73,4 +63,11 @@ public class UserController {
         userService.deleteUserById(id);
         return ResponseEntity.status(200).build();
     }
+
+    // TODO: update profile information
+//    @PostMapping(path = "/address")
+//    public ResponseEntity<String> changeAddress(@RequestBody User currentUser, @RequestBody String address) {
+//        return ResponseEntity.ok(userService.changeAddress(currentUser, address));
+//    }
+
 }
