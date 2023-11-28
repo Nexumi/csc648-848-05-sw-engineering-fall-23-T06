@@ -53,7 +53,7 @@ public class UserController {
      */
     @GetMapping(path = "/search")
     public ResponseEntity<List<User>> searchUser(@RequestParam("email") String email, @RequestParam("password") String password) {
-        List<User> users = userService.searchUser(email, password);
+        List<User> users = userService.searchUser(email);
 
         if (!users.isEmpty()) {
             return new ResponseEntity<>(users, HttpStatus.OK);

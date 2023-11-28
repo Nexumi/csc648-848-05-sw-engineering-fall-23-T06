@@ -37,26 +37,37 @@ public class UserService {
      * Before saving the user in our database, the system shall receive the password
      * then encrypting the password. Once encrypted will save the encrypted password.
      *
+     * The next block of code will set the role for the user, "Personal" role is
+     * set by default, while we will create a boolean entity to check whether
+     * the user has checked the business account checkbox. If it is true, then
+     * instead of Personal default account, we will change role to business
+     * before saving
+     *
      * @param registrationRequest This is the registration data that will be saved
      */
-    public void registerUser(User registrationRequest) {
+    public void registerUser(User registrationRequest, boolean isPersonal, boolean isBusiness ) {
 
         String password = registrationRequest.getPassword();
         String encryptPass = passwordEncoder.encode(password);
         registrationRequest.setPassword(encryptPass);
+
+//        if isPersonal == True
+//           registrationRequest.setRole("PERSONAL");
+//        if isBusiness == True
+//             registrationRequest.setRole("BUSINESS");
         userRepository.save(registrationRequest);
+
     }
 
     /**
-     * This will search the database using the email and password
+     * This will search the database using the email
      *
      * @param email    This is the email parameter used for searching
-     * @param password This is the password parameter used for searching
      * @return This will return the list of users matching the email and password
      */
-    public List<User> searchUser(String email, String password) {
+    public List<User> searchUser(String email) {
 
-        return userRepository.findByEmailAndPassword(email, password);
+        return userRepository.findByEmail(email);
     }
 
     /**
@@ -69,7 +80,7 @@ public class UserService {
     public boolean authUser(User userAuth) {
         String userPassword = userAuth.getPassword();
 
-        List<User> users = searchUser(userAuth.getEmail(), userAuth.getPassword());
+        List<User> users = searchUser(userAuth.getEmail());
 
         if (!users.isEmpty()) {
             if(passwordEncoder.matches(userPassword,users.get(0).getPassword()))
