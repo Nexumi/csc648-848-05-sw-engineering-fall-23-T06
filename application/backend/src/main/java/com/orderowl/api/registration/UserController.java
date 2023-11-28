@@ -28,12 +28,11 @@ public class UserController {
     }
 
 
-    // https://youtu.be/6AJh4cJNOn0
-    // maybe use this for modifying users in the DB
-//    @PutMapping(path = "/update/username")
-//    public ResponseEntity<String> changeUsername ( @PathVariable Long id,  @RequestBody String usernameRequest) {
-//        userService.changeUsername(usernameRequest, id);
-//        return new ResponseEntity<>.ok()
+
+//    @PostMapping
+//    public ResponseEntity<String> changeUsername (@PathVariable("userID") @RequestBody User usernameRequest) {
+//        userService.changeUsername
+//        usernameRequest.setusername();
 //    }
 
     /**
@@ -65,4 +64,11 @@ public class UserController {
         userService.deleteUserById(id);
         return ResponseEntity.status(200).build();
     }
+
+    // TODO: update profile information
+//    @PostMapping(path = "/address")
+//    public ResponseEntity<String> changeAddress(@RequestBody User currentUser, @RequestBody String address) {
+//        return ResponseEntity.ok(userService.changeAddress(currentUser, address));
+//    }
+
 }

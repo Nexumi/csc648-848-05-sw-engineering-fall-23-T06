@@ -75,6 +75,25 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+//
+//    public String changeAddress(User currentUser, String address) {
+//        searchUser(currentUser.getEmail())
+
+    /**
+     * This will allow us to authenticate if the PIN was put in correctly
+     *
+     * @param email this is the email that is linked to the pin
+     * @param pin This is the pin that was given by the user
+     * @return Will let the user know if it is correct or not
+     */
+
+//    public boolean validatePin(String email, String pin){
+//        Optional<User> users = userRepository.findByEmail(email);
+//        if(!users.isEmpty() && users.get().getPin() !=  null){
+//            return pin.equals(users.get().getPin());
+//        }
+//        return false;
+//    }
 
 //    public String changeUsername(String usernameRequest, Long id) {
 //        Optional<User> changeUser = userRepository.findById(id);
@@ -82,6 +101,5 @@ public class UserService {
 //                .map(username ->
 //                        username.setUsername(usernameRequest))
 //                .orElseThrow();
-//
 //    }
 }

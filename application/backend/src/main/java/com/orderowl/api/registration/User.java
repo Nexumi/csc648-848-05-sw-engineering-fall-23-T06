@@ -38,6 +38,7 @@ public class User implements UserDetails {
     private String address;
     private String username;
     private String enabled;
+//    private String pin;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -81,6 +82,9 @@ public class User implements UserDetails {
         return true;
     }
 
+//    public String getPin(){
+//        return pin;
+//    }
 
     // Using Lombok's @Data, we will automatically get access to getters and setters
 
