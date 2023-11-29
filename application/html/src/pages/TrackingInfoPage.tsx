@@ -1,18 +1,18 @@
 import { A, useNavigate, useParams } from "@solidjs/router";
 import { Flex } from "../common/layout/flex";
 import { Grid } from "../common/layout/grid";
-import { createResource, createSignal } from "solid-js";
+import {createResource, createSignal, onCleanup} from "solid-js";
 import { deleteTrackingById, getTrackingById } from "../utils/requests";
 import { getURL } from "../utils/util";
 import { uriTracking } from "../utils/uri";
 import toast from "solid-toast";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Button } from "../common/components/button";
-
+import { Loader } from '@googlemaps/js-api-loader';
 export default function TrackingInfoPage() {
   const navigate = useNavigate();
   const params = useParams();
-  
+
   const trackingId = params.id;
 
   const [tracking] = createResource(
@@ -21,8 +21,30 @@ export default function TrackingInfoPage() {
     }),
     getTrackingById
   );
+  
+  const [mapOptions, setMapOptions] = createSignal({
+    center: { lat: -33.860664, lng: 151.208138 },
+    zoom: 14
+ });
 
-  const [deleting, setDeleting] = createSignal(false);
+  const apiOptions = {
+      apiKey: "AIzaSyBEEK5lI6HKprDMcVwNOBUios-VDLQ3jWI"
+  }
+
+  const loader = new Loader(apiOptions);
+
+  loader.load().then(() => {
+      console.log('Maps JS API loaded');
+
+      displayMap();
+  });
+
+  function displayMap() {
+      
+      const mapDiv = document.getElementById('map');
+      const map = new google.maps.Map(mapDiv, mapOptions);
+      return map;
+  }
 
   return (
     <>
@@ -33,7 +55,7 @@ export default function TrackingInfoPage() {
           </div>
           <Flex justifyContent="center" class="w-full grow border-2 border-black p-8">
             <div class="text-9xl -rotate-45">
-              <p>MAP</p>
+                <div id="map"></div>
             </div>
           </Flex>
         </Flex>
