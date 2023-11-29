@@ -8,6 +8,7 @@ import toast from "solid-toast";
 import { uriTracking } from "../utils/uri";
 
 export default function UploadPage() {
+
   const navigate = useNavigate();
 
   const { form, data, setData, reset } = createForm({
@@ -56,49 +57,77 @@ export default function UploadPage() {
                 type="text"
                 />
             </div>
-              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
-                <svg
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </button>
           </Flex>
           <Flex flexDirection="col" justifyContent="center" class="grow">
             <Flex justifyContent="center" alignItems="end" class="gap-x-16">
               <div>
-                <p class="text-xl mr-2">Retailer:</p>
-                <input
-                  name="retailer"
-                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
-                  type="text"
-                  placeholder={data().retailer || ""}
-                  readonly
-                />
+                <header>
+                  <Flex justifyContent="end" class="gap-x-2">
+                  <label for="carriers" class="text-xl mr-2" >Choose a carrier:</label>
+                  <select name="carriers" id="carriers">
+                    <option value="select">Select</option>
+                    <optgroup label="United States">
+                        <option value="DHL Express and DHL eCommerce">DHL Express and DHL eCommerce</option>
+                        <option value="FedEx and FedEx Ground Economy">FedEx and FedEx Ground Economy</option>
+                        <option value="UPS and UPS Mail Innovations">UPS and UPS Mail Innovations</option>
+                        <option value="APC Postal">APC Postal</option>
+                        <option value="AxleHire">AxleHire</option>
+                        <option value="Airterra ">Airterra </option>
+                        <option value="Better Trucks">Better Trucks</option>
+                        <option value="Swyft">Swyft</option>
+                        <option value="Maergo">Maergo</option>
+                        <option value="LaserShip">LaserShip</option>
+                        <option value="OnTrac">OnTrac</option>
+                        <option value="ePost Global">ePost Global</option>
+                    </optgroup>
+                    <optgroup label="Australia">
+                        <option value="Australia Post">Australia Post</option>
+                        <option value="Sendle">Sendle</option>
+                        <option value="CouriersPlease">CouriersPlease</option>
+                    </optgroup>
+                    <optgroup label="Canada">
+                        <option value="Canada Post">Canada Post</option>
+                        <option value="UPS">UPS</option>
+                        <option value="Purolator">Purolator</option>
+                        <option value="DHL Express">DHL Express</option>
+                        <option value="FedEx">FedEx</option>
+                    </optgroup>
+                    <optgroup label="France">
+                        <option value="Chronopost">Chronopost</option>
+                        <option value="Collissimo">Collissimo</option>
+                    </optgroup>
+                    <optgroup label="United Kingdom">
+                        <option value="Evri">Evri</option>
+                        <option value="DPD UK">DPD UK</option>
+                        <option value="Royal Mail">Royal Mail</option>
+                    </optgroup>
+                    <optgroup label="Germany">
+                        <option value="Deutsche Post">Deutsche Post</option>
+                        <option value="DHL DE">DHL DE</option>
+                        <option value="DPD DE">DPD DE</option>
+                    </optgroup>
+                    <optgroup label="Italy">
+                        <option value="Post Italiane">Post Italiane</option>
+                    </optgroup>
+                    <optgroup label="Spain">
+                        <option value="Correos">Correos</option>
+                    </optgroup>
+                  </select>
+                  </Flex>
+                </header>
               </div>
-              <div>
-                <p class="text-xl mr-2">Carrier Info</p>
-                <input
-                  name="carrier"
-                  class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
-                  type="text"
-                  placeholder={data().carrier || ""}
-                  readonly
-                  />
-              </div>
-              <Button
-                class="capitalize text-white bg-black hover:bg-gray-600"
-                disabled={!data().id}
-                onClick={() => {
-                  navigate(uriTracking(data().id));
-                }}
-              >
-                More Info
-              </Button>
+              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
+                  <svg
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+              </button>
+
             </Flex>
           </Flex>
           <Flex class="grow">

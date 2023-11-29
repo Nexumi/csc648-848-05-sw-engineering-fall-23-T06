@@ -25,7 +25,17 @@ export default function AboutPage() {
           <p>OrderOwl</p>
         </div>
       </Flex>
-      <Flex justifyContent="center" class="flex-wrap gap-5 mb-5">
+      <br />
+      <div class="text-center space-y-2" >
+          <div class="text-xl font-bold">
+            <p>Get to know the wonderful team *hoo* created OrderOwl!</p>
+          </div>
+      </div>
+            <div class="text-center space-y-2" >
+              <p>Please click on each member to learn a little more about us :) </p>
+            <br />
+            </div>
+      <Flex justifyContent="center" class="flex-wrap gap-10 mb-10">
         <For each={teammates()}>
           {(teammate) =>
             <Button
