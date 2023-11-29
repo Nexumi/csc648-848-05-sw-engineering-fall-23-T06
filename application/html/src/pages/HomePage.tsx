@@ -75,7 +75,7 @@ function Header() {
 
   return (
     <>
-      <Flex alignItems="center" class="mb-6 px-4 py-2 bg-[#20bb8c] rounded-full">
+      <Flex alignItems="center" class="mb-6 px-4 py-2">
           <img
             src={logo}
             class="w-32 cursor-pointer" 
