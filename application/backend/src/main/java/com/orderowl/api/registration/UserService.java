@@ -20,7 +20,7 @@ public class UserService {
     /**
      * createDelegatingPasswordEncoder is an algorithm that detects what
      * the password is encoded with and handle the verification of passwords
-    */
+     */
     PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     /**
@@ -38,7 +38,7 @@ public class UserService {
     /**
      * Before saving the user in our database, the system shall receive the password
      * then encrypting the password. Once encrypted will save the encrypted password.
-     *
+     * <p>
      * The next block of code will set the role for the user, "Personal" role is
      * set by default, while we will create a boolean entity to check whether
      * the user has checked the business account checkbox. If it is true, then
@@ -47,7 +47,7 @@ public class UserService {
      *
      * @param registrationRequest This is the registration data that will be saved
      */
-    public void registerUser(User registrationRequest ) {
+    public void registerUser(User registrationRequest) {
 
         String password = registrationRequest.getPassword();
         String encryptPass = passwordEncoder.encode(password);
@@ -62,7 +62,7 @@ public class UserService {
     /**
      * This will search the database using the email
      *
-     * @param email    This is the email parameter used for searching
+     * @param email This is the email parameter used for searching
      * @return This will return the list of users matching the email and password
      */
     public User searchUser(String email) {
@@ -100,8 +100,6 @@ public class UserService {
     }
 
 
-
-
 //    /**
 //     * This will allow us to authenticate if the PIN was put in correctly
 //     *
@@ -137,5 +135,16 @@ public class UserService {
 //        return userRepository.save(user);
 //    }
 
+    /**
+     * @param email will be used to locate the email that is linked to the current user
+     * @param pin   will hold the new user pin that is being created
+     * @return will return the new pin that was created
+     */
+    public User newUserPin(String email, String pin) {
+
+        var user = userRepository.findByEmail(email).orElseThrow();
+        user.setPin(pin);
+        return userRepository.save(user);
+    }
 
 }
