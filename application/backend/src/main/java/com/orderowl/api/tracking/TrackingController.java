@@ -59,7 +59,9 @@ public class TrackingController {
      * @return A ResponseEntity will be adding into the tracking order.
      */
     @PostMapping
-    public ResponseEntity<Tracking> registerNewTracking(@RequestBody Tracking tracking) {
+    public ResponseEntity<?> registerNewTracking(@RequestBody Tracking tracking) {
+
+        try {
         // this is used strictly for the use cases
         // when the user enters the tracking number it will show the appropriate values for that tracking info
         if (tracking.getTrackingNumber().equals("123456789012")) {
@@ -107,8 +109,12 @@ public class TrackingController {
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
         }
 
-        trackingService.addNewTracking(tracking);
-        return new ResponseEntity<>(tracking, HttpStatus.OK);
+            trackingService.addNewTracking(tracking);
+            return new ResponseEntity<>(tracking, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to register: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

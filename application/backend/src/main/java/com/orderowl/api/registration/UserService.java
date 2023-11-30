@@ -20,7 +20,7 @@ public class UserService {
     /**
      * createDelegatingPasswordEncoder is an algorithm that detects what
      * the password is encoded with and handle the verification of passwords
-    */
+     */
     PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     /**
@@ -38,7 +38,7 @@ public class UserService {
     /**
      * Before saving the user in our database, the system shall receive the password
      * then encrypting the password. Once encrypted will save the encrypted password.
-     *
+     * <p>
      * The next block of code will set the role for the user, "Personal" role is
      * set by default, while we will create a boolean entity to check whether
      * the user has checked the business account checkbox. If it is true, then
@@ -47,7 +47,7 @@ public class UserService {
      *
      * @param registrationRequest This is the registration data that will be saved
      */
-    public void registerUser(User registrationRequest ) {
+    public void registerUser(User registrationRequest) {
 
         String password = registrationRequest.getPassword();
         String encryptPass = passwordEncoder.encode(password);
@@ -62,33 +62,13 @@ public class UserService {
     /**
      * This will search the database using the email
      *
-     * @param email    This is the email parameter used for searching
+     * @param email This is the email parameter used for searching
      * @return This will return the list of users matching the email and password
      */
     public User searchUser(String email) {
 
         return userRepository.findByEmail(email).get();
     }
-
-    // TODO: delete this later
-//    /**
-//     * This will return true or false if the user's email and password exist in the user database
-//     * Using PasswordEncoder to verify if the password given matches with the encrypted password
-//     *
-//     * @param userAuth this is the user object that contains the email and password to be searched
-//     * @return Return true or false depending on if the user is in the database or not
-//     */
-//    public boolean authUser(User userAuth) {
-//        String userPassword = userAuth.getPassword();
-//
-//        List<User> users = searchUser(userAuth.getEmail());
-//
-//        if (!users.isEmpty()) {
-//            if(passwordEncoder.matches(userPassword,users.get(0).getPassword()))
-//                return true;
-//        }
-//        return false;
-//    }
 
     /**
      * This will allow use to delete a user by their ID that is connected to that certain use.
@@ -98,8 +78,6 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
-
-
 
 
 //    /**
@@ -118,24 +96,16 @@ public class UserService {
 //        return false;
 //    }
 
-//    public Optional<User> changeUsername(String userEmail, String usernameRequest) {
-//        Optional<User> changeUser = userRepository.findByEmail(userEmail);
-//
-//        if(changeUser.isPresent()) {
-//            User user = changeUser.get();
-//            user.setUsername(usernameRequest);
-//            userRepository.save(user);
-//            return Optional.of(user);
-//        }
-//        return Optional.empty();
-//    }
+    /**
+     * @param email will be used to locate the email that is linked to the current user
+     * @param pin   will hold the new user pin that is being created
+     * @return will return the new pin that was created
+     */
+    public User newUserPin(String email, String pin) {
 
-
-//    public User updateUsername(User request) {
-//        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
-//        user.setPin(pin);
-//        return userRepository.save(user);
-//    }
-
+        var user = userRepository.findByEmail(email).orElseThrow();
+        user.setPin(pin);
+        return userRepository.save(user);
+    }
 
 }
