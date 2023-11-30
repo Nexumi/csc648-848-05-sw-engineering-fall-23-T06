@@ -65,29 +65,30 @@ public class UserService {
      * @param email    This is the email parameter used for searching
      * @return This will return the list of users matching the email and password
      */
-    public List<User> searchUser(String email) {
+    public User searchUser(String email) {
 
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).get();
     }
 
-    /**
-     * This will return true or false if the user's email and password exist in the user database
-     * Using PasswordEncoder to verify if the password given matches with the encrypted password
-     *
-     * @param userAuth this is the user object that contains the email and password to be searched
-     * @return Return true or false depending on if the user is in the database or not
-     */
-    public boolean authUser(User userAuth) {
-        String userPassword = userAuth.getPassword();
-
-        List<User> users = searchUser(userAuth.getEmail());
-
-        if (!users.isEmpty()) {
-            if(passwordEncoder.matches(userPassword,users.get(0).getPassword()))
-                return true;
-        }
-        return false;
-    }
+    // TODO: delete this later
+//    /**
+//     * This will return true or false if the user's email and password exist in the user database
+//     * Using PasswordEncoder to verify if the password given matches with the encrypted password
+//     *
+//     * @param userAuth this is the user object that contains the email and password to be searched
+//     * @return Return true or false depending on if the user is in the database or not
+//     */
+//    public boolean authUser(User userAuth) {
+//        String userPassword = userAuth.getPassword();
+//
+//        List<User> users = searchUser(userAuth.getEmail());
+//
+//        if (!users.isEmpty()) {
+//            if(passwordEncoder.matches(userPassword,users.get(0).getPassword()))
+//                return true;
+//        }
+//        return false;
+//    }
 
     /**
      * This will allow use to delete a user by their ID that is connected to that certain use.
@@ -116,9 +117,6 @@ public class UserService {
 //        }
 //        return false;
 //    }
-//
-//    public String changeAddress(User currentUser, String address) {
-//        searchUser(currentUser.getEmail())
 
 //    public Optional<User> changeUsername(String userEmail, String usernameRequest) {
 //        Optional<User> changeUser = userRepository.findByEmail(userEmail);
@@ -132,15 +130,12 @@ public class UserService {
 //        return Optional.empty();
 //    }
 
-//    public User update(User user) {
+
+//    public User updateUsername(User request) {
+//        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+//        user.setPin(pin);
 //        return userRepository.save(user);
 //    }
 
-//    public String changeUsername(String usernameRequest, Long id) {
-//        Optional<User> changeUser = userRepository.findById(id);
-//        return userRepository.findById(id)
-//                .map(username ->
-//                        username.setUsername(usernameRequest))
-//                .orElseThrow();
-//    }
+
 }

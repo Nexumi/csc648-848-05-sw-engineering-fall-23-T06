@@ -36,7 +36,6 @@ public class User implements UserDetails {
     private String lastname;
     private String password;
     private String address;
-    private String username;
     private String enabled;
 //    private String pin;
 

@@ -28,27 +28,24 @@ public class UserController {
         this.userService = userService;
     }
 
-
-
-
-
-    /**
-     * This handles HTTP GET requests to search for a user. We add "/search" to the base url to show that this is a search
-     *
-     * @param email    This is the email parameter we use to search for the user
-     * @param password This is the password parameter we use to search for the user
-     * @return It will return a success message if user is found and NOT_FOUND if user is not in database
-     */
-    @GetMapping(path = "/search")
-    public ResponseEntity<List<User>> searchUser(@RequestParam("email") String email, @RequestParam("password") String password) {
-        List<User> users = userService.searchUser(email);
-
-        if (!users.isEmpty()) {
-            return new ResponseEntity<>(users, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+    // TODO: delete this later
+//    /**
+//     * This handles HTTP GET requests to search for a user. We add "/search" to the base url to show that this is a search
+//     *
+//     * @param email    This is the email parameter we use to search for the user
+//     * @param password This is the password parameter we use to search for the user
+//     * @return It will return a success message if user is found and NOT_FOUND if user is not in database
+//     */
+//    @GetMapping(path = "/search")
+//    public ResponseEntity<List<User>> searchUser(@RequestParam("email") String email, @RequestParam("password") String password) {
+//        List<User> users = userService.searchUser(email);
+//
+//        if (!users.isEmpty()) {
+//            return new ResponseEntity<>(users, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
     /**
      * This will handle the HTTP DELETE requests to delete a User when the user no longer needs the account.
@@ -80,9 +77,10 @@ public class UserController {
 //    }
 // Credit: https://www.youtube.com/watch?v=kV5RYc7JZOs
     // might have to change to pass email instead and in userService find user using findByEmail
-//    @PutMapping(path = "/update")
-//    public User updateUser(@RequestBody User user) {
-//        return userService.update(user);
+//    @PutMapping(path = "/update/name")
+//    public ResponseEntity<User> updateUsername(@RequestBody User request) {
+//        return ResponseEntity.ok(userService.updateUsername(request));
 //    }
+
 
 }
