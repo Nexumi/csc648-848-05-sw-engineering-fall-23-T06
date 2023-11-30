@@ -39,7 +39,7 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(request.getRole()) //please use 0 1
                 .build();
         repository.save(user);
         // this token is later used to validate the client and access protected APIs
