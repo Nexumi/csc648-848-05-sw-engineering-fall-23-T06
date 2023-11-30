@@ -20,12 +20,18 @@ export default function RegistrationPage() {
   const IS_TYPE = "w-1/2 border-2 border-black bg-gray-300";
   const IS_NOT_TYPE = "w-1/2 border-2 border-black";
 
+
+
   const RegistrationSchema = z.object({
     firstName: z.string().min(1, { message: "Please enter your first name" }),
     lastName: z.string().min(1, { message: "Please enter your last name" }),
     email: z.string().email({ message: "Please enter an email address" }),
-    password: z.string().min(1, { message: "Please enter a password" }),
-  })
+    password: z.string()
+      .min(8, { message: "Password must be at least 8 characters long" })
+      .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
+      .regex(/[0-9]/, { message: "Password must contain at least one number" })
+      .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one symbol" }),
+  });
 
   const [confirmSame, setConfirmSame] = createSignal(true);
 
