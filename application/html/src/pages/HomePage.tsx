@@ -5,7 +5,7 @@ import logo from "../assets/logos/logo.png";
 import SearchIcon from "../assets/icons/SearchIcon.png";
 import { createForm } from "@felte/solid";
 import toast from "solid-toast";
-import { uriAbout, uriDashboard, uriHome, uriLogin, uriSupport, uriTracking } from "../utils/uri";
+import { uriAbout, uriDashboard, uriHome, uriLogin, uriRegistration, uriSupport, uriTracking } from "../utils/uri";
 import TrackingList from "../components/TrackingList";
 import { Show, createResource, createSignal } from "solid-js";
 import { getAllTracking } from "../utils/requests";
@@ -13,8 +13,8 @@ import Cookies from "js-cookie";
 import { sortBy } from "../utils/util";
 import { me } from "../utils/me";
 import PCK from "../assets/appImages/PCK.jpg";
-import Road from "../assets/appImages/Road.jpg";
-import Road2 from "../assets/appImages/Road2.jpg";
+import picture3 from "../assets/appImages/picture3.jpg";
+import picture4 from "../assets/appImages/picture4.jpg";
 
 
 
@@ -39,13 +39,13 @@ export default function HomePage() {
       <Flex justifyContent="center" alignItems="stretch" class="text-6xl w-3/4 my-8">
 
         <Flex class="h-full w-full" alignItems="stretch">
-          <img src={Road} alt="Feature 1" class="h-full w-auto" />
+          <img src={picture3} alt="Feature 1" class="h-full w-auto" />
         </Flex>
         <Flex class="h-full w-full" alignItems="stretch">
           <img src={PCK} alt="Feature 2" class="h-full w-auto" />
         </Flex>
         <Flex class="h-full w-full" alignItems="stretch">
-          <img src={Road2} alt="Feature 3" class="h-full w-auto" />
+          <img src={picture4} alt="Feature 3" class="h-full w-auto" />
         </Flex>
       </Flex>
 
@@ -75,7 +75,7 @@ function Header() {
 
   return (
     <>
-      <Flex alignItems="center" class="mb-6 px-4 py-2 bg-[#20bb8c] rounded-full">
+      <Flex alignItems="center" class="mb-6 px-4 py-2">
           <img
             src={logo}
             class="w-32 cursor-pointer" 
@@ -126,7 +126,7 @@ function Header() {
     <Button
       class="shrink-0 text-white bg-black hover:bg-gray-600"
       onclick={() => {
-        navigate(uriDashboard(true));
+        navigate(uriRegistration());
       }}
     >
       Register
