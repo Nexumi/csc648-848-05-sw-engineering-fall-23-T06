@@ -7,12 +7,16 @@ package com.orderowl.api.tracking;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "Tracking")
 public class Tracking {
 
@@ -30,22 +34,7 @@ public class Tracking {
     private String address;
     private boolean hidden;
     private Long user_id;
-
-    public Tracking() {
-    }
-
-    public Tracking(Long id, String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id) {
-        this.id = id;
-        this.retailer = retailer;
-        this.carrier = carrier;
-        this.eta = eta;
-        this.trackingNumber = trackingNumber;
-        this.status = status;
-        this.location = location;
-        this.address = address;
-        this.hidden = hidden;
-        this.user_id = user_id;
-    }
+    private String title;
 
     public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id) {
         this.retailer = retailer;

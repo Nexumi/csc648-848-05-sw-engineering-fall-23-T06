@@ -32,13 +32,15 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
             "ELSE 6 END " )
     List<Tracking> searchTracking(String searchText);
 
+    @Query("SELECT t FROM Tracking t WHERE t.hidden = true")
+    List<Tracking> findHidden();
+
 
     // Allows us to get the tracking count of pending orders
     @Query("SELECT COUNT(t) FROM Tracking t WHERE t.status <> 'Delivered'")
     Integer getTrackingCount();
 
-//    @Query("delete from Tracking t where t.trackingNumber=:trackingNumber")
-//    void deleteByTrackingNumber(String trackingNumber);
+    void deleteByTrackingNumber(String trackingNumber);
 
     // allows us to delete tracking by ID
     void deleteById(Long id);

@@ -135,6 +135,11 @@ public class TrackingController {
         return new ResponseEntity<>(trackingCount,HttpStatus.OK);
     }
 
+    @GetMapping(path = "/hidden")
+    public List<Tracking> hiddenTracking () {
+        return trackingService.getHiddenTracking();
+    }
+
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteTrackingById(@PathVariable("id") Long id) {
 
@@ -142,23 +147,23 @@ public class TrackingController {
         return ResponseEntity.status(200).build();
     }
 
-//    /**
-//     * This will allow the user to delete tracking information by the tracking number.
-//     *
-//     * @param trackingNumber This is the tracking number that is relating to the tracking information that needs to be deleted.
-//     * @return A ResponseEntity will be shown to the user whether it was successful or there was an error.
-//     */
-//    @DeleteMapping(path = "/delete")
-//    public ResponseEntity<String> deleteTracking(@RequestParam("trackingNumber") String trackingNumber) {
-//
-//        trackingService.deleteTrackingByNumber(trackingNumber);
-//
-//        return new ResponseEntity<>(trackingNumber+" was deleted", HttpStatus.OK);
-//
-//        return new ResponseEntity<>(trackingNumber+" was NOT deleted", HttpStatus.NOT_FOUND);
-//
-//
-//    }
+    /**
+     * This will allow the user to delete tracking information by the tracking number.
+     *
+     * @param trackingNumber This is the tracking number that is relating to the tracking information that needs to be deleted.
+     * @return A ResponseEntity will be shown to the user whether it was successful or there was an error.
+     */
+    @DeleteMapping(path = "/delete")
+    public ResponseEntity<String> deleteTracking(@RequestParam("trackingNumber") String trackingNumber) {
+
+        try {
+            trackingService.deleteTrackingByNumber(trackingNumber);
+            return new ResponseEntity<>(trackingNumber + " was deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
 
 
 }

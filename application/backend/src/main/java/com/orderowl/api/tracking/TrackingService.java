@@ -5,24 +5,17 @@
 package com.orderowl.api.tracking;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.shippo.Shippo;
-import com.shippo.exception.APIConnectionException;
-import com.shippo.exception.APIException;
-import com.shippo.exception.AuthenticationException;
-import com.shippo.exception.InvalidRequestException;
-import com.shippo.model.Track;
+import com.easypost.model.Tracker;
+import com.easypost.model.TrackingDetail;
+import com.easypost.service.EasyPostClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -30,13 +23,10 @@ public class TrackingService {
 
     private final TrackingRepository trackingRepository;
 
-    private final WebClient webClient;
-
     @Autowired
-    public TrackingService(TrackingRepository trackingRepository, WebClient webClient) {
+    public TrackingService(TrackingRepository trackingRepository) {
 
         this.trackingRepository = trackingRepository;
-        this.webClient = webClient;
     }
 
     /**
@@ -71,46 +61,42 @@ public class TrackingService {
     public void addNewTracking(Tracking tracking) {
 
         try {
-            Track track = sendPostToShippo(tracking.getTrackingNumber(), tracking.getCarrier());
-            tracking.setAddress(track.getAddressTo().toString());
-            tracking.setStatus(track.getTrackingStatus().getStatusDetails().toString());
-            tracking.setEta(convertToLocalDateViaInstant(track.getETA()));
-            tracking.setLocation(track.getTrackingStatus().getLocation().toString());
+            EasyPostClient easyPostClient = new EasyPostClient("EZAKaec5c730141e44c8b9aed9ec7b7b04f3YwveqZZNyaSJObbZDsqi0w");
+            HashMap<String, Object> params = new HashMap<String, Object>();
+            params.put("tracking_code", tracking.getTrackingNumber());
+            Tracker ezPostTracker = easyPostClient.tracker.create(params);
+
+            tracking.setCarrier(ezPostTracker.getCarrier());
+            tracking.setStatus(ezPostTracker.getStatus());
+            tracking.setEta(convertToLocalDateViaInstant(ezPostTracker.getEstDeliveryDate()));
+            tracking.setAddress(locationParser(ezPostTracker.getTrackingDetails()));
+            tracking.setLocation(locationParser(ezPostTracker.getTrackingDetails()));
+
             trackingRepository.save(tracking);
         } catch (Exception e) {
             System.out.println("FAILED-------------!!!!");
             e.printStackTrace();
         }
 
+    }
 
+    private String locationParser(List<TrackingDetail> trackingDetails) {
+        int mostRecentTracking = trackingDetails.size() - 1;
+        String city = trackingDetails.get(mostRecentTracking).getTrackingLocation().getCity();
+        String state = trackingDetails.get(mostRecentTracking).getTrackingLocation().getState();
+        String zip = trackingDetails.get(mostRecentTracking).getTrackingLocation().getZip();
+        return (city + ", " + state + " " + zip);
     }
 
     /**
      * credit : https://www.baeldung.com/java-date-to-localdate-and-localdatetime
-     * @param dateToConvert
-     * @return
+     * @param dateToConvert Date type object to be converted
+     * @return LocalDate type object
      */
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-    }
-
-    public Track sendPostToShippo (String trackingNumber, String carrier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException {
-
-        Track track = Track.getTrackingInfo(carrier,trackingNumber, "shippo_test_862c26ec8e4c0e1182343f2bfbc850c8e2c418f0");
-        return track;
-//        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(track));
-//        TrackingPayload trackingPayload = new TrackingPayload();
-//        trackingPayload.setTracking_number(trackingNumber);
-//        trackingPayload.setCarrier(carrier);
-//
-//        String convertToJson = new Gson().toJson(trackingPayload);
-//        webClient.post()
-//                .body(BodyInserters.fromValue(convertToJson))
-//                .retrieve()
-//                .bodyToMono(String.class)
-//                .block();
     }
 
     /**
@@ -134,6 +120,10 @@ public class TrackingService {
         return trackingRepository.getTrackingCount();
     }
 
+    public List<Tracking> getHiddenTracking() {
+        return trackingRepository.findHidden();
+    }
+
     /**
      * This will allow the user to be able to delete the order by the ID.
      *
@@ -143,13 +133,14 @@ public class TrackingService {
         trackingRepository.deleteById(id);
     }
 
-//    /**
-//     * This will make it possible to delete an order by the tracking number.
-//     *
-//     * @param trackingNumber This will be the tracking number that is related to the order that needs to be deleted.
-//     */
-//    public void deleteTrackingByNumber(String trackingNumber) {
-//
-//        trackingRepository.deleteByTrackingNumber(trackingNumber);
-//    }
+    /**
+     * This will make it possible to delete an order by the tracking number.
+     *
+     * @param trackingNumber This will be the tracking number that is related to the order that needs to be deleted.
+     */
+    public void deleteTrackingByNumber(String trackingNumber) {
+
+        trackingRepository.deleteByTrackingNumber(trackingNumber);
+
+    }
 }
