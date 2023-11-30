@@ -62,7 +62,7 @@ export default function LoginPage() {
                     <TextInput
                       name="email"
                       type="text"
-                      header="Email/Username"
+                      header="Email"
                       placeholder="youremail@mail.com"
                       class={NO_RING}
                     />
