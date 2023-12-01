@@ -12,6 +12,10 @@ export function apiRegistration() {
   return `/api/v1/auth/register`;
 }
 
+export function apiLogin() {
+  return `/api/v1/auth/authenticate`;
+}
+
 /* URI Paths */
 export function uriHome() {
   return `/`;

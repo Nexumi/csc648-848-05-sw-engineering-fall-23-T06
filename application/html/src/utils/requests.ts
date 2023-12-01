@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiRegistration, apiTest, apiTracking } from './uri';
+import { apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
 
@@ -100,7 +100,7 @@ export const getLogin = async (params: {
   email: string,
   password: string
 }) => {
-  const response = await axios.post(`/api/v1/auth/authenticate`, params);
+  const response = await axios.post(apiLogin(), params);
   return response;
 }
 

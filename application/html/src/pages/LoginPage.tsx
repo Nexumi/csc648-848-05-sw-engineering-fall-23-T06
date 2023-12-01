@@ -10,6 +10,7 @@ import { me, setMe } from "../utils/me";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { For, createSignal } from "solid-js";
 import loginImage from "../assets/appImages/loginImage.jpeg";
+import Cookies from "js-cookie";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -27,10 +28,9 @@ export default function LoginPage() {
       }
       getLogin(params)
         .then((res) => {
-          console.log(res);
-          console.log(res.data);
-          setMe(res.data[0]);
-          toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
+          // setMe(res.data[0]);
+          Cookies.set("token", res.data.token);
+          // toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
           navigate(uriDashboard());
         })
         .catch((err) => {
