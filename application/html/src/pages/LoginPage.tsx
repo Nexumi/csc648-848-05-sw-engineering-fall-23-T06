@@ -61,7 +61,7 @@ export default function LoginPage() {
               <div class="text-xl font-bold">
                 <p>Welcome Back!</p>
               </div>
-              <form use: form>
+              <form use:form>
                 <div class="w-full space-y-5 p-16">
                   <div class="border-b-2 border-black p-0">
                     <TextInput
