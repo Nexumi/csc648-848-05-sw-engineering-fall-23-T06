@@ -4,6 +4,7 @@
  */
 package com.orderowl.api.auth;
 
+import com.orderowl.api.registration.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,8 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @GetMapping
-    public ResponseEntity<String> helloFromAuth() {
-        System.out.println("Hello from auth");
-        return ResponseEntity.ok("Hello from Authentication");
+    public ResponseEntity<User> getUser(@RequestParam("email") String email) {
+        return ResponseEntity.ok(service.getUser(email));
     }
 
     @PostMapping("/register")
