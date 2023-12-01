@@ -142,7 +142,7 @@ function Header() {
             </Show>
             <Show when={isIn()}>
               <div>
-                <p>Welcome, {me().first_name} {me().last_name}!</p>
+                <p>Welcome, {me().firstname} {me().lastname}!</p>
               </div>
               <Button
                 class="shrink-0 text-white bg-black hover:bg-gray-600"
@@ -155,7 +155,7 @@ function Header() {
               <Button
                 class="text-white bg-black hover:bg-gray-600"
                 onclick={() => {
-                  toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
+                  toast.success(`See you next time ${me().firstname} ${me().lastname}!`);
                   Cookies.remove("token");
                   setIsIn(false);
                 }}

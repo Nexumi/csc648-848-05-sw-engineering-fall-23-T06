@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
+import { apiAuth, apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 
 /* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
@@ -123,5 +123,12 @@ export const deleteUserById = async (params: {
   id: string
 }) => {
   const response = await axios.delete(`${apiRegistration()}/delete/${params.id}`);
+  return response;
+}
+
+export const getUser = async (params: {
+  email: string
+}) => {
+  const response = await axios.get(`${apiAuth()}?email=${params.email}`);
   return response;
 }

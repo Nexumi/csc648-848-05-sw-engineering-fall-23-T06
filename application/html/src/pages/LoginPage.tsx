@@ -8,8 +8,9 @@ import { Button } from "../common/components/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
-import { getLogin } from "../utils/requests";
+import { getLogin, getUser } from "../utils/requests";
 import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
+import { me, setMe } from "../utils/me";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -27,14 +28,18 @@ export default function LoginPage() {
       }
       getLogin(params)
         .then((res) => {
-          // setMe(res.data[0]);
           Cookies.set("token", res.data.token);
-          // toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
+          getUser(params)
+            .then((res) => {
+              setMe(res.data);
+              console.log(me());
+              toast.success(`Welcome back, ${me().firstname} ${me().lastname}!`);
+            });
           navigate(uriDashboard());
         })
         .catch((err) => {
           toast.error("Invalid credentials.");
-        })
+        });
     }
   });
 
