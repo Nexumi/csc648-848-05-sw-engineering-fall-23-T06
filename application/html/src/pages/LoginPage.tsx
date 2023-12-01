@@ -27,6 +27,8 @@ export default function LoginPage() {
       }
       getLogin(params)
         .then((res) => {
+          console.log(res);
+          console.log(res.data);
           setMe(res.data[0]);
           toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
           navigate(uriDashboard());
@@ -135,12 +137,12 @@ export default function LoginPage() {
 
 
         </div>
-        <Flex>
-            <img src={loginImage} />
-        </Flex>
-
-
-
+        <div class="h-full w-1/2">
+          <img
+            src={loginImage}
+            class="w-full h-full object-cover object-right"
+          />
+        </div>
       </Flex>
       <Dialog open={isOpen()}>
         <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
