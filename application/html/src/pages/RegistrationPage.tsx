@@ -185,19 +185,17 @@ export default function RegistrationPage() {
                   <Show when={!confirmSame()}>
                     <div class="!mt-0 text-red-500">Passwords must match</div>
                   </Show>
-                  <div >
-                  Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you:
-                  <br />
-                  <div class="underline">
-                    <a href="https://tosandprivacyrules.com/"> The TOS and Privacy Rules </a>
-                  </div>
-                  I have read the TOS and Privacy Rules and I accept
-                  <label for="acception">
+                  <div>
                     <input
-                    id="acception"
-                    type="checkbox"
+                      id="acception"
+                      name="acception"
+                      type="checkbox"
                     />
-                  </label>
+                    <label for="acception">
+                      <span>Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you: </span>
+                      <a class="underline" href="https://tosandprivacyrules.com/">The TOS and Privacy Rules</a>
+                      <span>I have read the TOS and Privacy Rules and I accept</span>
+                    </label>
                   </div>
                   <div class="text-center space-y-2">
                   <div class="text-l font-bold">
