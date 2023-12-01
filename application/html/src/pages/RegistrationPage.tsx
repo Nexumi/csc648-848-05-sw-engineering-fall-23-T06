@@ -185,6 +185,45 @@ export default function RegistrationPage() {
                   <Show when={!confirmSame()}>
                     <div class="!mt-0 text-red-500">Passwords must match</div>
                   </Show>
+                  <div class="border-b-2 border-black p-0">
+                  <br></br>
+                  <p>Almost Done! You just need to create a Pin to access your list of hidden orders.</p>
+                  <br></br>
+                    <TextInput
+                      name="HiddenListPin"
+                      type="text"
+                      header="Hidden List Pin"
+                      class={NO_RING}
+                      placeholder="Hidden List Pin"
+                      onChange={() => {
+                        if (data().confirmHiddenListPin) {
+                          setConfirmSame(data().HiddenListPin === data().confirmHiddenListPin);
+                        }
+                      }}
+                    />
+                  </div>
+                  <ValidationMessage for="HiddenListPin">
+                    {(messages) =>
+                      messages?.map((message) => (
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
+                  </ValidationMessage>
+                  <div class="border-b-2 border-black p-0">
+                    <TextInput
+                      name="confirmHiddenListPin"
+                      type="text"
+                      header="Confirm Hidden List Pin"
+                      class={NO_RING}
+                      placeholder="Hidden List Pin"
+                      onChange={() => {
+                        setConfirmSame(data().confirmHiddenListPin === data().confirmHiddenListPin);
+                      }}
+                    />
+                  </div>
+                  <Show when={!confirmSame()}>
+                    <div class="!mt-0 text-red-500">Pins must match</div>
+                  </Show>
                   <div>
                     <input
                       id="acception"
