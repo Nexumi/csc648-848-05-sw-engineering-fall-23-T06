@@ -118,7 +118,7 @@ function Header() {
               <Button
                 class="text-white bg-black hover:bg-gray-600"
                 onclick={() => {
-                  navigate(uriDashboard()); // Modify as needed
+                  navigate(uriDashboard(true));
                 }}
               >
                 Continue as Guest
