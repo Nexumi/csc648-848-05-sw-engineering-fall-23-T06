@@ -59,9 +59,11 @@ export default function TrackingInfoPage() {
           <div class="capitalize text-6xl text-center">
             <p>More Info</p>
           </div>
-          <Flex justifyContent="center" class="w-full grow border-2 border-black">
+          <Flex justifyContent="center" class="w-full grow border-2 border-black relative">
             <div class="h-full w-full" id="map" />
-            <img src={logo} class="w-16 absolute" draggable={false} />
+            <Flex justifyContent="center" class="w-16 h-16 absolute bg-red-600 bg-opacity-50 rounded-full border-2 border-red-600">
+              <img src={logo} draggable={false} />
+            </Flex>
           </Flex>
         </Flex>
         <Flex flexDirection="col" class="p-8 space-y-16">
