@@ -5,8 +5,13 @@ import { createForm } from "@felte/solid";
 import TrackingList from "../components/TrackingList";
 import { createResource } from "solid-js";
 import { getTrackingBySearch, getTrackingCount } from "../utils/requests";
+import { Button } from "../common/components/button";
 
 export default function TrackingPage() {
+
+  const IS_TYPE = "w-1/2 border-2 border-black bg-gray-300";
+  const IS_NOT_TYPE = "w-1/2 border-2 border-black";
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [undeliveredCount] = createResource(getTrackingCount); 
@@ -17,9 +22,12 @@ export default function TrackingPage() {
     getTrackingBySearch
   );
   
-  const { form } = createForm({
+  const { form, data, setData } = createForm({
     onSubmit(values) {
       setSearchParams({searchText: values.search});
+      const params = {
+              type: values.listType,
+            }
     }
   });
  
@@ -27,7 +35,7 @@ export default function TrackingPage() {
     <div class="space-y-4">
       <span class="text-xl ml-4">Number of Undelivered Orders Left: {undeliveredCount()}</span>
       <div class="text-center text-6xl">
-        <p>Track Info</p>
+        <p>Visible Track Info List</p>
       </div>
       <Flex justifyContent="center">
         <form use:form>
@@ -37,8 +45,31 @@ export default function TrackingPage() {
             <img src={SearchIcon} alt="Search" class="w-6 h-6" />
           </button>
         </form>
+        <div>
+        <Flex class="gap-x-2">
+            <Button
+              type="button"
+              class="text-xl mr-2"
+              class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+              onClick={() => {
+                setData("listType", "visible");
+              }}
+            >
+              View Visible List
+            </Button>
+            <Button
+              type="button"
+              class="text-xl mr-2"
+              class={data().listType === "hidden" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+              onClick={() => {
+                setData("listType", "hidden");
+              }}
+            >
+              View Hidden List
+            </Button>
+        </Flex>
+        </div>
       </Flex>
-
       <Flex justifyContent="center">
         <div class="w-3/4">
           <TrackingList
