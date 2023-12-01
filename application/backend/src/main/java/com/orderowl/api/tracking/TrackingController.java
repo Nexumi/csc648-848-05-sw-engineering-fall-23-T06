@@ -44,7 +44,7 @@ public class TrackingController {
      * @param id This will hold the ID of the tracking info.
      * @return The Tracking, This will return the tracking order that is relating to the ID, or it will return null if there is nothing.
      */
-    @GetMapping(path = "/{id:[0-9]*]}")
+    @GetMapping(path = "/{id:[0-9]*}")
     public ResponseEntity<Tracking> getTrackingById(@PathVariable Long id) {
 
         Tracking tracking = trackingService.getTrackingById(id);
