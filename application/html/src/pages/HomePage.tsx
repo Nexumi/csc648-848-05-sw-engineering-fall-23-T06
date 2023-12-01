@@ -92,7 +92,7 @@ function Header() {
                   navigate(uriAbout());
                 }}
               >
-                About Me Pages
+                About Us
               </Button>
 
               <Button

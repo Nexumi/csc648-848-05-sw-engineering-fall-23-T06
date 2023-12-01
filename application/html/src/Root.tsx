@@ -19,6 +19,7 @@ import UploadPage from "./pages/UploadPage";
 import Footer from "./components/Footer";
 import RegistrationPage from "./pages/RegistrationPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
+import HiddenTrackingPage from "./pages/HiddenTrackingPage";
 import ApiTestPage from "./pages/ApiTestPage";
 import SupportPage from "./pages/SupportPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -53,6 +54,10 @@ export default function Root() {
               <Route path="/upload" component={UploadPage} />
               <Route path="/tracking">
                 <Route path="/" component={TrackingPage} />
+                <Route path="/:id" component={TrackingInfoPage} />
+              </Route>
+              <Route path="/hiddentracking">
+                <Route path="/" component={HiddenTrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
               <Route path="/support" component={SupportPage} />
