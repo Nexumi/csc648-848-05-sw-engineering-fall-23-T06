@@ -273,12 +273,12 @@ export default function RegistrationPage() {
             </div>
           </Flex>
         </div>
-        <div class="h-full w-1/2">
+        <Flex justifyContent="center" class="h-full w-1/2">
           <img
             src={registrationImage}
-            class="w-full h-full object-cover object-right"
+            class="w-[40rem] h-[72rem] object-cover object-right"
           />
-        </div>
+        </Flex>
       </Flex>
     </>
   );

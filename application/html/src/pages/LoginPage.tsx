@@ -133,16 +133,13 @@ export default function LoginPage() {
               </form>
             </div>
           </Flex>
-
-
-
         </div>
-        <div class="h-full w-1/2">
+        <Flex justifyContent="center" class="h-full w-1/2">
           <img
             src={loginImage}
-            class="w-full h-full object-cover object-right"
+            class="w-[40rem] h-[40rem] object-cover object-center"
           />
-        </div>
+        </Flex>
       </Flex>
       <Dialog open={isOpen()}>
         <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
