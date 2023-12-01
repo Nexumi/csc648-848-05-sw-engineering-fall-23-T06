@@ -117,6 +117,7 @@ export default function TrackingList(props: {
             {(pack) => 
               <TrackingRow
                 packageId={pack.id}
+                title={pack.title}
                 retailer={pack.retailer}
                 carrier={pack.carrier}
                 eta={pack.eta}
@@ -147,7 +148,7 @@ function HeaderTitle(props: {
         <Match when={props.sort}>
           <Flex
             justifyContent="start"
-            class="cursor-pointer select-none hover:text-gray-600 gap-x-1"
+            class="cursor-pointer select-none hover:text-gray-600 gap-x-1 whitespace-nowrap"
             onClick={() => {
               props.update(props.key);
             }}
@@ -202,6 +203,7 @@ function HeaderTitle(props: {
 
 function TrackingRow(props: {
   packageId?: string | number,
+  title: string,
   retailer: string,
   carrier: string,
   eta: string,
@@ -224,6 +226,9 @@ function TrackingRow(props: {
           }
         }}
       >
+        <TableCell>
+          {props.title}
+        </TableCell>
         <TableCell>
           <A
             href={getURL(props.retailer || "")}
