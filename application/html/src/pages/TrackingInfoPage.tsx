@@ -9,6 +9,7 @@ import toast from "solid-toast";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Button } from "../common/components/button";
 import { Loader } from '@googlemaps/js-api-loader';
+import logo from "../assets/logos/logo.png";
 
 export default function TrackingInfoPage() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function TrackingInfoPage() {
       lat: -33.860664,
       lng: 151.208138
     },
-    zoom: 14,
+    zoom: 16,
     mapId: "orderUP"
  });
 
@@ -59,6 +60,7 @@ export default function TrackingInfoPage() {
           </div>
           <Flex justifyContent="center" class="w-full grow border-2 border-black">
             <div class="h-full w-full" id="map" />
+            <img src={logo} class="w-16 absolute" draggable={false} />
           </Flex>
         </Flex>
         <Flex flexDirection="col" class="p-8 space-y-16">
