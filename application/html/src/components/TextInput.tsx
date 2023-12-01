@@ -6,7 +6,8 @@ export default function TextInput(props: {
   name: string,
   type: string,
   class?: string,
-  onChange?: any
+  onChange?: any,
+  placeholder?: string
 }) {
   const [, rest] = splitProps(props, ["header", "name", "type"])
 
@@ -21,6 +22,7 @@ export default function TextInput(props: {
       <Input
         name={props.name}
         type={props.type}
+        placeholder={props.placeholder}
         {...rest}
       />
     </div>
