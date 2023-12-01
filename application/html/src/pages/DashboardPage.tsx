@@ -28,7 +28,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Dialog open={!Cookies.get("user") && firstTime()}>
+      <Dialog open={!Cookies.get("token") && firstTime()}>
         <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>
           <DialogHeader class="space-y-4">
             <DialogTitle class="text-center text-3xl">

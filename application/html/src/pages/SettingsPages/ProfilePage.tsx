@@ -47,7 +47,7 @@ export default function ProfilePage() {
           <p>Email</p>
           <Input type="text" readonly class={NO_FOCUS} placeholder={me().email} />
         </div>
-        <Show when={Cookies.get("user")}>
+        <Show when={Cookies.get("token")}>
           <Flex justifyContent="center">
             <Button
               class="text-white bg-red-600 hover:bg-red-400"
@@ -84,7 +84,7 @@ export default function ProfilePage() {
                   deleteUserById({ id: me().id })
                     .then((res) => {
                       toast.success("Successfully deleted your account!\nWe hope to see you again.");
-                      Cookies.remove("user");
+                      Cookies.remove("token");
                       navigate(uriHome());
                     })
                     .catch((error) => {

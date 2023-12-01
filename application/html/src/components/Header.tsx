@@ -82,7 +82,7 @@ export default function Logo() {
                 </svg>
               </DropdownMenuTrigger>
               <DropdownMenuContent class="bg-white">
-                <Show when={Cookies.get("user") !== undefined}>
+                <Show when={Cookies.get("token") !== undefined}>
                   <DropdownMenuItem>
                     <p>Hi, <span class="font-semibold">{me().first_name} {me().last_name}</span></p>
                   </DropdownMenuItem>
@@ -103,11 +103,11 @@ export default function Logo() {
                 >
                   Support
                 </DropdownMenuItem>
-                <Show when={Cookies.get("user") !== undefined}>
+                <Show when={Cookies.get("token") !== undefined}>
                   <DropdownMenuItem
                     onSelect={() => {
                       toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
-                      Cookies.remove("user");
+                      Cookies.remove("token");
                       navigate(uriHome());
                     }}
                     class="cursor-pointer hover:bg-gray-200"
@@ -115,7 +115,7 @@ export default function Logo() {
                     Logout
                   </DropdownMenuItem>
                 </Show>
-                <Show when={Cookies.get("user") === undefined}>
+                <Show when={Cookies.get("token") === undefined}>
                   <DropdownMenuItem
                     onSelect={() => {
                       navigate(uriLogin());

@@ -28,7 +28,7 @@ export default function SideBar() {
   ]);
 
  /* createEffect(() => {
-    if (!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout() && Cookies.get("user") == undefined) {
+    if (!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout() && Cookies.get("token") == undefined) {
       toast.error("You must be signed in to do that.");
       navigate(uriLogin());
     }

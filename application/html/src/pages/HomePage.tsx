@@ -65,7 +65,7 @@ export default function HomePage() {
 function Header() {
   const navigate = useNavigate();
 
-  const [isIn, setIsIn] = createSignal(Cookies.get("user") != undefined);
+  const [isIn, setIsIn] = createSignal(Cookies.get("token") != undefined);
   
   const { form } = createForm({
     onSubmit(values) {
@@ -156,7 +156,7 @@ function Header() {
       class="text-white bg-black hover:bg-gray-600"
       onclick={() => {
         toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
-        Cookies.remove("user");
+        Cookies.remove("token");
         setIsIn(false);
       }}
     >
