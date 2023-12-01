@@ -2,6 +2,7 @@ import axios from 'axios';
 import { apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 import Cookies from 'js-cookie';
 
+/* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
 axios.interceptors.request.use(
   config => {
@@ -14,6 +15,8 @@ axios.interceptors.request.use(
     return config;
   }
 )
+
+/* API Calls */
 
 export const getAllTest = async () => {
   try {
