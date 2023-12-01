@@ -6,8 +6,12 @@ import TrackingList from "../components/TrackingList";
 import { createResource } from "solid-js";
 import { getTrackingBySearch, getTrackingCount } from "../utils/requests";
 import { Button } from "../common/components/button";
+import { uriHiddenTracking, uriTracking } from "../utils/uri";
+import { useNavigate } from "@solidjs/router";
 
 export default function TrackingPage() {
+
+  const navigate = useNavigate();
 
   const IS_TYPE = "w-1/2 border-2 border-black bg-gray-300";
   const IS_NOT_TYPE = "w-1/2 border-2 border-black";
@@ -53,6 +57,7 @@ export default function TrackingPage() {
               class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
               onClick={() => {
                 setData("listType", "visible");
+                navigate(uriTracking());
               }}
             >
               View Visible List
@@ -63,6 +68,7 @@ export default function TrackingPage() {
               class={data().listType === "hidden" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
               onClick={() => {
                 setData("listType", "hidden");
+                navigate(uriHiddenTracking());
               }}
             >
               View Hidden List

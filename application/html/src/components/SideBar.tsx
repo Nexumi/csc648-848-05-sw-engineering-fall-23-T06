@@ -24,15 +24,7 @@ export default function SideBar() {
     {label: "Dashboard", uri: uriDashboard, isPage: isDashboard},
     {label: "Upload", uri: uriUpload, isPage: isUpload},
     {label: "Track Info", uri: uriTracking, isPage: isTracking},
-    // {label: "API Test", uri: uriApiTest, isPage: isApiTest},
   ]);
-
- /* createEffect(() => {
-    if (!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout() && Cookies.get("user") == undefined) {
-      toast.error("You must be signed in to do that.");
-      navigate(uriLogin());
-    }
-  });*/
 
   return (
     <>

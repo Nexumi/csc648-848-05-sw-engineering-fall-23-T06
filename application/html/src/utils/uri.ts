@@ -49,6 +49,10 @@ export function uriTracking(id?: string | number) {
   return id !== undefined ? `/tracking/${id}` : `/tracking`;
 }
 
+export function uriHiddenTracking(id?: string | number) {
+  return id !== undefined ? `/hiddentracking/${id}` : `/hiddentracking`;
+}
+
 export function uriSupport() {
   return `/support`;
 }

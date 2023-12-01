@@ -16,8 +16,6 @@ import PCK from "../assets/appImages/PCK.jpg";
 import picture3 from "../assets/appImages/picture3.jpg";
 import picture4 from "../assets/appImages/picture4.jpg";
 
-
-
 export default function HomePage() {
   const [packages] = createResource(getAllTracking);
 
