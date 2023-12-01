@@ -1,7 +1,7 @@
-import { Routes, Route, Navigate } from "@solidjs/router";
+import { Navigate, Route, Routes } from "@solidjs/router";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
-import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import AboutBelu from "./pages/AboutPages/AboutBelu";
 import AboutDavid from "./pages/AboutPages/AboutDavid";
@@ -10,21 +10,20 @@ import AboutKomal from "./pages/AboutPages/AboutKomal";
 import AboutLuis from "./pages/AboutPages/AboutLuis";
 import AboutMankit from "./pages/AboutPages/AboutMankit";
 import AboutTin from "./pages/AboutPages/AboutTin";
-import LoginPage from "./pages/LoginPage";
-import ForgetPage from "./pages/ForgetPage";
-import TrackingPage from "./pages/TrackingPage";
-import PageNotFound from "./pages/PageNotFound";
 import DashboardPage from "./pages/DashboardPage";
-import UploadPage from "./pages/UploadPage";
-import Footer from "./components/Footer";
-import RegistrationPage from "./pages/RegistrationPage";
-import TrackingInfoPage from "./pages/TrackingInfoPage";
+import ForgetPage from "./pages/ForgetPage";
 import HiddenTrackingPage from "./pages/HiddenTrackingPage";
-import ApiTestPage from "./pages/ApiTestPage";
-import SupportPage from "./pages/SupportPage";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import PageNotFound from "./pages/PageNotFound";
+import RegistrationPage from "./pages/RegistrationPage";
 import SettingsPage from "./pages/SettingsPage";
-import ProfilePage from "./pages/SettingsPages/ProfilePage";
 import EtcPage from "./pages/SettingsPages/EtcPage";
+import ProfilePage from "./pages/SettingsPages/ProfilePage";
+import SupportPage from "./pages/SupportPage";
+import TrackingInfoPage from "./pages/TrackingInfoPage";
+import TrackingPage from "./pages/TrackingPage";
+import UploadPage from "./pages/UploadPage";
 
 export default function Root() {
   return (
@@ -66,7 +65,6 @@ export default function Root() {
                 <Route path="/profile" component={ProfilePage} />
                 <Route path="/etc" component={EtcPage} />
               </Route>
-              {/* <Route path="/api_test" component={ApiTestPage} /> */}
             </Routes>
           </div>
           <Footer />

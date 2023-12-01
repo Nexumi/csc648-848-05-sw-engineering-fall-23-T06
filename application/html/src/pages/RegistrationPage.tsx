@@ -1,16 +1,16 @@
+import { ValidationMessage, reporter } from "@felte/reporter-solid";
+import { createForm } from "@felte/solid";
+import { validator } from "@felte/validator-zod";
 import { useNavigate } from "@solidjs/router";
+import { Show, createSignal } from "solid-js";
+import toast from "solid-toast";
+import { z } from "zod";
+import registrationImage from "../assets/appImages/registrationImage.jpeg";
+import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
-import { createForm } from "@felte/solid";
-import { Button } from "../common/components/button";
-import { uriHome, uriLogin } from "../utils/uri";
-import toast from "solid-toast";
 import { postRegistration } from "../utils/requests";
-import { Show, createSignal } from "solid-js";
-import { z } from "zod";
-import { validator } from "@felte/validator-zod";
-import { ValidationMessage, reporter } from "@felte/reporter-solid";
-import registrationImage from "../assets/appImages/registrationImage.jpeg";
+import { uriHome, uriLogin } from "../utils/uri";
 
 
 export default function RegistrationPage() {
@@ -72,7 +72,7 @@ export default function RegistrationPage() {
             onClick={() => {
               navigate(uriHome());
             }
-          }
+            }
           >
             <p>OrderOwl</p>
           </Flex>
@@ -134,19 +134,19 @@ export default function RegistrationPage() {
                   </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
-                    name="confirmEmail"
-                    type="text"
-                    header="Confirm Email"
-                    class={NO_RING}
-                    placeholder="youremail@mail.com"
-                   />
+                      name="confirmEmail"
+                      type="text"
+                      header="Confirm Email"
+                      class={NO_RING}
+                      placeholder="youremail@mail.com"
+                    />
                   </div>
                   <ValidationMessage for="confirmEmail">
                     {(messages) =>
                       messages?.map((message) => (
-                  <div class="!mt-0 text-red-500">{message}</div>
-                   ))
-                   }
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
                   </ValidationMessage>
 
                   <div class="border-b-2 border-black p-0">
@@ -199,10 +199,10 @@ export default function RegistrationPage() {
                     </label>
                   </div>
                   <div class="text-center space-y-2">
-                  <div class="text-l font-bold">
+                    <div class="text-l font-bold">
                       <p>Account Type</p>
-                  </div>
-                      <p>Please choose for what purpose you will be using OrderOwl for.</p>
+                    </div>
+                    <p>Please choose for what purpose you will be using OrderOwl for.</p>
                     <Flex class="gap-x-2">
                       <Button
                         type="button"
@@ -228,12 +228,12 @@ export default function RegistrationPage() {
                 <Flex>
                   <div>
                     <p>
-                      Already have an account? 
+                      Already have an account?
                       <span
                         class="underline cursor-pointer"
                         onClick={() => {
-                            navigate(uriLogin());
-                          }
+                          navigate(uriLogin());
+                        }
                         }
                       >
                         Login

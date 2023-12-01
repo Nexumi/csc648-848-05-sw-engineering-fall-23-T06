@@ -1,6 +1,6 @@
-import { createSignal, For, Show } from "solid-js";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../common/components/table";
 import { useNavigate } from "@solidjs/router";
+import { createSignal, For } from "solid-js";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
 import { uriTracking } from "../utils/uri";
 
 export default function Calendar(props: {
@@ -12,7 +12,7 @@ export default function Calendar(props: {
   const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
   return (
-    <>      
+    <>
       <div class="text-center text-3xl font-bold">
         <p>{month()}</p>
       </div>
@@ -47,7 +47,7 @@ export default function Calendar(props: {
             {(week) =>
               <TableRow>
                 <For each={week}>
-                  {(day) => 
+                  {(day) =>
                     <TableCell class="text-left border-2 border-black">
                       <div class={today() === day ? "text-red-500 font-bold" : ""}>
                         <p>{day}</p>
@@ -98,7 +98,7 @@ function getFullDate(day: string) {
   const date = new Date();
   const year = date.getFullYear();
   let month = String(date.getMonth() + 1).padStart(2, "0");
-  
+
   return year + "-" + month + "-" + day.padStart(2, "0");
 }
 
@@ -111,7 +111,7 @@ function getCalendar() {
   const week = ["", "", "", "", "", "", ""];
   const calendar = [];
   let currDate = new Date(`${month} 1 ${year}`);
-  
+
   let currWeek = [...week];
   for (let i = 1; currDate.toLocaleDateString("default", { month: "long" }) === month; i++) {
     if (currDate.getDay() === 0 && currDate.getDate() !== 1) {

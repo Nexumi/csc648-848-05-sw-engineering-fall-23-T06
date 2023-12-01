@@ -1,5 +1,5 @@
+import David from "../../assets/profiles/David.jpeg";
 import AboutMe from "../../components/AboutMe";
-import David from "../../assets/profiles/David.jpeg"
 
 export default function AboutDavid() {
   return (

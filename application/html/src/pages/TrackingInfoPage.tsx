@@ -1,15 +1,15 @@
+import { Loader } from '@googlemaps/js-api-loader';
 import { A, useNavigate, useParams } from "@solidjs/router";
+import { createResource, createSignal } from "solid-js";
+import toast from "solid-toast";
+import logo from "../assets/logos/logo.png";
+import { Button } from "../common/components/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Flex } from "../common/layout/flex";
 import { Grid } from "../common/layout/grid";
-import {createResource, createSignal, onCleanup} from "solid-js";
 import { deleteTrackingById, getTrackingById } from "../utils/requests";
-import { getURL } from "../utils/util";
 import { uriTracking } from "../utils/uri";
-import toast from "solid-toast";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
-import { Button } from "../common/components/button";
-import { Loader } from '@googlemaps/js-api-loader';
-import logo from "../assets/logos/logo.png";
+import { getURL } from "../utils/util";
 
 export default function TrackingInfoPage() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function TrackingInfoPage() {
   );
 
   const [deleting, setDeleting] = createSignal(false);
-  
+
   const [mapOptions, setMapOptions] = createSignal({
     center: {
       lat: -33.860664,
@@ -33,7 +33,7 @@ export default function TrackingInfoPage() {
     },
     zoom: 16,
     mapId: "orderUP"
- });
+  });
 
   const loader = new Loader({
     apiKey: "AIzaSyBEEK5lI6HKprDMcVwNOBUios-VDLQ3jWI",
@@ -43,7 +43,7 @@ export default function TrackingInfoPage() {
 
   loader
     .importLibrary('maps')
-    .then(({Map}) => {
+    .then(({ Map }) => {
       const map = new Map(document.getElementById("map"), mapOptions());
       map.setOptions({
         disableDefaultUI: true,
@@ -59,9 +59,11 @@ export default function TrackingInfoPage() {
           <div class="capitalize text-6xl text-center">
             <p>More Info</p>
           </div>
-          <Flex justifyContent="center" class="w-full grow border-2 border-black">
+          <Flex justifyContent="center" class="w-full grow border-2 border-black relative">
             <div class="h-full w-full" id="map" />
-            <img src={logo} class="w-16 absolute" draggable={false} />
+            <Flex justifyContent="center" class="w-16 h-16 absolute bg-red-600 bg-opacity-50 rounded-full border-2 border-red-600">
+              <img src={logo} draggable={false} />
+            </Flex>
           </Flex>
         </Flex>
         <Flex flexDirection="col" class="p-8 space-y-16">
@@ -88,7 +90,7 @@ export default function TrackingInfoPage() {
               </Flex>
               <Grid cols={2} class="text-2xl">
                 <div class="space-y-4">
-                  <p>Retailer: 
+                  <p>Retailer:
                     <A
                       href={getURL(tracking()?.retailer || "")}
                       target="_blank"
@@ -110,16 +112,16 @@ export default function TrackingInfoPage() {
           </div>
           <div class="w-full grow border-2 border-black p-8">
             <div class="space-y-2">
-                <div class="text-3xl">
-                  <p>All Updates:</p>
-                </div>
-                <div class="text-lg">
-                  <ul class="list-disc ml-4">
-                    <li>Update #1</li>
-                    <li>Update #2</li>
-                    <li>Update #3</li>
-                  </ul>
-                </div>
+              <div class="text-3xl">
+                <p>All Updates:</p>
+              </div>
+              <div class="text-lg">
+                <ul class="list-disc ml-4">
+                  <li>Update #1</li>
+                  <li>Update #2</li>
+                  <li>Update #3</li>
+                </ul>
+              </div>
             </div>
           </div>
         </Flex>

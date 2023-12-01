@@ -1,7 +1,22 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 
+/* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
+axios.interceptors.request.use(
+  config => {
+    const token = Cookies.get('token');
+
+    if (token) {
+      config.headers!['Authorization'] = "Bearer " + token;
+    }
+
+    return config;
+  }
+)
+
+/* API Calls */
 
 export const getAllTest = async () => {
   try {
