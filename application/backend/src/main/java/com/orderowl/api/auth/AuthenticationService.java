@@ -68,10 +68,19 @@ public class AuthenticationService {
                 .build();
     }
 
-    public User getUser(String email){
+    public UserRequest getUser(String email){
 
         var user = repository.findByEmail(email)
                 .orElseThrow();
-        return user;
+
+        return UserRequest.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .address(user.getAddress())
+                .enabled(user.getEnabled())
+                .pin(user.getPin())
+                .build();
     }
 }
