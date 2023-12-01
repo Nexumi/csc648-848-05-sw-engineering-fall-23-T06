@@ -37,11 +37,11 @@ export default function ProfilePage() {
         </Flex>
         <div>
           <p>First Name</p>
-          <Input type="text" readonly class={NO_FOCUS} placeholder={me().first_name} />
+          <Input type="text" readonly class={NO_FOCUS} placeholder={me().firstname} />
         </div>
         <div>
           <p>Last Name</p>
-          <Input type="text" readonly class={NO_FOCUS} placeholder={me().last_name} />
+          <Input type="text" readonly class={NO_FOCUS} placeholder={me().lastname} />
         </div>
         <div>
           <p>Email</p>

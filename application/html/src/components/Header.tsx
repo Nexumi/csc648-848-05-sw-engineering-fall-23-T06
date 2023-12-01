@@ -83,7 +83,7 @@ export default function Logo() {
               <DropdownMenuContent class="bg-white">
                 <Show when={Cookies.get("token") !== undefined}>
                   <DropdownMenuItem>
-                    <p>Hi, <span class="font-semibold">{me().first_name} {me().last_name}</span></p>
+                    <p>Hi, <span class="font-semibold">{me().firstname} {me().lastname}</span></p>
                   </DropdownMenuItem>
                 </Show>
                 <DropdownMenuItem
@@ -105,7 +105,7 @@ export default function Logo() {
                 <Show when={Cookies.get("token") !== undefined}>
                   <DropdownMenuItem
                     onSelect={() => {
-                      toast.success(`See you next time ${me().first_name} ${me().last_name}!`);
+                      toast.success(`See you next time ${me().firstname} ${me().lastname}!`);
                       Cookies.remove("token");
                       navigate(uriHome());
                     }}
