@@ -9,6 +9,7 @@ import toast from "solid-toast";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Button } from "../common/components/button";
 import { Loader } from '@googlemaps/js-api-loader';
+
 export default function TrackingInfoPage() {
   const navigate = useNavigate();
   const params = useParams();
@@ -26,27 +27,21 @@ export default function TrackingInfoPage() {
   
   const [mapOptions, setMapOptions] = createSignal({
     center: { lat: -33.860664, lng: 151.208138 },
-    zoom: 14
+    zoom: 14,
+    mapId: "TEST"
  });
 
-  const apiOptions = {
-      apiKey: "AIzaSyBEEK5lI6HKprDMcVwNOBUios-VDLQ3jWI"
-  }
-
-  const loader = new Loader(apiOptions);
-
-  loader.load().then(() => {
-      console.log('Maps JS API loaded');
-
-      displayMap();
+  const loader = new Loader({
+    apiKey: "AIzaSyBEEK5lI6HKprDMcVwNOBUios-VDLQ3jWI",
+    version: "weekly",
+    libraries: ["places"]
   });
 
-  function displayMap() {
-      
-      const mapDiv = document.getElementById('map');
-      const map = new google.maps.Map(mapDiv, mapOptions);
-      return map;
-  }
+  loader
+    .importLibrary('maps')
+    .then(({Map}) => {
+      new Map(document.getElementById("map"), mapOptions());
+    });
 
   return (
     <>
@@ -55,10 +50,8 @@ export default function TrackingInfoPage() {
           <div class="capitalize text-6xl text-center">
             <p>More Info</p>
           </div>
-          <Flex justifyContent="center" class="w-full grow border-2 border-black p-8">
-            <div class="text-9xl -rotate-45">
-                <div id="map"></div>
-            </div>
+          <Flex justifyContent="center" class="w-full grow border-2 border-black">
+            <div class="h-full w-full" id="map" />
           </Flex>
         </Flex>
         <Flex flexDirection="col" class="p-8 space-y-16">
