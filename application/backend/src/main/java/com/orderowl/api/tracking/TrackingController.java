@@ -4,6 +4,9 @@
 
 package com.orderowl.api.tracking;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +44,7 @@ public class TrackingController {
      * @param id This will hold the ID of the tracking info.
      * @return The Tracking, This will return the tracking order that is relating to the ID, or it will return null if there is nothing.
      */
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id:[0-9]*]}")
     public ResponseEntity<Tracking> getTrackingById(@PathVariable Long id) {
 
         Tracking tracking = trackingService.getTrackingById(id);
@@ -124,7 +127,7 @@ public class TrackingController {
      * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
      */
     @GetMapping(path = "/search")
-    public List<Tracking> searchTracking(@RequestParam("searchText") String searchText) {
+    public List<Tracking> searchTracking(@RequestParam("searchText") @Min(3) @Max(30)  @NotNull String searchText) {
 
         return trackingService.searchTracking(searchText);
     }
@@ -146,7 +149,7 @@ public class TrackingController {
         return trackingService.getHiddenTracking();
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/delete/{id:[0-9]*]}")
     public ResponseEntity<String> deleteTrackingById(@PathVariable("id") Long id) {
 
         trackingService.deleteById(id);
