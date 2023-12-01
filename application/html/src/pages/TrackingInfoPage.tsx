@@ -26,9 +26,12 @@ export default function TrackingInfoPage() {
   const [deleting, setDeleting] = createSignal(false);
   
   const [mapOptions, setMapOptions] = createSignal({
-    center: { lat: -33.860664, lng: 151.208138 },
+    center: {
+      lat: -33.860664,
+      lng: 151.208138
+    },
     zoom: 14,
-    mapId: "TEST"
+    mapId: "orderUP"
  });
 
   const loader = new Loader({
@@ -40,7 +43,11 @@ export default function TrackingInfoPage() {
   loader
     .importLibrary('maps')
     .then(({Map}) => {
-      new Map(document.getElementById("map"), mapOptions());
+      const map = new Map(document.getElementById("map"), mapOptions());
+      map.setOptions({
+        disableDefaultUI: true,
+        gestureHandling: "none",
+      });
     });
 
   return (
