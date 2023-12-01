@@ -42,7 +42,7 @@ export default function RegistrationPage() {
         lastname: values.lastName,
         email: values.email,
         password: values.password,
-        type: values.accountType
+        type: values.accountType || "0"
       }
       if (values.password === values.confirmPassword) {
         postRegistration(params)
