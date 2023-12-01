@@ -9,8 +9,8 @@ import { Button } from "../common/components/button";
 
 export default function TrackingPage() {
 
-  const IS_TYPE = "w-1/2 border-2 border-black bg-gray-300";
-  const IS_NOT_TYPE = "w-1/2 border-2 border-black";
+  const IS_TYPE = "w-1/2 border-2 border-black whitespace-nowrap bg-gray-300";
+  const IS_NOT_TYPE = "w-1/2 border-2 border-black whitespace-nowrap";
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -49,7 +49,6 @@ export default function TrackingPage() {
         <Flex class="gap-x-2">
             <Button
               type="button"
-              class="text-xl mr-2"
               class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
               onClick={() => {
                 setData("listType", "visible");
@@ -59,8 +58,7 @@ export default function TrackingPage() {
             </Button>
             <Button
               type="button"
-              class="text-xl mr-2"
-              class={data().listType === "hidden" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+              class={data().listType === "hidden" ? IS_TYPE : IS_NOT_TYPE}
               onClick={() => {
                 setData("listType", "hidden");
               }}
