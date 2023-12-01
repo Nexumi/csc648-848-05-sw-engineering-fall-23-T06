@@ -42,7 +42,7 @@ export default function RegistrationPage() {
         lastname: values.lastName,
         email: values.email,
         password: values.password,
-        //type: values.accountType
+        type: values.accountType
       }
       if (values.password === values.confirmPassword) {
         postRegistration(params)
@@ -207,18 +207,18 @@ export default function RegistrationPage() {
                     <Flex class="gap-x-2">
                       <Button
                         type="button"
-                        class={data().accountType === "personal" || data().accountType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                        class={data().accountType === "0" || data().accountType === undefined ? IS_TYPE : IS_NOT_TYPE}
                         onClick={() => {
-                          setData("accountType", "personal");
+                          setData("accountType", "0");
                         }}
                       >
                         Personal
                       </Button>
                       <Button
                         type="button"
-                        class={data().accountType === "business" ? IS_TYPE : IS_NOT_TYPE}
+                        class={data().accountType === "1" ? IS_TYPE : IS_NOT_TYPE}
                         onClick={() => {
-                          setData("accountType", "business");
+                          setData("accountType", "1");
                         }}
                       >
                         Business
