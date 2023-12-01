@@ -2,13 +2,13 @@ import { useNavigate } from "@solidjs/router";
 import Cookies from "js-cookie";
 import { createSignal, Show } from "solid-js";
 import toast from "solid-toast";
-import { DialogContent, DialogHeader, DialogTitle, DialogDescription, Dialog } from "../../common/components/dialog";
+import { Button } from "../../common/components/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../../common/components/dialog";
+import { Input } from "../../common/components/input";
 import { Flex } from "../../common/layout/flex";
 import { me } from "../../utils/me";
 import { deleteUserById } from "../../utils/requests";
 import { uriHome } from "../../utils/uri";
-import { Input } from "../../common/components/input";
-import { Button } from "../../common/components/button";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function ProfilePage() {
   const NO_FOCUS = "focus-visible:ring-0 focus-visible:ring-offset-0";
 
   const [deleting, setDeleting] = createSignal(false);
-  
+
   return (
     <>
       <div class="w-full space-y-4">

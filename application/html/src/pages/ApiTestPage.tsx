@@ -1,9 +1,9 @@
-import { For, createEffect, createResource } from "solid-js";
-import { deleteTestById, getAllTest, postTest } from "../utils/requests";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { Input } from "../common/components/input";
 import { createForm } from "@felte/solid";
+import { For, createEffect, createResource } from "solid-js";
 import toast from "solid-toast";
+import { Input } from "../common/components/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
+import { deleteTestById, getAllTest, postTest } from "../utils/requests";
 
 export default function ApiTestPage() {
   const [data, { refetch }] = createResource(getAllTest);
@@ -50,7 +50,7 @@ export default function ApiTestPage() {
         </TableHeader>
         <TableBody>
           <For each={data()}>
-            {(test) => 
+            {(test) =>
               <TestRow
                 id={test.id}
                 word={test.word}

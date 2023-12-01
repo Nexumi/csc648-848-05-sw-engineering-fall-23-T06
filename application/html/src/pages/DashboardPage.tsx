@@ -1,15 +1,15 @@
+import { createForm } from "@felte/solid";
 import { useNavigate, useSearchParams } from "@solidjs/router";
-import { Flex } from "../common/layout/flex";
-import { uriDashboard, uriRegistration, uriTracking} from "../utils/uri";
-import SearchIcon from "../assets/icons/SearchIcon.png";
+import Cookies from "js-cookie";
 import { createResource, createSignal } from "solid-js";
+import SearchIcon from "../assets/icons/SearchIcon.png";
+import { Button } from "../common/components/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
+import { Flex } from "../common/layout/flex";
+import Calendar from "../components/Calendar";
 import TrackingList from "../components/TrackingList";
 import { getAllTracking } from "../utils/requests";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
-import Cookies from "js-cookie";
-import { Button } from "../common/components/button";
-import { createForm } from "@felte/solid";
-import Calendar from "../components/Calendar";
+import { uriDashboard, uriRegistration, uriTracking } from "../utils/uri";
 import { sortBy } from "../utils/util";
 
 export default function DashboardPage() {
@@ -67,10 +67,10 @@ export default function DashboardPage() {
         <Flex justifyContent="center">
           <form use:form>
             <span class="text-xl mr-2">Search:</span>
-            <input 
-              name="search" 
-              class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" 
-              type="text" 
+            <input
+              name="search"
+              class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+              type="text"
               placeholder="tracking #, carrier, status..."
             />
             <button type="submit" class="ml-2 focus:outline-none">

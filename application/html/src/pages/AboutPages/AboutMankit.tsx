@@ -1,5 +1,5 @@
+import Mankit from "../../assets/profiles/Mankit.jpg";
 import AboutMe from "../../components/AboutMe";
-import Mankit from "../../assets/profiles/Mankit.jpg"
 
 export default function AboutMankit() {
   return (

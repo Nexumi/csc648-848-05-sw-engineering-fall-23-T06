@@ -1,16 +1,15 @@
+import { createForm } from "@felte/solid";
 import { useNavigate } from "@solidjs/router";
+import Cookies from "js-cookie";
+import { For, createSignal } from "solid-js";
+import toast from "solid-toast";
+import loginImage from "../assets/appImages/loginImage.jpeg";
+import { Button } from "../common/components/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
-import { createForm } from "@felte/solid";
-import { Button } from "../common/components/button";
-import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
-import toast from "solid-toast";
 import { getLogin } from "../utils/requests";
-import { me, setMe } from "../utils/me";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
-import { For, createSignal } from "solid-js";
-import loginImage from "../assets/appImages/loginImage.jpeg";
-import Cookies from "js-cookie";
+import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -49,7 +48,7 @@ export default function LoginPage() {
             onClick={() => {
               navigate(uriHome());
             }
-          }
+            }
           >
             <p>OrderOwl</p>
           </Flex>
@@ -82,12 +81,12 @@ export default function LoginPage() {
                 <Flex>
                   <div>
                     <p>
-                      Need an account? 
+                      Need an account?
                       <span
                         class="underline cursor-pointer"
                         onClick={() => {
-                            navigate(uriRegistration());
-                          }
+                          navigate(uriRegistration());
+                        }
                         }
                       >
                         Register
@@ -96,14 +95,14 @@ export default function LoginPage() {
                     <p
                       class="underline cursor-pointer"
                       onClick={() => {
-                          navigate(uriForget());
-                        }
+                        navigate(uriForget());
+                      }
                       }
                     >
                       Forget Password
                     </p>
                   </div>
-                  
+
                   <Button
                     type="submit"
                     class="relative overflow-visible"

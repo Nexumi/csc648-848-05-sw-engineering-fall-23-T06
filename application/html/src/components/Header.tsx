@@ -1,12 +1,11 @@
-import { createSignal } from "solid-js";
 import { useMatch, useNavigate } from "@solidjs/router";
-import { Flex } from "../common/layout/flex";
-import { Show } from "solid-js";
-import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSettings, uriSupport } from "../utils/uri";
-import toast from "solid-toast";
 import Cookies from "js-cookie";
+import { Show, createSignal } from "solid-js";
+import toast from "solid-toast";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../common/components/dropdown-menu";
+import { Flex } from "../common/layout/flex";
 import { me } from "../utils/me";
+import { uriAbout, uriForget, uriHome, uriLogin, uriRegistration, uriSettings, uriSupport } from "../utils/uri";
 
 
 export default function Logo() {
@@ -18,7 +17,7 @@ export default function Logo() {
   const isAbout = useMatch(() => uriAbout() + "/*");
 
   const [dropdownVisible, setDropdownVisible] = createSignal(false);
-  
+
   const handleSystemClick = () => {
     setDropdownVisible(!dropdownVisible());
   };
@@ -31,21 +30,21 @@ export default function Logo() {
       <Show when={!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout()}>
         <header>
           <Flex justifyContent="end" class="gap-x-2">
-          <DropdownMenu>
+            <DropdownMenu>
               <DropdownMenuTrigger>
-              <svg
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-8 h-8"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                />
-              </svg>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                  />
+                </svg>
               </DropdownMenuTrigger>
               <DropdownMenuContent class="min-h-[200px] bg-white text-center" >
 
@@ -63,7 +62,7 @@ export default function Logo() {
                 </DropdownMenuItem>
 
               </DropdownMenuContent>
-              
+
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger>

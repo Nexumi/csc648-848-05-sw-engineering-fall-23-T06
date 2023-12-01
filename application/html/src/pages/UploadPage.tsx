@@ -1,11 +1,9 @@
+import { createForm } from "@felte/solid";
 import { useNavigate } from "@solidjs/router";
+import toast from "solid-toast";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
-import SearchIcon from "../assets/logos/SearchIcon.png";
-import { createForm } from "@felte/solid";
 import { postTracking } from "../utils/requests";
-import toast from "solid-toast";
-import { uriTracking } from "../utils/uri";
 
 export default function UploadPage() {
 
@@ -52,8 +50,8 @@ export default function UploadPage() {
                 class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
                 type="text"
                 placeholder="123456789"
-                />
-            </div> 
+              />
+            </div>
             <div class="mr-12">
               <p class="text-xl mr-2">Order Title:</p>
               <input
@@ -61,47 +59,47 @@ export default function UploadPage() {
                 class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
                 type="text"
                 placeholder="Blue Hat/Birthday Gift"
-                />
+              />
             </div>
           </Flex>
           <Flex flexDirection="col" justifyContent="center" class="grow">
             <Flex justifyContent="center" alignItems="end" class="gap-x-">
-            <div>
-              <p class="text-xl mr-2">Please choose whether you would like your order to be in your visible or hidden list.</p>
-              <br></br>
-            <Flex class="gap-x-2">
-              <Button
-                type="button"
-                class="text-xl mr-2"
-                class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
-                onClick={() => {
-                  setData("listType", "visible");
-                }}
-              >
-                Visible
-              </Button>
-              <Button
-                type="button"
-                class="text-xl mr-2"
-                class={data().listType === "hidden" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
-                onClick={() => {
-                  setData("listType", "hidden");
-                }}
-              >
-                Hidden
-              </Button>
-            </Flex>
-            </div>
-              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
-                  <svg
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
+              <div>
+                <p class="text-xl mr-2">Please choose whether you would like your order to be in your visible or hidden list.</p>
+                <br></br>
+                <Flex class="gap-x-2">
+                  <Button
+                    type="button"
+                    class="text-xl mr-2"
+                    class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                    onClick={() => {
+                      setData("listType", "visible");
+                    }}
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
+                    Visible
+                  </Button>
+                  <Button
+                    type="button"
+                    class="text-xl mr-2"
+                    class={data().listType === "hidden" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                    onClick={() => {
+                      setData("listType", "hidden");
+                    }}
+                  >
+                    Hidden
+                  </Button>
+                </Flex>
+              </div>
+              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </button>
             </Flex>
           </Flex>

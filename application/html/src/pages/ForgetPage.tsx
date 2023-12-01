@@ -12,7 +12,7 @@ export default function ForgetPage() {
           <h2>Forgot Your Password?</h2>
           <p>Don't worry! We can help you reset it.</p>
           <p>Please contact support to get your password reset.</p>
-          
+
           {/* Assuming you want to add a support email or a link to a support page */}
           <p>
             Send us an email at <a href="mailto:orderowl@jpkit.us" class="underline">orderowl@jpkit.us </a>

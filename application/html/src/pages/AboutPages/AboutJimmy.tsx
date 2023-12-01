@@ -1,5 +1,5 @@
+import Jimmy from "../../assets/profiles/Jimmy.png";
 import AboutMe from "../../components/AboutMe";
-import Jimmy from "../../assets/profiles/Jimmy.png"
 
 export default function AboutJimmy() {
   return (

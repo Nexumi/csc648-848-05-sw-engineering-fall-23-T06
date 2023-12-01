@@ -1,9 +1,9 @@
 import { Outlet, useNavigate } from "@solidjs/router";
-import { Button } from "../common/components/button";
 import { For, createSignal } from "solid-js";
+import logo from "../assets/logos/logo.png";
+import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import { uriAbout, uriHome } from "../utils/uri";
-import logo from "../assets/logos/logo.png";
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -27,14 +27,14 @@ export default function AboutPage() {
       </Flex>
       <br />
       <div class="text-center space-y-2" >
-          <div class="text-xl font-bold">
-            <p>Get to know the wonderful team *hoo* created OrderOwl!</p>
-          </div>
+        <div class="text-xl font-bold">
+          <p>Get to know the wonderful team *hoo* created OrderOwl!</p>
+        </div>
       </div>
-            <div class="text-center space-y-2" >
-              <p>Please click on each member to learn a little more about us :) </p>
-            <br />
-            </div>
+      <div class="text-center space-y-2" >
+        <p>Please click on each member to learn a little more about us :) </p>
+        <br />
+      </div>
       <Flex justifyContent="center" class="flex-wrap gap-10 mb-10">
         <For each={teammates()}>
           {(teammate) =>
