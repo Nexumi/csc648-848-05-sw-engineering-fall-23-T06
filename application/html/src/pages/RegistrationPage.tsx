@@ -228,7 +228,7 @@ export default function RegistrationPage() {
                 <Flex>
                   <div>
                     <p>
-                      Already have an account?
+                      Already have an account?{" "}
                       <span
                         class="underline cursor-pointer"
                         onClick={() => {
