@@ -32,7 +32,6 @@ export default function LoginPage() {
           getUser(params)
             .then((res) => {
               setMe(res.data);
-              console.log(me());
               toast.success(`Welcome back, ${me().firstname} ${me().lastname}!`);
             });
           navigate(uriDashboard());
