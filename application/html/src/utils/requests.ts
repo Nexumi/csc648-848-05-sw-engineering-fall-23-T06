@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 import Cookies from 'js-cookie';
+import { apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 
 /* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
