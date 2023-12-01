@@ -1,11 +1,8 @@
 import { useMatch, useNavigate } from "@solidjs/router";
+import { For, Show, createSignal } from "solid-js";
 import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
-import { For, Show, createEffect, createSignal } from "solid-js";
-import { Button } from "../common/components/button";
 import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriTracking, uriUpload } from "../utils/uri";
-import Cookies from "js-cookie";
-import toast from "solid-toast";
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -21,6 +18,7 @@ export default function SideBar() {
   const isApiTest = useMatch(uriApiTest);
 
   const [destinations, setDestinations] = createSignal([
+
     {label: "Dashboard", uri: uriDashboard, isPage: isDashboard},
     {label: "Upload", uri: uriUpload, isPage: isUpload},
     {label: "Track Info", uri: uriTracking, isPage: isTracking},
@@ -73,7 +71,7 @@ function NavButton(props: {
   const BOX = "w-24 h-24 cursor-pointer";
   const BOX_ACTIVE = "w-24 h-24 cursor-pointer bg-gradient-radial from-[#C68B59]";
   const FULL = "w-4/5 h-full rounded-none border-black border-b-2";
-  
+
   return (
     <>
       <Flex

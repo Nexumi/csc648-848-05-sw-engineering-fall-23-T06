@@ -1,7 +1,6 @@
-import { createResource, createSignal, For } from "solid-js";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../common/components/table";
-import { getAllTracking, getTrackingBySearch } from "../utils/requests";
 import { useNavigate } from "@solidjs/router";
+import { createSignal, For } from "solid-js";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
 import { uriTracking } from "../utils/uri";
 
 export default function Calendar(props: {
@@ -12,9 +11,8 @@ export default function Calendar(props: {
   const [today] = createSignal(String(new Date().getDate()));
   const [month] = createSignal(String(new Date().toLocaleDateString("default", { month: "long" })));
   const [calendar] = createSignal(getCalendar());
-
   return (
-    <>      
+    <>
       <div class="text-center text-3xl font-bold">
         <p>{month()}</p>
       </div>
@@ -49,7 +47,7 @@ export default function Calendar(props: {
             {(week) =>
               <TableRow>
                 <For each={week}>
-                  {(day) => 
+                  {(day) =>
                     <TableCell class="text-left border-2 border-black">
                       <div class={today() === day ? "text-red-500 font-bold" : ""}>
                         <p>{day}</p>
@@ -60,8 +58,7 @@ export default function Calendar(props: {
                         })}>
                           {(pack) =>
                             <CalendarEvent
-                              id={pack.id}
-                              text={pack.title}
+                              package={pack}
                             />
                           }
                         </For>
@@ -79,8 +76,7 @@ export default function Calendar(props: {
 }
 
 function CalendarEvent(props: {
-  id: number | string,
-  text: string
+  package: any
 }) {
   const navigate = useNavigate();
 
@@ -89,10 +85,10 @@ function CalendarEvent(props: {
       <div
         class="bg-[#c68B59] hover:bg-[#D7B19D] text-white rounded-full cursor-pointer px-1.5 mr-1"
         onClick={() => {
-          navigate(uriTracking(props.id));
+          navigate(uriTracking(props.package.id));
         }}
       >
-        <p>{props.text || ""}</p>
+        <p>{props.package.text || props.package.retailer}</p>
       </div>
     </>
   );
@@ -101,8 +97,8 @@ function CalendarEvent(props: {
 function getFullDate(day: string) {
   const date = new Date();
   const year = date.getFullYear();
-  let month = String(date.getMonth()).padStart(2, "0");
-  
+  let month = String(date.getMonth() + 1).padStart(2, "0");
+
   return year + "-" + month + "-" + day.padStart(2, "0");
 }
 
@@ -115,7 +111,7 @@ function getCalendar() {
   const week = ["", "", "", "", "", "", ""];
   const calendar = [];
   let currDate = new Date(`${month} 1 ${year}`);
-  
+
   let currWeek = [...week];
   for (let i = 1; currDate.toLocaleDateString("default", { month: "long" }) === month; i++) {
     if (currDate.getDay() === 0 && currDate.getDate() !== 1) {

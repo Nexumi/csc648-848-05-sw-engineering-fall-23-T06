@@ -1,4 +1,4 @@
-import { Outlet, useMatch, useNavigate, useSearchParams } from "@solidjs/router";
+import { Outlet, useMatch, useNavigate } from "@solidjs/router";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import { uriSettings } from "../utils/uri";

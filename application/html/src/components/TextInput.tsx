@@ -6,24 +6,26 @@ export default function TextInput(props: {
   name: string,
   type: string,
   class?: string,
-  onChange?: any
+  onChange?: any,
+  placeholder?: string
 }) {
   const [, rest] = splitProps(props, ["header", "name", "type"])
 
   return (
     <>
-    <div class="w-full space-y-2">
-      <Show when={props.header}>
-        <div class="">
-          <p>{props.header}</p>
-        </div>
-      </Show>
-      <Input
-        name={props.name}
-        type={props.type}
-        {...rest}
-      />
-    </div>
+      <div class="w-full space-y-2">
+        <Show when={props.header}>
+          <div class="">
+            <p>{props.header}</p>
+          </div>
+        </Show>
+        <Input
+          name={props.name}
+          type={props.type}
+          placeholder={props.placeholder}
+          {...rest}
+        />
+      </div>
     </>
   );
 }

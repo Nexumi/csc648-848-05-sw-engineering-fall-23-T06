@@ -1,7 +1,22 @@
 import axios from 'axios';
-import { apiRegistration, apiTest, apiTracking } from './uri';
+import Cookies from 'js-cookie';
+import { apiAuth, apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
 
+/* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
+axios.interceptors.request.use(
+  config => {
+    const token = Cookies.get('token');
+
+    if (token) {
+      config.headers!['Authorization'] = "Bearer " + token;
+    }
+
+    return config;
+  }
+)
+
+/* API Calls */
 
 export const getAllTest = async () => {
   try {
@@ -90,6 +105,7 @@ export const postRegistration = async (params: {
   lastname: any,
   email: any,
   password: any,
+  role: any
 }) => {
   const response = await axios.post(apiRegistration(), params);
   return response;
@@ -99,7 +115,7 @@ export const getLogin = async (params: {
   email: string,
   password: string
 }) => {
-  const response = await axios.post(`/api/v1/auth/authenticate`, params);
+  const response = await axios.post(apiLogin(), params);
   return response;
 }
 
@@ -107,5 +123,12 @@ export const deleteUserById = async (params: {
   id: string
 }) => {
   const response = await axios.delete(`${apiRegistration()}/delete/${params.id}`);
+  return response;
+}
+
+export const getUser = async (params: {
+  email: string
+}) => {
+  const response = await axios.get(`${apiAuth()}?email=${params.email}`);
   return response;
 }

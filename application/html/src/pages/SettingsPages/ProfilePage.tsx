@@ -2,13 +2,13 @@ import { useNavigate } from "@solidjs/router";
 import Cookies from "js-cookie";
 import { createSignal, Show } from "solid-js";
 import toast from "solid-toast";
-import { DialogContent, DialogHeader, DialogTitle, DialogDescription, Dialog } from "../../common/components/dialog";
+import { Button } from "../../common/components/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../../common/components/dialog";
+import { Input } from "../../common/components/input";
 import { Flex } from "../../common/layout/flex";
 import { me } from "../../utils/me";
 import { deleteUserById } from "../../utils/requests";
 import { uriHome } from "../../utils/uri";
-import { Input } from "../../common/components/input";
-import { Button } from "../../common/components/button";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function ProfilePage() {
   const NO_FOCUS = "focus-visible:ring-0 focus-visible:ring-offset-0";
 
   const [deleting, setDeleting] = createSignal(false);
-  
+
   return (
     <>
       <div class="w-full space-y-4">
@@ -37,17 +37,17 @@ export default function ProfilePage() {
         </Flex>
         <div>
           <p>First Name</p>
-          <Input type="text" readonly class={NO_FOCUS} placeholder={me().first_name} />
+          <Input type="text" readonly class={NO_FOCUS} placeholder={me().firstname} />
         </div>
         <div>
           <p>Last Name</p>
-          <Input type="text" readonly class={NO_FOCUS} placeholder={me().last_name} />
+          <Input type="text" readonly class={NO_FOCUS} placeholder={me().lastname} />
         </div>
         <div>
           <p>Email</p>
           <Input type="text" readonly class={NO_FOCUS} placeholder={me().email} />
         </div>
-        <Show when={Cookies.get("user")}>
+        <Show when={Cookies.get("token")}>
           <Flex justifyContent="center">
             <Button
               class="text-white bg-red-600 hover:bg-red-400"
@@ -84,7 +84,7 @@ export default function ProfilePage() {
                   deleteUserById({ id: me().id })
                     .then((res) => {
                       toast.success("Successfully deleted your account!\nWe hope to see you again.");
-                      Cookies.remove("user");
+                      Cookies.remove("token");
                       navigate(uriHome());
                     })
                     .catch((error) => {

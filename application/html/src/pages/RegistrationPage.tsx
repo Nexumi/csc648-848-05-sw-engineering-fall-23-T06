@@ -1,16 +1,16 @@
+import { ValidationMessage, reporter } from "@felte/reporter-solid";
+import { createForm } from "@felte/solid";
+import { validator } from "@felte/validator-zod";
 import { useNavigate } from "@solidjs/router";
+import { Show, createSignal } from "solid-js";
+import toast from "solid-toast";
+import { z } from "zod";
+import registrationImage from "../assets/appImages/registrationImage.jpeg";
+import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
-import { createForm } from "@felte/solid";
-import { Button } from "../common/components/button";
-import { uriHome, uriLogin } from "../utils/uri";
-import toast from "solid-toast";
 import { postRegistration } from "../utils/requests";
-import { Show, createSignal } from "solid-js";
-import { z } from "zod";
-import { validator } from "@felte/validator-zod";
-import { ValidationMessage, reporter } from "@felte/reporter-solid";
-import registrationImage from "../assets/appImages/registrationImage.jpeg";
+import { uriHome, uriLogin } from "../utils/uri";
 
 
 export default function RegistrationPage() {
@@ -42,7 +42,7 @@ export default function RegistrationPage() {
         lastname: values.lastName,
         email: values.email,
         password: values.password,
-        //type: values.accountType
+        role: values.accountType || "0"
       }
       if (values.password === values.confirmPassword) {
         postRegistration(params)
@@ -72,7 +72,7 @@ export default function RegistrationPage() {
             onClick={() => {
               navigate(uriHome());
             }
-          }
+            }
           >
             <p>OrderOwl</p>
           </Flex>
@@ -134,19 +134,19 @@ export default function RegistrationPage() {
                   </ValidationMessage>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
-                    name="confirmEmail"
-                    type="text"
-                    header="Confirm Email"
-                    class={NO_RING}
-                    placeholder="youremail@mail.com"
-                   />
+                      name="confirmEmail"
+                      type="text"
+                      header="Confirm Email"
+                      class={NO_RING}
+                      placeholder="youremail@mail.com"
+                    />
                   </div>
                   <ValidationMessage for="confirmEmail">
                     {(messages) =>
                       messages?.map((message) => (
-                  <div class="!mt-0 text-red-500">{message}</div>
-                   ))
-                   }
+                        <div class="!mt-0 text-red-500">{message}</div>
+                      ))
+                    }
                   </ValidationMessage>
 
                   <div class="border-b-2 border-black p-0">
@@ -185,40 +185,39 @@ export default function RegistrationPage() {
                   <Show when={!confirmSame()}>
                     <div class="!mt-0 text-red-500">Passwords must match</div>
                   </Show>
-                  <div >
-                  Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you:
-                  <br />
-                  <div class="underline">
-                    <a href="https://tosandprivacyrules.com/"> The TOS and Privacy Rules </a>
-                  </div>
-                  I have read the TOS and Privacy Rules and I accept
-                  <label for="acception">
+                  <div>
                     <input
-                    id="acception"
-                    type="checkbox"
+                      id="acception"
+                      name="acception"
+                      type="checkbox"
+                      class="mr-2"
                     />
-                  </label>
+                    <label for="acception">
+                      <span>Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you: </span>
+                      <a class="underline" href="https://tosandprivacyrules.com/">The TOS and Privacy Rules</a>
+                      <span>I have read the TOS and Privacy Rules and I accept</span>
+                    </label>
                   </div>
                   <div class="text-center space-y-2">
-                  <div class="text-l font-bold">
+                    <div class="text-l font-bold">
                       <p>Account Type</p>
-                  </div>
-                      <p>Please choose for what purpose you will be using OrderOwl for.</p>
+                    </div>
+                    <p>Please choose for what purpose you will be using OrderOwl for.</p>
                     <Flex class="gap-x-2">
                       <Button
                         type="button"
-                        class={data().accountType === "personal" || data().accountType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                        class={data().accountType === "0" || data().accountType === undefined ? IS_TYPE : IS_NOT_TYPE}
                         onClick={() => {
-                          setData("accountType", "personal");
+                          setData("accountType", "0");
                         }}
                       >
                         Personal
                       </Button>
                       <Button
                         type="button"
-                        class={data().accountType === "business" ? IS_TYPE : IS_NOT_TYPE}
+                        class={data().accountType === "1" ? IS_TYPE : IS_NOT_TYPE}
                         onClick={() => {
-                          setData("accountType", "business");
+                          setData("accountType", "1");
                         }}
                       >
                         Business
@@ -229,12 +228,12 @@ export default function RegistrationPage() {
                 <Flex>
                   <div>
                     <p>
-                      Already have an account? 
+                      Already have an account?{" "}
                       <span
                         class="underline cursor-pointer"
                         onClick={() => {
-                            navigate(uriLogin());
-                          }
+                          navigate(uriLogin());
+                        }
                         }
                       >
                         Login
@@ -274,8 +273,11 @@ export default function RegistrationPage() {
             </div>
           </Flex>
         </div>
-        <Flex>
-            <img src={registrationImage} />
+        <Flex justifyContent="center" class="h-full w-1/2">
+          <img
+            src={registrationImage}
+            class="w-[40rem] h-[72rem] object-cover object-right"
+          />
         </Flex>
       </Flex>
     </>

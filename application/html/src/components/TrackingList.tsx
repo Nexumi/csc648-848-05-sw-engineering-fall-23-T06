@@ -1,9 +1,9 @@
+import { A, useNavigate, useSearchParams } from "@solidjs/router";
 import { For, Match, Switch } from "solid-js";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/components/table";
-import { A, useNavigate, useSearchParams } from "@solidjs/router";
+import { Flex } from "../common/layout/flex";
 import { uriTracking } from "../utils/uri";
 import { getURL, sortBy } from "../utils/util";
-import { Flex } from "../common/layout/flex";
 
 export default function TrackingList(props: {
   display: any,
@@ -16,12 +16,12 @@ export default function TrackingList(props: {
     if (searchParams.key === key) {
       const direction = Number(searchParams.direction) + 1;
       if (direction === 2) {
-        setSearchParams({key: null, direction: null});
+        setSearchParams({ key: null, direction: null });
       } else {
-        setSearchParams({direction: direction});
+        setSearchParams({ direction: direction });
       }
     } else {
-      setSearchParams({key: key, direction: 0});
+      setSearchParams({ key: key, direction: 0 });
     }
   }
 
@@ -30,7 +30,7 @@ export default function TrackingList(props: {
       <Table>
         <TableHeader>
           <TableRow>
-          <TableHead>
+            <TableHead>
               <HeaderTitle
                 title="Order Title"
                 key="orderTitle"
@@ -114,9 +114,10 @@ export default function TrackingList(props: {
         </TableHeader>
         <TableBody>
           <For each={sortBy((props.limit ? props.display?.slice(0, props.limit) : props.display), searchParams.key, searchParams.direction)}>
-            {(pack) => 
+            {(pack) =>
               <TrackingRow
                 packageId={pack.id}
+                title={pack.title}
                 retailer={pack.retailer}
                 carrier={pack.carrier}
                 eta={pack.eta}
@@ -147,7 +148,7 @@ function HeaderTitle(props: {
         <Match when={props.sort}>
           <Flex
             justifyContent="start"
-            class="cursor-pointer select-none hover:text-gray-600 gap-x-1"
+            class="cursor-pointer select-none hover:text-gray-600 gap-x-1 whitespace-nowrap"
             onClick={() => {
               props.update(props.key);
             }}
@@ -202,6 +203,7 @@ function HeaderTitle(props: {
 
 function TrackingRow(props: {
   packageId?: string | number,
+  title: string,
   retailer: string,
   carrier: string,
   eta: string,
@@ -224,6 +226,9 @@ function TrackingRow(props: {
           }
         }}
       >
+        <TableCell>
+          {props.title}
+        </TableCell>
         <TableCell>
           <A
             href={getURL(props.retailer || "")}

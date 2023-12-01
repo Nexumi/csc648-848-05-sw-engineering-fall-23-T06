@@ -1,15 +1,16 @@
+import { createForm } from "@felte/solid";
 import { useNavigate } from "@solidjs/router";
+import Cookies from "js-cookie";
+import { For, createSignal } from "solid-js";
+import toast from "solid-toast";
+import loginImage from "../assets/appImages/loginImage.jpeg";
+import { Button } from "../common/components/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
-import { createForm } from "@felte/solid";
-import { Button } from "../common/components/button";
+import { getLogin, getUser } from "../utils/requests";
 import { uriDashboard, uriForget, uriHome, uriRegistration } from "../utils/uri";
-import toast from "solid-toast";
-import { getLogin } from "../utils/requests";
 import { me, setMe } from "../utils/me";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../common/components/dialog";
-import { For, createSignal } from "solid-js";
-import loginImage from "../assets/appImages/loginImage.jpeg";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -27,13 +28,18 @@ export default function LoginPage() {
       }
       getLogin(params)
         .then((res) => {
-          setMe(res.data[0]);
-          toast.success(`Welcome back, ${me().first_name} ${me().last_name}!`);
+          Cookies.set("token", res.data.token);
+          getUser(params)
+            .then((res) => {
+              setMe(res.data);
+              console.log(me());
+              toast.success(`Welcome back, ${me().firstname} ${me().lastname}!`);
+            });
           navigate(uriDashboard());
         })
         .catch((err) => {
           toast.error("Invalid credentials.");
-        })
+        });
     }
   });
 
@@ -47,7 +53,7 @@ export default function LoginPage() {
             onClick={() => {
               navigate(uriHome());
             }
-          }
+            }
           >
             <p>OrderOwl</p>
           </Flex>
@@ -56,7 +62,7 @@ export default function LoginPage() {
               <div class="text-xl font-bold">
                 <p>Welcome Back!</p>
               </div>
-              <form use:form>
+              <form use: form>
                 <div class="w-full space-y-5 p-16">
                   <div class="border-b-2 border-black p-0">
                     <TextInput
@@ -80,12 +86,12 @@ export default function LoginPage() {
                 <Flex>
                   <div>
                     <p>
-                      Need an account? 
+                      Need an account?{" "}
                       <span
                         class="underline cursor-pointer"
                         onClick={() => {
-                            navigate(uriRegistration());
-                          }
+                          navigate(uriRegistration());
+                        }
                         }
                       >
                         Register
@@ -94,14 +100,14 @@ export default function LoginPage() {
                     <p
                       class="underline cursor-pointer"
                       onClick={() => {
-                          navigate(uriForget());
-                        }
+                        navigate(uriForget());
+                      }
                       }
                     >
                       Forget Password
                     </p>
                   </div>
-                  
+
                   <Button
                     type="submit"
                     class="relative overflow-visible"
@@ -131,16 +137,13 @@ export default function LoginPage() {
               </form>
             </div>
           </Flex>
-
-
-
         </div>
-        <Flex>
-            <img src={loginImage} />
+        <Flex justifyContent="center" class="h-full w-1/2">
+          <img
+            src={loginImage}
+            class="w-[40rem] h-[40rem] object-cover object-center"
+          />
         </Flex>
-
-
-
       </Flex>
       <Dialog open={isOpen()}>
         <DialogContent class="bg-orange-50 border-2 border-black" hideCloseButton>

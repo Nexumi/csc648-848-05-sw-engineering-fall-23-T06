@@ -12,13 +12,13 @@ export default function SupportPage() {
         <section class="mb-8">
           <h2 class="text-4xl font-semibold mb-4">Questions & Answers</h2>
           <div class="space-y-4">
-          <div>
-            <p class="font-bold">Q: Does we have a limit of the amount of order you can track?</p>
-            <p>A: No, you can tarck as many order as you want.</p>
+            <div>
+              <p class="font-bold">Q: Does we have a limit of the amount of order you can track?</p>
+              <p>A: No, you can tarck as many order as you want.</p>
             </div>
             <div>
-            <p class="font-bold">Q: How do I upload my order?</p>
-            <p>A: You can upload your order by clicking on the "Upload" tab and enter the tracking number. Once you enter, our system will report the retailer and carrier then you could submit and check for more Information.</p>
+              <p class="font-bold">Q: How do I upload my order?</p>
+              <p>A: You can upload your order by clicking on the "Upload" tab and enter the tracking number. Once you enter, our system will report the retailer and carrier then you could submit and check for more Information.</p>
             </div>
             <div>
               <p class="font-bold">Q: How do I track my order?</p>

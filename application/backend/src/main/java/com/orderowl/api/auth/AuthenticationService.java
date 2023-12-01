@@ -67,4 +67,20 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+    public UserRequest getUser(String email){
+
+        var user = repository.findByEmail(email)
+                .orElseThrow();
+
+        return UserRequest.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .address(user.getAddress())
+                .enabled(user.getEnabled())
+                .pin(user.getPin())
+                .build();
+    }
 }
