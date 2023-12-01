@@ -48,6 +48,7 @@ export default function TrackingInfoPage() {
       map.setOptions({
         disableDefaultUI: true,
         gestureHandling: "none",
+        clickableIcons: false
       });
     });
 
