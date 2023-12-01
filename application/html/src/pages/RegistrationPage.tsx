@@ -190,6 +190,7 @@ export default function RegistrationPage() {
                       id="acception"
                       name="acception"
                       type="checkbox"
+                      class="mr-2"
                     />
                     <label for="acception">
                       <span>Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you: </span>
@@ -272,9 +273,12 @@ export default function RegistrationPage() {
             </div>
           </Flex>
         </div>
-        <Flex>
-            <img src={registrationImage} />
-        </Flex>
+        <div class="h-full w-1/2">
+          <img
+            src={registrationImage}
+            class="w-full h-full object-cover object-right"
+          />
+        </div>
       </Flex>
     </>
   );
