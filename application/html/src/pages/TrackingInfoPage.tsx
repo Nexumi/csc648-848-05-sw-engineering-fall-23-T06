@@ -21,6 +21,8 @@ export default function TrackingInfoPage() {
     }),
     getTrackingById
   );
+
+  const [deleting, setDeleting] = createSignal(false);
   
   const [mapOptions, setMapOptions] = createSignal({
     center: { lat: -33.860664, lng: 151.208138 },
