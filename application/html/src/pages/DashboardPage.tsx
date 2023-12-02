@@ -36,7 +36,8 @@ export default function DashboardPage() {
             </DialogTitle>
             <DialogDescription class="text-center">
               Feel free to try out our service, but consider creating an account
-              to track your packages across devices. It's free to do so!
+              to track your packages across devices. Some of the feature are only 
+              avilable to registered user like hidden list!
             </DialogDescription>
             <Flex class="gap-x-4">
               <Button
@@ -54,7 +55,7 @@ export default function DashboardPage() {
                   navigate(uriRegistration());
                 }}
               >
-                Register a new account
+                Register an account
               </Button>
             </Flex>
           </DialogHeader>
