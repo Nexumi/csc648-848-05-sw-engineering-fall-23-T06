@@ -45,7 +45,7 @@ export default function TrackingPage() {
                       Welcome!
                   </DialogTitle>
                   <DialogDescription class="text-center">
-                      Enter your password to access the hidden list!.
+                      Enter your pin to access the hidden list.
                   </DialogDescription>
                   <form class="flex flex-col items-center space-y-4">
                       <input

@@ -53,6 +53,10 @@ export function uriUpload() {
   return `/upload`;
 }
 
+export function uriBusinessUpload() {
+  return `/businessupload`;
+}
+
 export function uriTOSPage() {
   return `/tos`;
 }
@@ -61,8 +65,16 @@ export function uriTracking(id?: string | number) {
   return id !== undefined ? `/tracking/${id}` : `/tracking`;
 }
 
+export function uriBusinessTracking(id?: string | number) {
+  return id !== undefined ? `/businesstracking/${id}` : `/businesstracking`;
+}
+
 export function uriHiddenTracking(id?: string | number) {
   return id !== undefined ? `/hiddentracking/${id}` : `/hiddentracking`;
+}
+
+export function uriShipmentsTracking(id?: string | number) {
+  return id !== undefined ? `/shipmentstracking/${id}` : `/shipmentstracking`;
 }
 
 export function uriSupport() {

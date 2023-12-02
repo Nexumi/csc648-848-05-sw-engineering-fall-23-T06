@@ -23,7 +23,10 @@ import ProfilePage from "./pages/SettingsPages/ProfilePage";
 import SupportPage from "./pages/SupportPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
 import TrackingPage from "./pages/TrackingPage";
+import BusinessTrackingPage from "./pages/BusinessTrackingPage";
+import ShipmentsTrackingPage from "./pages/ShipmentsTrackingPage";
 import UploadPage from "./pages/UploadPage";
+import BusinessUploadPage from "./pages/BusinessUploadPage";
 import TOSPage from "./pages/TOSPage";
 
 export default function Root() {
@@ -52,12 +55,21 @@ export default function Root() {
               <Route path="/forget" component={ForgetPage} />
               <Route path="/dashboard" component={DashboardPage} />
               <Route path="/upload" component={UploadPage} />
+              <Route path="/businessupload" component={BusinessUploadPage} />
               <Route path="/tracking">
                 <Route path="/" component={TrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
+              <Route path="/businesstracking">
+                <Route path="/" component={BusinessTrackingPage} />
+                <Route path="/:id" component={TrackingInfoPage} />
+              </Route>
               <Route path="/hiddentracking">
                 <Route path="/" component={HiddenTrackingPage} />
+                <Route path="/:id" component={TrackingInfoPage} />
+              </Route>
+              <Route path="/shipmentstracking">
+                <Route path="/" component={ShipmentsTrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
               <Route path="/support" component={SupportPage} />

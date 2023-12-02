@@ -36,8 +36,8 @@ export default function DashboardPage() {
             </DialogTitle>
             <DialogDescription class="text-center">
               Feel free to try out our service, but consider creating an account
-              to track your packages across devices. Some of the feature are only 
-              avilable to registered user like hidden list!
+              as some features are only available to registered users
+              (hidden order list, saved history of tracked orders, and more)!
             </DialogDescription>
             <Flex class="gap-x-4">
               <Button
