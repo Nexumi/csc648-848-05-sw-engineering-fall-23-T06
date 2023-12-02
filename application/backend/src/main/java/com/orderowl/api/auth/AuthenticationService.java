@@ -39,6 +39,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole()) //please use 0 1
+                .pin(request.getPin())
                 .build();
         repository.save(user);
         // this token is later used to validate the client and access protected APIs
@@ -80,6 +81,7 @@ public class AuthenticationService {
                 .address(user.getAddress())
                 .enabled(user.getEnabled())
                 .pin(user.getPin())
+                .role(user.getRole())
                 .build();
     }
 }
