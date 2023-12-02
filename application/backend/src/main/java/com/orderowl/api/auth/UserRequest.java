@@ -1,6 +1,6 @@
 package com.orderowl.api.auth;
 
-import com.orderowl.api.registration.Role;
+import com.orderowl.api.user.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

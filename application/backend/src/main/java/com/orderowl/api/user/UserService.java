@@ -2,15 +2,12 @@
  * This is the service layer of our spring boot application
  * It handles the interactions with the database
  */
-package com.orderowl.api.registration;
+package com.orderowl.api.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

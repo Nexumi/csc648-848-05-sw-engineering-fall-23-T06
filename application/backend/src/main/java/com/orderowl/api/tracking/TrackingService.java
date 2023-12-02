@@ -8,7 +8,6 @@ package com.orderowl.api.tracking;
 import com.easypost.model.Tracker;
 import com.easypost.model.TrackingDetail;
 import com.easypost.service.EasyPostClient;
-import com.orderowl.api.registration.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

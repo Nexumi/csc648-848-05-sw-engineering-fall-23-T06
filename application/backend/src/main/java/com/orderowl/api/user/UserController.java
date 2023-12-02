@@ -4,17 +4,12 @@
  * It will automatically handle the get request and direct them to the correct method
  */
 
-package com.orderowl.api.registration;
+package com.orderowl.api.user;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 // the base path will be the address the front end uses to interact with the database

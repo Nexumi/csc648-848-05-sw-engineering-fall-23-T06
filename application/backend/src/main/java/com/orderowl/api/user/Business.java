@@ -1,4 +1,4 @@
-package com.orderowl.api.registration;
+package com.orderowl.api.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

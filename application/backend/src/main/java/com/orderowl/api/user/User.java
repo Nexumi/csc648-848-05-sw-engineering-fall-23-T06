@@ -4,7 +4,7 @@
  *
  * Credit: Amigoscode Youtube Channel (https://youtu.be/VVn9OG9nfH0)
  */
-package com.orderowl.api.registration;
+package com.orderowl.api.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

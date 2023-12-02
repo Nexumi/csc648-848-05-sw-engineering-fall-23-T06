@@ -5,9 +5,8 @@
 package com.orderowl.api.auth;
 
 import com.orderowl.api.config.JwtService;
-import com.orderowl.api.registration.Role;
-import com.orderowl.api.registration.User;
-import com.orderowl.api.registration.UserRepository;
+import com.orderowl.api.user.User;
+import com.orderowl.api.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

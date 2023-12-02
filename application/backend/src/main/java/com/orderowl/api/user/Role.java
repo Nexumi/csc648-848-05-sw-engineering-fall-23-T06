@@ -1,4 +1,4 @@
-package com.orderowl.api.registration;
+package com.orderowl.api.user;
 
 public enum Role {
     USER,
