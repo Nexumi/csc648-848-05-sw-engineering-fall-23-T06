@@ -1,10 +1,11 @@
 import type { Component, ComponentProps } from "solid-js"
 import { Show, splitProps } from "solid-js"
-
+import { useNavigate} from "@solidjs/router";
 import { Dialog as DialogPrimitive } from "@kobalte/core"
 
 import { Icons } from "../icons"
 import { cn } from "../utils"
+import { uriTracking } from "../../utils/uri";
 
 const Dialog = DialogPrimitive.Root
 
@@ -38,7 +39,11 @@ const DialogOverlay: Component<DialogPrimitive.DialogOverlayProps> = (props) => 
 }
 
 const DialogContent: Component<DialogPrimitive.DialogContentProps> = (props) => {
+  const navigate = useNavigate();
   const [, rest] = splitProps(props, ["class", "children"])
+  const handleCloseClick = () => {
+    navigate(uriTracking()); 
+  };
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -50,16 +55,19 @@ const DialogContent: Component<DialogPrimitive.DialogContentProps> = (props) => 
         {...rest}
       >
         {props.children}
-        <Show when={!props.hideCloseButton}>
-          <DialogPrimitive.CloseButton class="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
+        {props.hideCloseButton ? null : ( 
+          <DialogPrimitive.CloseButton
+            class="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none"
+            onClick={handleCloseClick}
+          >
             <Icons.close class="h-4 w-4" />
             <span class="sr-only">Close</span>
           </DialogPrimitive.CloseButton>
-        </Show>
+        )}
       </DialogPrimitive.Content>
     </DialogPortal>
-  )
-}
+  );
+};
 
 const DialogHeader: Component<ComponentProps<"div">> = (props) => {
   const [, rest] = splitProps(props, ["class"])
