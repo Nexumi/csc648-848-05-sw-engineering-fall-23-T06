@@ -53,6 +53,10 @@ export function uriUpload() {
   return `/upload`;
 }
 
+export function uriTOSPage() {
+  return `/tos`;
+}
+
 export function uriTracking(id?: string | number) {
   return id !== undefined ? `/tracking/${id}` : `/tracking`;
 }

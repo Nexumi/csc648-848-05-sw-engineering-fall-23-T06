@@ -10,7 +10,7 @@ import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
 import { postRegistration } from "../utils/requests";
-import { uriHome, uriLogin } from "../utils/uri";
+import { uriHome, uriLogin, uriTOSPage } from "../utils/uri";
 
 
 export default function RegistrationPage() {
@@ -233,8 +233,13 @@ export default function RegistrationPage() {
                     />
                     <label for="acception">
                       <span>Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you: </span>
-                      <a class="underline" href="https://tosandprivacyrules.com/">The TOS and Privacy Rules</a>
-                      <span>I have read the TOS and Privacy Rules and I accept</span>
+                      <a class="underline"
+                      onClick={() => {
+                      navigate(uriTOSPage());
+                      }}
+                      style={{cursor: "pointer"}}
+                      >The TOS and Privacy Rules</a>
+                      <span> I have read the TOS and Privacy Rules and I accept</span>
                     </label>
                   </div>
                   <div class="text-center space-y-2">

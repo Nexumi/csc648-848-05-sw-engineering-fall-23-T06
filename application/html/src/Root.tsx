@@ -24,6 +24,7 @@ import SupportPage from "./pages/SupportPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
 import TrackingPage from "./pages/TrackingPage";
 import UploadPage from "./pages/UploadPage";
+import TOSPage from "./pages/TOSPage";
 
 export default function Root() {
   return (
@@ -60,6 +61,7 @@ export default function Root() {
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
               <Route path="/support" component={SupportPage} />
+              <Route path="/tos" component={TOSPage} />
               <Route path="/settings" component={SettingsPage}>
                 <Route path="/" element={<Navigate href={"profile"} />} />
                 <Route path="/profile" component={ProfilePage} />
