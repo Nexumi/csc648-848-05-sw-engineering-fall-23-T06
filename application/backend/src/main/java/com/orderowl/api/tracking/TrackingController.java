@@ -144,9 +144,23 @@ public class TrackingController {
         return new ResponseEntity<>(trackingCount,HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     @GetMapping(path = "/hidden")
-    public List<Tracking> hiddenTracking () {
-        return trackingService.getHiddenTracking();
+    public ResponseEntity<List<Tracking>> hiddenTracking(@RequestBody UserPinRequest user) {
+        List<Tracking> hiddenTrackingList = trackingService.getHiddenTracking(user);
+
+        if (hiddenTrackingList.isEmpty()) {
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        } else {
+
+            return new ResponseEntity<>(hiddenTrackingList, HttpStatus.OK);
+        }
     }
 
     @DeleteMapping(path = "/delete/{id:[0-9]*]}")

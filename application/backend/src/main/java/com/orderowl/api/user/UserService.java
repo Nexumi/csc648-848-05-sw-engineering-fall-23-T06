@@ -4,6 +4,7 @@
  */
 package com.orderowl.api.user;
 
+import com.orderowl.api.tracking.UserPinRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -94,15 +95,14 @@ public class UserService {
 //    }
 
     /**
-     * @param email will be used to locate the email that is linked to the current user
-     * @param pin   will hold the new user pin that is being created
-     * @return will return the new pin that was created
+     *
+     * @param user will help us hold both email and pin
+     * @return the new updated pin along with the email that it goes with.
      */
-    public User newUserPin(String email, String pin) {
-
-        var user = userRepository.findByEmail(email).orElseThrow();
-        user.setPin(pin);
-        return userRepository.save(user);
+    public User newUserPin(UserPinRequest user) {
+        var user1 = userRepository.findByEmail(user.getEmail()).orElseThrow();
+        user1.setPin(user.getPin());
+        return userRepository.save(user1);
     }
 
 }

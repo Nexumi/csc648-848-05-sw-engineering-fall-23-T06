@@ -7,6 +7,7 @@
 package com.orderowl.api.user;
 
 
+import com.orderowl.api.tracking.UserPinRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +39,14 @@ public class UserController {
 
 
     /**
-     * @param userEmail this part will look for the current email that is creating a new pin
-     * @param pin will hold the pin that is typed in
-     * @return the new pin to put in the database
+     *
+     * @param user will be carrying the new pin that is going to be created.
+     * @return the new user that was created by the pin.
      */
     @PutMapping(path = "/update/pin")
-    public ResponseEntity<User> newUserPin(@PathVariable("email") String userEmail, @RequestBody String pin) {
+    public ResponseEntity<User> newUserPin(@RequestBody UserPinRequest user) {
 
-        return ResponseEntity.ok(userService.newUserPin(userEmail, pin));
+        return ResponseEntity.ok(userService.newUserPin(user));
     }
 
 }
