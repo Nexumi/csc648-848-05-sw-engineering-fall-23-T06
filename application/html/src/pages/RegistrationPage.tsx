@@ -57,18 +57,6 @@ export default function RegistrationPage() {
             toast.error("Registration failed, please try again.")
           })
       }
-      if (values.HiddenListPin === values.confirmHiddenList) {
-        putPin(params)
-            .then((res) => {
-              toast.success("Registration successful!");
-              navigate(uriLogin());
-            })
-            .catch((err) => {
-              console.log(err);
-              console.log(params);
-              toast.error("Registration failed, please try again.")
-            })
-      }
     },
     schema: RegistrationSchema,
     validateOn: "onBlur",
