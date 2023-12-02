@@ -79,6 +79,7 @@ export const getTrackingBySearch = async (params: {
 
 export const postTracking = async (params: {
   trackingNumber: string,
+  title: string
 }) => {
   const response = await axios.post(apiTracking(), params);
   return response;
@@ -99,7 +100,7 @@ export const deleteTrackingById = async (params: {
   const response = await axios.delete(`${apiTracking()}/delete/${params.id}`);
   return response;
 }
-//asdasdasdas
+
 export const postRegistration = async (params: {
   firstname: any,
   lastname: any,
