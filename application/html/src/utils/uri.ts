@@ -24,6 +24,10 @@ export function apiPin() {
   return '/api/registration/update/pin'
 }
 
+export function apiCheckPin(){
+  return '/api/tracking/hidden'
+}
+
 /* URI Paths */
 export function uriHome() {
   return `/`;

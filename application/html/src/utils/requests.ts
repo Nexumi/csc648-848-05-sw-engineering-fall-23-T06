@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {apiAuth, apiLogin, apiPin, apiRegistration, apiTest, apiTracking} from './uri';
+import {apiAuth, apiCheckPin, apiLogin, apiPin, apiRegistration, apiTest, apiTracking} from './uri';
 
 /* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
@@ -138,4 +138,12 @@ export const putPin = async (params: {
   pin: any
 })=> {
   const response = await axios.put(apiPin(), params);
+}
+
+export const getHidden = async (params: {
+  email: any,
+  pin: any
+})=> {
+  const response = await axios.get(apiCheckPin(), params);
+
 }
