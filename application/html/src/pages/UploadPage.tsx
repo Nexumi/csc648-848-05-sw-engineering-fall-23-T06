@@ -16,7 +16,7 @@ export default function UploadPage() {
     onSubmit(values) {
       const params = {
         trackingNumber: values.trackingNumber,
-        orderTitle: values.orderTitle,
+        title: values.orderTitle,
         type: values.listType,
       }
 
