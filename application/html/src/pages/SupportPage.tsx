@@ -2,7 +2,7 @@ import { Flex } from "../common/layout/flex";
 
 export default function SupportPage() {
   return (
-    <div class="container mx-auto h-screen">
+    <div class="container mx-auto min-h-screen">
       <Flex justifyContent="start" alignItems="start" class="h-full flex-col p-4">
         <h1 class="text-6xl font-bold mb-4">Help and Support</h1>
         <p class="text-lg mb-8">

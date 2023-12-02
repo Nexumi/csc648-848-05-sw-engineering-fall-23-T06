@@ -20,6 +20,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import SettingsPage from "./pages/SettingsPage";
 import EtcPage from "./pages/SettingsPages/EtcPage";
 import ProfilePage from "./pages/SettingsPages/ProfilePage";
+import BusinessProfilePage from "./pages/SettingsPages/BusinessProfilePage";
 import SupportPage from "./pages/SupportPage";
 import TrackingInfoPage from "./pages/TrackingInfoPage";
 import TrackingPage from "./pages/TrackingPage";
