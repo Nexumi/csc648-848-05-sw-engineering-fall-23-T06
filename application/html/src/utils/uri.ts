@@ -20,6 +20,10 @@ export function apiAuth() {
   return `/api/v1/auth`;
 }
 
+export function apiPin() {
+  return '/api/registration/update/pin'
+}
+
 /* URI Paths */
 export function uriHome() {
   return `/`;
@@ -88,3 +92,5 @@ export function uriSettings(id?: string) {
 export function uriApiTest() {
   return `/api_test`;
 }
+
+

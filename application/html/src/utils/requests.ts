@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { apiAuth, apiLogin, apiRegistration, apiTest, apiTracking } from './uri';
+import {apiAuth, apiLogin, apiPin, apiRegistration, apiTest, apiTracking} from './uri';
 
 /* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
@@ -132,4 +132,10 @@ export const getUser = async (params: {
 }) => {
   const response = await axios.get(`${apiAuth()}?email=${params.email}`);
   return response;
+}
+
+export const putPin = async (params: {
+  pin: any
+})=> {
+  const response = await axios.put(apiPin(), params);
 }

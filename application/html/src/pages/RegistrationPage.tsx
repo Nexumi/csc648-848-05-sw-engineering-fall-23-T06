@@ -9,7 +9,7 @@ import registrationImage from "../assets/appImages/registrationImage.jpeg";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import TextInput from "../components/TextInput";
-import { postRegistration } from "../utils/requests";
+import { postRegistration, putPin } from "../utils/requests";
 import { uriHome, uriLogin, uriTOSPage } from "../utils/uri";
 
 
@@ -42,7 +42,8 @@ export default function RegistrationPage() {
         lastname: values.lastName,
         email: values.email,
         password: values.password,
-        role: values.accountType || "0"
+        role: values.accountType || "0",
+        pin: values.HiddenListPin
       }
       if (values.password === values.confirmPassword) {
         postRegistration(params)
@@ -55,6 +56,18 @@ export default function RegistrationPage() {
             console.log(params);
             toast.error("Registration failed, please try again.")
           })
+      }
+      if (values.HiddenListPin === values.confirmHiddenList) {
+        putPin(params)
+            .then((res) => {
+              toast.success("Registration successful!");
+              navigate(uriLogin());
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log(params);
+              toast.error("Registration failed, please try again.")
+            })
       }
     },
     schema: RegistrationSchema,
