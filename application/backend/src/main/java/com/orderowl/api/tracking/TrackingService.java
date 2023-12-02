@@ -9,6 +9,7 @@ import com.easypost.model.Tracker;
 import com.easypost.model.TrackingDetail;
 import com.easypost.service.EasyPostClient;
 import com.orderowl.api.user.UserRepository;
+import com.orderowl.api.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,12 @@ import java.util.List;
 public class TrackingService {
 
     private final TrackingRepository trackingRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     @Autowired
-    public TrackingService(TrackingRepository trackingRepository, UserRepository userRepository) {
+    public TrackingService(TrackingRepository trackingRepository, UserRepository userRepository, UserService userService) {
 
         this.trackingRepository = trackingRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     /**
@@ -132,7 +133,13 @@ public class TrackingService {
      * @return the hidden page if the pin is correct
      */
     public List<Tracking> getHiddenTracking(UserPinRequest request) {
-        return trackingRepository.findHidden();
+        ;
+        if(userService.validatePin(request)){
+            return trackingRepository.findHidden();
+        } else {
+            return List.of();
+        }
+
     }
 
     /**

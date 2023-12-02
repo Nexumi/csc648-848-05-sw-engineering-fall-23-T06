@@ -78,21 +78,21 @@ public class UserService {
     }
 
 
-//    /**
-//     * This will allow us to authenticate if the PIN was put in correctly
-//     *
-//     * @param email this is the email that is linked to the pin
-//     * @param pin This is the pin that was given by the user
-//     * @return Will let the user know if it is correct or not
-//     */
+    /**
+     * This will allow us to authenticate if the PIN was put in correctly
+     *
+     * @param email this is the email that is linked to the pin
+     * @param pin This is the pin that was given by the user
+     * @return Will let the user know if it is correct or not
+     */
 
-//    public boolean validatePin(String email, String pin){
-//        Optional<User> users = userRepository.findByEmail(email);
-//        if(!users.isEmpty() && users.get().getPin() !=  null){
-//            return pin.equals(users.get().getPin());
-//        }
-//        return false;
-//    }
+    public boolean validatePin(UserPinRequest request){
+        var user = userRepository.findByEmail(request.getEmail());
+        if(user.get().getPin() == request.getPin() || !user.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 
     /**
      *
