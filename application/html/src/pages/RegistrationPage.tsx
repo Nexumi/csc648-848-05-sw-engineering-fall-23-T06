@@ -31,9 +31,11 @@ export default function RegistrationPage() {
       .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
       .regex(/[0-9]/, { message: "Password must contain at least one number" })
       .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one symbol" }),
+    acception: z.literal(true, { errorMap: () => ({ message: "Please read and accept the TOS and Privacy Rules" }) })
   });
 
-  const [confirmSame, setConfirmSame] = createSignal(true);
+  const [confirmPassword, setConfirmPassword] = createSignal(true);
+  const [confirmEmail, setConfirmEmail] = createSignal(true);
 
   const { form, data, setData } = createForm({
     onSubmit(values) {
@@ -124,6 +126,11 @@ export default function RegistrationPage() {
                       header="Email"
                       class={NO_RING}
                       placeholder="youremail@mail.com"
+                      onChange={() => {
+                        if (data().confirmEmail) {
+                          setConfirmEmail(data().email === data().confirmEmail);
+                        }
+                      }}
                     />
                   </div>
                   <ValidationMessage for="email">
@@ -140,16 +147,14 @@ export default function RegistrationPage() {
                       header="Confirm Email"
                       class={NO_RING}
                       placeholder="youremail@mail.com"
+                      onChange={() => {
+                        setConfirmEmail(data().email === data().confirmEmail);
+                      }}
                     />
                   </div>
-                  <ValidationMessage for="confirmEmail">
-                    {(messages) =>
-                      messages?.map((message) => (
-                        <div class="!mt-0 text-red-500">{message}</div>
-                      ))
-                    }
-                  </ValidationMessage>
-
+                  <Show when={!confirmEmail()}>
+                    <div class="!mt-0 text-red-500">Emails must match</div>
+                  </Show>
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="password"
@@ -159,7 +164,7 @@ export default function RegistrationPage() {
                       placeholder="password"
                       onChange={() => {
                         if (data().confirmPassword) {
-                          setConfirmSame(data().password === data().confirmPassword);
+                          setConfirmPassword(data().password === data().confirmPassword);
                         }
                       }}
                     />
@@ -179,11 +184,11 @@ export default function RegistrationPage() {
                       class={NO_RING}
                       placeholder="password"
                       onChange={() => {
-                        setConfirmSame(data().password === data().confirmPassword);
+                        setConfirmPassword(data().password === data().confirmPassword);
                       }}
                     />
                   </div>
-                  <Show when={!confirmSame()}>
+                  <Show when={!confirmPassword()}>
                     <div class="!mt-0 text-red-500">Passwords must match</div>
                   </Show>
                   <div class="border-b-2 border-black p-0">
@@ -198,7 +203,7 @@ export default function RegistrationPage() {
                       placeholder="Hidden List Pin"
                       onChange={() => {
                         if (data().confirmHiddenListPin) {
-                          setConfirmSame(data().HiddenListPin === data().confirmHiddenListPin);
+                          setConfirmPassword(data().HiddenListPin === data().confirmHiddenListPin);
                         }
                       }}
                     />
@@ -218,11 +223,11 @@ export default function RegistrationPage() {
                       class={NO_RING}
                       placeholder="Hidden List Pin"
                       onChange={() => {
-                        setConfirmSame(data().confirmHiddenListPin === data().confirmHiddenListPin);
+                        setConfirmPassword(data().confirmHiddenListPin === data().confirmHiddenListPin);
                       }}
                     />
                   </div>
-                  <Show when={!confirmSame()}>
+                  <Show when={!confirmPassword()}>
                     <div class="!mt-0 text-red-500">Pins must match</div>
                   </Show>
                   <div>
@@ -234,14 +239,23 @@ export default function RegistrationPage() {
                     />
                     <label for="acception">
                       <span>Please Accept the Terms and Conditions as well as the Privacy Rules. Thank you: </span>
-                      <a class="underline"
-                      onClick={() => {
-                      navigate(uriTOSPage());
-                      }}
-                      style={{cursor: "pointer"}}
-                      >The TOS and Privacy Rules</a>
+                      <span
+                        class="underline cursor-pointer"
+                        onClick={() => {
+                          navigate(uriTOSPage());
+                        }}
+                      >
+                        The TOS and Privacy Rules
+                      </span>
                       <span> I have read the TOS and Privacy Rules and I accept</span>
                     </label>
+                    <ValidationMessage for="acception">
+                      {(messages) =>
+                        messages?.map((message) => (
+                          <div class="!mt-0 text-red-500">{message}</div>
+                        ))
+                      }
+                    </ValidationMessage>
                   </div>
                   <div class="text-center space-y-2">
                     <div class="text-l font-bold">
@@ -289,7 +303,7 @@ export default function RegistrationPage() {
                     type="submit"
                     class="relative overflow-visible"
                     onClick={() => {
-                      setConfirmSame(data().password === data().confirmPassword);
+                      setConfirmPassword(data().password === data().confirmPassword);
                     }}
                   >
                     <div
