@@ -141,9 +141,9 @@ export const putPin = async (params: {
 }
 
 export const getHidden = async (params: {
-  email: any,
-  pin: any
+  email: string,
+  pin: string
 })=> {
-  const response = await axios.get(apiCheckPin(), params);
+  const response = await axios.post(apiCheckPin(), params);
 
 }

@@ -149,7 +149,7 @@ public class TrackingController {
      * @param user
      * @return
      */
-    @GetMapping(path = "/hidden")
+    @PostMapping(path = "/hidden")
     public ResponseEntity<List<Tracking>> hiddenTracking(@RequestBody UserPinRequest user) {
         List<Tracking> hiddenTrackingList = trackingService.getHiddenTracking(user);
 

@@ -59,7 +59,7 @@ public class TrackingConfig {
                     "Pending",
                     "Chicago, IL",
                     "886 2nd Ave, New York, NY 10017",
-                    false,
+                    true,
                     4L
             );
             Tracking tracking5 = new Tracking(
@@ -70,7 +70,7 @@ public class TrackingConfig {
                     "In Transit",
                     "New York, NY",
                     "560 W 42nd St, New York, NY 10036",
-                    false,
+                    true,
                     2L
             );
 
