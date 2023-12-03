@@ -85,7 +85,7 @@ public class TrackingController {
             Tracking tracking1 = new Tracking(
                     "Amazon",
                     "Amazon",
-                    LocalDate.of(2023, 10, 12),
+                    LocalDate.of(2023, 12, 12),
                     "A1B2C3D4",
                     "Shipped",
                     "LA Sorting Facility",
@@ -100,7 +100,7 @@ public class TrackingController {
             Tracking tracking1 = new Tracking(
                     "Amazon",
                     "Amazon",
-                    LocalDate.of(2023, 10, 14),
+                    LocalDate.of(2023, 12, 14),
                     "A2B4C6",
                     "Shipped",
                     "SF Sorting Facility",
