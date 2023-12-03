@@ -85,6 +85,7 @@ export default function ProfilePage() {
                     .then((res) => {
                       toast.success("Successfully deleted your account!\nWe hope to see you again.");
                       Cookies.remove("token");
+                      Cookies.remove("user");
                       navigate(uriHome());
                     })
                     .catch((error) => {

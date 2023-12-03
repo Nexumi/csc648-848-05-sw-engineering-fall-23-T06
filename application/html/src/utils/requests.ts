@@ -62,7 +62,10 @@ export const getTrackingById = async (params: {
 }
 
 export const getTrackingBySearch = async (params: {
-  searchText: string
+  searchText: string,
+  hidden: string,
+  pin: string,
+  email: string
 }) => {
   try {
     if (params.searchText) {
@@ -138,6 +141,7 @@ export const putPin = async (params: {
   pin: any
 })=> {
   const response = await axios.put(apiPin(), params);
+  return response;
 }
 
 export const getHidden = async (params: {
@@ -145,5 +149,5 @@ export const getHidden = async (params: {
   pin: string
 })=> {
   const response = await axios.post(apiCheckPin(), params);
-
+  return response;
 }

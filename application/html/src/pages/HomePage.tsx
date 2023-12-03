@@ -155,6 +155,7 @@ function Header() {
                 onclick={() => {
                   toast.success(`See you next time ${me().firstname} ${me().lastname}!`);
                   Cookies.remove("token");
+                  Cookies.remove("user");
                   setIsIn(false);
                 }}
               >

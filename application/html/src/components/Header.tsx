@@ -73,6 +73,7 @@ export default function Logo() {
                     onSelect={() => {
                       toast.success(`See you next time ${me().firstname} ${me().lastname}!`);
                       Cookies.remove("token");
+                      Cookies.remove("user");
                       navigate(uriHome());
                     }}
                     class="cursor-pointer hover:bg-gray-200"
