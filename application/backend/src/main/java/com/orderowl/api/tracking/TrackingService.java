@@ -24,9 +24,9 @@ public class TrackingService {
 
     private final TrackingRepository trackingRepository;
     private final UserService userService;
+
     @Autowired
     public TrackingService(TrackingRepository trackingRepository, UserRepository userRepository, UserService userService) {
-
         this.trackingRepository = trackingRepository;
         this.userService = userService;
     }
@@ -38,7 +38,6 @@ public class TrackingService {
      */
 
     public List<Tracking> getTrackingInfo() {
-
         return trackingRepository.findVisible();
     }
 
@@ -50,7 +49,6 @@ public class TrackingService {
      */
 
     public Tracking getTrackingById(Long id) {
-
         return trackingRepository.findById(id).orElse(null);
     }
 
@@ -63,8 +61,8 @@ public class TrackingService {
     public void addNewTracking(Tracking tracking) {
 
         try {
-            if(tracking.getTrackingNumber().equals("123456789012") || tracking.getTrackingNumber().equals("123456789013") ||
-                    tracking.getTrackingNumber().equals("A2B4C6")){
+            if (tracking.getTrackingNumber().equals("123456789012") || tracking.getTrackingNumber().equals("123456789013") ||
+                    tracking.getTrackingNumber().equals("A2B4C6")) {
                 trackingRepository.save(tracking);
             } else {
                 EasyPostClient easyPostClient = new EasyPostClient("EZAKaec5c730141e44c8b9aed9ec7b7b04f3YwveqZZNyaSJObbZDsqi0w");
@@ -97,6 +95,7 @@ public class TrackingService {
 
     /**
      * credit : https://www.baeldung.com/java-date-to-localdate-and-localdatetime
+     *
      * @param dateToConvert Date type object to be converted
      * @return LocalDate type object
      */
@@ -112,34 +111,49 @@ public class TrackingService {
      * @param searchText This will be the text that is used to search for the tracking information.
      * @return A List for the tracking information that has been put in before.
      */
-    public List<Tracking> searchTracking(String searchText) {
+    public List<Tracking> searchTracking(String searchText, boolean hidden, String pin, String email) {
+        if (hidden) {
+            var user = UserPinRequest.builder()
+                    .email(email)
+                    .pin(pin)
+                    .build();
+            if (userService.validatePin(user)) {
+                if (searchText.isEmpty()) {
+                    return trackingRepository.findHidden();
+                } else {
+                    return trackingRepository.searchHiddenTracking(searchText);
+                }
+            } else {
+                return List.of();
+            }
+        }
 
-        return trackingRepository.searchTracking(searchText);
+        if (searchText.isEmpty()){
+            return trackingRepository.findVisible();
+        } else {
+            return trackingRepository.searchVisibleTracking(searchText);
+        }
     }
 
     /**
-     *  This interacts with the database to find the number of orders left to be delivered
+     * This interacts with the database to find the number of orders left to be delivered
      *
      * @return Returns the count of pending orders
      */
     public Integer getTrackingCount() {
-
         return trackingRepository.getTrackingCount();
     }
 
     /**
-     *
      * @param request will be used to request for the pin
      * @return the hidden page if the pin is correct
      */
     public List<Tracking> getHiddenTracking(UserPinRequest request) {
-        ;
-        if(userService.validatePin(request)){
+        if (userService.validatePin(request)) {
             return trackingRepository.findHidden();
         } else {
             return List.of();
         }
-
     }
 
     /**
@@ -157,8 +171,6 @@ public class TrackingService {
      * @param trackingNumber This will be the tracking number that is related to the order that needs to be deleted.
      */
     public void deleteTrackingByNumber(String trackingNumber) {
-
         trackingRepository.deleteByTrackingNumber(trackingNumber);
-
     }
 }

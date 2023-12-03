@@ -36,6 +36,7 @@ public class Tracking {
     private Long user_id;
     private String title;
 
+
     public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id) {
         this.retailer = retailer;
         this.carrier = carrier;
@@ -46,6 +47,18 @@ public class Tracking {
         this.address = address;
         this.hidden = hidden;
         this.user_id = user_id;
+    }
+    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id, String title) {
+        this.retailer = retailer;
+        this.carrier = carrier;
+        this.eta = eta;
+        this.trackingNumber = trackingNumber;
+        this.status = status;
+        this.location = location;
+        this.address = address;
+        this.hidden = hidden;
+        this.user_id = user_id;
+        this.title = title;
     }
 
     // Using Lombok's @Data, we will automatically get access to getters and setters

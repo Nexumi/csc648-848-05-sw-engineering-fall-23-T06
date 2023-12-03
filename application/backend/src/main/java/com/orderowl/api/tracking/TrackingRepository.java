@@ -32,6 +32,27 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
             "ELSE 6 END " )
     List<Tracking> searchTracking(String searchText);
 
+    @Query("SELECT t FROM Tracking t " +
+            "WHERE (t.retailer LIKE %:searchText% " +
+            "OR t.carrier LIKE %:searchText% " +
+            "OR t.trackingNumber LIKE %:searchText% " +
+            "OR t.status LIKE %:searchText% " +
+            "OR t.location LIKE %:searchText% " +
+            "OR t.address LIKE %:searchText% " +
+            "OR t.title LIKE %:searchText%) " +
+            "AND t.hidden = true")
+    List<Tracking> searchHiddenTracking(String searchText);
+
+    @Query("SELECT t FROM Tracking t " +
+            "WHERE (t.retailer LIKE %:searchText% " +
+            "OR t.carrier LIKE %:searchText% " +
+            "OR t.trackingNumber LIKE %:searchText% " +
+            "OR t.status LIKE %:searchText% " +
+            "OR t.location LIKE %:searchText% " +
+            "OR t.address LIKE %:searchText% " +
+            "OR t.title LIKE %:searchText%) " +
+            "AND t.hidden = false")
+    List<Tracking> searchVisibleTracking(String searchText);
     @Query("SELECT t FROM Tracking t WHERE t.hidden = true")
     List<Tracking> findHidden();
 
@@ -46,5 +67,6 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
 
     // allows us to delete tracking by ID
     void deleteById(Long id);
+
 
 }

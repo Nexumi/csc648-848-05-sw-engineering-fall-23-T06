@@ -78,7 +78,8 @@ public class TrackingController {
                     "NY, NY",
                     "6 Doyers St, New York, NY 10013",
                     false,
-                    1L
+                    1L,
+                    tracking.getTitle()
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
@@ -92,7 +93,8 @@ public class TrackingController {
                     "LA Sorting Facility",
                     "6400 Valley View St, Buena Park, CA 90620",
                     false,
-                    1L
+                    1L,
+                    tracking.getTitle()
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
@@ -106,7 +108,8 @@ public class TrackingController {
                     "SF Sorting Facility",
                     "5000-5200 Giant Hwy, Richmond, CA 94806",
                     false,
-                    1L
+                    1L,
+                    tracking.getTitle()
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
@@ -127,9 +130,12 @@ public class TrackingController {
      * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
      */
     @GetMapping(path = "/search")
-    public List<Tracking> searchTracking(@RequestParam("searchText") @Min(3) @Max(30)  @NotNull String searchText) {
+    public ResponseEntity<List<Tracking>> searchTracking(@RequestParam("searchText") @Max(30) String searchText,
+                                         @RequestParam(defaultValue = "false") boolean hidden,
+                                         @RequestParam(required = false) String pin,
+                                         @RequestParam(required = false) String email) {
 
-        return trackingService.searchTracking(searchText);
+        return ResponseEntity.ok(trackingService.searchTracking(searchText, hidden, pin, email));
     }
 
     /**
