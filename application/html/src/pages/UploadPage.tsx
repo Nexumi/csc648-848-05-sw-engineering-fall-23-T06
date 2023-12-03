@@ -6,18 +6,15 @@ import { Flex } from "../common/layout/flex";
 import { postTracking } from "../utils/requests";
 
 export default function UploadPage() {
-
-  const navigate = useNavigate();
-
-  const IS_TYPE = "w-1/2 border-2 border-black bg-gray-300";
-  const IS_NOT_TYPE = "w-1/2 border-2 border-black";
+  const IS_TYPE = "w-1/2 border-2 border-black whitespace-nowrap bg-gray-300";
+  const IS_NOT_TYPE = "w-1/2 border-2 border-black whitespace-nowrap"
 
   const { form, data, setData, reset } = createForm({
     onSubmit(values) {
       const params = {
         trackingNumber: values.trackingNumber,
         title: values.orderTitle,
-        type: values.listType,
+        type: values.listType || "visible",
       }
 
       postTracking(params)
@@ -70,7 +67,6 @@ export default function UploadPage() {
                 <Flex class="gap-x-2">
                   <Button
                     type="button"
-                    class="text-xl mr-2"
                     class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
                     onClick={() => {
                       setData("listType", "visible");
@@ -80,8 +76,7 @@ export default function UploadPage() {
                   </Button>
                   <Button
                     type="button"
-                    class="text-xl mr-2"
-                    class={data().listType === "hidden" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                    class={data().listType === "hidden" ? IS_TYPE : IS_NOT_TYPE}
                     onClick={() => {
                       setData("listType", "hidden");
                     }}
