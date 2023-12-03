@@ -81,7 +81,7 @@ public class TrackingController {
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
-        } else if (tracking.getTrackingNumber().equals("123456789013")){
+        } else if (tracking.getTrackingNumber().equals("ABC123456")){
             Tracking tracking1 = new Tracking(
                     "Amazon",
                     "Amazon",
