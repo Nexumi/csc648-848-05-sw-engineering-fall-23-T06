@@ -37,7 +37,8 @@ public class Tracking {
     private String title;
 
 
-    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id) {
+    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status,
+                    String location, String address, boolean hidden, Long user_id) {
         this.retailer = retailer;
         this.carrier = carrier;
         this.eta = eta;
@@ -48,7 +49,8 @@ public class Tracking {
         this.hidden = hidden;
         this.user_id = user_id;
     }
-    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, Long user_id, String title) {
+    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status,
+                    String location, String address, boolean hidden, Long user_id, String title) {
         this.retailer = retailer;
         this.carrier = carrier;
         this.eta = eta;

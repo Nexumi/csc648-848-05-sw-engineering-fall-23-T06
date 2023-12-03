@@ -26,7 +26,8 @@ public class TrackingService {
     private final UserService userService;
 
     @Autowired
-    public TrackingService(TrackingRepository trackingRepository, UserRepository userRepository, UserService userService) {
+    public TrackingService(TrackingRepository trackingRepository,
+                           UserRepository userRepository, UserService userService) {
         this.trackingRepository = trackingRepository;
         this.userService = userService;
     }
@@ -59,13 +60,14 @@ public class TrackingService {
      * @param tracking The tracking information to be added to the list.
      */
     public void addNewTracking(Tracking tracking) {
-
         try {
-            if (tracking.getTrackingNumber().equals("123456789012") || tracking.getTrackingNumber().equals("123456789013") ||
+            if (tracking.getTrackingNumber().equals("123456789012") ||
+                    tracking.getTrackingNumber().equals("123456789013") ||
                     tracking.getTrackingNumber().equals("A2B4C6")) {
                 trackingRepository.save(tracking);
             } else {
-                EasyPostClient easyPostClient = new EasyPostClient("EZAKaec5c730141e44c8b9aed9ec7b7b04f3YwveqZZNyaSJObbZDsqi0w");
+                EasyPostClient easyPostClient =
+                        new EasyPostClient("EZAKaec5c730141e44c8b9aed9ec7b7b04f3YwveqZZNyaSJObbZDsqi0w");
                 HashMap<String, Object> params = new HashMap<String, Object>();
                 params.put("tracking_code", tracking.getTrackingNumber());
                 Tracker ezPostTracker = easyPostClient.tracker.create(params);
@@ -127,8 +129,8 @@ public class TrackingService {
                 return List.of();
             }
         }
-//12312
-        if (searchText.isEmpty()){
+
+        if (searchText.isEmpty()) {
             return trackingRepository.findVisible();
         } else {
             return trackingRepository.searchVisibleTracking(searchText);

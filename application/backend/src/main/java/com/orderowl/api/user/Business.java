@@ -18,7 +18,8 @@ public class Business extends User {
     }
 
     // super is used here to inherit the attributes and methods from the User Parent class.
-    public Business(Long id, String email, String first_name, String last_name, String password, String address,String businessName,String licenseNumber,String businessRegistrationDate) {
+    public Business(Long id, String email, String first_name, String last_name, String password,
+                    String address,String businessName,String licenseNumber,String businessRegistrationDate) {
         super(id,email, first_name, last_name, password, address,Role.BUSINESS);
         this.businessName = businessName;
         this.licenseNumber = licenseNumber;

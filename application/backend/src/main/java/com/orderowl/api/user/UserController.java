@@ -29,7 +29,8 @@ public class UserController {
      * This will handle the HTTP DELETE requests to delete a User when the user no longer needs the account.
      *
      * @param id This ID will be the one that is used to delete the user that is relating to the ID.
-     * @return A ResponseEntity that will let us know if deleting the user was a success or a failure if nothing was found with that ID.
+     * @return A ResponseEntity that will let us know if deleting the user was a success or a failure if nothing
+     * was found with that ID.
      */
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable("id") Long id) {
@@ -45,7 +46,6 @@ public class UserController {
      */
     @PutMapping(path = "/update/pin")
     public ResponseEntity<User> newUserPin(@RequestBody UserPinRequest user) {
-
         return ResponseEntity.ok(userService.newUserPin(user));
     }
 
