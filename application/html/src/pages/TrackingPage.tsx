@@ -7,6 +7,7 @@ import TrackingList from "../components/TrackingList";
 import { getTrackingBySearch, getTrackingCount } from "../utils/requests";
 import { me } from "../utils/me";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
+import { createForm } from "@felte/solid";
 
 export default function TrackingPage() {
   const IS_TYPE = "w-1/2 border-2 border-black whitespace-nowrap bg-gray-300";
@@ -14,18 +15,22 @@ export default function TrackingPage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [listType, setListType] = createSignal("visible");
-
   const [undeliveredCount] = createResource(getTrackingCount);
   const [packages] = createResource(
     () => ({
       searchText: searchParams.searchText,
       email: me().email || "",
-      type: listType(),
+      type: searchParams.listType,
       pin: ""
     }),
     getTrackingBySearch
   );
+
+  const { form } = createForm({
+    onSubmit(values) {
+      setSearchParams({ searchText: values.search });
+    }
+  });
 
   return (
     <>
@@ -35,27 +40,29 @@ export default function TrackingPage() {
           <p>Visible Track Info List</p>
         </div>
         <Flex justifyContent="center">
-          <span class="text-xl mr-2">Search:</span>
-          <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..." value={searchParams.searchText || ""} />
-          <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full">
-            <img src={SearchIcon} alt="Search" class="w-6 h-6" />
-          </button>
+          <form use:form>
+            <span class="text-xl mr-2">Search:</span>
+            <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..." value={searchParams.searchText || ""} />
+            <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full">
+              <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+            </button>
+          </form>
           <div>
             <Flex class="gap-x-2">
               <Button
                 type="button"
-                class={listType() === "visible" ? IS_TYPE : IS_NOT_TYPE}
+                class={searchParams.listType === "visible" || searchParams.listType === undefined ? IS_TYPE : IS_NOT_TYPE}
                 onClick={() => {
-                  setListType("visible");
+                  setSearchParams({ listType: "visible" });
                 }}
               >
                 View Visible List
               </Button>
               <Button
                 type="button"
-                class={listType() === "hidden" ? IS_TYPE : IS_NOT_TYPE}
+                class={searchParams.listType === "hidden" ? IS_TYPE : IS_NOT_TYPE}
                 onClick={() => {
-                  setListType("hidden");
+                  setSearchParams({ listType: "hidden" });
                 }}
               >
                 View Hidden List
@@ -72,7 +79,7 @@ export default function TrackingPage() {
           </div>
         </Flex>
       </div>
-      <Dialog open={listType() === "hidden"} onOpenChange={() => {setListType("visible")}}>
+      <Dialog open={searchParams.listType === "hidden"} onOpenChange={() => { setSearchParams({ listType: "visible" }) }}>
         <DialogContent class="bg-orange-50 border-2 border-black" >
           <DialogHeader class="space-y-4">
             <DialogTitle class="text-center text-3xl">
