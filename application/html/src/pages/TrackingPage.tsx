@@ -21,7 +21,7 @@ export default function TrackingPage() {
   const [packages] = createResource(
     () => ({
       searchText: searchParams.searchText,
-      hidden: searchParams.hidden,
+      hidden: searchParams.hidden || "false",
       pin: pin(),
       email: me().email || ""
     }),
