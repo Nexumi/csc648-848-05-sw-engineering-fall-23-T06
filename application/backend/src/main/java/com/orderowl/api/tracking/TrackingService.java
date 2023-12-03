@@ -62,7 +62,7 @@ public class TrackingService {
     public void addNewTracking(Tracking tracking) {
         try {
             if (tracking.getTrackingNumber().equals("123456789012") ||
-                    tracking.getTrackingNumber().equals("123456789013") ||
+                    tracking.getTrackingNumber().equals("ABC123456") ||
                     tracking.getTrackingNumber().equals("A2B4C6")) {
                 trackingRepository.save(tracking);
             } else {

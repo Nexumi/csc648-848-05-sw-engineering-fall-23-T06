@@ -158,11 +158,8 @@ public class TrackingController {
         List<Tracking> hiddenTrackingList = trackingService.getHiddenTracking(user);
 
         if (hiddenTrackingList.isEmpty()) {
-
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         } else {
-
             return new ResponseEntity<>(hiddenTrackingList, HttpStatus.OK);
         }
     }
