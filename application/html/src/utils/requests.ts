@@ -62,7 +62,10 @@ export const getTrackingById = async (params: {
 }
 
 export const getTrackingBySearch = async (params: {
-  searchText: string
+  searchText: string,
+  hidden: string,
+  pin: string,
+  email: string
 }) => {
   try {
     if (params.searchText) {

@@ -1,5 +1,5 @@
 import { useSearchParams } from "@solidjs/router";
-import { createResource, createSignal } from "solid-js";
+import { createEffect, createResource, createSignal } from "solid-js";
 import SearchIcon from "../assets/icons/SearchIcon.png";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
@@ -15,13 +15,15 @@ export default function TrackingPage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [pin, setPin] = createSignal("");
+
   const [undeliveredCount] = createResource(getTrackingCount);
   const [packages] = createResource(
     () => ({
       searchText: searchParams.searchText,
-      email: me().email || "",
-      type: searchParams.listType,
-      pin: ""
+      hidden: searchParams.hidden,
+      pin: pin(),
+      email: me().email || ""
     }),
     getTrackingBySearch
   );
@@ -30,6 +32,14 @@ export default function TrackingPage() {
     onSubmit(values) {
       setSearchParams({ searchText: values.search });
     }
+  });
+
+  createEffect(() => {
+    /* DEBUG INFO */
+    console.log(searchParams.searchText);
+    console.log(searchParams.hidden);
+    console.log(pin());
+    console.log(me().email);
   });
 
   return (
@@ -51,18 +61,19 @@ export default function TrackingPage() {
             <Flex class="gap-x-2">
               <Button
                 type="button"
-                class={searchParams.listType === "visible" || searchParams.listType === undefined ? IS_TYPE : IS_NOT_TYPE}
+                class={searchParams.hidden === undefined ? IS_TYPE : IS_NOT_TYPE}
                 onClick={() => {
-                  setSearchParams({ listType: "visible" });
+                  setSearchParams({ hidden: null });
+                  setPin("");
                 }}
               >
                 View Visible List
               </Button>
               <Button
                 type="button"
-                class={searchParams.listType === "hidden" ? IS_TYPE : IS_NOT_TYPE}
+                class={searchParams.hidden === "true" ? IS_TYPE : IS_NOT_TYPE}
                 onClick={() => {
-                  setSearchParams({ listType: "hidden" });
+                  setSearchParams({ hidden: "true" });
                 }}
               >
                 View Hidden List
@@ -79,7 +90,30 @@ export default function TrackingPage() {
           </div>
         </Flex>
       </div>
-      <Dialog open={searchParams.listType === "hidden"} onOpenChange={() => { setSearchParams({ listType: "visible" }) }}>
+      <InputPin
+        pin={pin}
+        setPin={setPin}
+      />
+    </>
+  );
+}
+
+function InputPin(props: {
+  pin: Function,
+  setPin: Function
+}) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { form } = createForm({
+    onSubmit(values) {
+      props.setPin(values.pin);
+      console.log(values.pin)
+    }
+  });
+
+  return (
+    <>
+      <Dialog open={searchParams.hidden === "true" && !props.pin()} onOpenChange={() => { setSearchParams({ hidden: null }) }}>
         <DialogContent class="bg-orange-50 border-2 border-black" >
           <DialogHeader class="space-y-4">
             <DialogTitle class="text-center text-3xl">
@@ -88,20 +122,22 @@ export default function TrackingPage() {
             <DialogDescription class="text-center">
               Enter your pin to access the hidden list.
             </DialogDescription>
-            <div class="flex flex-col items-center space-y-4">
-              <input
-                type="password"
-                placeholder="Pin"
-                class="w-full p-2 border-2 border-gray-300 rounded"
-                required
-              />
-              <Button
-                type="submit"
-                class="text-white bg-black hover:bg-gray-600 w-full"
-              >
-                Submit
-              </Button>
-            </div>
+            <form use:form>
+              <div class="flex flex-col items-center space-y-4">
+                <input
+                  type="password"
+                  placeholder="Pin"
+                  name="pin"
+                  class="w-full p-2 border-2 border-gray-300 rounded"
+                />
+                <Button
+                  type="submit"
+                  class="text-white bg-black hover:bg-gray-600 w-full"
+                >
+                  Submit
+                </Button>
+              </div>
+            </form>
           </DialogHeader>
         </DialogContent>
       </Dialog>
