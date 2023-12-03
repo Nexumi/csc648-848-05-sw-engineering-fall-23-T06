@@ -39,7 +39,7 @@ public class TrackingService {
 
     public List<Tracking> getTrackingInfo() {
 
-        return trackingRepository.findAll();
+        return trackingRepository.findVisible();
     }
 
     /**

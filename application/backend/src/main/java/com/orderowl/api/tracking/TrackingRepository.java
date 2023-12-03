@@ -35,7 +35,8 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
     @Query("SELECT t FROM Tracking t WHERE t.hidden = true")
     List<Tracking> findHidden();
 
-    // TODO: make a visible only list
+    @Query("SELECT t FROM Tracking t WHERE t.hidden = false")
+    List<Tracking> findVisible();
 
     // Allows us to get the tracking count of pending orders
     @Query("SELECT COUNT(t) FROM Tracking t WHERE t.status <> 'Delivered'")
