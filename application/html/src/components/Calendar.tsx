@@ -88,7 +88,7 @@ function CalendarEvent(props: {
           navigate(uriTracking(props.package.id));
         }}
       >
-        <p>{props.package.text || props.package.retailer}</p>
+        <p>{props.package.title || props.package.retailer || props.package.carrier}</p>
       </div>
     </>
   );
