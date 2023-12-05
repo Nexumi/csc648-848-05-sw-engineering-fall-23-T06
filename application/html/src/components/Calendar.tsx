@@ -54,6 +54,9 @@ export default function Calendar(props: {
                       </div>
                       <div class="h-11 space-y-1 overflow-y-scroll">
                         <For each={props.packages?.filter((item: any) => {
+                          if (item.eta === getFullDate(day)) {
+                            console.log(item);
+                          }
                           return item.eta === getFullDate(day);
                         })}>
                           {(pack) =>
@@ -88,7 +91,7 @@ function CalendarEvent(props: {
           navigate(uriTracking(props.package.id));
         }}
       >
-        <p>{props.package.text || props.package.retailer}</p>
+        <p>{props.package.title || props.package.retailer || props.package.carrier}</p>
       </div>
     </>
   );
