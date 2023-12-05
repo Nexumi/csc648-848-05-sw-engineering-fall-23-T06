@@ -34,12 +34,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/api/v1/auth/register", "/api/v1/auth/authenticate", "/api/tracking/**")
+                        .requestMatchers("/api/v1/auth/register",
+                                "/api/v1/auth/authenticate", "/api/tracking/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement((sessionManagement) -> sessionManagement
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -50,8 +51,8 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://alpha.orderowl.jpkit.us"
-        , "https://orderowl.jpkit.us"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000",
+                "https://alpha.orderowl.jpkit.us", "https://orderowl.jpkit.us"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

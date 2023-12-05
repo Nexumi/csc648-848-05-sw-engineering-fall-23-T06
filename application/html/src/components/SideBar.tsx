@@ -2,7 +2,8 @@ import { useMatch, useNavigate } from "@solidjs/router";
 import { For, Show, createSignal } from "solid-js";
 import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
-import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin, uriRegistration, uriTracking, uriUpload } from "../utils/uri";
+import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin,
+uriRegistration, uriTracking, uriUpload } from "../utils/uri";
 
 export default function SideBar() {
   const navigate = useNavigate();
