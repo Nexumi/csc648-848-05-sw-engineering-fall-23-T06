@@ -19,7 +19,6 @@ import { sortBy } from "../utils/util";
 
 export default function HomePage() {
   const [packages] = createResource(getAllTracking);
-  console.log("User's role:", me().role);
 
   return (
     <Flex flexDirection="col" class=" h-full">
