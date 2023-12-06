@@ -56,20 +56,20 @@ export default function Root() {
               <Route path="/forget" component={ForgetPage} />
               <Route path="/dashboard" component={DashboardPage} />
               <Route path="/upload" component={UploadPage} />
-              <Route path="/businessupload" component={BusinessUploadPage} />
+              <Route path="/business-upload" component={BusinessUploadPage} />
               <Route path="/tracking">
                 <Route path="/" component={TrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
-              <Route path="/businesstracking">
+              <Route path="/business-tracking">
                 <Route path="/" component={BusinessTrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
-              <Route path="/hiddentracking">
+              <Route path="/hidden-tracking">
                 <Route path="/" component={HiddenTrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
-              <Route path="/shipmentstracking">
+              <Route path="/shipment-stracking">
                 <Route path="/" component={ShipmentsTrackingPage} />
                 <Route path="/:id" component={TrackingInfoPage} />
               </Route>
@@ -78,7 +78,7 @@ export default function Root() {
               <Route path="/settings" component={SettingsPage}>
                 <Route path="/" element={<Navigate href={"profile"} />} />
                 <Route path="/profile" component={ProfilePage} />
-                <Route path="/businessprofile" component={BusinessProfilePage} />
+                <Route path="/business-profile" component={BusinessProfilePage} />
                 <Route path="/etc" component={EtcPage} />
               </Route>
             </Routes>

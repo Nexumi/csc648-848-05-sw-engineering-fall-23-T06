@@ -62,7 +62,7 @@ export function uriUpload() {
 }
 
 export function uriBusinessUpload() {
-  return `/businessupload`;
+  return `/business-upload`;
 }
 
 export function uriTOSPage() {
@@ -74,15 +74,15 @@ export function uriTracking(id?: string | number) {
 }
 
 export function uriBusinessTracking(id?: string | number) {
-  return id !== undefined ? `/businesstracking/${id}` : `/businesstracking`;
+  return id !== undefined ? `/business-tracking/${id}` : `/business-tracking`;
 }
 
 export function uriHiddenTracking(id?: string | number) {
-  return id !== undefined ? `/hiddentracking/${id}` : `/hiddentracking`;
+  return id !== undefined ? `/hidden-tracking/${id}` : `/hidden-tracking`;
 }
 
 export function uriShipmentsTracking(id?: string | number) {
-  return id !== undefined ? `/shipmentstracking/${id}` : `/shipmentstracking`;
+  return id !== undefined ? `/shipment-stracking/${id}` : `/shipment-stracking`;
 }
 
 export function uriSupport() {
