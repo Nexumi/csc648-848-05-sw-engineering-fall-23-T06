@@ -78,6 +78,7 @@ export default function Root() {
               <Route path="/settings" component={SettingsPage}>
                 <Route path="/" element={<Navigate href={"profile"} />} />
                 <Route path="/profile" component={ProfilePage} />
+                <Route path="/businessprofile" component={BusinessProfilePage} />
                 <Route path="/etc" component={EtcPage} />
               </Route>
             </Routes>

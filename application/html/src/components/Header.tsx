@@ -54,7 +54,12 @@ export default function Logo() {
                 </Show>
                 <DropdownMenuItem
                   onSelect={() => {
-                    navigate(uriSettings());
+                    const role = me().role;
+                    if (role === "BUSINESS") {
+                      navigate(uriSettings('businessprofile'));
+                    } else {
+                      navigate(uriSettings());
+                    }
                   }}
                   class="cursor-pointer hover:bg-gray-200"
                 >
