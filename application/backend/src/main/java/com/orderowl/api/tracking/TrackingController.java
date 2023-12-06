@@ -149,7 +149,7 @@ public class TrackingController {
      * @return Returns the number of orders that are not delivered yet
      */
     @GetMapping(path = "/count")
-    public ResponseEntity<Integer> getTrackingCount(Long userId) {
+    public ResponseEntity<Integer> getTrackingCount(@RequestParam Long userId) {
 
         int trackingCount = trackingService.getTrackingCount(userId);
         return new ResponseEntity<>(trackingCount,HttpStatus.OK);
