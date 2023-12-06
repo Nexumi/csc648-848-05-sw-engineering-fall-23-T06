@@ -65,7 +65,7 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
     List<Tracking> findTrackingByUserAndHiddenIsTrue(User user);
 
     // Allows us to get the tracking count of pending orders
-    @Query("SELECT COUNT(t) FROM Tracking t WHERE t.user = :user AND t.status <> 'Delivered'")
+    @Query("SELECT COUNT(t) FROM Tracking t WHERE t.user = :user AND LOWER(t.status) <> 'delivered'")
     Integer getTrackingCount(User user);
 
     void deleteByTrackingNumber(String trackingNumber);
