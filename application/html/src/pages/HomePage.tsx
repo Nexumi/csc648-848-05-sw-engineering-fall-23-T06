@@ -16,8 +16,10 @@ import { getAllTracking } from "../utils/requests";
 import { uriAbout, uriDashboard, uriHome, uriLogin, uriRegistration, uriSupport, uriTracking } from "../utils/uri";
 import { sortBy } from "../utils/util";
 
+
 export default function HomePage() {
   const [packages] = createResource(getAllTracking);
+  console.log("User's role:", me().role);
 
   return (
     <Flex flexDirection="col" class=" h-full">
@@ -25,6 +27,7 @@ export default function HomePage() {
       <div class="container text-center my-8">
         <div class="text-7xl md:text-9xl font-thin">
           OrderOwl
+          
         </div>
         <div class="container text-6xl mt-4">
           Track Your Order Anywhere Anytime

@@ -21,13 +21,20 @@ export default function SideBar() {
 
   const initializeDestinations = () => {
     let uploadUri, trackInfoUri;
-
+    console.log("user:" + me().role);
     switch (me().role) {
       case "BUSINESS":
+        console.log("Assigning business URIs");
         uploadUri = uriBusinessUpload;
         trackInfoUri = uriBusinessTracking;
         break;
       case "USER":
+        console.log("Assigning User URIs");
+        uploadUri = uriUpload;
+        trackInfoUri = uriTracking;
+        break;
+      case "undefined":
+        console.log("Assigning User URIs");
         uploadUri = uriUpload;
         trackInfoUri = uriTracking;
         break;
