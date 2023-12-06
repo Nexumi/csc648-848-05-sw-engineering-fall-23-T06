@@ -34,7 +34,7 @@ public class UserService {
      *
      * @param request the request will be able to hold the email and pin to verify the pin that has been input.
      */
-    public boolean validatePin(UserPinRequest request){
+    public boolean validatePin(User request){
         var user = userRepository.findByEmail(request.getEmail());
         if(user.get().getPin() == request.getPin() || !user.isEmpty()){
             return true;
@@ -48,12 +48,13 @@ public class UserService {
      * @return the new updated pin along with the email that it goes with.
      */
     public User newUserPin(UserPinRequest user) {
-        var user1 = userRepository.findByEmail(user.getEmail()).orElseThrow();
-        user1.setPin(user.getPin());
-        return userRepository.save(user1);
+        var findUser = userRepository.findById(user.getUserId()).orElseThrow();
+        findUser.setPin(user.getPin());
+        return userRepository.save(findUser);
     }
 
     public User findById(Long userId) {
-        return userRepository.findById(userId).orElseThrow();
+        return userRepository.findById(userId).orElseThrow(() ->
+                new RuntimeException("User cannot be found with id: " + userId));
     }
 }

@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class UserPinRequest {
-    private String email;
+    private Long userId;
     private String pin;
 }

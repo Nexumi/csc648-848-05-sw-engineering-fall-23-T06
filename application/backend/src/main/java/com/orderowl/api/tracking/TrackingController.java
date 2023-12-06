@@ -35,9 +35,9 @@ public class TrackingController {
      * @return A List of all the tracking orders
      */
     @GetMapping
-    public List<Tracking> getTrackingInfo() {
+    public List<Tracking> getTrackingInfo(@RequestParam Long userId) {
 
-        return trackingService.getTrackingInfo();
+        return trackingService.getTrackingInfo(userId);
     }
 
     /**
@@ -135,12 +135,12 @@ public class TrackingController {
      * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
      */
     @GetMapping(path = "/search")
-    public ResponseEntity<List<Tracking>> searchTracking(@RequestParam("searchText") @Max(30) String searchText,
-                                         @RequestParam(defaultValue = "false") boolean hidden,
-                                         @RequestParam(required = false) String pin,
-                                         @RequestParam(required = false) String email) {
+    public ResponseEntity<List<Tracking>> searchTracking(@RequestParam Long userId,
+                                                         @RequestParam("searchText") @Max(30) String searchText,
+                                                         @RequestParam(defaultValue = "false") boolean hidden,
+                                                         @RequestParam(required = false) String pin) {
 
-        return ResponseEntity.ok(trackingService.searchTracking(searchText, hidden, pin, email));
+        return ResponseEntity.ok(trackingService.searchTracking(userId, searchText, hidden, pin));
     }
 
     /**
@@ -149,9 +149,9 @@ public class TrackingController {
      * @return Returns the number of orders that are not delivered yet
      */
     @GetMapping(path = "/count")
-    public ResponseEntity<Integer> getTrackingCount() {
+    public ResponseEntity<Integer> getTrackingCount(Long userId) {
 
-        int trackingCount = trackingService.getTrackingCount();
+        int trackingCount = trackingService.getTrackingCount(userId);
         return new ResponseEntity<>(trackingCount,HttpStatus.OK);
     }
 

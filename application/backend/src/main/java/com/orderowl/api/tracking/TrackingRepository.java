@@ -5,6 +5,7 @@
 package com.orderowl.api.tracking;
 
 
+import com.orderowl.api.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -59,9 +60,13 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
     @Query("SELECT t FROM Tracking t WHERE t.hidden = false")
     List<Tracking> findVisible();
 
+    List<Tracking> findTrackingByUserAndHiddenIsFalse(User user);
+
+    List<Tracking> findTrackingByUserAndHiddenIsTrue(User user);
+
     // Allows us to get the tracking count of pending orders
-    @Query("SELECT COUNT(t) FROM Tracking t WHERE t.status <> 'Delivered'")
-    Integer getTrackingCount();
+    @Query("SELECT COUNT(t) FROM Tracking t WHERE t.user = :user AND t.status <> 'Delivered'")
+    Integer getTrackingCount(User user);
 
     void deleteByTrackingNumber(String trackingNumber);
 

@@ -38,8 +38,10 @@ public class TrackingService {
      * @return A List of the tracking information
      */
 
-    public List<Tracking> getTrackingInfo() {
-        return trackingRepository.findVisible();
+    public List<Tracking> getTrackingInfo(Long userId) {
+
+        var user = userService.findById(userId);
+        return trackingRepository.findTrackingByUserAndHiddenIsFalse(user);
     }
 
     /**
@@ -113,12 +115,9 @@ public class TrackingService {
      * @param searchText This will be the text that is used to search for the tracking information.
      * @return A List for the tracking information that has been put in before.
      */
-    public List<Tracking> searchTracking(String searchText, boolean hidden, String pin, String email) {
+    public List<Tracking> searchTracking(Long userId, String searchText, boolean hidden, String pin) {
         if (hidden) {
-            var user = UserPinRequest.builder()
-                    .email(email)
-                    .pin(pin)
-                    .build();
+            var user = userService.findById(userId);
             if (userService.validatePin(user)) {
                 if (searchText.isEmpty()) {
                     return trackingRepository.findHidden();
@@ -142,17 +141,20 @@ public class TrackingService {
      *
      * @return Returns the count of pending orders
      */
-    public Integer getTrackingCount() {
-        return trackingRepository.getTrackingCount();
+    public Integer getTrackingCount(Long userId) {
+        var user = userService.findById(userId);
+        return trackingRepository.getTrackingCount(user);
     }
 
     /**
+     *
      * @param request will be used to request for the pin
-     * @return the hidden page if the pin is correct
+     * @return the hidden orders if the pin is correct, empty if incorrect
      */
     public List<Tracking> getHiddenTracking(UserPinRequest request) {
-        if (userService.validatePin(request)) {
-            return trackingRepository.findHidden();
+        var userRequest = userService.findById(request.getUserId());
+        if (userService.validatePin(userRequest)) {
+            return trackingRepository.findTrackingByUserAndHiddenIsTrue(userRequest);
         } else {
             return List.of();
         }
