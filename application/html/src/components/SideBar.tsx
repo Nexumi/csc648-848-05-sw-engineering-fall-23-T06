@@ -3,7 +3,8 @@ import { For, Show, createSignal } from "solid-js";
 import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
 import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin,
-uriRegistration, uriTracking, uriUpload } from "../utils/uri";
+uriRegistration, uriTracking, uriUpload, uriBusinessUpload, uriBusinessTracking } from "../utils/uri";
+import {me}from "../utils/me";
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -21,8 +22,16 @@ export default function SideBar() {
   const [destinations, setDestinations] = createSignal([
 
     {label: "Dashboard", uri: uriDashboard, isPage: isDashboard},
-    {label: "Upload", uri: uriUpload, isPage: isUpload},
-    {label: "Track Info", uri: uriTracking, isPage: isTracking},
+    {
+      label: "Upload",
+      uri: me().role === "BUSINESS" ? uriBusinessUpload : uriUpload,
+      isPage: isUpload,
+    },
+    {
+      label: "Track Info",
+      uri: me().role === "USER" ? uriTracking : uriBusinessTracking,
+      isPage: isTracking,
+    },
   ]);
 
   return (
