@@ -34,7 +34,7 @@ export default function UploadPage() {
 
   return (
     <>
-      <form use:form class="h-full">
+      <form use:form class="container h-full">
         <Flex flexDirection="col" class="h-full">
           <div class="text-center text-6xl mb-8">
             <p>Upload</p>
@@ -102,7 +102,6 @@ export default function UploadPage() {
           </Flex>
         </Flex>
       </form>
-
     </>
   );
 }

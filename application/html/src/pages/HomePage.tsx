@@ -20,21 +20,20 @@ export default function HomePage() {
   const [packages] = createResource(getAllTracking);
 
   return (
-    <Flex flexDirection="col" class="h-full">
+    <Flex flexDirection="col" class=" h-full">
       <Header />
-
-      <div class="text-center my-8">
-        <div class="text-9xl font-thin">
+      <div class="container text-center my-8">
+        <div class="text-7xl md:text-9xl font-thin">
           OrderOwl
         </div>
-        <div class="text-6xl mt-4">
+        <div class="container text-6xl mt-4">
           Track Your Order Anywhere Anytime
         </div>
       </div>
 
-      <hr class="border-black border-t-2 w-3/4" />
+      <hr class="container border-black border-t-2 w-3/4" />
 
-      <Flex justifyContent="center" alignItems="stretch" class="text-6xl w-3/4 my-8">
+      <Flex justifyContent="center" alignItems="stretch" class="container text-6xl w-3/4 my-8">
 
         <Flex class="h-full w-full" alignItems="stretch">
           <img src={picture3} alt="Feature 1" class="h-full w-auto" />
@@ -73,6 +72,7 @@ function Header() {
 
   return (
     <>
+    <div class="container">
       <Flex alignItems="center" class="mb-6 px-4 py-2">
         <img
           src={logo}
@@ -82,7 +82,7 @@ function Header() {
           }}
         />
 
-        <Flex justifyContent="between" class="mb-4">
+        <Flex justifyContent="between" class="container mb-4">
           <Flex justifyContent="start" class="gap-x-4">
             <Button
               class="shrink-0 text-white bg-black hover:bg-gray-600"
@@ -167,6 +167,7 @@ function Header() {
 
         </Flex>
       </Flex>
+    </div>
     </>
   );
 }
