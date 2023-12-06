@@ -31,6 +31,8 @@ export default function LoginPage() {
           Cookies.set("token", res.data.token);
           getUser(params)
             .then((res) => {
+              console.log("user:" + res.data);
+
               setMe(res.data);
               toast.success(`Welcome back, ${me().firstname} ${me().lastname}!`);
             });
