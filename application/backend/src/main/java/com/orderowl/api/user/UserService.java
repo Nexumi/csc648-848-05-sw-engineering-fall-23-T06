@@ -6,8 +6,6 @@ package com.orderowl.api.user;
 
 import com.orderowl.api.tracking.UserPinRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,58 +13,12 @@ public class UserService {
     // this variable is used to represent the database like a java object
     private final UserRepository userRepository;
 
-    /**
-     * createDelegatingPasswordEncoder is an algorithm that detects what
-     * the password is encoded with and handle the verification of passwords
-     */
-    PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-    /**
-     * creating an instance for PasswordEncoder,
-     * createDelegatingPasswordEncoder is an algorithm that detects what
-     * the password is encoded with and handle the verification of passwords
-     */
     @Autowired
     public UserService(UserRepository userRepository) {
 
         this.userRepository = userRepository;
     }
 
-
-    /**
-     * Before saving the user in our database, the system shall receive the password
-     * then encrypting the password. Once encrypted will save the encrypted password.
-     * <p>
-     * The next block of code will set the role for the user, "Personal" role is
-     * set by default, while we will create a boolean entity to check whether
-     * the user has checked the business account checkbox. If it is true, then
-     * instead of Personal default account, we will change role to business
-     * before saving
-     *
-     * @param registrationRequest This is the registration data that will be saved
-     */
-    public void registerUser(User registrationRequest) {
-
-        String password = registrationRequest.getPassword();
-        String encryptPass = passwordEncoder.encode(password);
-        registrationRequest.setPassword(encryptPass);
-
-
-        userRepository.save(registrationRequest);
-
-    }
-
-
-    /**
-     * This will search the database using the email
-     *
-     * @param email This is the email parameter used for searching
-     * @return This will return the list of users matching the email and password
-     */
-    public User searchUser(String email) {
-
-        return userRepository.findByEmail(email).get();
-    }
 
     /**
      * This will allow use to delete a user by their ID that is connected to that certain use.
@@ -101,4 +53,7 @@ public class UserService {
         return userRepository.save(user1);
     }
 
+    public User findById(Long userId) {
+        return userRepository.findById(userId).orElseThrow();
+    }
 }

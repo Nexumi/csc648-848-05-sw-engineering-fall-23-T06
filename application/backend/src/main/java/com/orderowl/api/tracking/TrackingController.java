@@ -4,6 +4,8 @@
 
 package com.orderowl.api.tracking;
 
+import com.orderowl.api.user.User;
+import com.orderowl.api.user.UserService;
 import jakarta.validation.constraints.Max;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +20,13 @@ import java.util.List;
 public class TrackingController {
 
     private final TrackingService trackingService;
+    private final UserService userService;
 
     @Autowired
-    public TrackingController(TrackingService trackingService) {
+    public TrackingController(TrackingService trackingService, UserService userService) {
 
         this.trackingService = trackingService;
+        this.userService = userService;
     }
 
     /**
@@ -60,9 +64,12 @@ public class TrackingController {
      * @return A ResponseEntity will be adding into the tracking order.
      */
     @PostMapping
-    public ResponseEntity<?> registerNewTracking(@RequestBody Tracking tracking) {
+    public ResponseEntity<?> registerNewTracking(@RequestParam Long userId, @RequestBody Tracking tracking) {
 
         try {
+
+            User user = userService.findById(userId);
+            tracking.setUser(user);
         // this is used strictly for the use cases
         // when the user enters the tracking number it will show the appropriate values for that tracking info
         if (tracking.getTrackingNumber().equals("123456789012")) {
@@ -76,8 +83,8 @@ public class TrackingController {
                     "NY, NY",
                     "6 Doyers St, New York, NY 10013",
                     false,
-                    1L,
-                    tracking.getTitle()
+                    tracking.getTitle(),
+                    user
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
@@ -91,8 +98,8 @@ public class TrackingController {
                     "LA Sorting Facility",
                     "6400 Valley View St, Buena Park, CA 90620",
                     false,
-                    1L,
-                    tracking.getTitle()
+                    tracking.getTitle(),
+                    user
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);
@@ -106,8 +113,8 @@ public class TrackingController {
                     "SF Sorting Facility",
                     "5000-5200 Giant Hwy, Richmond, CA 94806",
                     false,
-                    1L,
-                    tracking.getTitle()
+                    tracking.getTitle(),
+                    user
             );
             trackingService.addNewTracking(tracking1);
             return new ResponseEntity<>(tracking1, HttpStatus.OK);

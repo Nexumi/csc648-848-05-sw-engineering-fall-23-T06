@@ -6,6 +6,7 @@
  */
 package com.orderowl.api.user;
 
+import com.orderowl.api.tracking.Tracking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +16,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 // This will create an entity called users in the database
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 @Data
 @Builder
 @NoArgsConstructor
@@ -41,6 +43,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tracking> trackingList = new ArrayList<>();
 
     public User(Long id, String email, String firstname, String lastname, String password, String address,  Role role) {
         this.id = id;
