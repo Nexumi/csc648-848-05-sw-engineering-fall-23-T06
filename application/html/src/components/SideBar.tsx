@@ -19,24 +19,33 @@ export default function SideBar() {
   const isTracking = useMatch(() => uriTracking() + "/*");
   const isApiTest = useMatch(uriApiTest);
 
-  const [destinations, setDestinations] = createSignal(() => {
-    let uploadUri;
-    let trackInfoUri;
-  
-    if (me().role === "BUSINESS") {
-      uploadUri = uriBusinessUpload;
-      trackInfoUri = uriBusinessTracking;
-    } else {
-      uploadUri = uriUpload;
-      trackInfoUri = uriTracking;
+  const initializeDestinations = () => {
+    let uploadUri, trackInfoUri;
+
+    switch (me().role) {
+      case "BUSINESS":
+        uploadUri = uriBusinessUpload;
+        trackInfoUri = uriBusinessTracking;
+        break;
+      case "USER":
+        uploadUri = uriUpload;
+        trackInfoUri = uriTracking;
+        break;
+      default:
+        uploadUri = uriUpload;
+        trackInfoUri = uriTracking;
+        break;
     }
-  
+
     return [
       { label: "Dashboard", uri: uriDashboard, isPage: isDashboard },
       { label: "Upload", uri: uploadUri, isPage: isUpload },
       { label: "Track Info", uri: trackInfoUri, isPage: isTracking },
     ];
-  });
+  };
+
+  const [destinations, setDestinations] = createSignal(initializeDestinations());
+
   return (
     <>
       <Show when={!isHome() && !isLogin() && !isRegistration() && !isForget() && !isAbout()}>
