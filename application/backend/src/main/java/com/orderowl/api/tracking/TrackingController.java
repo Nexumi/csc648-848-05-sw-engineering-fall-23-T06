@@ -150,8 +150,8 @@ public class TrackingController {
 
     /**
      *
-     * @param user
-     * @return
+     * @param user will be checking if the pin and email is matching in order to get the hidden list
+     * @return this will return the response if the pin was correct or not
      */
     @PostMapping(path = "/hidden")
     public ResponseEntity<List<Tracking>> hiddenTracking(@RequestBody UserPinRequest user) {
