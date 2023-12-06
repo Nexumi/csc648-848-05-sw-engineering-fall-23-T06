@@ -4,7 +4,7 @@ import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
 import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin,
 uriRegistration, uriTracking, uriUpload, uriBusinessUpload, uriBusinessTracking } from "../utils/uri";
-
+import {me}from "../utils/me";
 
 export default function SideBar() {
   const navigate = useNavigate();
