@@ -47,6 +47,10 @@ export default function ProfilePage() {
           <p>Email</p>
           <Input type="text" readonly class={NO_FOCUS} placeholder={me().email} />
         </div>
+         <div>
+           <p>Account Type</p>
+           <Input type="text" readonly class={NO_FOCUS} placeholder={me().email} />
+         </div>
         <Show when={Cookies.get("token")}>
           <Flex justifyContent="center">
             <Button
