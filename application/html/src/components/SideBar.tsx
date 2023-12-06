@@ -2,9 +2,20 @@ import { useMatch, useNavigate } from "@solidjs/router";
 import { For, Show, createSignal } from "solid-js";
 import logo from "../assets/logos/logo.png";
 import { Flex } from "../common/layout/flex";
-import { uriAbout, uriApiTest, uriDashboard, uriForget, uriHome, uriLogin,
-uriRegistration, uriTracking, uriUpload, uriBusinessUpload, uriBusinessTracking } from "../utils/uri";
-import {me}from "../utils/me";
+import {
+  uriAbout,
+  uriApiTest,
+  uriBusinessTracking,
+  uriBusinessUpload,
+  uriDashboard,
+  uriForget,
+  uriHome,
+  uriLogin,
+  uriRegistration,
+  uriTracking,
+  uriUpload
+} from "../utils/uri";
+import { me } from "../utils/me";
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -19,39 +30,12 @@ export default function SideBar() {
   const isTracking = useMatch(() => uriTracking() + "/*");
   const isApiTest = useMatch(uriApiTest);
 
-  const initializeDestinations = () => {
-    let uploadUri, trackInfoUri;
-    console.log("user:" + me().role);
-    switch (me().role) {
-      case "BUSINESS":
-        console.log("Assigning business URIs");
-        uploadUri = uriBusinessUpload;
-        trackInfoUri = uriBusinessTracking;
-        break;
-      case "USER":
-        console.log("Assigning User URIs");
-        uploadUri = uriUpload;
-        trackInfoUri = uriTracking;
-        break;
-      case "undefined":
-        console.log("Assigning User URIs");
-        uploadUri = uriUpload;
-        trackInfoUri = uriTracking;
-        break;
-      default:
-        uploadUri = uriUpload;
-        trackInfoUri = uriTracking;
-        break;
-    }
+  const [destinations, setDestinations] = createSignal([
 
-    return [
-      { label: "Dashboard", uri: uriDashboard, isPage: isDashboard },
-      { label: "Upload", uri: uploadUri, isPage: isUpload },
-      { label: "Track Info", uri: trackInfoUri, isPage: isTracking },
-    ];
-  };
-
-  const [destinations, setDestinations] = createSignal(initializeDestinations());
+    {label: "Dashboard", uri: uriDashboard, businessUri: uriDashboard, isPage: isDashboard},
+    {label: "Upload", uri: uriUpload, businessUri: uriBusinessUpload, isPage: isUpload},
+    {label: "Track Info", uri: uriTracking, businessUri: uriBusinessTracking, isPage: isTracking},
+  ]);
 
   return (
     <>
@@ -79,6 +63,7 @@ export default function SideBar() {
                 <NavButton
                   label={destination.label}
                   uri={destination.uri}
+                  businessUri={destination.businessUri}
                   isPage={destination.isPage}
                 />
               }
@@ -93,6 +78,7 @@ export default function SideBar() {
 function NavButton(props: {
   label: string,
   uri: Function,
+  businessUri: Function,
   isPage: Function
 }) {
   const navigate = useNavigate();
@@ -108,7 +94,7 @@ function NavButton(props: {
         alignItems="center"
         class={props.isPage() ? BOX_ACTIVE : BOX}
         onClick={() => {
-          navigate(props.uri());
+          navigate(me().role === "BUSINESS" ? props.businessUri() : props.uri());
         }}
       >
         <Flex
