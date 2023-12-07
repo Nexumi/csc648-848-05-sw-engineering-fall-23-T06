@@ -62,7 +62,6 @@ public class TrackingConfig {
             // some fake tracking information added
             // The locations are carrier stores located in those cities
             Tracking tracking1 = new Tracking(
-                    1L,
                     "Amazon",
                     "USPS",
                     LocalDate.of(2023, 9, 20),
@@ -75,7 +74,6 @@ public class TrackingConfig {
                     user1
             );
             Tracking tracking2 = new Tracking(
-                    2L,
                     "Target",
                     "USPS",
                     LocalDate.of(2023, 10, 31),
@@ -85,10 +83,10 @@ public class TrackingConfig {
                     "1800 Taraval St, San Francisco, CA 94116",
                     false,
                     "Toys",
+                    true,
                     user2
             );
             Tracking tracking3 = new Tracking(
-                    3L,
                     "Amazon",
                     "UPS",
                     LocalDate.of(2023, 11, 2),
@@ -101,7 +99,6 @@ public class TrackingConfig {
                     user1
             );
             Tracking tracking4 = new Tracking(
-                    4L,
                     "Best Buy",
                     "DHL",
                     LocalDate.of(2023, 11, 3),
@@ -114,7 +111,6 @@ public class TrackingConfig {
                     user1
             );
             Tracking tracking5 = new Tracking(
-                    5L,
                     "Walmart",
                     "FedEx",
                     LocalDate.of(2023, 11, 1),
@@ -124,6 +120,7 @@ public class TrackingConfig {
                     "560 W 42nd St, New York, NY 10036",
                     true,
                     "Skateboard",
+                    false,
                     user2
             );
 

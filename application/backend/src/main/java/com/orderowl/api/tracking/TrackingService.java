@@ -125,7 +125,6 @@ public class TrackingService {
                     .userId(userId)
                     .pin(pin)
                     .build();
-            // TODO make this actually validate pin using the pin
             if (userService.validatePin(userRequest)) {
                 if (searchText.isEmpty()) {
                     return trackingRepository.findHidden();
@@ -138,10 +137,16 @@ public class TrackingService {
         }
 
         if (userId == null) {
-            return trackingRepository.findTrackingByGuest(searchText);
+            if (searchText.isEmpty()){
+                return trackingRepository.getTrackingByGuest();
+            } else {
+                return trackingRepository.findTrackingByGuest(searchText);
+            }
         }
+
         if (searchText.isEmpty()) {
-            return trackingRepository.findVisible();
+            var user = userService.findById(userId);
+            return trackingRepository.findTrackingByUserAndHiddenIsFalse(user);
         } else {
             return trackingRepository.searchVisibleTracking(searchText);
         }

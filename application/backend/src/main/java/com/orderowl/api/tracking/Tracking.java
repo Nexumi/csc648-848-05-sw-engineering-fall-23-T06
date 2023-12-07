@@ -36,13 +36,15 @@ public class Tracking {
     private String address;
     private boolean hidden;
     private String title;
+    private boolean outgoing;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status, String location, String address, boolean hidden, String title, User user) {
+    public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status,
+                    String location, String address, boolean hidden, String title, User user) {
         this.retailer = retailer;
         this.carrier = carrier;
         this.eta = eta;
@@ -56,7 +58,7 @@ public class Tracking {
     }
 
     public Tracking(String retailer, String carrier, LocalDate eta, String trackingNumber, String status,
-                    String location, String address, boolean hidden, Long user_id) {
+                    String location, String address, boolean hidden, String title, boolean outgoing, User user) {
         this.retailer = retailer;
         this.carrier = carrier;
         this.eta = eta;
@@ -65,7 +67,10 @@ public class Tracking {
         this.location = location;
         this.address = address;
         this.hidden = hidden;
+        this.title = title;
+        this.outgoing = outgoing;
+        this.user = user;
     }
 
-    // Using Lombok's @Data, we will automatically get access to getters and setters
+// Using Lombok's @Data, we will automatically get access to getters and setters
 }
