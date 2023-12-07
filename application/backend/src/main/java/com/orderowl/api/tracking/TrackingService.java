@@ -5,6 +5,7 @@
 package com.orderowl.api.tracking;
 
 
+import com.easypost.exception.General.MissingParameterError;
 import com.easypost.model.Tracker;
 import com.easypost.model.TrackingDetail;
 import com.easypost.service.EasyPostClient;
@@ -59,6 +60,21 @@ public class TrackingService {
         return trackingRepository.findById(id).orElse(null);
     }
 
+    public List<TrackingDetail> getUpdatesById(Long id) {
+
+        try {
+            var trackerInDB = getTrackingById(id);
+            EasyPostClient easyPostClient =
+                    new EasyPostClient("EZAKaec5c730141e44c8b9aed9ec7b7b04f3YwveqZZNyaSJObbZDsqi0w");
+            HashMap<String, Object> params = new HashMap<String, Object>();
+            params.put("tracking_code", trackerInDB.getTrackingNumber());
+            Tracker ezPostTracker = easyPostClient.tracker.create(params);
+            return ezPostTracker.getTrackingDetails();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
+    }
 
     /**
      * Will allow to add new tracking information.

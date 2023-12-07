@@ -4,6 +4,7 @@
 
 package com.orderowl.api.tracking;
 
+import com.easypost.model.TrackingDetail;
 import com.orderowl.api.user.User;
 import com.orderowl.api.user.UserService;
 import jakarta.validation.constraints.Max;
@@ -147,6 +148,12 @@ public class TrackingController {
                                                          @RequestParam(required = false) String pin) {
 
         return ResponseEntity.ok(trackingService.searchTracking(userId, searchText, hidden, pin));
+    }
+
+    @GetMapping(path = "/updates")
+    public ResponseEntity<List<TrackingDetail>> getTrackingUpdates(Long id) {
+
+        return ResponseEntity.ok(trackingService.getUpdatesById(id));
     }
 
     /**
