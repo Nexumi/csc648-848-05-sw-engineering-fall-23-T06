@@ -1,5 +1,5 @@
 import { useSearchParams } from "@solidjs/router";
-import { createEffect, createResource, createSignal } from "solid-js";
+import { createResource, createSignal } from "solid-js";
 import SearchIcon from "../assets/icons/SearchIcon.png";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
@@ -37,14 +37,6 @@ export default function TrackingPage() {
     onSubmit(values) {
       setSearchParams({ searchText: values.search });
     }
-  });
-
-  createEffect(() => {
-    /* DEBUG INFO */
-    console.log(me().id);
-    console.log(searchParams.searchText);
-    console.log(searchParams.hidden);
-    console.log(pin());
   });
 
   return (
