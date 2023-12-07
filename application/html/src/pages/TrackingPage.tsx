@@ -17,7 +17,12 @@ export default function TrackingPage() {
 
   const [pin, setPin] = createSignal("");
 
-  const [undeliveredCount] = createResource(getTrackingCount);
+  const [undeliveredCount] = createResource(
+    () => ({
+      userId: me().id
+    }),
+    getTrackingCount
+  );
   const [packages] = createResource(
     () => ({
       userId: me().id || null,

@@ -81,16 +81,20 @@ export const getTrackingBySearch = async (params: {
 }
 
 export const postTracking = async (params: {
+  userId: string,
   trackingNumber: string,
-  title: string
+  title: string,
+  type: string,
 }) => {
   const response = await axios.post(apiTracking(), params);
   return response;
 }
 
-export const getTrackingCount = async () => {
+export const getTrackingCount = async (params: {
+  userId: string
+}) => {
   try {
-    const response = await axios.get(`${apiTracking()}/count`);
+    const response = await axios.get(`${apiTracking()}/count?${new URLSearchParams(params).toString()}`);
     return response.data;
   } catch (err) {
     console.log(err);

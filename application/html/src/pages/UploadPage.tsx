@@ -4,6 +4,7 @@ import toast from "solid-toast";
 import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import { postTracking } from "../utils/requests";
+import { me } from "../utils/me";
 
 export default function UploadPage() {
   const IS_TYPE = "w-1/2 border-2 border-black whitespace-nowrap bg-gray-300";
@@ -12,6 +13,7 @@ export default function UploadPage() {
   const { form, data, setData, reset } = createForm({
     onSubmit(values) {
       const params = {
+        userId: me().id,
         trackingNumber: values.trackingNumber,
         title: values.orderTitle,
         type: values.listType || "visible",
