@@ -5,10 +5,13 @@ import { Button } from "../common/components/button";
 import { Flex } from "../common/layout/flex";
 import { postTracking } from "../utils/requests";
 import { me } from "../utils/me";
+import { createSignal } from "solid-js";
 
 export default function UploadPage() {
   const IS_TYPE = "w-1/2 border-2 border-black whitespace-nowrap bg-gray-300";
   const IS_NOT_TYPE = "w-1/2 border-2 border-black whitespace-nowrap"
+
+  const [posting, setPosting] = createSignal(false);
 
   const { form, data, setData, reset } = createForm({
     onSubmit(values) {
@@ -19,6 +22,7 @@ export default function UploadPage() {
         hidden: values.listType === "hidden" || "false"
       }
 
+      setPosting(true);
       postTracking(params)
         .then((res) => {
           toast.success("Successfully processed your request!");
@@ -26,11 +30,14 @@ export default function UploadPage() {
           setData("retailer", res.data?.retailer);
           setData("carrier", res.data?.carrier);
           setData("id", res.data?.id);
+          setPosting(false);
         })
         .catch((error) => {
           console.log(error);
           toast.error("Something went wrong while trying to process your request.");
+          setPosting(false);
         })
+
     }
   });
 
@@ -69,6 +76,7 @@ export default function UploadPage() {
                 <Flex class="gap-x-2">
                   <Button
                     type="button"
+                    disabled={posting()}
                     class={data().listType === "visible" || data().listType === undefined ? IS_TYPE : IS_NOT_TYPE}
                     onClick={() => {
                       setData("listType", "visible");
@@ -78,6 +86,7 @@ export default function UploadPage() {
                   </Button>
                   <Button
                     type="button"
+                    disabled={posting()}
                     class={data().listType === "hidden" ? IS_TYPE : IS_NOT_TYPE}
                     onClick={() => {
                       setData("listType", "hidden");
@@ -87,7 +96,11 @@ export default function UploadPage() {
                   </Button>
                 </Flex>
               </div>
-              <button type="submit" class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black">
+              <Button
+                type="submit"
+                disabled={posting()}
+                class="ml-2 px-2 py-2 focus:outline-none rounded-full border-2 border-black"
+              >
                 <svg
                   fill="none"
                   viewBox="0 0 24 24"
@@ -97,7 +110,7 @@ export default function UploadPage() {
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
-              </button>
+              </Button>
             </Flex>
           </Flex>
           <Flex class="grow">
