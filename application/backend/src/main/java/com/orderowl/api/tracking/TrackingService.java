@@ -96,7 +96,9 @@ public class TrackingService {
 
                 tracking.setCarrier(ezPostTracker.getCarrier());
                 tracking.setStatus(ezPostTracker.getStatus());
-                tracking.setEta(convertToLocalDateViaInstant(ezPostTracker.getEstDeliveryDate()));
+                if (ezPostTracker.getEstDeliveryDate() != null) {
+                    tracking.setEta(convertToLocalDateViaInstant(ezPostTracker.getEstDeliveryDate()));
+                }
                 tracking.setAddress(locationParser(ezPostTracker.getTrackingDetails()));
                 tracking.setLocation(locationParser(ezPostTracker.getTrackingDetails()));
 
