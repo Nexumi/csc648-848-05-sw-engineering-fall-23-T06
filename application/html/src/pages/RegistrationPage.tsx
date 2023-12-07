@@ -68,7 +68,7 @@ export default function RegistrationPage() {
   return (
     <>
       <Flex class="h-full">
-        <div class="h-full w-1/2 p-16">
+        <div class="h-full w-full lg:w-1/2 p-4 sm:p-16">
           <Flex
             justifyContent="center"
             class="text-8xl font-thin cursor-pointer"
@@ -86,7 +86,7 @@ export default function RegistrationPage() {
                 <p>Thank you for joining OrderOwl! :) </p>
               </div>
               <form use:form>
-                <div class="w-full space-y-5 p-16">
+                <div class="w-full space-y-5 p-4 sm:p-16">
                   <div class="border-b-2 border-black p-0">
                     <TextInput
                       name="firstName"
@@ -332,7 +332,7 @@ export default function RegistrationPage() {
             </div>
           </Flex>
         </div>
-        <Flex justifyContent="center" class="h-full w-1/2">
+        <Flex justifyContent="center" class="h-full w-0 lg:w-1/2 hidden lg:flex">
           <img
             src={registrationImage}
             class="w-[40rem] h-[72rem] object-cover object-right"
