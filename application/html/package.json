@@ -25,6 +25,7 @@
     "@felte/reporter-solid": "^1.2.9",
     "@felte/solid": "^1.2.11",
     "@felte/validator-zod": "^1.0.17",
+    "@googlemaps/google-maps-services-js": "^3.3.41",
     "@kobalte/core": "^0.11.0",
     "@solidjs/router": "^0.8.3",
     "axios": "^1.5.1",
