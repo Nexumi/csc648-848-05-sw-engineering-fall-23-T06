@@ -33,14 +33,6 @@ function SettingsSideBar() {
         >
           Profile
         </Button>
-        <Button
-          class={isEtc() ? ACTIVE : INACTIVE}
-          onClick={() => {
-            navigate(uriSettings("etc"));
-          }}
-        >
-          Etc.
-        </Button>
       </div>
     </>
   );
