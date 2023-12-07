@@ -36,7 +36,7 @@ export default function UploadPage() {
     <>
       <form use:form class="container h-full">
         <Flex flexDirection="col" class="h-full">
-          <div class="text-center md:text-5xl text-1x mb-8">
+          <div class="text-center md:text-5xl text-3xl mb-8">
             <p>Upload</p>
           </div>
           <Flex justifyContent="center" alignItems="end" class="gap-x-16">
