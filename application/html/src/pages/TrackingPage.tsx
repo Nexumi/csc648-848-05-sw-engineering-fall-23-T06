@@ -20,10 +20,10 @@ export default function TrackingPage() {
   const [undeliveredCount] = createResource(getTrackingCount);
   const [packages] = createResource(
     () => ({
+      userId: me().id || null,
       searchText: searchParams.searchText,
       hidden: searchParams.hidden || "false",
       pin: pin(),
-      email: me().email || ""
     }),
     getTrackingBySearch
   );
