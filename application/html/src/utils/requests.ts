@@ -84,9 +84,9 @@ export const postTracking = async (params: {
   userId: string,
   trackingNumber: string,
   title: string,
-  type: string,
+  hidden: boolean | string,
 }) => {
-  const response = await axios.post(apiTracking(), params);
+  const response = await axios.post(`${apiTracking()}?userId=${params.userId}`, params);
   return response;
 }
 

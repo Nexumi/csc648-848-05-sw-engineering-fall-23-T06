@@ -16,7 +16,7 @@ export default function UploadPage() {
         userId: me().id,
         trackingNumber: values.trackingNumber,
         title: values.orderTitle,
-        type: values.listType || "visible",
+        hidden: values.listType === "hidden" || "false"
       }
 
       postTracking(params)
