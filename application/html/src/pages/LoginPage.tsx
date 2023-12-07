@@ -47,10 +47,10 @@ export default function LoginPage() {
   return (
     <>
       <Flex class="h-full">
-        <div class="text-center my-8">
+        <div class="h-full w-full lg:w-1/2 p-16">
           <Flex
             justifyContent="center"
-            class="md:text-8xl text-7xl font-thin cursor-pointer"
+            class="text-8xl font-thin cursor-pointer"
             onClick={() => {
               navigate(uriHome());
             }
@@ -139,7 +139,7 @@ export default function LoginPage() {
             </div>
           </Flex>
         </div>
-        <Flex justifyContent="center" alignItems="stretch" class="md:block hidden flex-col md:flex-row text-6xl w-3/4 my-8 gap-2">
+        <Flex justifyContent="center" class="h-full w-0 lg:w-1/2 hidden lg:flex">
           <img
             src={loginImage}
             class="w-[40rem] h-[40rem] object-cover object-center"
