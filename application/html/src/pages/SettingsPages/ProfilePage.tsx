@@ -49,7 +49,7 @@ export default function ProfilePage() {
         </div>
          <div>
            <p>Account Type</p>
-           <Input type="text" readonly class={NO_FOCUS} placeholder={me().email} />
+           <Input type="text" readonly class={NO_FOCUS} placeholder={me().role} />
          </div>
         <Show when={Cookies.get("token")}>
           <Flex justifyContent="center">
