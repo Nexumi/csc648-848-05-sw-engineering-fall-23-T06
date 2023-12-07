@@ -34,8 +34,8 @@ public class TrackingController {
      *
      * @return A List of all the tracking orders
      */
-    @GetMapping
-    public List<Tracking> getTrackingInfo(@RequestParam Long userId) {
+    @GetMapping(path = "/all")
+    public List<Tracking> getTrackingInfo(@RequestParam(required = false) Long userId) {
 
         return trackingService.getTrackingInfo(userId);
     }
@@ -64,12 +64,18 @@ public class TrackingController {
      * @return A ResponseEntity will be adding into the tracking order.
      */
     @PostMapping
-    public ResponseEntity<?> registerNewTracking(@RequestParam Long userId, @RequestBody Tracking tracking) {
+    public ResponseEntity<?> registerNewTracking(@RequestParam(required = false) Long userId,
+                                                 @RequestBody Tracking tracking) {
 
         try {
 
+            if (userId == null) {
+                trackingService.addNewTracking(tracking);
+                return new ResponseEntity<>(tracking, HttpStatus.OK);
+            }
             User user = userService.findById(userId);
             tracking.setUser(user);
+
         // this is used strictly for the use cases
         // when the user enters the tracking number it will show the appropriate values for that tracking info
         if (tracking.getTrackingNumber().equals("123456789012")) {
@@ -135,7 +141,7 @@ public class TrackingController {
      * @return A List After a search has been entered, it will return a list of tracking information matching the search criteria.
      */
     @GetMapping(path = "/search")
-    public ResponseEntity<List<Tracking>> searchTracking(@RequestParam Long userId,
+    public ResponseEntity<List<Tracking>> searchTracking(@RequestParam(required = false) Long userId,
                                                          @RequestParam("searchText") @Max(30) String searchText,
                                                          @RequestParam(defaultValue = "false") boolean hidden,
                                                          @RequestParam(required = false) String pin) {
@@ -149,7 +155,7 @@ public class TrackingController {
      * @return Returns the number of orders that are not delivered yet
      */
     @GetMapping(path = "/count")
-    public ResponseEntity<Integer> getTrackingCount(@RequestParam Long userId) {
+    public ResponseEntity<Integer> getTrackingCount(@RequestParam(required = false) Long userId) {
 
         int trackingCount = trackingService.getTrackingCount(userId);
         return new ResponseEntity<>(trackingCount,HttpStatus.OK);

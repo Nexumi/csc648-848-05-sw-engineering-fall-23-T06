@@ -11,6 +11,8 @@ import com.easypost.service.EasyPostClient;
 import com.orderowl.api.user.UserRepository;
 import com.orderowl.api.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,8 +28,7 @@ public class TrackingService {
     private final UserService userService;
 
     @Autowired
-    public TrackingService(TrackingRepository trackingRepository,
-                           UserRepository userRepository, UserService userService) {
+    public TrackingService(TrackingRepository trackingRepository, UserService userService) {
         this.trackingRepository = trackingRepository;
         this.userService = userService;
     }
@@ -40,9 +41,15 @@ public class TrackingService {
 
     public List<Tracking> getTrackingInfo(Long userId) {
 
+        if (userId == null) {
+            return trackingRepository.getTrackingByGuest();
+        }
+
         var user = userService.findById(userId);
         return trackingRepository.findTrackingByUserAndHiddenIsFalse(user);
     }
+
+
 
     /**
      * This will allow us to recover the tracking ID.
@@ -118,6 +125,7 @@ public class TrackingService {
     public List<Tracking> searchTracking(Long userId, String searchText, boolean hidden, String pin) {
         if (hidden) {
             var user = userService.findById(userId);
+            // TODO make this actually validate pin using the pin
             if (userService.validatePin(user)) {
                 if (searchText.isEmpty()) {
                     return trackingRepository.findHidden();
@@ -129,6 +137,9 @@ public class TrackingService {
             }
         }
 
+        if (userId == null) {
+            return trackingRepository.findTrackingByGuest(searchText);
+        }
         if (searchText.isEmpty()) {
             return trackingRepository.findVisible();
         } else {
@@ -142,6 +153,9 @@ public class TrackingService {
      * @return Returns the count of pending orders
      */
     public Integer getTrackingCount(Long userId) {
+        if (userId == null) {
+            return trackingRepository.getTrackingCountGuest();
+        }
         var user = userService.findById(userId);
         return trackingRepository.getTrackingCount(user);
     }
@@ -152,6 +166,7 @@ public class TrackingService {
      * @return the hidden orders if the pin is correct, empty if incorrect
      */
     public List<Tracking> getHiddenTracking(UserPinRequest request) {
+        //TODO fix this to actually use pin
         var userRequest = userService.findById(request.getUserId());
         if (userService.validatePin(userRequest)) {
             return trackingRepository.findTrackingByUserAndHiddenIsTrue(userRequest);
