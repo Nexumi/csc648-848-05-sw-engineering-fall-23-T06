@@ -8,11 +8,8 @@ package com.orderowl.api.tracking;
 import com.easypost.model.Tracker;
 import com.easypost.model.TrackingDetail;
 import com.easypost.service.EasyPostClient;
-import com.orderowl.api.user.UserRepository;
 import com.orderowl.api.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -124,9 +121,12 @@ public class TrackingService {
      */
     public List<Tracking> searchTracking(Long userId, String searchText, boolean hidden, String pin) {
         if (hidden) {
-            var user = userService.findById(userId);
+            var userRequest = UserPinRequest.builder()
+                    .userId(userId)
+                    .pin(pin)
+                    .build();
             // TODO make this actually validate pin using the pin
-            if (userService.validatePin(user)) {
+            if (userService.validatePin(userRequest)) {
                 if (searchText.isEmpty()) {
                     return trackingRepository.findHidden();
                 } else {
@@ -166,10 +166,9 @@ public class TrackingService {
      * @return the hidden orders if the pin is correct, empty if incorrect
      */
     public List<Tracking> getHiddenTracking(UserPinRequest request) {
-        //TODO fix this to actually use pin
-        var userRequest = userService.findById(request.getUserId());
-        if (userService.validatePin(userRequest)) {
-            return trackingRepository.findTrackingByUserAndHiddenIsTrue(userRequest);
+        if (userService.validatePin(request)) {
+            var user = userService.findById(request.getUserId());
+            return trackingRepository.findTrackingByUserAndHiddenIsTrue(user);
         } else {
             return List.of();
         }

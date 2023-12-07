@@ -34,12 +34,9 @@ public class UserService {
      *
      * @param request the request will be able to hold the email and pin to verify the pin that has been input.
      */
-    public boolean validatePin(User request){
-        var user = userRepository.findByEmail(request.getEmail());
-        if(user.get().getPin() == request.getPin() || !user.isEmpty()){
-            return true;
-        }
-        return false;
+    public boolean validatePin(UserPinRequest request){
+        var user = userRepository.findById(request.getUserId()).orElseThrow();
+        return user.getPin().equals(request.getPin());
     }
 
     /**
