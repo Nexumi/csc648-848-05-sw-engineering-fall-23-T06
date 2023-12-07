@@ -23,20 +23,19 @@ export default function HomePage() {
   return (
     <Flex flexDirection="col" class=" h-full">
       <Header />
-      <div class="container text-center my-8">
-        <div class="text-7xl md:text-9xl font-thin">
+      <div class="text-center my-8">
+        <div class="text-8xl md:text-9xl font-thin">
           OrderOwl
-          
+
         </div>
-        <div class="container text-6xl mt-4">
+        <div class="text-3xl md:text-4xl xl:text-5xl mt-4">
           Track Your Order Anywhere Anytime
         </div>
       </div>
 
-      <hr class="container border-black border-t-2 w-3/4" />
+      <hr class="border-black border-t-2 w-3/4" />
 
-      <Flex justifyContent="center" alignItems="stretch" class="container text-6xl w-3/4 my-8">
-
+      <Flex justifyContent="center" alignItems="stretch" class="flex-col md:flex-row text-6xl w-3/4 my-8 gap-2">
         <Flex class="h-full w-full" alignItems="stretch">
           <img src={picture3} alt="Feature 1" class="h-full w-auto" />
         </Flex>
@@ -74,8 +73,7 @@ function Header() {
 
   return (
     <>
-    <div class="container">
-      <Flex alignItems="center" class="mb-6 px-4 py-2">
+      <Flex alignItems="center" class="flex-col xl:flex-row mb-6 px-4 py-2">
         <img
           src={logo}
           class="w-32 cursor-pointer"
@@ -84,10 +82,10 @@ function Header() {
           }}
         />
 
-        <Flex justifyContent="between" class="container mb-4">
-          <Flex justifyContent="start" class="gap-x-4">
+        <Flex class="flex-col lg:flex-row justify-center lg:justify-between gap-y-4 mb-4">
+          <Flex class="flex-col sm:flex-row w-full max-w-xs sm:w-auto justify-center lg:justify-start gap-x-4 gap-y-2">
             <Button
-              class="shrink-0 text-white bg-black hover:bg-gray-600"
+              class="w-full max-w-xs sm:w-auto text-white bg-black hover:bg-gray-600"
               onclick={() => {
                 navigate(uriAbout());
               }}
@@ -96,7 +94,7 @@ function Header() {
             </Button>
 
             <Button
-              class="text-white bg-black hover:bg-gray-600"
+              class="w-full max-w-xs sm:w-auto text-white bg-black hover:bg-gray-600"
               onclick={() => {
                 navigate(uriSupport());
               }}
@@ -107,16 +105,18 @@ function Header() {
           <div class="shrink-0">
             <form use:form>
               <span class="text-xl mr-2">Search:</span>
-              <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..." />
-              <button type="submit" class="ml-2 focus:outline-none">
-                <img src={SearchIcon} alt="Search" class="w-6 h-6" />
-              </button>
+              <div class="sm:inline">
+                <input name="search" class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600" type="text" placeholder="tracking #, carrier, status..." />
+                <button type="submit" class="ml-2 focus:outline-none">
+                  <img src={SearchIcon} alt="Search" class="w-6 h-6" />
+                </button>
+              </div>
             </form>
           </div>
-          <Flex justifyContent="end" class="gap-x-4">
+          <Flex justifyContent="center" class="flex-col sm:flex-row w-full max-w-xs sm:w-auto gap-x-4 gap-y-2">
             <Show when={!isIn()}>
               <Button
-                class="text-white bg-black hover:bg-gray-600"
+                class="w-full max-w-xs sm:w-auto shrink-0 text-white bg-black hover:bg-gray-600"
                 onclick={() => {
                   navigate(uriDashboard(true));
                 }}
@@ -124,7 +124,7 @@ function Header() {
                 Continue as Guest
               </Button>
               <Button
-                class="shrink-0 text-white bg-black hover:bg-gray-600"
+                class="w-full max-w-xs sm:w-auto text-white bg-black hover:bg-gray-600"
                 onclick={() => {
                   navigate(uriRegistration());
                 }}
@@ -132,7 +132,7 @@ function Header() {
                 Register
               </Button>
               <Button
-                class="text-white bg-black hover:bg-gray-600"
+                class="w-full max-w-xs sm:w-auto text-white bg-black hover:bg-gray-600"
                 onclick={() => {
                   navigate(uriLogin());
                 }}
@@ -145,7 +145,7 @@ function Header() {
                 <p>Welcome, {me().firstname} {me().lastname}!</p>
               </div>
               <Button
-                class="shrink-0 text-white bg-black hover:bg-gray-600"
+                class="w-full max-w-xs sm:w-auto text-white bg-black hover:bg-gray-600"
                 onclick={() => {
                   navigate(uriDashboard());
                 }}
@@ -153,7 +153,7 @@ function Header() {
                 Dashboard
               </Button>
               <Button
-                class="text-white bg-black hover:bg-gray-600"
+                class="w-full max-w-xs sm:w-auto text-white bg-black hover:bg-gray-600"
                 onclick={() => {
                   toast.success(`See you next time ${me().firstname} ${me().lastname}!`);
                   Cookies.remove("token");
@@ -165,11 +165,8 @@ function Header() {
               </Button>
             </Show>
           </Flex>
-
-
         </Flex>
       </Flex>
-    </div>
     </>
   );
 }
