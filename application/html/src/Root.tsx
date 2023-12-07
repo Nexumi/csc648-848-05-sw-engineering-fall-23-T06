@@ -18,7 +18,7 @@ import LoginPage from "./pages/LoginPage";
 import PageNotFound from "./pages/PageNotFound";
 import RegistrationPage from "./pages/RegistrationPage";
 import SettingsPage from "./pages/SettingsPage";
-import EtcPage from "./pages/SettingsPages/EtcPage";
+import ComingSoonPage from "./pages/SettingsPages/ComingSoonPage";
 import ProfilePage from "./pages/SettingsPages/ProfilePage";
 import BusinessProfilePage from "./pages/SettingsPages/BusinessProfilePage";
 import SupportPage from "./pages/SupportPage";
@@ -79,7 +79,7 @@ export default function Root() {
                 <Route path="/" element={<Navigate href={"profile"} />} />
                 <Route path="/profile" component={ProfilePage} />
                 <Route path="/business-profile" component={BusinessProfilePage} />
-                <Route path="/etc" component={EtcPage} />
+                <Route path="/coming-soon" component={ComingSoonPage} />
               </Route>
             </Routes>
           </div>
