@@ -21,11 +21,15 @@ export function apiAuth() {
 }
 
 export function apiPin() {
-  return '/api/registration/update/pin'
+  return '/api/registration/update/pin';
 }
 
 export function apiCheckPin(){
-  return '/api/tracking/hidden'
+  return '/api/tracking/hidden';
+}
+
+export function apiGeocode() {
+  return 'https://maps.googleapis.com/maps/api/geocode/json';
 }
 
 /* URI Paths */
@@ -96,5 +100,3 @@ export function uriSettings(id?: string) {
 export function uriApiTest() {
   return `/api_test`;
 }
-
-

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {apiAuth, apiCheckPin, apiLogin, apiPin, apiRegistration, apiTest, apiTracking} from './uri';
+import {apiAuth, apiCheckPin, apiGeocode, apiLogin, apiPin, apiRegistration, apiTest, apiTracking} from './uri';
 
 /* Axios Config */
 axios.defaults.baseURL = import.meta.env.PROD ? "https://api.orderowl.jpkit.us" : "/";
@@ -140,7 +140,7 @@ export const getUser = async (params: {
 
 export const putPin = async (params: {
   pin: any
-})=> {
+}) => {
   const response = await axios.put(apiPin(), params);
   return response;
 }
@@ -148,7 +148,15 @@ export const putPin = async (params: {
 export const getHidden = async (params: {
   email: string,
   pin: string
-})=> {
+}) => {
   const response = await axios.post(apiCheckPin(), params);
+  return response;
+}
+
+export const getCoord = async (params: {
+  address: string,
+  key: string
+}) => {
+  const response = await fetch(`${apiGeocode()}?${new URLSearchParams(params).toString()}`);
   return response;
 }
