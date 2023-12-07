@@ -41,9 +41,11 @@ export const deleteTestById = async (params: {
   return response;
 }
 
-export const getAllTracking = async () => {
+export const getAllTracking = async (params: {
+  userId: string
+}) => {
   try {
-    const response = await axios.get(apiTracking());
+    const response = await axios.get(`${apiTracking()}/all?userId=${params.userId}`);
     return response.data;
   } catch (err) {
     console.log(err);

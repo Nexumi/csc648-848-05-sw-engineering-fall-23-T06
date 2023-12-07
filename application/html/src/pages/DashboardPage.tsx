@@ -11,12 +11,18 @@ import TrackingList from "../components/TrackingList";
 import { getAllTracking } from "../utils/requests";
 import { uriDashboard, uriRegistration, uriTracking } from "../utils/uri";
 import { sortBy } from "../utils/util";
+import { me } from "../utils/me";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [packages] = createResource(getAllTracking);
+  const [packages] = createResource(
+    () => ({
+      userId: me().id || null
+    }),
+    getAllTracking
+  );
 
   const { form } = createForm({
     onSubmit(values) {

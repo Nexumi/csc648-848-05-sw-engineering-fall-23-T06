@@ -18,7 +18,12 @@ import { sortBy } from "../utils/util";
 
 
 export default function HomePage() {
-  const [packages] = createResource(getAllTracking);
+  const [packages] = createResource(
+    () => ({
+      userId: me().id || null
+    }),
+    getAllTracking
+  );
 
   return (
     <Flex flexDirection="col" class=" h-full">
