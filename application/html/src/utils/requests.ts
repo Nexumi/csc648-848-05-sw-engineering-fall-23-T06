@@ -72,7 +72,7 @@ export const getTrackingBySearch = async (params: {
       const response = await axios.get(`${apiTracking()}/search?${new URLSearchParams(params).toString()}`);
       return response.data;
     } else {
-      const response = await axios.get(apiTracking());
+      const response = await axios.get(`${apiTracking()}/all?userId=${params.userId}`);
       return response.data;
     }
   } catch (err) {

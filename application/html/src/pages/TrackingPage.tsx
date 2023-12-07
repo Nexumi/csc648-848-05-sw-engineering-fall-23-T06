@@ -41,10 +41,10 @@ export default function TrackingPage() {
 
   createEffect(() => {
     /* DEBUG INFO */
+    console.log(me().id);
     console.log(searchParams.searchText);
     console.log(searchParams.hidden);
     console.log(pin());
-    console.log(me().email);
   });
 
   return (
