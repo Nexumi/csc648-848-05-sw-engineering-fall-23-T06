@@ -26,7 +26,7 @@ export default function TrackingPage() {
   const [packages] = createResource(
     () => ({
       userId: me().id || null,
-      searchText: searchParams.searchText,
+      searchText: searchParams.searchText || "",
       hidden: searchParams.hidden || "false",
       pin: pin(),
     }),

@@ -70,13 +70,8 @@ export const getTrackingBySearch = async (params: {
   pin: string,
 }) => {
   try {
-    if (params.searchText) {
-      const response = await axios.get(`${apiTracking()}/search?${new URLSearchParams(params).toString()}`);
-      return response.data;
-    } else {
-      const response = await axios.get(`${apiTracking()}/all?userId=${params.userId}`);
-      return response.data;
-    }
+    const response = await axios.get(`${apiTracking()}/search?${new URLSearchParams(params).toString()}`);
+    return response.data;
   } catch (err) {
     console.log(err);
   }
