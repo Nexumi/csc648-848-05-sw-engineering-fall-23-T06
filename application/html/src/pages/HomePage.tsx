@@ -141,7 +141,7 @@ function Header() {
               </Button>
             </Show>
             <Show when={isIn()}>
-              <div>
+              <div class="shrink-0 text-center">
                 <p>Welcome, {me().firstname} {me().lastname}!</p>
               </div>
               <Button
