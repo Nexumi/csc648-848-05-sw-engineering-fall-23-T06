@@ -120,22 +120,6 @@ public class TrackingService {
      * @return A List for the tracking information that has been put in before.
      */
     public List<Tracking> searchTracking(Long userId, String searchText, boolean hidden, String pin) {
-        if (hidden) {
-            var userRequest = UserPinRequest.builder()
-                    .userId(userId)
-                    .pin(pin)
-                    .build();
-            if (userService.validatePin(userRequest)) {
-                if (searchText.isEmpty()) {
-                    return trackingRepository.findHidden();
-                } else {
-                    return trackingRepository.searchHiddenTracking(searchText);
-                }
-            } else {
-                return List.of();
-            }
-        }
-
         if (userId == null) {
             if (searchText.isEmpty()){
                 return trackingRepository.getTrackingByGuest();
@@ -144,11 +128,27 @@ public class TrackingService {
             }
         }
 
+        var user = userService.findById(userId);
+        if (hidden) {
+            var userRequest = UserPinRequest.builder()
+                    .userId(userId)
+                    .pin(pin)
+                    .build();
+            if (userService.validatePin(userRequest)) {
+                if (searchText.isEmpty()) {
+                    return trackingRepository.findTrackingByUserAndHiddenIsTrue(user);
+                } else {
+                    return trackingRepository.searchHiddenTracking(user, searchText);
+                }
+            } else {
+                return List.of();
+            }
+        }
+
         if (searchText.isEmpty()) {
-            var user = userService.findById(userId);
             return trackingRepository.findTrackingByUserAndHiddenIsFalse(user);
         } else {
-            return trackingRepository.searchVisibleTracking(searchText);
+            return trackingRepository.searchVisibleTracking(user, searchText);
         }
     }
 

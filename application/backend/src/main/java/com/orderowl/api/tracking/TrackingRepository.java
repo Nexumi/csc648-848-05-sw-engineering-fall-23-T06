@@ -23,8 +23,9 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
             "OR t.location LIKE %:searchText% " +
             "OR t.address LIKE %:searchText% " +
             "OR t.title LIKE %:searchText%) " +
+            "AND t.user = :user " +
             "AND t.hidden = true")
-    List<Tracking> searchHiddenTracking(String searchText);
+    List<Tracking> searchHiddenTracking(User user, String searchText);
 
     @Query("SELECT t FROM Tracking t " +
             "WHERE (t.retailer LIKE %:searchText% " +
@@ -34,8 +35,9 @@ public interface TrackingRepository extends JpaRepository<Tracking, Long> {
             "OR t.location LIKE %:searchText% " +
             "OR t.address LIKE %:searchText% " +
             "OR t.title LIKE %:searchText%) " +
+            "AND t.user = :user " +
             "AND t.hidden = false")
-    List<Tracking> searchVisibleTracking(String searchText);
+    List<Tracking> searchVisibleTracking(User user, String searchText);
 
     @Query("SELECT t FROM Tracking t WHERE t.hidden = true")
     List<Tracking> findHidden();
