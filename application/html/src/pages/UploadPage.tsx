@@ -36,24 +36,24 @@ export default function UploadPage() {
     <>
       <form use:form class="container h-full">
         <Flex flexDirection="col" class="h-full">
-          <div class="text-center text-6xl mb-8">
+          <div class="text-center md:text-5xl text-1x mb-8">
             <p>Upload</p>
           </div>
           <Flex justifyContent="center" alignItems="end" class="gap-x-16">
             <div>
-              <p class="text-xl mr-2">Tracking Number:</p>
+              <p class="md:text-xl text-1x mr-2">Tracking Number:</p>
               <input
                 name="trackingNumber"
-                class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                class="md:w-64 w-11/12 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-400 md:focus:border-gray-600"
                 type="text"
                 placeholder="123456789"
               />
             </div>
-            <div class="mr-12">
-              <p class="text-xl mr-2">Order Title:</p>
+            <div class="mr-0 md:mr-8">
+              <p class="md:text-xl text-1x mr-1">Order Title:</p>
               <input
                 name="orderTitle"
-                class="w-64 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-600"
+                class="md:w-64 w-11/12 px-4 py-2 rounded-full text-gray-600 focus:outline-none border focus:border-gray-400 md:focus:border-gray-600"
                 type="text"
                 placeholder="Blue Hat/Birthday Gift"
               />
@@ -62,7 +62,7 @@ export default function UploadPage() {
           <Flex flexDirection="col" justifyContent="center" class="grow">
             <Flex justifyContent="center" alignItems="end" class="gap-x-">
               <div>
-                <p class="text-xl mr-2">Please choose whether you would like your order to be in your visible or hidden list.</p>
+                <p class="md:text-xl text-1x mr-2">Please choose whether you would like your order to be in your visible or hidden list.</p>
                 <br></br>
                 <Flex class="gap-x-2">
                   <Button
@@ -104,4 +104,5 @@ export default function UploadPage() {
       </form>
     </>
   );
+
 }
