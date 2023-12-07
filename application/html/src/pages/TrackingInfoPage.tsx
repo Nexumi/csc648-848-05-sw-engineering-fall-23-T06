@@ -1,13 +1,13 @@
 import { Loader } from '@googlemaps/js-api-loader';
 import { A, useNavigate, useParams } from "@solidjs/router";
-import { createEffect, createResource, createSignal } from "solid-js";
+import { For, createEffect, createResource, createSignal } from "solid-js";
 import toast from "solid-toast";
 import logo from "../assets/logos/logo.png";
 import { Button } from "../common/components/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../common/components/dialog";
 import { Flex } from "../common/layout/flex";
 import { Grid } from "../common/layout/grid";
-import { deleteTrackingById, getCoord, getTrackingById } from "../utils/requests";
+import { deleteTrackingById, getCoord, getTrackingById, getUpdatesById } from "../utils/requests";
 import { uriTracking } from "../utils/uri";
 import { getURL } from "../utils/util";
 
@@ -22,6 +22,13 @@ export default function TrackingInfoPage() {
       id: trackingId
     }),
     getTrackingById
+  );
+
+  const [updates] = createResource(
+    () => ({
+      id: trackingId
+    }),
+    getUpdatesById
   );
 
   const [coord] = createResource(
@@ -44,21 +51,23 @@ export default function TrackingInfoPage() {
     if (!mapUp()) {
       coord()?.json()
         .then((res) => {
-          loader
-            .importLibrary("maps")
-            .then(({ Map }) => {
-              const map = new Map(document.getElementById("map"), {
-                center: res.results[0].geometry.location,
-                zoom: 16,
-                mapId: "orderUP"
+          if (res.status === "OK") {
+            loader
+              .importLibrary("maps")
+              .then(({ Map }) => {
+                const map = new Map(document.getElementById("map"), {
+                  center: res.results[0].geometry.location,
+                  zoom: 16,
+                  mapId: "orderUP"
+                });
+                map.setOptions({
+                  disableDefaultUI: true,
+                  gestureHandling: "none",
+                  clickableIcons: false
+                });
+                setMapUp(true);
               });
-              map.setOptions({
-                disableDefaultUI: true,
-                gestureHandling: "none",
-                clickableIcons: false
-              });
-              setMapUp(true);
-            });
+          }
         });
     }
   })
@@ -130,9 +139,11 @@ export default function TrackingInfoPage() {
               </div>
               <div class="text-lg">
                 <ul class="list-disc ml-4">
-                  <li>Update #1</li>
-                  <li>Update #2</li>
-                  <li>Update #3</li>
+                  <For each={updates()?.data}>
+                    {(update) => 
+                      <li>{update.message}</li>
+                    }
+                  </For>
                 </ul>
               </div>
             </div>

@@ -160,3 +160,10 @@ export const getCoord = async (params: {
   const response = await fetch(`${apiGeocode()}?${new URLSearchParams(params).toString()}`);
   return response;
 }
+
+export const getUpdatesById = async (params: {
+  id: string
+}) => {
+  const response = await axios.get(`${apiTracking()}/updates?${new URLSearchParams(params).toString()}`);
+  return response;
+}
