@@ -64,7 +64,7 @@ public class TrackingConfig {
             Tracking tracking1 = new Tracking(
                     "Amazon",
                     "USPS",
-                    LocalDate.of(2023, 9, 20),
+                    LocalDate.of(2023, 12, 20),
                     "ABC123456789",
                     "In Transit",
                     "Las Vegas, NV",
@@ -76,7 +76,7 @@ public class TrackingConfig {
             Tracking tracking2 = new Tracking(
                     "Target",
                     "USPS",
-                    LocalDate.of(2023, 10, 31),
+                    LocalDate.of(2023, 12, 31),
                     "XYZ101010",
                     "Out for Delivery",
                     "San Francisco, CA",
@@ -89,7 +89,7 @@ public class TrackingConfig {
             Tracking tracking3 = new Tracking(
                     "Amazon",
                     "UPS",
-                    LocalDate.of(2023, 11, 2),
+                    LocalDate.of(2023, 12, 2),
                     "DEF789012",
                     "Delivered",
                     "Los Angeles, CA",
@@ -101,7 +101,7 @@ public class TrackingConfig {
             Tracking tracking4 = new Tracking(
                     "Best Buy",
                     "DHL",
-                    LocalDate.of(2023, 11, 3),
+                    LocalDate.of(2023, 12, 3),
                     "GHI345678",
                     "Pending",
                     "Chicago, IL",
@@ -113,7 +113,7 @@ public class TrackingConfig {
             Tracking tracking5 = new Tracking(
                     "Walmart",
                     "FedEx",
-                    LocalDate.of(2023, 11, 1),
+                    LocalDate.of(2023, 12, 1),
                     "ABC123456",
                     "In Transit",
                     "New York, NY",
